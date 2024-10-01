@@ -1,3 +1,5 @@
+import { ShoppingCart, SquareChartGantt } from "lucide-react";
+
 export function App() {
 	/*const [count, setCount] = useState(0)*/
 	return (
@@ -9,12 +11,21 @@ export function App() {
 
 				<div className="h-10 px-4 flex items-center justify-evenly">
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="bg-colorButton px-6 py-3 rounded-3xl">
+          <button className="flex justify-between w-60 bg-colorButton px-6 py-3 rounded-3xl shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium">
             Cárdapio
+
+            {/*
+              <div className="w-px h-6 bg-zinc-800">
+
+              </div>
+            */}
+  
+            <SquareChartGantt />
           </button>
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="bg-colorButton px-6 py-3 rounded-3xl">
+          <button className="flex justify-between w-60 bg-colorButton px-6 py-3 rounded-3xl shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium">
             Carrinho
+            <ShoppingCart />
           </button>
         </div>
 
