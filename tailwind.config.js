@@ -5,7 +5,8 @@ export default {
 		extend: {
       colors: {
         colorFundo: "#64395C",
-        colorText1: "#38122F", // Cor de Fundo
+        colorText1: "#38122F",
+        colorButton: "#99658F",
       },
 			fontFamily: {
 				sans: "Inter",
