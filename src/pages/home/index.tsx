@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 export function HomePage() {
 	/*const [count, setCount] = useState(0)*/
 
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	function menuPage() {
-		navigate('/menu/123')
+		navigate("/menu/123");
 	}
 
 	function orderPage() {
-		navigate('/order/123')
+		navigate("/order/123");
 	}
 
 	return (
@@ -25,32 +25,41 @@ export function HomePage() {
 				</div>
 
 				<div className="h-10 px-4 flex items-center justify-between">
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button onClick={menuPage} className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl">
-            Cárdapio
-
-            {/*
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button
+						onClick={menuPage}
+						className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+					>
+						Cárdapio
+						{/*
               <div className="w-px h-6 bg-zinc-800">
 
               </div>
             */}
-  
-            <SquareChartGantt />
-          </button>
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button onClick={orderPage} className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl">
-            Carrinho
-            <ShoppingCart />
-          </button>
-        </div>
+						<SquareChartGantt />
+					</button>
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button
+						onClick={orderPage}
+						className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+					>
+						Carrinho
+						<ShoppingCart />
+					</button>
+				</div>
 
 				<p className="text-lg text-colorText1">
 					Ao fazer suas encomendas pela itala virtual você automaticamente
 					concorda <br /> com nossos{" "}
 					{/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-					<a className="text-zinc-300" href="#">termos de uso</a> e{" "}
-					{/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-					<a className="text-zinc-300" href="#">políticas de privacidade</a>.
+					<a className="text-zinc-300" href="#">
+						termos de uso
+					</a>{" "}
+					e {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
+					<a className="text-zinc-300" href="#">
+						políticas de privacidade
+					</a>
+					.
 				</p>
 			</div>
 		</div>

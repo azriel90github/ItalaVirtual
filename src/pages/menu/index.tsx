@@ -1,7 +1,15 @@
 import { Search, ShoppingCart, SquareChartGantt } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
 	/*const [count, setCount] = useState(0)*/
+
+  const navigate = useNavigate()
+  
+  function orderPage() {
+		navigate('/order/123')
+	}
+
 	return (
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
@@ -12,7 +20,7 @@ export function MenuPage() {
 
         <div>
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5">
+          <button onClick={orderPage} className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5">
             Carrinho
             <ShoppingCart />
           </button>
