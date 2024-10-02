@@ -1,6 +1,6 @@
 import { ShoppingCart, SquareChartGantt } from "lucide-react";
 
-export function App() {
+export function HomePage() {
 	/*const [count, setCount] = useState(0)*/
 	return (
 		<div className="h-screen flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
