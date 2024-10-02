@@ -3,15 +3,18 @@ import { ShoppingCart, SquareChartGantt } from "lucide-react";
 export function App() {
 	/*const [count, setCount] = useState(0)*/
 	return (
-		<div className="h-screen flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center opacity-35">
+		<div className="h-screen flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
 			<div className="max-w-3xl w-full px-6 text-center space-y-10">
-				<p className="text-zinc-300 text-lg">
-					Faça sua encomenda de qualquer lugar e a qualquer hora!
-				</p>
+				<div className="flex flex-col items-center gap-4">
+					<img className="w-64" src="/logo-geladaria.png" alt="logoItalala" />
+					<p className="text-zinc-300 text-xl">
+						Faça sua encomenda de qualquer lugar e a qualquer hora!
+					</p>
+				</div>
 
-				<div className="h-10 px-4 flex items-center justify-evenly">
+				<div className="h-10 px-4 flex items-center justify-between">
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="flex justify-between w-60 bg-colorButton px-6 py-3 rounded-3xl shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium">
+          <button className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl">
             Cárdapio
 
             {/*
@@ -23,13 +26,13 @@ export function App() {
             <SquareChartGantt />
           </button>
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="flex justify-between w-60 bg-colorButton px-6 py-3 rounded-3xl shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium">
+          <button className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl">
             Carrinho
             <ShoppingCart />
           </button>
         </div>
 
-				<p className="text-sm text-colorText1">
+				<p className="text-lg text-colorText1">
 					Ao fazer suas encomendas pela itala virtual você automaticamente
 					concorda <br /> com nossos{" "}
 					{/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
