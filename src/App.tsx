@@ -3,7 +3,7 @@ import { ShoppingCart, SquareChartGantt } from "lucide-react";
 export function App() {
 	/*const [count, setCount] = useState(0)*/
 	return (
-		<div className="h-screen flex items-center justify-center">
+		<div className="h-screen flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center opacity-35">
 			<div className="max-w-3xl w-full px-6 text-center space-y-10">
 				<p className="text-zinc-300 text-lg">
 					Faça sua encomenda de qualquer lugar e a qualquer hora!
