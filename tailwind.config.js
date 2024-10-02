@@ -19,7 +19,7 @@ export default {
 			},
 
       backgroundImage: {
-        /*fundoHome: "url('/gelado01.jpg')",*/
+        fundoHome: "url('/ice-cream 2.png')",
       },
 		},
 	},
