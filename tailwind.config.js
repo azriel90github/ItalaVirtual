@@ -9,6 +9,9 @@ export default {
 				colorButton: "#99658F",
         colorHover: "#462940",
         buttonColor: "#38122F",
+				buttonColor2: "#64395C",
+				headerColor: "#99658F",
+				searchColor: "#7C4A73",
 			},
 			fontFamily: {
 				sans: "Inter",
