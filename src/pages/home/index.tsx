@@ -28,23 +28,23 @@ export function HomePage() {
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						onClick={menuPage}
-						className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						className="flex items-center justify-between w-80 bg-colorButton px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
-						Cárdapio
+						<p className="text-2xl font-semibold" >Cárdapio</p>
 						{/*
               <div className="w-px h-6 bg-zinc-800">
 
               </div>
             */}
-						<SquareChartGantt />
+						<SquareChartGantt className="size-8" />
 					</button>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						onClick={orderPage}
-						className="flex items-center justify-between w-80 bg-colorButton px-7 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						className="flex items-center justify-between w-80 bg-colorButton px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
-						Carrinho
-						<ShoppingCart />
+						<p className="text-2xl font-semibold" >Carrinho</p>
+						<ShoppingCart className="size-8" />
 					</button>
 				</div>
 

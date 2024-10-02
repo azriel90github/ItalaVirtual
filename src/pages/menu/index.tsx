@@ -14,13 +14,13 @@ export function MenuPage() {
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
         <div className="flex items-center px-3 ">
-          <SquareChartGantt  />
-          <p className="px-3" >Sabores Disponíveis</p>
+          <SquareChartGantt className="size-8"  />
+          <p className="px-4 text-2xl font-semibold" >Sabores Disponíveis</p>
         </div>
 
         <div>
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button onClick={orderPage} className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5">
+          <button onClick={orderPage} className="flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5">
             Carrinho
             <ShoppingCart />
           </button>

@@ -12,14 +12,14 @@ export function OrderPage() {
 	return (
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
-        <div className="flex items-center px-3 ">
-          <ShoppingCart />
-          <p className="px-3" >Carrinho de Compras</p>
+        <div className="flex items-center px-3">
+          <ShoppingCart className="size-8" />
+          <p className="px-4 text-2xl font-semibold" >Carrinho de Compras</p>
         </div>
 
         <div>
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button onClick={menuPage} className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5">
+          <button onClick={menuPage} className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 hover:text-zinc-100 rounded-2xl px-7 py-3.5">
             Cardápio
             <SquareChartGantt  />
             
@@ -36,6 +36,19 @@ export function OrderPage() {
           <Search />
         </div>
       </div>
+
+      <main className="flex gap-16">
+
+        <div className="w-80" >
+
+        </div>
+
+        <div className="flex-1">
+
+        </div> 
+
+      </main>
+
     </div>
 	);
 }
