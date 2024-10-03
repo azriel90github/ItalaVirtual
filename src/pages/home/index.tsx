@@ -19,7 +19,7 @@ export function HomePage() {
 			<div className="max-w-3xl w-full px-6 text-center space-y-10">
 				<div className="flex flex-col items-center gap-4">
 					<img className="w-64" src="/logo-geladaria.png" alt="logoItalala" />
-					<p className="text-zinc-300 text-xl">
+					<p className="text-zinc-300 text-xl font-light">
 						Faça sua encomenda de qualquer lugar e a qualquer hora!
 					</p>
 				</div>
@@ -30,7 +30,7 @@ export function HomePage() {
 						onClick={menuPage}
 						className="flex items-center justify-between w-80 bg-colorButton px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
-						<p className="text-2xl font-semibold" >Cárdapio</p>
+						<p className="text-2xl font-light" >Cárdapio</p>
 						{/*
               <div className="w-px h-6 bg-zinc-800">
 								
@@ -43,7 +43,7 @@ export function HomePage() {
 						onClick={orderPage}
 						className="flex items-center justify-between w-80 bg-colorButton px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
-						<p className="text-2xl font-semibold" >Carrinho</p>
+						<p className="text-2xl font-light" >Carrinho</p>
 						<ShoppingCart className="size-8" />
 					</button>
 				</div>

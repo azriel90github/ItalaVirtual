@@ -1,4 +1,4 @@
-import { Search, ShoppingCart, SquareChartGantt } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
@@ -14,8 +14,7 @@ export function MenuPage() {
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
         <div className="flex items-center px-3 ">
-          <SquareChartGantt className="size-8"  />
-          <p className="px-4 text-2xl font-semibold" >Sabores Disponíveis</p>
+          <p className="pl-2 text-2xl font-normal" >Sabores Disponíveis</p>
         </div>
 
         <div>
