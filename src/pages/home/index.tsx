@@ -33,7 +33,7 @@ export function HomePage() {
 						<p className="text-2xl font-semibold" >Cárdapio</p>
 						{/*
               <div className="w-px h-6 bg-zinc-800">
-
+								
               </div>
             */}
 						<SquareChartGantt className="size-8" />
