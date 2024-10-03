@@ -49,7 +49,7 @@ export function OrderPage() {
           <p className="flex justify-between py-2 px-3 text-xl">
             <h3 className="text-buttonColor font-medium">Pagamento</h3>
             <span className="text-moneyColor">
-              6.500 kz           
+              6.500         
             </span>
           </p>
 
@@ -61,9 +61,15 @@ export function OrderPage() {
         </div>
 
         <div className="flex-1">
-          <h1 className="text-4xl font-medium text-headerColor">
+          <h1 className="text-4xl flex items-center font-medium text-headerColor">
             Encomendar - Agora
           </h1>
+          {/** 
+             *<form action="#">
+                <label htmlFor="nome">Nome</label> <br />
+                <input type="text" />
+              </form>
+          */}
         </div> 
       </main>
     </div>

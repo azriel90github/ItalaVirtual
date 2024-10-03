@@ -1,4 +1,4 @@
-import { Search, ShoppingCart } from "lucide-react";
+import { Heart, Search, ShoppingCart, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
@@ -35,6 +35,53 @@ export function MenuPage() {
           <Search />
         </div>
       </div>
+
+
+      <div className="bg-headerColor rounded-3xl py-6 px-6 w-80">
+
+        <div className="flex items-center justify-between">
+          <p>Morango</p>
+          <Heart />
+        </div>
+
+        <div className="">
+          <img className="mx-auto w-14 flex" src="/ice-cream 6.png" alt="gelado" />
+        </div>
+
+        <span>
+          2.000 AOA (kz) <br />
+          (1 Canudo)
+        </span>
+
+        <div className="flex">
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+        </div>
+
+        <p>
+          Mistura de morango com chocolate, bolachas e uma cereginha
+        </p>
+
+        <div>
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button>
+            <div>Quantia 0</div>
+            <div>
+              
+            </div>
+          </button>
+
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button>
+            Adicionar Carrinho
+          </button>
+        </div>
+
+      </div>
+
     </div>
 	);
 }

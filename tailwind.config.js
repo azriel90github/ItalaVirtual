@@ -12,7 +12,7 @@ export default {
 				buttonColor2: "#64395C",
 				headerColor: "#99658F",
 				searchColor: "#7C4A73",
-				moneyColor: "#4ade80",
+				moneyColor: "#22c55e",
 			},
 			fontFamily: {
 				sans: "Inter",
