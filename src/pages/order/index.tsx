@@ -1,8 +1,8 @@
-import { Search, ShoppingCart, SquareChartGantt } from "lucide-react";
+import { ShoppingCart, SquareChartGantt } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function OrderPage() {
-  
+
 	/*const [count, setCount] = useState(0)*/
 
   const navigate = useNavigate()
@@ -31,11 +31,6 @@ export function OrderPage() {
       <div className="flex items-center justify-around">
         {/** <img className="w-40" src="/logo-geladaria.png" alt="logoItalala" /> */}
 
-        <div className="flex items-center bg-searchColor text-buttonColor px-5 py-3 rounded-full w-96 justify-between font-medium text-lg">
-          
-          <p className="px-3">Pesquisar</p>
-          <Search />
-        </div>
       </div>
 
       <main className="flex gap-16">
@@ -46,21 +41,21 @@ export function OrderPage() {
           </h2>
 
           <p className="flex justify-between py-1 px-2">
-            <h3>Sabores</h3>
-            <span>
+            <h3 className="text-buttonColor font-medium">Sabores</h3>
+            <span className="text-buttonColor">
               3
             </span>
           </p>
 
           <p className="flex justify-between py-1 px-2">
-            <h3>Pagamento</h3>
-            <span>
+            <h3 className="text-buttonColor font-medium">Pagamento</h3>
+            <span className="text-buttonColor">
               6.500 kz           
             </span>
           </p>
 
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+          <button onClick={menuPage} className="flex mt-3 bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
             Adicionar Sabores
             <SquareChartGantt  />
           </button>
