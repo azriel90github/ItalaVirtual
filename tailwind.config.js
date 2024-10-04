@@ -15,6 +15,7 @@ export default {
 				moneyColor: "#22c55e",
 				colorRemove: "#dc2626",
 				colorStar: "#d946ef",
+				colorInput: "#8C5B83",
 			},
 			fontFamily: {
 				sans: "Inter",
