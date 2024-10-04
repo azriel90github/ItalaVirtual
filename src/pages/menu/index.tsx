@@ -1,4 +1,4 @@
-import { Heart, Search, ShoppingCart, Star, Trash2 } from "lucide-react";
+import { Heart, Minus, Plus, Search, ShoppingCart, Star, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
@@ -36,57 +36,267 @@ export function MenuPage() {
       </div>
 
 
-      <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
-
-        <div className="flex items-center justify-between">
-          <p>Morango</p>
-          <Heart />
+      <div className="flex gap-10 justify-center">
+        <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+            <p className="text-buttonColor text-xl">Morango</p>
+            <Heart />
+          </div>
+          <div className="py-3">
+            <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+          </div>
+          <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
+            <span>2.000kz</span> (1 Colher)
+          </span>
+          <div className="flex items-center justify-center gap-2 py-3">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </div>
+          <p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+            Mistura de morango com chocolate, bolachas e uma cereginha
+          </p>
+          <div className="flex flex-col gap-3">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              <div>Quantia <span>0</span></div>
+              <div className="flex gap-5">
+                <Plus />
+                <Minus />
+              </div>
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar Carrinho
+              <ShoppingCart />
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Remover do Carrinho
+              <Trash2 />
+            </button>
+          </div>
         </div>
 
-        <div className="">
-          <img className="mx-auto w-14 flex" src="/ice-cream 6.png" alt="gelado" />
+
+        <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+            <p className="text-buttonColor text-xl">Chocolate</p>
+            <Heart />
+          </div>
+          <div className="py-3">
+            <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+          </div>
+          <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
+            <span>2.000kz</span> (1 Colher)
+          </span>
+          <div className="flex items-center justify-center gap-2 py-3">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </div>
+          <p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+            Mistura de morango com chocolate, bolachas e uma cereginha
+          </p>
+          <div className="flex flex-col gap-3">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              <div>Quantia <span>0</span></div>
+              <div className="flex gap-5">
+                <Plus />
+                <Minus />
+              </div>
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar Carrinho
+              <ShoppingCart />
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Remover do Carrinho
+              <Trash2 />
+            </button>
+          </div>
         </div>
 
-        <span>
-          2.000 AOA (kz) <br />
-          (1 Canudo)
-        </span>
 
-        <div className="flex">
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-          <Star />
+        <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+            <p className="text-buttonColor text-xl">Baunilha</p>
+            <Heart />
+          </div>
+          <div className="py-3">
+            <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+          </div>
+          <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
+            <span>2.000kz</span> (1 Colher)
+          </span>
+          <div className="flex items-center justify-center gap-2 py-3">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </div>
+          <p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+            Mistura de morango com chocolate, bolachas e uma cereginha
+          </p>
+          <div className="flex flex-col gap-3">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              <div>Quantia <span>0</span></div>
+              <div className="flex gap-5">
+                <Plus />
+                <Minus />
+              </div>
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar Carrinho
+              <ShoppingCart />
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Remover do Carrinho
+              <Trash2 />
+            </button>
+          </div>
         </div>
-
-        <p>
-          Mistura de morango com chocolate, bolachas e uma cereginha
-        </p>
-
-        <div className="flex flex-col gap-3">
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-            <div>Quantia 0</div>
-            <div>
-              
-            </div>
-          </button>
-
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-            Adicionar Carrinho
-            <ShoppingCart />
-          </button>
-
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-            Remover do Carrinho
-            <Trash2 />
-          </button>
-        </div>
-
       </div>
+
+      <div className="flex gap-10 justify-center">
+        <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+            <p className="text-buttonColor text-xl">Morango</p>
+            <Heart />
+          </div>
+          <div className="py-3">
+            <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+          </div>
+          <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
+            <span>2.000kz</span> (1 Colher)
+          </span>
+          <div className="flex items-center justify-center gap-2 py-3">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </div>
+          <p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+            Mistura de morango com chocolate, bolachas e uma cereginha
+          </p>
+          <div className="flex flex-col gap-3">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              <div>Quantia <span>0</span></div>
+              <div className="flex gap-5">
+                <Plus />
+                <Minus />
+              </div>
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar Carrinho
+              <ShoppingCart />
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Remover do Carrinho
+              <Trash2 />
+            </button>
+          </div>
+        </div>
+
+
+        <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+            <p className="text-buttonColor text-xl">Chocolate</p>
+            <Heart />
+          </div>
+          <div className="py-3">
+            <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+          </div>
+          <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
+            <span>2.000kz</span> (1 Colher)
+          </span>
+          <div className="flex items-center justify-center gap-2 py-3">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </div>
+          <p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+            Mistura de morango com chocolate, bolachas e uma cereginha
+          </p>
+          <div className="flex flex-col gap-3">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              <div>Quantia <span>0</span></div>
+              <div className="flex gap-5">
+                <Plus />
+                <Minus />
+              </div>
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar Carrinho
+              <ShoppingCart />
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Remover do Carrinho
+              <Trash2 />
+            </button>
+          </div>
+        </div>
+
+
+        <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+            <p className="text-buttonColor text-xl">Baunilha</p>
+            <Heart />
+          </div>
+          <div className="py-3">
+            <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+          </div>
+          <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
+            <span>2.000kz</span> (1 Colher)
+          </span>
+          <div className="flex items-center justify-center gap-2 py-3">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </div>
+          <p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+            Mistura de morango com chocolate, bolachas e uma cereginha
+          </p>
+          <div className="flex flex-col gap-3">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              <div>Quantia <span>0</span></div>
+              <div className="flex gap-5">
+                <Plus />
+                <Minus />
+              </div>
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar Carrinho
+              <ShoppingCart />
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Remover do Carrinho
+              <Trash2 />
+            </button>
+          </div>
+        </div>
+      </div>
+
+
 
     </div>
 	);
