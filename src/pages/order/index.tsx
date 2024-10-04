@@ -1,4 +1,4 @@
-import { SquareChartGantt } from "lucide-react";
+import { SquareChartGantt, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function OrderPage() {
@@ -53,11 +53,18 @@ export function OrderPage() {
             </span>
           </p>
 
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button onClick={menuPage} className="flex mt-6 bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-            Adicionar Sabores
-            <SquareChartGantt  />
-          </button>
+          <div className="flex flex-col gap-3">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button onClick={menuPage} className="flex mt-6 bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar Sabores
+              <SquareChartGantt  />
+            </button>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Remover Sabores
+              <Trash2 />
+            </button>
+          </div>
         </div>
 
         <div className="flex-1">

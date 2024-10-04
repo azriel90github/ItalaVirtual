@@ -13,6 +13,7 @@ export default {
 				headerColor: "#99658F",
 				searchColor: "#7C4A73",
 				moneyColor: "#22c55e",
+				colorRemove: "#dc2626",
 			},
 			fontFamily: {
 				sans: "Inter",

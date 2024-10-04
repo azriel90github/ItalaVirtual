@@ -1,9 +1,8 @@
-import { Heart, Search, ShoppingCart, Star } from "lucide-react";
+import { Heart, Search, ShoppingCart, Star, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
 	/*const [count, setCount] = useState(0)*/
-
   const navigate = useNavigate()
   
   function orderPage() {
@@ -37,7 +36,7 @@ export function MenuPage() {
       </div>
 
 
-      <div className="bg-headerColor rounded-3xl py-6 px-6 w-80">
+      <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
 
         <div className="flex items-center justify-between">
           <p>Morango</p>
@@ -65,9 +64,9 @@ export function MenuPage() {
           Mistura de morango com chocolate, bolachas e uma cereginha
         </p>
 
-        <div>
+        <div className="flex flex-col gap-3">
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button>
+          <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
             <div>Quantia 0</div>
             <div>
               
@@ -75,8 +74,15 @@ export function MenuPage() {
           </button>
 
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button>
+          <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
             Adicionar Carrinho
+            <ShoppingCart />
+          </button>
+
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+            Remover do Carrinho
+            <Trash2 />
           </button>
         </div>
 
