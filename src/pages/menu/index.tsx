@@ -89,7 +89,7 @@ export function MenuPage() {
             <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
           </div>
           <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
-            <span>2.000kz</span> (1 Colher)
+            <span>3 .000kz</span> (1 Colher)
           </span>
           <div className="flex items-center justify-center gap-2 py-3">
             <Star />
@@ -132,7 +132,7 @@ export function MenuPage() {
             <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
           </div>
           <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
-            <span>2.000kz</span> (1 Colher)
+            <span>4.000kz</span> (1 Colher)
           </span>
           <div className="flex items-center justify-center gap-2 py-3">
             <Star />
@@ -169,14 +169,14 @@ export function MenuPage() {
       <div className="flex gap-10 justify-center">
         <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
           <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
-            <p className="text-buttonColor text-xl">Morango</p>
+            <p className="text-buttonColor text-xl">Hortelã</p>
             <Heart />
           </div>
           <div className="py-3">
             <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
           </div>
           <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
-            <span>2.000kz</span> (1 Colher)
+            <span>5.000kz</span> (1 Colher)
           </span>
           <div className="flex items-center justify-center gap-2 py-3">
             <Star />
@@ -212,14 +212,14 @@ export function MenuPage() {
 
         <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
           <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
-            <p className="text-buttonColor text-xl">Chocolate</p>
+            <p className="text-buttonColor text-xl">Limão</p>
             <Heart />
           </div>
           <div className="py-3">
             <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
           </div>
           <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
-            <span>2.000kz</span> (1 Colher)
+            <span>6.000kz</span> (1 Colher)
           </span>
           <div className="flex items-center justify-center gap-2 py-3">
             <Star />
@@ -255,14 +255,14 @@ export function MenuPage() {
 
         <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
           <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
-            <p className="text-buttonColor text-xl">Baunilha</p>
+            <p className="text-buttonColor text-xl">Manga</p>
             <Heart />
           </div>
           <div className="py-3">
             <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
           </div>
           <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
-            <span>2.000kz</span> (1 Colher)
+            <span>7.000kz</span> (1 Colher)
           </span>
           <div className="flex items-center justify-center gap-2 py-3">
             <Star />

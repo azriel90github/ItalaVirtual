@@ -14,6 +14,7 @@ export default {
 				searchColor: "#7C4A73",
 				moneyColor: "#22c55e",
 				colorRemove: "#dc2626",
+				colorStar: "#d946ef",
 			},
 			fontFamily: {
 				sans: "Inter",
