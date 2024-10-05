@@ -4,22 +4,29 @@ import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
 
-  const sendOrder = () => {
-    setCount((prevCount: number) => prevCount * 320);
-  };
+  const [count, setCount] = useState(0) // Estado para adicionar e subtrair valores do botão colheres
+    // Função para incrementar o count
+    const incrementCount = () => {
+      setCount((count: number) => count + 1);
+    };
 
   const handleClick = () => {
     alterIcon();
     sendOrder();
   };
 
-	const [count, setCount] = useState(0) // Estado para a contagem
+  const [, setResult] = useState(0);
+
+  const sendOrder = () => {
+
+    setResult(count * 320);
+
+  };
 
   const [isAlternateIcon, setIsAlternateIcon] = useState(false); // Estado para os icons
 
-  const alterIcon = () => { // Função para alternar os icons
-    // Subtrai o contador, limitando a 0
-    //setCount((count: number) => Math.max(count - 1, 0));
+  // Função para alternar os icons
+  const alterIcon = () => { 
     
     // Mostra o ícone alternativo por 1 segundo
     setIsAlternateIcon(true);
@@ -29,6 +36,18 @@ export function MenuPage() {
       setIsAlternateIcon(false);
     }, 1000); // 1000 ms = 1 segundo
   };
+
+  const removeSpoonsAndCart = () => {
+    setCount(0);
+    removeCart();
+  };
+
+  
+  function removeCart() {
+    throw new Error("Function not implemented.");
+  }
+
+
 
   const navigate = useNavigate() // Esportar useNavigate do react-router-dom
   
@@ -133,21 +152,21 @@ export function MenuPage() {
           <div className="flex flex-col gap-3">
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-              <div>Colheres - <span>{count}</span></div>
+              <div>Colheres <span className="ml-2">{count}</span></div>
               <div className="flex gap-5">
-                <Plus onClick={() => setCount((count: number) => count + 1)} /> {/* Adicionar Valores de 1 pra cima* */}
+                <Plus onClick={incrementCount} /> {/* Adicionar Valores de 1 pra cima* */}
                 <Minus onClick={() => setCount((count: number) => Math.max(count - 1, 0))} /> {/* Subtrair Valores tendo como limite 0 * */}
               </div>
             </button>
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-            <button onClick={() => { handleClick(); }} className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-              Adicionar Carrinho
+            <button onClick={handleClick} className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+              Adicionar no Carrinho
               {isAlternateIcon ? <CircleCheck /> : <ShoppingCart />} {/* Alternar Icon */}
               
             </button>
             {/** Remover Quantidade Adicionada*/}
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-            <button onClick={() => setCount(0)} className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+            <button onClick={removeSpoonsAndCart} className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
               Remover do Carrinho
               <Trash2 />
             </button>
@@ -196,6 +215,7 @@ export function MenuPage() {
             </button>
           </div>
         </div>
+
       </div>
 
       <div className="flex gap-10 justify-center">
@@ -326,6 +346,7 @@ export function MenuPage() {
             </button>
           </div>
         </div>
+
       </div>
 
 
@@ -333,4 +354,6 @@ export function MenuPage() {
     </div>
 	);
 }
+
+
 
