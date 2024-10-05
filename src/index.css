@@ -5,3 +5,7 @@
 * {
   min-width: 0;
 }
+
+::-webkit-inner-spin-button { 
+  display: none;
+}

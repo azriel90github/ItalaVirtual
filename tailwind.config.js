@@ -26,7 +26,7 @@ export default {
 			},
 
       backgroundImage: {
-        fundoHome: "url('/ice-cream 2.png')",
+        /*fundoHome: "url('/ice-cream 2.png')",*/
       },
 		},
 	},

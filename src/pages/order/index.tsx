@@ -1,5 +1,6 @@
-import { RotateCcw, Send, SquareChartGantt, Trash2 } from "lucide-react";
+import { RotateCcw, Send, ShoppingCart, SquareChartGantt, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
 
 export function OrderPage() {
 
@@ -57,7 +58,7 @@ export function OrderPage() {
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button onClick={menuPage} className="flex mt-6 bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
               Adicionar Sabores
-              <SquareChartGantt  />
+              <ShoppingCart />
             </button>
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button onClick={menuPage} className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
@@ -79,7 +80,7 @@ export function OrderPage() {
 
               <div className="flex flex-col gap-4">
                 <input type="text" placeholder="Seu nome" className="w-4/6 py-3 px-4 outline-none rounded-xl bg-colorInput text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-colorFundo font-medium text-lx" />
-                <input type="number" placeholder="Seu número" className="w-4/6 py-3 px-4 outline-none rounded-xl bg-colorInput text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-colorFundo font-medium text-lx appearance-none" />
+                <input type="number" placeholder="Seu número" className="removeNumber w-4/6 py-3 px-4 outline-none rounded-xl bg-colorInput text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-colorFundo font-medium text-lx" />
                 <input type="text" placeholder="Localição exata" className="w-4/6 py-3 px-4 outline-none rounded-xl bg-colorInput text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-colorFundo font-medium text-lx" />
               </div>
 

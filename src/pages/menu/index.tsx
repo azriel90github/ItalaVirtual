@@ -1,8 +1,11 @@
 import { Heart, Minus, Plus, Search, ShoppingCart, Star, Trash2 } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
-	/*const [count, setCount] = useState(0)*/
+
+	const [count, setCount] = useState(0)
+
   const navigate = useNavigate()
   
   function orderPage() {
@@ -103,10 +106,10 @@ export function MenuPage() {
           <div className="flex flex-col gap-3">
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-              <div>Quantia <span>0</span></div>
+              <div>Colheres - <span>{count}</span></div>
               <div className="flex gap-5">
-                <Plus />
-                <Minus />
+                <Plus onClick={() => setCount((count: number) => count + 1)} />
+                <Minus onClick={() => setCount((count: number) => Math.max(count - 1, 0))} />
               </div>
             </button>
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
@@ -115,7 +118,7 @@ export function MenuPage() {
               <ShoppingCart />
             </button>
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-            <button className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+            <button onClick={() => setCount(0)} className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
               Remover do Carrinho
               <Trash2 />
             </button>
