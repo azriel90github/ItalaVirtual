@@ -86,7 +86,7 @@ export function OrderPage() {
 
               <div className="flex flex-col gap-3 py-5">
                   <button className="flex w-80 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between" type="submit">
-                    Enviar
+                    Encomendar                    
                     <Send />
                   </button>
 

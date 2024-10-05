@@ -1,18 +1,44 @@
-import { Heart, Minus, Plus, Search, ShoppingCart, Star, Trash2 } from "lucide-react";
+import { CircleCheck, Heart, Minus, Plus, Search, ShoppingCart, Star, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function MenuPage() {
 
-	const [count, setCount] = useState(0)
+  const sendOrder = () => {
+    setCount((prevCount: number) => prevCount * 320);
+  };
 
-  const navigate = useNavigate()
+  const handleClick = () => {
+    alterIcon();
+    sendOrder();
+  };
+
+	const [count, setCount] = useState(0) // Estado para a contagem
+
+  const [isAlternateIcon, setIsAlternateIcon] = useState(false); // Estado para os icons
+
+  const alterIcon = () => { // Função para alternar os icons
+    // Subtrai o contador, limitando a 0
+    //setCount((count: number) => Math.max(count - 1, 0));
+    
+    // Mostra o ícone alternativo por 1 segundo
+    setIsAlternateIcon(true);
+    
+    // Volta ao ícone original após 1 segundo
+    setTimeout(() => {
+      setIsAlternateIcon(false);
+    }, 1000); // 1000 ms = 1 segundo
+  };
+
+  const navigate = useNavigate() // Esportar useNavigate do react-router-dom
   
-  function orderPage() {
+  function orderPage() { // Navegar para a pagina orderPage
 		navigate('/order/123')
 	}
 
+ 
 	return (
+
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
         <div className="flex items-center px-3 ">
@@ -37,7 +63,6 @@ export function MenuPage() {
           <Search />
         </div>
       </div>
-
 
       <div className="flex gap-10 justify-center">
         <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
@@ -82,7 +107,6 @@ export function MenuPage() {
           </div>
         </div>
 
-
         <div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
           <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
             <p className="text-buttonColor text-xl">Chocolate</p>
@@ -92,31 +116,36 @@ export function MenuPage() {
             <img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
           </div>
           <span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3" >
-            <span>3 .000kz</span> (1 Colher)
+            <span>320 kz</span>, Por Colher
           </span>
+
           <div className="flex items-center justify-center gap-2 py-3">
             <Star />
             <Star />
             <Star />
             <Star />
           </div>
+
           <p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
             Mistura de morango com chocolate, bolachas e uma cereginha
           </p>
+          
           <div className="flex flex-col gap-3">
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
               <div>Colheres - <span>{count}</span></div>
               <div className="flex gap-5">
-                <Plus onClick={() => setCount((count: number) => count + 1)} />
-                <Minus onClick={() => setCount((count: number) => Math.max(count - 1, 0))} />
+                <Plus onClick={() => setCount((count: number) => count + 1)} /> {/* Adicionar Valores de 1 pra cima* */}
+                <Minus onClick={() => setCount((count: number) => Math.max(count - 1, 0))} /> {/* Subtrair Valores tendo como limite 0 * */}
               </div>
             </button>
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-            <button className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+            <button onClick={() => { handleClick(); }} className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
               Adicionar Carrinho
-              <ShoppingCart />
+              {isAlternateIcon ? <CircleCheck /> : <ShoppingCart />} {/* Alternar Icon */}
+              
             </button>
+            {/** Remover Quantidade Adicionada*/}
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button onClick={() => setCount(0)} className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
               Remover do Carrinho
