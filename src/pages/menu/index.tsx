@@ -15,11 +15,13 @@ export function MenuPage() {
     sendOrder();
   };
 
-  const [, setResult] = useState(0);
+
 
   const sendOrder = () => {
 
-    setResult(count * 320);
+
+
+
 
   };
 
@@ -38,12 +40,12 @@ export function MenuPage() {
   };
 
   const removeSpoonsAndCart = () => {
-    setCount(0);
-    removeCart();
+    setCount(0); // Remover quantia de colheres
+    removeCart(); // Remover Produto do carrinho
   };
 
   
-  function removeCart() {
+  function removeCart() { // Função para remover produto do carrinho
     throw new Error("Function not implemented.");
   }
 
