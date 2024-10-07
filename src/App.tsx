@@ -16,6 +16,8 @@ const router = createBrowserRouter([
 		path: "/order/:orderId",
 		element: < OrderPage />,
 	},
+
+	
 ]);
 
 export function App() {
