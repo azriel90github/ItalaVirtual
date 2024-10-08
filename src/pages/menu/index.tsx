@@ -8,7 +8,7 @@ import {
 	Star,
 	Trash2,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Para navegação manual
 
 export function MenuPage() {
@@ -62,12 +62,37 @@ export function MenuPage() {
 		navigate("/order/123");
 	}
 
+	// Estado para o sroller
+	const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+		const handleScroll = () => {
+			// Verifica se o usuário rolou mais de 50px da página
+			if (window.scrollY > 50) {
+				setIsScrolled(true);
+			} else {
+				setIsScrolled(false);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		// Limpar o event listener quando o componente for desmontado
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
 		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-top bg-fixed">
-			<div className="border-2 border-colorInput px-3 h-20 rounded-3xl shadow-shape bg-searchColor text-buttonColor flex items-center justify-between font-medium text-xl">
+			<div className={`border-2 border-colorInput px-3 h-20 rounded-3xl shadow-shape bg-searchColor text-buttonColor flex items-center justify-between font-medium text-xl ${
+							isScrolled ? '-translate-y-10' : 'translate-y-0'
+						}`}>
 				<div className="flex items-center px-3">
 					<p className="pl-2 text-2xl font-normal">Sabores Disponíveis</p>
 				</div>
+
+				 {/* Menu de navegação */}
 
 				<div>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
@@ -81,7 +106,7 @@ export function MenuPage() {
 				</div>
 			</div>
 
-			<div className="fixed">
+			<div className="flex justify-center">
 				{/** <img className="w-40" src="/logo-geladaria.png" alt="logoItalala" /> */}
 
 				<div className="border-2 border-colorInput flex items-center bg-searchColor text-buttonColor px-5 py-3 rounded-full w-96 justify-between font-medium text-lg">
@@ -143,8 +168,8 @@ export function MenuPage() {
 					<div className="py-3">
 						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
 					</div>
-					<span className="flex justify-center text-headerColor font-normal text-xl gap-2 py-3">
-						<span>320 kz</span>, 1 Colher
+					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
+						<span>320 kz</span> ( 1 Colher )
 					</span>
 
 					<div className="flex items-center justify-center gap-2 py-3">
@@ -374,6 +399,13 @@ export function MenuPage() {
 					</div>
 				</div>
 			</div>
+
+			 {/* Rodapé que aparece após rolagem */}
+			 <footer
+					className={`fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out bg-red-500 p-4 text-white ${
+						isScrolled ? 'translate-y-0' : 'translate-y-full'
+					}`}
+				> </footer>
 		</div>
 	);
 }
