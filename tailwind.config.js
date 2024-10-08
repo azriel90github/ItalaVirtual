@@ -9,6 +9,7 @@ export default {
 				colorButton: "#99658F",
 				colorHover: "#462940",
 				buttonColor: "#38122F",
+				buttonColor3: "#5c1e4d",
 				buttonColor2: "#64395C",
 				headerColor: "#99658F",
 				headerColor2: "#99658f91",
@@ -17,6 +18,7 @@ export default {
 				colorRemove: "#dc2626",
 				colorStar: "#d946ef",
 				colorInput: "#8C5B83",
+				colorExtra: "#955573",
 			},
 			fontFamily: {
 				sans: "Inter",

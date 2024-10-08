@@ -64,8 +64,8 @@ export function MenuPage() {
 
 	return (
 		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-top bg-fixed">
-			<div className="border-1 border-colorText1 fixed w-9/12 px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
-				<div className="flex items-center px-3 ">
+			<div className="border-2 border-colorInput px-3 h-20 rounded-3xl shadow-shape bg-searchColor text-buttonColor flex items-center justify-between font-medium text-xl">
+				<div className="flex items-center px-3">
 					<p className="pl-2 text-2xl font-normal">Sabores Disponíveis</p>
 				</div>
 
@@ -81,17 +81,17 @@ export function MenuPage() {
 				</div>
 			</div>
 
-			<div className="flex items-center justify-around">
+			<div className="fixed">
 				{/** <img className="w-40" src="/logo-geladaria.png" alt="logoItalala" /> */}
 
-				<div className="flex items-center bg-searchColor text-buttonColor px-5 py-3 rounded-full w-96 justify-between font-medium text-lg">
+				<div className="border-2 border-colorInput flex items-center bg-searchColor text-buttonColor px-5 py-3 rounded-full w-96 justify-between font-medium text-lg">
 					<p className="px-3">Pesquisar</p>
 					<Search />
 				</div>
 			</div>
 
 			<div className="flex gap-10 justify-center">
-				<div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
 						<p className="text-buttonColor text-xl">Morango</p>
 						<Heart />
@@ -135,7 +135,7 @@ export function MenuPage() {
 					</div>
 				</div>
 
-				<div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
 						<p className="text-buttonColor text-xl">Chocolate</p>
 						<Heart />
@@ -143,8 +143,8 @@ export function MenuPage() {
 					<div className="py-3">
 						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
 					</div>
-					<span className="flex justify-center text-buttonColor font-normal text-xl gap-2 py-3">
-						<span>320 kz</span>, Por Colher
+					<span className="flex justify-center text-headerColor font-normal text-xl gap-2 py-3">
+						<span>320 kz</span>, 1 Colher
 					</span>
 
 					<div className="flex items-center justify-center gap-2 py-3">
@@ -196,7 +196,7 @@ export function MenuPage() {
 					</div>
 				</div>
 
-				<div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
 						<p className="text-buttonColor text-xl">Baunilha</p>
 						<Heart />
@@ -242,7 +242,7 @@ export function MenuPage() {
 			</div>
 
 			<div className="flex gap-10 justify-center">
-				<div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
 						<p className="text-buttonColor text-xl">Hortelã</p>
 						<Heart />
@@ -286,7 +286,7 @@ export function MenuPage() {
 					</div>
 				</div>
 
-				<div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
 						<p className="text-buttonColor text-xl">Limão</p>
 						<Heart />
@@ -330,7 +330,7 @@ export function MenuPage() {
 					</div>
 				</div>
 
-				<div className="bg-headerColor rounded-3xl py-4 px-4 w-80">
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
 						<p className="text-buttonColor text-xl">Manga</p>
 						<Heart />

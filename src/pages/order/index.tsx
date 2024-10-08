@@ -21,7 +21,7 @@ export function OrderPage() {
 	}
 	return (
 		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-right">
-			<div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
+			<div className="border-2 border-colorInput px-3 h-20 rounded-3xl shadow-shape bg-searchColor text-buttonColor flex items-center justify-between font-medium text-xl">
 				<div className="flex items-center px-3">
 					<p className="pl-2 text-2xl font-normal">Carrinho de Compras</p>
 				</div>
@@ -43,7 +43,7 @@ export function OrderPage() {
 			</div>
 
 			<main className="flex gap-16">
-				<div className="w-80 h-full bg-headerColor py-3.5 px-3.5 rounded-3xl">
+				<div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
 					<h2 className="flex justify-between py-2 px-3 text-xl font-medium">
 						Detalhes da Encomenda
 					</h2>
@@ -91,17 +91,17 @@ export function OrderPage() {
 								<input
 									type="text"
 									placeholder="Seu nome"
-									className="w-4/6 py-3 px-4 outline-none rounded-xl bg-colorInput text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-colorFundo font-medium text-lx"
+									className="w-4/6 py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 								<input
 									type="number"
 									placeholder="Seu número"
-									className="removeNumber w-4/6 py-3 px-4 outline-none rounded-xl bg-colorInput text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-colorFundo font-medium text-lx"
+									className="removeNumber w-4/6 py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 								<input
 									type="text"
 									placeholder="Localição exata"
-									className="w-4/6 py-3 px-4 outline-none rounded-xl bg-colorInput text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-colorFundo font-medium text-lx"
+									className="w-4/6 py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-colorInput focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 							</div>
 
@@ -110,7 +110,7 @@ export function OrderPage() {
 									className="flex w-80 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
 									type="submit"
 								>
-									Encomendar
+									Enviar
 									<Send />
 								</button>
 
