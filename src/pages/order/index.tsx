@@ -20,7 +20,7 @@ export function OrderPage() {
 		navigate("/menu/123");
 	}
 	return (
-		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
+		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-right">
 			<div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
 				<div className="flex items-center px-3">
 					<p className="pl-2 text-2xl font-normal">Carrinho de Compras</p>
@@ -79,7 +79,7 @@ export function OrderPage() {
 				</div>
 
 				<div className="flex-1">
-					<h1 className="pb-5 text-4xl flex items-center justify-between font-medium text-headerColor">
+					<h1 className="pb-5 text-4xl flex items-center justify-between font-light text-zinc-300">
 						Encomendar - Agora
 					</h1>
 

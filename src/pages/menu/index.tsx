@@ -63,8 +63,8 @@ export function MenuPage() {
 	}
 
 	return (
-		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
-			<div className="px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
+		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-top bg-fixed">
+			<div className="border-1 border-colorText1 fixed w-9/12 px-3 h-20 rounded-3xl shadow-shape bg-headerColor text-buttonColor flex items-center justify-between font-medium text-xl">
 				<div className="flex items-center px-3 ">
 					<p className="pl-2 text-2xl font-normal">Sabores Disponíveis</p>
 				</div>

@@ -11,6 +11,7 @@ export default {
 				buttonColor: "#38122F",
 				buttonColor2: "#64395C",
 				headerColor: "#99658F",
+				headerColor2: "#99658f91",
 				searchColor: "#7C4A73",
 				moneyColor: "#22c55e",
 				colorRemove: "#dc2626",
@@ -26,7 +27,7 @@ export default {
 			},
 
 			backgroundImage: {
-				/*fundoHome: "url('/ice-cream 2.png')",*/
+				fundoHome: "url('/ice-cream 2.png')",
 			},
 		},
 	},
