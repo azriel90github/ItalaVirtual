@@ -14,11 +14,11 @@ createRoot(document.getElementById("root")!).render(
 const rootElement = document.getElementById("root");
 
 if (rootElement) {
-  createRoot(rootElement).render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
+	createRoot(rootElement).render(
+		<StrictMode>
+			<App />
+		</StrictMode>,
+	);
 } else {
-  console.error("Elemento 'root' não encontrado!");
+	console.error("Elemento 'root' não encontrado!");
 }

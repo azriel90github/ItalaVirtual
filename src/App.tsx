@@ -6,18 +6,16 @@ import { OrderPage } from "./pages/order";
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: < HomePage />,
+		element: <HomePage />,
 	},
 	{
 		path: "/menu/:menuId",
-		element: < MenuPage />,
+		element: <MenuPage />,
 	},
 	{
 		path: "/order/:orderId",
-		element: < OrderPage />,
+		element: <OrderPage />,
 	},
-
-	
 ]);
 
 export function App() {
