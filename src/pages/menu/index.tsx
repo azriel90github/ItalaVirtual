@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Para navegação manual
+import { CartButton } from "../../components/buttons/cart-button";
 
 export function MenuPage() {
 	const [count, setCount] = useState(0); // Armazena o contador
@@ -55,12 +56,7 @@ export function MenuPage() {
 		throw new Error("Function not implemented.");
 	}
 
-	const navigate = useNavigate(); // Esportar useNavigate do react-router-dom
 
-	function orderPage() {
-		// Navegar para a pagina orderPage
-		navigate("/order/123");
-	}
 
 	// Estado para o sroller
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -95,14 +91,7 @@ export function MenuPage() {
 				 {/* Menu de navegação */}
 
 				<div>
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button
-						onClick={orderPage}
-						className="flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5"
-					>
-						Carrinho
-						<ShoppingCart />
-					</button>
+					<CartButton />
 				</div>
 			</div>
 
