@@ -1,4 +1,4 @@
-import { ShoppingCart, SquareChartGantt } from "lucide-react";
+import { LogIn, ShoppingCart, SquareChartGantt, UsersRound } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function HomePage() {
@@ -30,21 +30,45 @@ export function HomePage() {
 						onClick={menuPage}
 						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
-						<p className="text-2xl font-normal">Cárdapio</p>
+						<p className="text-1xl font-normal">Cárdapio</p>
 						{/*
               <div className="w-px h-6 bg-zinc-800">
 								
               </div>
             */}
-						<SquareChartGantt className="size-8" />
+						<SquareChartGantt className="size-7" />
 					</button>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						onClick={orderPage}
 						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
-						<p className="text-2xl font-normal">Carrinho</p>
-						<ShoppingCart className="size-8" />
+						<p className="text-1xl font-normal">Carrinho</p>
+						<ShoppingCart className="size-7" />
+					</button>
+				</div>
+
+				<div className="h-10 px-4 flex items-center justify-between">
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button
+						
+						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+					>
+						<p className="text-1xl font-normal">Iniciar Sessão</p>
+						{/*
+              <div className="w-px h-6 bg-zinc-800">
+								
+              </div>
+            */}
+						<LogIn className="size-7"  />
+					</button>
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button
+						
+						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+					>
+						<p className="text-1xl font-normal">Criar Conta</p>
+						<UsersRound className="size-7" />
 					</button>
 				</div>
 
