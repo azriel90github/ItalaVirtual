@@ -3,7 +3,7 @@ import {
 	Heart,
 	Minus,
 	Plus,
-	Search,
+	Settings,
 	ShoppingCart,
 	Star,
 	Trash2,
@@ -11,6 +11,7 @@ import {
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
+import { Searchbox } from "../../components/searchBox/search-box";
 
 export function MenuPage() {
 	const [count, setCount] = useState(0); // Armazena o contador
@@ -90,19 +91,16 @@ export function MenuPage() {
 
 				 {/* Menu de navegação */}
 
-				<div>
+				<div className="flex items-center gap-4" >
+					<Settings className="text-buttonColor size-7" />
+					<div className="w-px h-12 bg-buttonColor">
+
+					</div>
 					<CartButton />
 				</div>
 			</div>
 
-			<div className="flex justify-center">
-				{/** <img className="w-40" src="/logo-geladaria.png" alt="logoItalala" /> */}
-
-				<div className="border-2 border-colorInput flex items-center bg-searchColor text-buttonColor px-5 py-3 rounded-full w-96 justify-between font-medium text-lg">
-					<p className="px-3">Pesquisar</p>
-					<Search />
-				</div>
-			</div>
+				<Searchbox />
 
 			<div className="flex gap-10 justify-center">
 				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
@@ -391,10 +389,19 @@ export function MenuPage() {
 
 			 {/* Rodapé que aparece após rolagem */}
 			 <footer
-					className={`fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out bg-red-500 p-4 text-white ${
+					className={`flex justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor p-5 ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
-				> </footer>
+				> 
+				<Searchbox />
+				<div className="flex gap-4 items-center">
+					<Settings className="text-buttonColor size-7" />
+					<div className="w-px h-12 bg-buttonColor">
+
+					</div>
+					<CartButton />
+				</div>
+				</footer>
 		</div>
 	);
 }

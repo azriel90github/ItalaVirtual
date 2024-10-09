@@ -1,6 +1,7 @@
 import {
 	RotateCcw,
 	Send,
+	Settings,
 	ShoppingCart,
 	SquareChartGantt,
 	Trash2,
@@ -26,7 +27,11 @@ export function OrderPage() {
 					<p className="pl-2 text-2xl font-normal">Carrinho de Compras</p>
 				</div>
 
-				<div>
+				<div className="flex items-center gap-4">
+					<Settings className="text-buttonColor size-7" />
+						<div className="w-px h-12 bg-buttonColor">
+
+					</div>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						onClick={menuPage}
