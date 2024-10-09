@@ -81,8 +81,8 @@ export function MenuPage() {
 	}, []);
 
 	return (
-		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-top bg-fixed">
-			<div className={`border-2 border-colorInput px-3 h-20 rounded-3xl shadow-shape bg-searchColor text-buttonColor flex items-center justify-between font-medium text-xl ${
+		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
+			<div className={`border-b-2 border-colorInput h-20 shadow-shape bg-searchColor text-buttonColor flex items-center justify-around font-medium text-xl ${
 							isScrolled ? '-translate-y-10' : 'translate-y-0'
 						}`}>
 				<div className="flex items-center px-3">
@@ -389,7 +389,7 @@ export function MenuPage() {
 
 			 {/* Rodapé que aparece após rolagem */}
 			 <footer
-					className={`flex justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor p-5 ${
+					className={`flex h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
