@@ -1,4 +1,4 @@
-import { LogIn, Settings, ShoppingCart, SquareChartGantt } from "lucide-react";
+import { Languages, LogIn, ShoppingCart, SquareChartGantt } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function HomePage() {
@@ -67,8 +67,8 @@ export function HomePage() {
 						
 						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
-						<p className="text-1xl font-normal">Definições</p>
-						<Settings className="size-7" />
+						<p className="text-1xl font-normal">Idioma</p>
+						<Languages className="size-7" />
 					</button>
 				</div>
 

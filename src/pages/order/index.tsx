@@ -1,7 +1,7 @@
 import {
+	Languages,
 	RotateCcw,
 	Send,
-	Settings,
 	ShoppingCart,
 	SquareChartGantt,
 	Trash2,
@@ -28,9 +28,9 @@ export function OrderPage() {
 				</div>
 
 				<div className="flex items-center gap-4">
-					<Settings className="text-buttonColor size-7" />
-						<div className="w-px h-12 bg-buttonColor">
-
+						<Languages className="text-buttonColor size-7" />
+						<div className="w-px h-12 bg-buttonColor2">
+							
 					</div>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
@@ -84,7 +84,7 @@ export function OrderPage() {
 				</div>
 
 				<div className="flex-1">
-					<h1 className="pb-5 text-4xl flex items-center justify-between font-light text-zinc-300">
+					<h1 className="pb-5 text-4xl flex items-center font-light text-zinc-300">
 						Encomendar - Agora
 					</h1>
 

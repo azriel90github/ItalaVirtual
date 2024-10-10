@@ -1,9 +1,9 @@
 import {
 	CircleCheck,
 	Heart,
+	Languages,
 	Minus,
 	Plus,
-	Settings,
 	ShoppingCart,
 	Star,
 	Trash2,
@@ -57,8 +57,6 @@ export function MenuPage() {
 		throw new Error("Function not implemented.");
 	}
 
-
-
 	// Estado para o sroller
 	const [isScrolled, setIsScrolled] = useState(false);
 
@@ -86,14 +84,14 @@ export function MenuPage() {
 							isScrolled ? '-translate-y-10' : 'translate-y-0'
 						}`}>
 				<div className="flex items-center px-3">
-					<p className="pl-2 text-2xl font-normal">Sabores Disponíveis</p>
+					<img className="w-28" src="/logo-geladaria.png" alt="logoItalala" />
 				</div>
 
 				 {/* Menu de navegação */}
 
 				<div className="flex items-center gap-4" >
-					<Settings className="text-buttonColor size-7" />
-					<div className="w-px h-12 bg-buttonColor">
+					<Languages className="text-buttonColor size-7" />
+					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
 					<CartButton />
@@ -395,8 +393,8 @@ export function MenuPage() {
 				> 
 				<Searchbox />
 				<div className="flex gap-4 items-center">
-					<Settings className="text-buttonColor size-7" />
-					<div className="w-px h-12 bg-buttonColor">
+					<Languages className="text-buttonColor size-7" />
+					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
 					<CartButton />
