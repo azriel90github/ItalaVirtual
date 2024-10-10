@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { ChartColumnStacked } from "lucide-react";
 
 export function Searchbox() {
   return (
@@ -6,8 +6,8 @@ export function Searchbox() {
 				{/** <img className="w-40" src="/logo-geladaria.png" alt="logoItalala" /> */}
 
 				<div className="border-2 border-colorInput flex items-center bg-searchColor text-buttonColor px-5 py-3 rounded-full w-96 justify-between font-medium text-lg">
-					<p className="px-3">Pesquisar</p>
-					<Search />
+					<p className="px-3">Categoria</p>
+					<ChartColumnStacked />
 				</div>
 			</div>
 

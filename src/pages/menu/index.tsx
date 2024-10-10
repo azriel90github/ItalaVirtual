@@ -154,7 +154,7 @@ export function MenuPage() {
 						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
-						<span>320 kz</span> ( 1 Colher )
+						<small>kz</small> <p className="text-5xl">320</p> <small>00</small>
 					</span>
 
 					<div className="flex items-center justify-center gap-2 py-3">
@@ -250,6 +250,11 @@ export function MenuPage() {
 					</div>
 				</div>
 			</div>
+
+			{/**
+			 * 
+			 */}
+
 
 			<div className="flex gap-10 justify-center">
 				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
