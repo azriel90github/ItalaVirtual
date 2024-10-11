@@ -28,7 +28,7 @@ export function HomePage() {
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						onClick={menuPage}
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						className="flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
 						<p className="text-1xl font-normal">Cárdapio</p>
 						{/*
@@ -41,7 +41,7 @@ export function HomePage() {
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						onClick={orderPage}
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						className="flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
 						<p className="text-1xl font-normal">Carrinho</p>
 						<ShoppingCart className="size-7" />
@@ -52,7 +52,7 @@ export function HomePage() {
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						className="flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
 						<p className="text-1xl font-normal">Iniciar Sessão</p>
 						{/*
@@ -65,7 +65,7 @@ export function HomePage() {
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						className="flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 					>
 						<p className="text-1xl font-normal">Idioma</p>
 						<Languages className="size-7" />
