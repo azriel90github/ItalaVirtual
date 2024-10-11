@@ -24,52 +24,54 @@ export function HomePage() {
 					</p>
 				</div>
 
-				<div className="h-10 px-4 flex items-center justify-between">
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button
-						onClick={menuPage}
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
-					>
-						<p className="text-1xl font-normal">Cárdapio</p>
-						{/*
-              <div className="w-px h-6 bg-zinc-800">
-								
-              </div>
-            */}
-						<SquareChartGantt className="size-7" />
-					</button>
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button
-						onClick={orderPage}
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
-					>
-						<p className="text-1xl font-normal">Carrinho</p>
-						<ShoppingCart className="size-7" />
-					</button>
-				</div>
+				<div className="">	
+					<div className="flex justify-center flex-wrap gap-4 w-full">
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+							onClick={menuPage}
+							className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						>
+							<p className="text-1xl font-normal">Cárdapio</p>
+							{/*
+								<div className="w-px h-6 bg-zinc-800">
+	
+								</div>
+							*/}
+							<SquareChartGantt className="size-7" />
+						</button>
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+							onClick={orderPage}
+							className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						>
+							<p className="text-1xl font-normal">Carrinho</p>
+							<ShoppingCart className="size-7" />
+						</button>
+					
+	
 
-				<div className="h-10 px-4 flex items-center justify-between">
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button
-						
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
-					>
-						<p className="text-1xl font-normal">Logar</p>
-						{/*
-              <div className="w-px h-6 bg-zinc-800">
-								
-              </div>
-            */}
-						<UserRoundCheck className="size-7" />
-					</button>
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button
-						
-						className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
-					>
-						<p className="text-1xl font-normal">Idioma</p>
-						<Languages className="size-7" />
-					</button>
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+	
+							className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						>
+							<p className="text-1xl font-normal">Logar</p>
+							{/*
+								<div className="w-px h-6 bg-zinc-800">
+	
+								</div>
+							*/}
+							<UserRoundCheck className="size-7" />
+						</button>
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+	
+							className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+						>
+							<p className="text-1xl font-normal">Idioma</p>
+							<Languages className="size-7" />
+						</button>
+						</div>
 				</div>
 
 				<p className="text-lg text-colorText1">

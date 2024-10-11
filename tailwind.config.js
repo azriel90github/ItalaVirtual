@@ -31,6 +31,19 @@ export default {
 			backgroundImage: {
 				fundoHome: "url('/ice-cream 2.png')",
 			},
+
+			screens: {
+				'sm': '576px',    // Tela pequena
+				'md': '768px',    // Tela média
+				'lg': '1024px',   // Tela grande
+				'xl': '1280px',   // Tela extra grande
+				'2xl': '1536px',  // Tela 2xl
+	
+				// Personalizando suas próprias telas
+				'3xl': '1920px',  // Tela 3xl personalizada
+				'4k': '3840px',   // Adicionando um breakpoint para 4K
+			},
+			extend: {},
 		},
 	},
 	plugins: [],

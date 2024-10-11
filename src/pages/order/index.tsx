@@ -22,16 +22,13 @@ export function OrderPage() {
 	}
 	return (
 		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-right">
-			<div className="border-2 border-colorInput px-3 h-20 rounded-3xl shadow-shape bg-searchColor text-buttonColor flex items-center justify-between font-medium text-xl">
-				<div className="flex items-center px-3">
-					<p className="pl-2 text-2xl font-normal">Carrinho de Compras</p>
+			<div className="border-2 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
+				<div className="flex items-center">
+					<p className="pl-3 text-2xl font-normal">Carrinho de Compras</p>
 				</div>
 
 				<div className="flex items-center gap-4">
-						<Languages className="text-buttonColor size-7" />
-						<div className="w-px h-12 bg-buttonColor2">
-							
-					</div>
+
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						onClick={menuPage}
@@ -40,6 +37,11 @@ export function OrderPage() {
 						Cardápio
 						<SquareChartGantt />
 					</button>
+
+					<div className="w-px h-12 bg-buttonColor2">
+							
+					</div>
+					<Languages className="text-buttonColor size-7 mr-2" />
 				</div>
 			</div>
 
@@ -47,7 +49,7 @@ export function OrderPage() {
 				{/** <img className="w-40" src="/logo-geladaria.png" alt="logoItalala" /> */}
 			</div>
 
-			<main className="flex gap-16">
+			<main className="flex flex-wrap gap-16">
 				<div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
 					<h2 className="flex justify-between py-2 px-3 text-xl font-medium">
 						Detalhes da Encomenda
@@ -92,27 +94,27 @@ export function OrderPage() {
 
 					<div className="py-4">
 						<form action="#">
-							<div className="flex flex-col gap-4">
+							<div className="flex flex-col gap-4 w-full">
 								<input
 									type="text"
 									placeholder="Seu nome"
-									className="w-4/6 py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+									className="py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 								<input
 									type="number"
 									placeholder="Seu número"
-									className="removeNumber w-4/6 py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+									className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 								<input
 									type="text"
 									placeholder="Localição exata"
-									className="w-4/6 py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+									className="py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 							</div>
 
-							<div className="flex flex-col gap-3 py-5">
+							<div className="flex flex-col gap-3 w-72 py-5">
 								<button
-									className="flex w-80 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+									className="flex bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
 									type="submit"
 								>
 									Enviar
@@ -120,7 +122,7 @@ export function OrderPage() {
 								</button>
 
 								<button
-									className="flex w-80 bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+									className="flex bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
 									type="reset"
 								>
 									Limpar
