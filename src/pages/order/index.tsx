@@ -7,11 +7,11 @@ import {
 	Trash2,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 
 export function OrderPage() {
-	const location = useLocation(); // Hook para pegar o estado da navegação
-	const { result } = location.state || { result: 0 }; // Desestrutura os dados ou define valor padrão
+	//const location = useLocation(); // Hook para pegar o estado da navegação
+	//const { result } = location.state || { result: 0 }; // Desestrutura os dados ou define valor padrão
 
 	/*const [count, setCount] = useState(0)*/
 
@@ -55,12 +55,12 @@ export function OrderPage() {
 
 					<p className="flex justify-between pt-2 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Sabores</h3>
-						<span className="text-moneyColor">3</span>
+						<span className="text-moneyColor">0</span>{/**adicionar novos valores */}
 					</p>
 
 					<p className="flex justify-between py-2 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Pagamento</h3>
-						<span className="text-moneyColor">{result}</span>
+						<span className="text-moneyColor">0</span>{/**adicionar novos valores */}
 					</p>
 
 					<div className="flex flex-col gap-3">

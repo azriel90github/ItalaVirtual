@@ -1,4 +1,5 @@
 import {
+	ArrowLeft,
 	CircleCheck,
 	Heart,
 	Languages,
@@ -78,13 +79,23 @@ export function MenuPage() {
 		};
 	}, []);
 
+	// Clicar na seta da página menu e levar para o inicio 
+	const navigate = useNavigate()
+	function HomePage() {
+		navigate("/");
+	}
+
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
 			<div className={`border-b-2 border-colorInput h-20 shadow-shape bg-searchColor text-buttonColor flex items-center justify-around font-medium text-xl ${
 							isScrolled ? '-translate-y-10' : 'translate-y-0'
 						}`}>
 				<div className="flex items-center px-3">
-					<img className="w-28" src="/logo-geladaria.png" alt="logoItalala" />
+					{/** <img className="w-28" src="/logo-geladaria.png" alt="logoItalala" />*/}
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button onClick={HomePage}> {/* Clicar na seta da página menu e levar para o inicio*/}
+						<ArrowLeft className="size-7" />
+					</button>
 				</div>
 
 				 {/* Menu de navegação */}
@@ -154,7 +165,7 @@ export function MenuPage() {
 						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
-						<small>kz</small> <p className="text-5xl">320</p> <small>00</small>
+						<small>kz</small> <p className="text-5xl text-moneyColor">320</p> <small>00</small>
 					</span>
 
 					<div className="flex items-center justify-center gap-2 py-3">
