@@ -94,7 +94,7 @@ export function MenuPage() {
 					{/** <img className="w-28" src="/logo-geladaria.png" alt="logoItalala" />*/}
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button onClick={HomePage}> {/* Clicar na seta da página menu e levar para o inicio*/}
-						<ArrowLeft className="size-7" />
+						<ArrowLeft className="size-6" />
 					</button>
 				</div>
 
