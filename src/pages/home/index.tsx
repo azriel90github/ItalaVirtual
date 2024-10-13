@@ -14,16 +14,22 @@ export function HomePage() {
 		navigate("/order/123");
 	}
 
+	function blogPage() {
+		navigate("/blog/123");
+	}
+
 	return (
 		<div>
 			<div className="flex justify-between m-5">
-				<Languages className="text-buttonColor size-8" />
-
 				<div className="cursor-pointer flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5">
 					<p>Opções de Perfil</p>
 					<div>
 						<UserRound />
 					</div>
+				</div>
+
+				<div className="mr-1">
+					<Languages className="text-buttonColor size-8" />
 				</div>
 			</div>
 			<div className="h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
@@ -69,7 +75,7 @@ export function HomePage() {
 								<UserRoundCheck className="size-7" />
 							</button>
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-							<button
+							<button onClick={blogPage}
 								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Blog</p>
@@ -93,7 +99,7 @@ export function HomePage() {
 				</div>
 			</div>
 			<p className="m-5 text-lg text-colorText1 text-center">
-				Desenvolvido por <a className="text-zinc-300" href="https://portofolio-perfil.vercel.app/">Suélio Armando</a> eXtreme Programming JS and Go
+				Desenvolvido por <a className="text-zinc-300" href="https://portofolio-perfil.vercel.app/">Suélio Armando</a> eXtreme Programming <span className="text-jsColor">JS</span> and <span className="text-goColor">Go</span>
 			</p>
 		</div>
 	);

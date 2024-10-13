@@ -19,7 +19,10 @@ export default {
 				colorStar: "#d946ef",
 				colorInput: "#8C5B83",
 				colorExtra: "#955573",
+				jsColor: "#FFDF00",
+				goColor: "#007D9C",
 			},
+
 			fontFamily: {
 				sans: "Inter",
 			},

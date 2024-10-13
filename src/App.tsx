@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HomePage } from "./pages/home";
 import { MenuPage } from "./pages/menu";
 import { OrderPage } from "./pages/order";
+import { BlogPage } from "./pages/blog";
 
 const router = createBrowserRouter([
 	{
@@ -9,7 +10,7 @@ const router = createBrowserRouter([
 		element: <HomePage />,
 	},
 	{
-		path: "/blog/blogId",
+		path: "/blog/:blogId",
 		element: <BlogPage />,
 	},
 	{
