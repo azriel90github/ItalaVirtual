@@ -2,7 +2,6 @@ import {
 	ArrowLeft,
 	CircleCheck,
 	Heart,
-	Languages,
 	Minus,
 	Plus,
 	ShoppingCart,
@@ -13,6 +12,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
+import { Language } from "../../components/language";
 
 export function MenuPage() {
 	const [count, setCount] = useState(0); // Armazena o contador
@@ -93,7 +93,7 @@ export function MenuPage() {
 				<div className="flex items-center px-3">
 					{/** <img className="w-28" src="/logo-geladaria.png" alt="logoItalala" />*/}
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button onClick={HomePage}> {/* Clicar na seta da página menu e levar para o inicio*/}
+					<button onClick={HomePage} className=""> {/* Clicar na seta da página menu e levar para o inicio*/}
 						<ArrowLeft className="size-6" />
 					</button>
 				</div>
@@ -106,7 +106,7 @@ export function MenuPage() {
 					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
-					<Languages className="text-buttonColor size-7" />
+					<Language />
 				</div>
 			</div>
 
@@ -302,18 +302,18 @@ export function MenuPage() {
 
 			 {/* Rodapé que aparece após rolagem */}
 			 <footer
-					className={`flex h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
+					className={`flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
 				<Searchbox />
-				<div className="flex gap-4 items-center">
+				<div className="flex p-4 items-center">
 					<CartButton />
 				
 					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
-					<Languages className="text-buttonColor size-7" />
+					<Language />
 				</div>
 				</footer>
 		</div>

@@ -1,5 +1,7 @@
-import { Languages, Rss, ShoppingCart, SquareChartGantt, UserRound, UserRoundCheck } from "lucide-react";
+import { Rss, ShoppingCart, SquareChartGantt, UserRoundCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Language } from "../../components/language";
+import { Profile } from "../../components/profile";
 
 export function HomePage() {
 	/*const [count, setCount] = useState(0)*/
@@ -21,15 +23,11 @@ export function HomePage() {
 	return (
 		<div>
 			<div className="flex justify-between m-5">
-				<div className="cursor-pointer flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5">
-					<p>Opções de Perfil</p>
-					<div>
-						<UserRound />
-					</div>
-				</div>
 
-				<div className="mr-1">
-					<Languages className="text-buttonColor size-8" />
+				<Profile />
+
+				<div className="mr-1 mt-1">
+					<Language />
 				</div>
 			</div>
 			<div className="h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">

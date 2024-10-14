@@ -1,12 +1,12 @@
 import {
-	Languages,
 	RotateCcw,
 	Send,
 	ShoppingCart,
-	SquareChartGantt,
 	Trash2,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { MenuButton } from "../../components/buttons/menu-button";
+import { Language } from "../../components/language";
 //import { useLocation } from "react-router-dom";
 
 export function OrderPage() {
@@ -29,19 +29,12 @@ export function OrderPage() {
 
 				<div className="flex items-center gap-4">
 
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button
-						onClick={menuPage}
-						className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-100 hover:text-zinc-100 rounded-2xl px-7 py-3.5"
-					>
-						Cardápio
-						<SquareChartGantt />
-					</button>
+					<MenuButton />
 
 					<div className="w-px h-12 bg-buttonColor2">
 							
 					</div>
-					<Languages className="text-buttonColor size-7 mr-2" />
+					<Language />
 				</div>
 			</div>
 

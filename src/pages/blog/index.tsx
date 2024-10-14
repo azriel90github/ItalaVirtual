@@ -1,6 +1,9 @@
 import { ArrowLeft, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MenuButton } from "../../components/buttons/menu-button";
+import { Language } from "../../components/language";
+import { Profile } from "../../components/profile";
 
 export function BlogPage() {
 
@@ -37,20 +40,22 @@ export function BlogPage() {
         isScrolled ? '-translate-y-10' : 'translate-y-0'
 				}`}>
 
-          <div className="w-40 flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <div>
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-              <button onClick={homePage}>
-                <ArrowLeft className="size-6 mt-1" />
+              <button className="flex items-center gap-3" onClick={homePage}>
+                <ArrowLeft className="size-6" />
+                <p className="text-2xl font-normal">
+                  Inicio
+                </p>
               </button>
+
             </div>
-            <p className="text-2xl font-normal">
-              Sobre nós
-            </p>
+
           </div>
           <div className="flex items-center justify-between">
             {/*Social*/}
-            <div className="flex gap-2 text-zinc-100">
+            <div className="flex gap-2 text-zinc-300">
               {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
               <a href="#">
                 <Facebook className="size-7" />
@@ -121,17 +126,21 @@ export function BlogPage() {
 
         {/* Rodapé que aparece após rolagem */}
 			 <footer
-					className={`flex h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
+					className={`flex h-20 items-center flex-wrap justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
 
-				<div className="flex gap-4 items-center">
+        <Profile />
+
+				<div className="flex gap-4">
 					
+          <MenuButton />
 				
 					<div className="w-px h-12 bg-buttonColor2">
-
+           
 					</div>
+          <Language />
 					
 				</div>
 				</footer>
