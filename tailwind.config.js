@@ -36,7 +36,7 @@ export default {
 			},
 
 			screens: {
-				'sm': '576px',    // Tela pequena
+				'sm': '640px',    // Tela pequena
 				'md': '768px',    // Tela média
 				'lg': '1024px',   // Tela grande
 				'xl': '1280px',   // Tela extra grande
