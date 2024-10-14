@@ -307,7 +307,7 @@ export function MenuPage() {
 					}`}
 				> 
 				<Searchbox />
-				<div className="flex p-4 items-center">
+				<div className="flex gap-4 items-center">
 					<CartButton />
 				
 					<div className="w-px h-12 bg-buttonColor2">

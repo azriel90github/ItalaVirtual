@@ -86,7 +86,7 @@ export function BlogPage() {
           </div>
 
           <div className="flex items-center justify-center flex-wrap gap-2">
-
+        
             <div>
               <div className="w-10/12 leading-loose flex flex-col gap-4 justify-center mx-auto">
                 <h1 className="text-5xl text-buttonColor py-2 mt-12 font-normal">Sobre nós</h1>

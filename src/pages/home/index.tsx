@@ -40,6 +40,27 @@ export function HomePage() {
 					</div>
 					<div className="">
 						<div className="flex justify-center flex-wrap gap-4 w-full">
+							
+							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+							<button onClick={blogPage}
+								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+							>
+								<p className="text-1xl font-normal">Blogue</p>
+								<Rss className="size-7" />
+							</button>
+							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+							<button
+								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+							>
+								<p className="text-1xl font-normal">Conta</p>
+								{/*
+									<div className="w-px h-6 bg-zinc-800">
+									</div>
+								*/}
+								<UserRoundCheck className="size-7" />
+							</button>
+
+
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
 								onClick={menuPage}
@@ -61,25 +82,7 @@ export function HomePage() {
 								<ShoppingCart className="size-7" />
 							</button>
 			
-							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-							<button
-								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
-							>
-								<p className="text-1xl font-normal">Conta</p>
-								{/*
-									<div className="w-px h-6 bg-zinc-800">
-									</div>
-								*/}
-								<UserRoundCheck className="size-7" />
-							</button>
-							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-							<button onClick={blogPage}
-								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
-							>
-								<p className="text-1xl font-normal">Blog</p>
-								<Rss className="size-7" />
-							</button>
-							</div>
+						</div>
 					</div>
 					<p className="text-lg text-colorText1">
 						Ao fazer suas encomendas pela itala virtual você automaticamente
