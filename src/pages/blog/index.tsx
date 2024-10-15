@@ -1,9 +1,9 @@
 import { ArrowLeft, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MenuButton } from "../../components/buttons/menu-button";
-import { Language } from "../../components/language";
-import { Profile } from "../../components/profile";
+//import { MenuButton } from "../../components/buttons/menu-button";
+//import { Language } from "../../components/language";
+//import { Profile } from "../../components/profile";
 
 export function BlogPage() {
 
@@ -85,10 +85,10 @@ export function BlogPage() {
             <img className="size-cover h-full w-full bg-cover bg-center" src="/banner2.jpg" alt="" />
           </div>
 
-          <div className="flex items-center justify-center flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
         
             <div>
-              <div className="w-10/12 leading-loose flex flex-col gap-4 justify-center mx-auto">
+              <div className="w-10/12 leading-loose flex flex-col gap-4 mx-auto">
                 <h1 className="text-5xl text-buttonColor py-2 mt-12 font-normal">Sobre nós</h1>
                 <p className="text-lg text-zinc-300">
                   "Olá! Sou o Cunha Shombossi, a mente e o coração por trás da Geladaria Italala.
@@ -104,21 +104,78 @@ export function BlogPage() {
               </div>
             </div>
 
-            <div>
+            <div className="w-10/12 flex flex-col mx-auto gap-4">
               <h1 className="text-5xl text-buttonColor py-2 mt-12 font-normal">Depoimentos</h1>
-              <figure className="flex flex-wrap">
-                <div className="">
-                  
-                </div>
-                <div>
-                  "O melhor sorvete que já provei! Sabores incríveis e textura perfeita. Já virei cliente fiel"
-                </div>
-                <div>
-                  <span>
-                    Samba, Luanda
-                  </span>
-                </div>
-              </figure>
+              <div className="flex flex-wrap gap-7">
+                <figure className="flex flex-wrap gap-4">
+                  <div className="bg-buttonColor w-24 h-24 rounded-full">
+                
+                  </div>
+                  <div className="">
+                    <p className="text-lg text-zinc-300 w-80">
+                      "O melhor sorvete que já provei! Sabores incríveis e textura perfeita.
+                      Já virei cliente fiel"
+                    </p>
+                    <div>
+                    <span className="text-2xl text-colorText1">
+                      Suélio Armando
+                    </span>
+                    <p className="text-buttonColor">Samba, Luanda</p>
+                  </div>
+                  </div>
+                </figure>
+                <figure className="flex flex-wrap gap-4">
+                  <div className="bg-buttonColor w-24 h-24 rounded-full">
+                
+                  </div>
+                  <div className="">
+                    <p className="text-lg text-zinc-300 w-80">
+                      "O melhor sorvete que já provei! Sabores incríveis e textura perfeita.
+                      Já virei cliente fiel"
+                    </p>
+                    <div>
+                    <span className="text-2xl text-colorText1">
+                      Suélio Armando
+                    </span>
+                    <p className="text-buttonColor">Samba, Luanda</p>
+                  </div>
+                  </div>
+                </figure>
+                <figure className="flex flex-wrap gap-4">
+                  <div className="bg-buttonColor w-24 h-24 rounded-full">
+                
+                  </div>
+                  <div className="">
+                    <p className="text-lg text-zinc-300 w-80">
+                      "O melhor sorvete que já provei! Sabores incríveis e textura perfeita.
+                      Já virei cliente fiel"
+                    </p>
+                    <div>
+                    <span className="text-2xl text-colorText1">
+                      Suélio Armando
+                    </span>
+                    <p className="text-buttonColor">Samba, Luanda</p>
+                  </div>
+                  </div>
+                </figure>
+                <figure className="flex flex-wrap gap-4">
+                  <div className="bg-buttonColor w-24 h-24 rounded-full">
+                
+                  </div>
+                  <div className="">
+                    <p className="text-lg text-zinc-300 w-80">
+                      "O melhor sorvete que já provei! Sabores incríveis e textura perfeita.
+                      Já virei cliente fiel"
+                    </p>
+                    <div>
+                    <span className="text-2xl text-colorText1">
+                      Suélio Armando
+                    </span>
+                    <p className="text-buttonColor">Samba, Luanda</p>
+                  </div>
+                  </div>
+                </figure>
+              </div>
             </div>
 
 
@@ -130,7 +187,8 @@ export function BlogPage() {
 
 
         {/* Rodapé que aparece após rolagem */}
-			 <footer
+        {/**
+         *  <footer
 					className={`flex h-20 items-center flex-wrap justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
@@ -145,10 +203,14 @@ export function BlogPage() {
 					<div className="w-px h-12 bg-buttonColor2">
            
 					</div>
-          <Language />
+          <p className="mt-3">
+            <Language />
+          </p>
 					
 				</div>
 				</footer>
+         */}
+			
     </div>
   );
 }
