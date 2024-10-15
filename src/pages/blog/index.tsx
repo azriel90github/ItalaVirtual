@@ -106,12 +106,17 @@ export function BlogPage() {
 
             <div>
               <h1 className="text-5xl text-buttonColor py-2 mt-12 font-normal">Depoimentos</h1>
-              <figure className="">
-                <div>
-
+              <figure className="flex flex-wrap">
+                <div className="">
+                  
                 </div>
                 <div>
-                  
+                  "O melhor sorvete que já provei! Sabores incríveis e textura perfeita. Já virei cliente fiel"
+                </div>
+                <div>
+                  <span>
+                    Samba, Luanda
+                  </span>
                 </div>
               </figure>
             </div>
