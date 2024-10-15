@@ -1,9 +1,9 @@
-import { ArrowLeft, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { ArrowLeft, Facebook, House, Instagram, MapPin, Twitter } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import { MenuButton } from "../../components/buttons/menu-button";
-//import { Language } from "../../components/language";
-//import { Profile } from "../../components/profile";
+import { MenuButton } from "../../components/buttons/menu-button";
+import { Language } from "../../components/language";
+import { Profile } from "../../components/profile";
 
 export function BlogPage() {
 
@@ -13,12 +13,12 @@ export function BlogPage() {
     navigate('/')
   }
 
-  	// Estado para o sroller
+  //Estado para o sroller
 	const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
 		const handleScroll = () => {
-			// Verifica se o usuário rolou mais de 50px da página
+			//Verifica se o usuário rolou mais de 50px da página
 			if (window.scrollY > 50) {
 				setIsScrolled(true);
 			} else {
@@ -46,7 +46,7 @@ export function BlogPage() {
               <button className="flex items-center gap-3" onClick={homePage}>
                 <ArrowLeft className="size-6" />
                 <p className="text-2xl font-normal">
-                  Inicio
+                  <House />
                 </p>
               </button>
 
@@ -55,23 +55,20 @@ export function BlogPage() {
           </div>
           <div className="flex items-center justify-between">
             {/*Social*/}
-            <div className="flex gap-2 text-zinc-300">
+            <div className="flex gap-1 text-buttonColor">
+
               {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
               <a href="#">
-                <Facebook className="size-7" />
+                <Instagram className="size-6" />
               </a>
               {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
               <a href="#">
-                <Instagram className="size-7" />
-              </a>
-              {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-              <a href="#">
-                <Twitter className="size-7" />
+                <Facebook className="size-6" />
               </a>
 
               {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
               <a href="#">
-                <Youtube className="size-7" />
+                <Twitter className="size-6" />
               </a>
 
             </div>
@@ -85,7 +82,7 @@ export function BlogPage() {
             <img className="size-cover h-full w-full bg-cover bg-center" src="/banner2.jpg" alt="" />
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-44">
         
             <div>
               <div className="w-10/12 leading-loose flex flex-col gap-4 mx-auto">
@@ -105,11 +102,11 @@ export function BlogPage() {
             </div>
 
             <div className="w-10/12 flex flex-col mx-auto gap-4">
-              <h1 className="text-5xl text-buttonColor py-2 mt-12 font-normal">Depoimentos</h1>
+              <h1 className="text-5xl text-buttonColor py-5 mt-3 font-normal">Depoimentos</h1>
               <div className="flex flex-wrap gap-7">
                 <figure className="flex flex-wrap gap-4">
-                  <div className="bg-buttonColor w-24 h-24 rounded-full">
-                
+                  <div className="">
+                    <img className="w-32 h-32 rounded-full" src="/perfis-blog/perfil02.jpg" alt="" />
                   </div>
                   <div className="">
                     <p className="text-lg text-zinc-300 w-80">
@@ -118,15 +115,18 @@ export function BlogPage() {
                     </p>
                     <div>
                     <span className="text-2xl text-colorText1">
-                      Suélio Armando
+                      Varstoque Armando
                     </span>
-                    <p className="text-buttonColor">Samba, Luanda</p>
+                    <p className="text-buttonColor flex items-center justify-between w-36">
+                      <MapPin className="size-5 text-zinc-300" />
+                      Samba, Luanda
+                    </p>
                   </div>
                   </div>
                 </figure>
                 <figure className="flex flex-wrap gap-4">
-                  <div className="bg-buttonColor w-24 h-24 rounded-full">
-                
+                  <div className="">
+                    <img className="w-32 h-32 rounded-full" src="/perfis-blog/perfil01.jpg" alt="" />
                   </div>
                   <div className="">
                     <p className="text-lg text-zinc-300 w-80">
@@ -135,15 +135,18 @@ export function BlogPage() {
                     </p>
                     <div>
                     <span className="text-2xl text-colorText1">
-                      Suélio Armando
+                      Cunha Chombossi
                     </span>
-                    <p className="text-buttonColor">Samba, Luanda</p>
+                    <p className="text-buttonColor flex items-center justify-between w-36">
+                      <MapPin className="size-5 text-zinc-300" />
+                      Samba, Luanda
+                    </p>
                   </div>
                   </div>
                 </figure>
                 <figure className="flex flex-wrap gap-4">
-                  <div className="bg-buttonColor w-24 h-24 rounded-full">
-                
+                  <div className="">
+                    <img className="w-32 h-32 rounded-full" src="/perfis-blog/perfil03.jpg" alt="" />
                   </div>
                   <div className="">
                     <p className="text-lg text-zinc-300 w-80">
@@ -154,13 +157,16 @@ export function BlogPage() {
                     <span className="text-2xl text-colorText1">
                       Suélio Armando
                     </span>
-                    <p className="text-buttonColor">Samba, Luanda</p>
+                    <p className="text-buttonColor flex items-center justify-between w-36">
+                      <MapPin className="size-5 text-zinc-300" />
+                      Samba, Luanda
+                    </p>
                   </div>
                   </div>
                 </figure>
                 <figure className="flex flex-wrap gap-4">
-                  <div className="bg-buttonColor w-24 h-24 rounded-full">
-                
+                  <div className="">
+                    <img className="w-32 h-32 rounded-full" src="/perfis-blog/perfil04.jpg" alt="" />
                   </div>
                   <div className="">
                     <p className="text-lg text-zinc-300 w-80">
@@ -169,27 +175,26 @@ export function BlogPage() {
                     </p>
                     <div>
                     <span className="text-2xl text-colorText1">
-                      Suélio Armando
+                      Ana Manuel
                     </span>
-                    <p className="text-buttonColor">Samba, Luanda</p>
+                    <p className="text-buttonColor flex items-center justify-between w-36">
+                      <MapPin className="size-5 text-zinc-300" />
+                      Samba, Luanda
+                    </p>
                   </div>
                   </div>
                 </figure>
               </div>
             </div>
-
-
           </div>
-
         </div>
 
 
 
 
         {/* Rodapé que aparece após rolagem */}
-        {/**
          *  <footer
-					className={`flex h-20 items-center flex-wrap justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
+					className={`queryFooterBlog flex py-3 gap-3 items-center flex-wrap justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
@@ -209,7 +214,6 @@ export function BlogPage() {
 					
 				</div>
 				</footer>
-         */}
 			
     </div>
   );

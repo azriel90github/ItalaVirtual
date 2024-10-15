@@ -12,4 +12,14 @@
 }
 
 
+@media (max-width: 768px) {
+	.queryFooterBlog {
+		padding-left: 0.75rem;
+		justify-content: left;
+	}
+}
+
+
+
+
 
