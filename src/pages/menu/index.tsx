@@ -1,6 +1,6 @@
 import {
 	ArrowLeft,
-	Bell,
+	BellDot,
 	CircleCheck,
 	Heart,
 	House,
@@ -112,7 +112,7 @@ export function MenuPage() {
 					</div>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button>
-						<Bell />
+						<BellDot className="size-6" />
 					</button>
 				</div>
 			</div>
