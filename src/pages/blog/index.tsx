@@ -99,8 +99,11 @@ export function BlogPage() {
 				<div className="flex flex-wrap gap-2 mb-44">
 					<div>
 						<div className="w-10/12 leading-loose flex flex-col gap-4 mx-auto">
-							<h1 className="text-5xl text-buttonColor py-2 mt-12 font-normal">
+							<h1 className="text-5xl flex items-start justify-between text-buttonColor py-2 mt-12 font-normal">
 								Sobre nós
+								<p>
+									<Language />
+								</p>
 							</h1>
 							<p className="text-lg text-zinc-300">
 								"Olá! Sou o Cunha Shombossi, a mente e o coração por trás da
@@ -219,7 +222,7 @@ export function BlogPage() {
 										perfeita. Já virei cliente fiel"
 									</p>
 									<div>
-										<span className="text-2xl text-colorText1">Ana Manuel</span>
+										<span className="text-2xl text-colorText1">Isabel Tatiana</span>
 										<p className="text-buttonColor flex items-center justify-between w-36">
 											<MapPin className="size-5 text-zinc-300" />
 											Samba, Luanda
@@ -242,12 +245,10 @@ export function BlogPage() {
 				<div className="flex gap-4">
 					<MenuButton />
 
-					<div className="w-px h-12 bg-buttonColor2">
-
-					</div>
-					<p className="mt-3">
-						<Language />
-					</p>
+					{/**
+					 <div className="w-px h-12 bg-buttonColor2"></div>
+					*/}
+					
 				</div>
 			</footer>
 		</div>

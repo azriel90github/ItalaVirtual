@@ -1,6 +1,6 @@
 import {
 	ArrowLeft,
-	BellDot,
+	Bell,
 	CircleCheck,
 	Heart,
 	House,
@@ -112,12 +112,17 @@ export function MenuPage() {
 					</div>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button>
-						<BellDot className="size-6" />
+						<Bell />
 					</button>
 				</div>
 			</div>
 
-				<Searchbox />
+				<div className="flex items-center justify-around gap-4">
+					<Searchbox />
+					<div>
+						<Language />
+					</div>
+				</div>
 
 			<div className="flex flex-wrap gap-5 justify-center">
 
@@ -317,10 +322,11 @@ export function MenuPage() {
 				<div className="flex gap-4 items-center">
 					<CartButton />
 				
-					<div className="w-px h-12 bg-buttonColor2">
+					{/** 					
+					 * <div className="w-px h-12 bg-buttonColor2">
+						</div>
+					*/}
 
-					</div>
-					<Language />
 				</div>
 				</footer>
 		</div>

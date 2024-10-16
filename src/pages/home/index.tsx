@@ -1,11 +1,14 @@
-import { Rss, ShoppingCart, SquareChartGantt, UserRoundCheck } from "lucide-react";
+import {
+	Rss,
+	ShoppingCart,
+	SquareChartGantt,
+	UserRoundCheck,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Language } from "../../components/language";
 import { Profile } from "../../components/profile";
 
 export function HomePage() {
-	/*const [count, setCount] = useState(0)*/
-
 	const navigate = useNavigate();
 
 	function menuPage() {
@@ -23,7 +26,6 @@ export function HomePage() {
 	return (
 		<div>
 			<div className="flex justify-between m-5">
-
 				<Profile />
 
 				<div className="mr-1 mt-1">
@@ -40,18 +42,16 @@ export function HomePage() {
 					</div>
 					<div className="">
 						<div className="flex justify-center flex-wrap gap-4 w-full">
-							
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-							<button onClick={blogPage}
+							<button
+								onClick={blogPage}
 								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Blogue</p>
 								<Rss className="size-6" />
 							</button>
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-							<button
-								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
-							>
+							<button className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl">
 								<p className="text-1xl font-normal">Conta</p>
 								{/*
 									<div className="w-px h-6 bg-zinc-800">
@@ -59,7 +59,6 @@ export function HomePage() {
 								*/}
 								<UserRoundCheck className="size-6" />
 							</button>
-
 
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
@@ -81,7 +80,6 @@ export function HomePage() {
 								<p className="text-1xl font-normal">Carrinho</p>
 								<ShoppingCart className="size-6" />
 							</button>
-			
 						</div>
 					</div>
 					<p className="text-lg text-colorText1">
@@ -100,7 +98,15 @@ export function HomePage() {
 				</div>
 			</div>
 			<p className="m-5 text-lg text-colorText1 text-center">
-				Desenvolvido por <a className="text-zinc-300" href="https://portofolio-perfil.vercel.app/">Suélio Armando</a> eXtreme Programming <span className="text-jsColor">JS</span> and <span className="text-goColor">Go</span>
+				Desenvolvido por{" "}
+				<a
+					className="text-zinc-300"
+					href="https://portofolio-perfil.vercel.app/"
+				>
+					Suélio Armando
+				</a>{" "}
+				eXtreme Programming <span className="text-jsColor">JS</span> and{" "}
+				<span className="text-goColor">Go</span>
 			</p>
 		</div>
 	);
