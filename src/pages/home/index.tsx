@@ -5,8 +5,10 @@ import {
 	UserRoundCheck,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Language } from "../../components/language";
-import { Profile } from "../../components/profile";
+
+
+import { LanguageModal } from "../../components/modal/language-modal";
+import { ProfileModal } from "../../components/modal/profile-modal";
 
 export function HomePage() {
 	const navigate = useNavigate();
@@ -26,10 +28,10 @@ export function HomePage() {
 	return (
 		<div>
 			<div className="flex justify-between m-5">
-				<Profile />
+				<ProfileModal />
 
 				<div className="mr-1 mt-1">
-					<Language />
+					<LanguageModal />
 				</div>
 			</div>
 			<div className="h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">

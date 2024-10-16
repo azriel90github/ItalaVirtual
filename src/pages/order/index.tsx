@@ -6,7 +6,9 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
-import { Language } from "../../components/language";
+import { LanguageModal } from "../../components/modal/language-modal";
+import { OrderDetailsModal } from "../../components/modal/order-detail-modal";
+
 //import { useLocation } from "react-router-dom";
 
 export function OrderPage() {
@@ -34,7 +36,7 @@ export function OrderPage() {
 					<div className="w-px h-12 bg-buttonColor2">
 							
 					</div>
-					<Language />
+						<LanguageModal />
 				</div>
 			</div>
 
@@ -44,11 +46,9 @@ export function OrderPage() {
 
 			<main className="flex flex-wrap gap-16">
 				<div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
-					<h2 className="flex justify-between py-2 px-3 text-xl font-medium">
-						Detalhes da Encomenda
-					</h2>
+					<OrderDetailsModal />
 
-					<p className="flex justify-between pt-2 px-3 text-xl">
+					<p className="flex justify-between pt-5 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Sabores</h3>
 						<span className="text-moneyColor">0</span>{/**adicionar novos valores */}
 					</p>
@@ -75,6 +75,7 @@ export function OrderPage() {
 							Remover Sabores
 							<Trash2 />
 						</button>
+					
 					</div>
 				</div>
 

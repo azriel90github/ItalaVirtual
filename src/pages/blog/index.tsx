@@ -9,8 +9,8 @@ import {
 import { useEffect, useState } from "react"; //Importando useEffect e useState do react
 import { useNavigate } from "react-router-dom"; //Importando useNavigate do react
 import { MenuButton } from "../../components/buttons/menu-button"; //Importando o componente menu-button
-import { Language } from "../../components/language"; //Importando o componente Language
-import { Profile } from "../../components/profile"; //Importando o componente Profile
+import { LanguageModal } from "../../components/modal/language-modal"; //Importando o componente Language
+import { ProfileModal } from "../../components/modal/profile-modal"; //Importando o componente Profile
 
 //Retornando função BlogPage( Página do blog ) e exportando a mesma
 export function BlogPage() {
@@ -102,7 +102,7 @@ export function BlogPage() {
 							<h1 className="text-5xl flex items-start justify-between text-buttonColor py-2 mt-12 font-normal">
 								Sobre nós
 								<p>
-									<Language />
+									<LanguageModal />
 								</p>
 							</h1>
 							<p className="text-lg text-zinc-300">
@@ -240,7 +240,7 @@ export function BlogPage() {
 					isScrolled ? "translate-y-0" : "translate-y-full"
 				}`}
 			>
-				<Profile />
+				<ProfileModal />
 
 				<div className="flex gap-4">
 					<MenuButton />

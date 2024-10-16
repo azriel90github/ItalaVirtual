@@ -1,6 +1,5 @@
 import {
 	ArrowLeft,
-	Bell,
 	CircleCheck,
 	Heart,
 	House,
@@ -14,7 +13,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
-import { Language } from "../../components/language";
+//import { LanguageModal } from "../../components/modal/language-modal";
+//import { NotificationModal } from "../../components/modal/notification-modal";
+
 
 export function MenuPage() {
 	const [count, setCount] = useState(0); // Armazena o contador
@@ -104,23 +105,19 @@ export function MenuPage() {
 				 {/* Menu de navegação */}
 
 				<div className="flex items-center gap-4" >
-					
-					<CartButton />
-				
+
 					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button>
-						<Bell />
-					</button>
+						<CartButton />
+						{/** <NotificationModal />*/}
 				</div>
 			</div>
 
-				<div className="flex items-center justify-around gap-4">
+				<div className="flex items-center justify-center gap-4">
 					<Searchbox />
 					<div>
-						<Language />
+						{/** <LanguageModal /> */}
 					</div>
 				</div>
 
@@ -320,12 +317,9 @@ export function MenuPage() {
 				> 
 				<Searchbox />
 				<div className="flex gap-4 items-center">
+				<div className="w-px h-12 bg-buttonColor2">
+				</div>
 					<CartButton />
-				
-					{/** 					
-					 * <div className="w-px h-12 bg-buttonColor2">
-						</div>
-					*/}
 
 				</div>
 				</footer>
