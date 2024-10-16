@@ -6,11 +6,9 @@
 	min-width: 0;
 }
 
-
 ::-webkit-inner-spin-button {
 	display: none;
 }
-
 
 @media (max-width: 768px) {
 	.queryFooterBlog {
