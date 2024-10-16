@@ -46,7 +46,7 @@ export function HomePage() {
 								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Blogue</p>
-								<Rss className="size-7" />
+								<Rss className="size-6" />
 							</button>
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
@@ -57,7 +57,7 @@ export function HomePage() {
 									<div className="w-px h-6 bg-zinc-800">
 									</div>
 								*/}
-								<UserRoundCheck className="size-7" />
+								<UserRoundCheck className="size-6" />
 							</button>
 
 
@@ -71,7 +71,7 @@ export function HomePage() {
 									<div className="w-px h-6 bg-zinc-800">
 									</div>
 								*/}
-								<SquareChartGantt className="size-7" />
+								<SquareChartGantt className="size-6" />
 							</button>
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
@@ -79,7 +79,7 @@ export function HomePage() {
 								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Carrinho</p>
-								<ShoppingCart className="size-7" />
+								<ShoppingCart className="size-6" />
 							</button>
 			
 						</div>

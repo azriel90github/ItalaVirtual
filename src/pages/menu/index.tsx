@@ -1,7 +1,9 @@
 import {
 	ArrowLeft,
+	Bell,
 	CircleCheck,
 	Heart,
+	House,
 	Minus,
 	Plus,
 	ShoppingCart,
@@ -93,20 +95,25 @@ export function MenuPage() {
 				<div className="flex items-center px-3">
 					{/** <img className="w-28" src="/logo-geladaria.png" alt="logoItalala" />*/}
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button onClick={HomePage} className=""> {/* Clicar na seta da página menu e levar para o inicio*/}
+					<button onClick={HomePage} className="flex gap-3"> {/* Clicar na seta da página menu e levar para o inicio*/}
 						<ArrowLeft className="size-6" />
+						<House />
 					</button>
 				</div>
 
 				 {/* Menu de navegação */}
 
 				<div className="flex items-center gap-4" >
+					
 					<CartButton />
 				
 					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
-					<Language />
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button>
+						<Bell />
+					</button>
 				</div>
 			</div>
 

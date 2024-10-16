@@ -91,7 +91,7 @@ export function OrderPage() {
 								<input
 									type="text"
 									placeholder="Seu nome"
-									className="py-3 px-4 outline-none rounded-xl bg-searchColor text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+									className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 								<input
 									type="number"

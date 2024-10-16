@@ -14,6 +14,7 @@ export default {
 				headerColor: "#99658F",
 				headerColor2: "#99658f91",
 				searchColor: "#7C4A73",
+				serchColorInput: "#7c4a738c",
 				moneyColor: "#22c55e",
 				colorRemove: "#dc2626",
 				colorStar: "#d946ef",

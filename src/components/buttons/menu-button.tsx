@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export function MenuButton() {
 
-	const navigate = useNavigate(); // Esportar useNavigate do react-router-dom
+	const navigate = useNavigate();// Esportar useNavigate do react-router-dom
 
 	function menuPage() {
 		navigate("/menu/123");
