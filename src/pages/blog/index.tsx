@@ -10,7 +10,8 @@ import { useEffect, useState } from "react"; //Importando useEffect e useState d
 import { useNavigate } from "react-router-dom"; //Importando useNavigate do react
 import { MenuButton } from "../../components/buttons/menu-button"; //Importando o componente menu-button
 import { LanguageModal } from "../../components/modal/language-modal"; //Importando o componente Language
-import { ProfileModal } from "../../components/modal/profile-modal"; //Importando o componente Profile
+//import { ProfileModal } from "../../components/modal/profile-modal"; //Importando o componente Profile
+import { CartButton } from "../../components/buttons/cart-button";
 
 //Retornando função BlogPage( Página do blog ) e exportando a mesma
 export function BlogPage() {
@@ -240,10 +241,13 @@ export function BlogPage() {
 					isScrolled ? "translate-y-0" : "translate-y-full"
 				}`}
 			>
-				<ProfileModal />
+
+				{/** <ProfileModal /> */}
+				<MenuButton />
 
 				<div className="flex gap-4">
-					<MenuButton />
+					
+					<CartButton />
 
 					{/**
 					 <div className="w-px h-12 bg-buttonColor2"></div>
