@@ -54,7 +54,7 @@ export function OrderPage() {
 
 					<p className="flex justify-between py-2 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Pagamento</h3>
-						<span className="text-moneyColor">{result}</span>{/**adicionar novos valores */}
+						<span className="text-moneyColor"></span>{/**adicionar novos valores */}
 					</p>
 
 					<div className="flex flex-col gap-3">

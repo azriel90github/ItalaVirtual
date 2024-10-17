@@ -21,21 +21,32 @@ export function MenuPage() {
 
 	//Iniciando lógica para a página MenuPage------------------------------------------------------------
 	//Lógica para adicionar e remover colheres
+	const [count, setCount] = useState(0); // Contador para colheres
+  const [isAlternateIcon, setIsAlternateIcon] = useState(false); // Controle do ícone do botão
+  const [total, setTotal] = useState(0); // Armazena o total calculado
+  const navigate = useNavigate(); // Para navegação entre as páginas
 
+  // Função para incrementar o valor de colheres
+  const incrementCount = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
 
+  // Função para adicionar colheres no carrinho, multiplicando por 320
+  const calculateAndNavigate = () => {
+    const calculatedTotal = count * 320;
+    setTotal(calculatedTotal); // Armazena o valor multiplicado
+    setIsAlternateIcon(true); // Altera o ícone para CircleCheck
+    // Navegar para outra página manualmente, se necessário, por exemplo:
+    navigate('/order123', { state: { total: calculatedTotal } });
+  };
 
-
-
-
-
-
-
-
-
-
-
-
-
+	  // Função para remover colheres e resetar o carrinho
+		const removeSpoonsAndCart = () => {
+			setCount(0); // Reseta o número de colheres
+			setTotal(0); // Zera o valor do carrinho
+			setIsAlternateIcon(false); // Altera o ícone de volta para ShoppingCart
+		};
+	
 
 	// Estado para o sroller
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -57,7 +68,6 @@ export function MenuPage() {
 
 
 	// Clicar na seta da página menu e levar para o inicio 
-	const navigate = useNavigate()
 	function HomePage() {
 		navigate("/");
 	}
@@ -125,31 +135,33 @@ export function MenuPage() {
 						<button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
 							<div>
 								Colheres <span className="ml-2">
-
+									{count}
 								</span>
 							</div>
 							<div className="flex gap-5">
-								<Plus />{" "}
+								<Plus onClick={incrementCount} />{" "}
 								{/* Adicionar Valores de 1 pra cima* */}
 								<Minus
-
+									onClick={() =>
+										setCount((prevCount) => Math.max(prevCount - 1, 0))
+									}
 								/>{" "}
 								{/* Subtrair Valores tendo como limite 0 * */}
 							</div>
 						</button>
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
-							
+							onClick={calculateAndNavigate}
 							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Adicionar no Carrinho
-							 <CircleCheck /> : <ShoppingCart />{" "}
+							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />}
 							{/* Alternar Icon */}
 						</button>
 						{/** Remover Quantidade Adicionada*/}
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
-							
+							onClick={removeSpoonsAndCart}
 							className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Remover do Carrinho
