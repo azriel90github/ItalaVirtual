@@ -96,12 +96,12 @@ export function MenuPage() {
 					</div>
 				</div>
 
-			<div className="flex flex-wrap gap-5 justify-center">
+			<div className="flex flex-wrap gap-5 justify-center pb-40">
 
-				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
 						<p className="text-buttonColor text-xl">Chocolate</p>
-						<Heart />
+						<Heart className="text-buttonColor" />
 					</div>
 					<div className="py-3">
 						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
@@ -110,7 +110,129 @@ export function MenuPage() {
 						<small>kz</small> <p className="text-5xl text-moneyColor">320</p> <small>00</small>
 					</span>
 
-					<div className="flex items-center justify-center gap-2 py-3">
+					<div className="text-buttonColor flex items-center justify-center gap-2 py-3">
+						<Star />
+						<Star />
+						<Star />
+						<Star />
+					</div>
+
+					<p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+						Mistura de morango com chocolate, bolachas e uma cereginha
+					</p>
+
+					<div className="flex flex-col gap-3">
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+							<div>
+								Colheres <span className="ml-2">
+									{count}
+								</span>
+							</div>
+							<div className="flex gap-5">
+								<Plus onClick={incrementCount} />{" "}
+								{/* Adicionar Valores de 1 pra cima* */}
+								<Minus onClick={decrementCount}/>{" "}
+								{/* Subtrair Valores tendo como limite 0 * */}
+							</div>
+						</button>
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+							onClick={handleAddToCart}
+							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas
+							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+						>
+							Adicionar no Carrinho
+							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />} {/* Alterna o ícone */}
+							{/* Alternar Icon */}
+						</button>
+						{/** Remover Quantidade Adicionada*/}
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+							onClick={handleRemoveFromCart}
+							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas
+							className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+						>
+							Remover do Carrinho
+							<Trash2 />
+						</button>
+					</div>
+				</div>
+
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
+					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+						<p className="text-buttonColor text-xl">Morango</p>
+						<Heart className="text-buttonColor" />
+					</div>
+					<div className="py-3">
+						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+					</div>
+					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
+						<small>kz</small> <p className="text-5xl text-moneyColor">320</p> <small>00</small>
+					</span>
+
+					<div className="text-buttonColor flex items-center justify-center gap-2 py-3">
+						<Star />
+						<Star />
+						<Star />
+						<Star />
+					</div>
+
+					<p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
+						Mistura de morango com chocolate, bolachas e uma cereginha
+					</p>
+
+					<div className="flex flex-col gap-3">
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+							<div>
+								Colheres <span className="ml-2">
+									{count}
+								</span>
+							</div>
+							<div className="flex gap-5">
+								<Plus onClick={incrementCount} />{" "}
+								{/* Adicionar Valores de 1 pra cima* */}
+								<Minus onClick={decrementCount}/>{" "}
+								{/* Subtrair Valores tendo como limite 0 * */}
+							</div>
+						</button>
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+							onClick={handleAddToCart}
+							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas
+							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+						>
+							Adicionar no Carrinho
+							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />} {/* Alterna o ícone */}
+							{/* Alternar Icon */}
+						</button>
+						{/** Remover Quantidade Adicionada*/}
+						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+						<button
+							onClick={handleRemoveFromCart}
+							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas
+							className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+						>
+							Remover do Carrinho
+							<Trash2 />
+						</button>
+					</div>
+				</div>
+
+				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
+					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+						<p className="text-buttonColor text-xl">Chocolate</p>
+						<Heart className="text-buttonColor" />
+					</div>
+					<div className="py-3">
+						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
+					</div>
+					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
+						<small>kz</small> <p className="text-5xl text-moneyColor">320</p> <small>00</small>
+					</span>
+
+					<div className="text-buttonColor flex items-center justify-center gap-2 py-3">
 						<Star />
 						<Star />
 						<Star />
@@ -164,7 +286,6 @@ export function MenuPage() {
 
 
 			 {/* Rodapé que aparece após rolagem */}
-			 {/**
 				* <footer
 					className={`flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
@@ -177,9 +298,7 @@ export function MenuPage() {
 					<CartButton />
 
 				</div>
-				</footer>
-			  */}
-			 
+				</footer>		 
 		</div>
 	);
 }
