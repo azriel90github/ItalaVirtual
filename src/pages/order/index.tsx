@@ -4,24 +4,23 @@ import {
 	ShoppingCart,
 	Trash2,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { OrderDetailsModal } from "../../components/modal/order-detail-modal";
 
-//import { useLocation } from "react-router-dom";
 
 export function OrderPage() {
-	//const location = useLocation(); // Hook para pegar o estado da navegação
-	//const { result } = location.state || { result: 0 }; // Desestrutura os dados ou define valor padrão
-
-	/*const [count, setCount] = useState(0)*/
+	
+	const location = useLocation(); // Hook para pegar o estado da navegação
+  const { result } = location.state || { result: 0 }; // Desestrutura os dados ou define valor padrão
 
 	const navigate = useNavigate();
 
 	function menuPage() {
 		navigate("/menu/123");
 	}
+	
 	return (
 		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-right">
 			<div className="border-2 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
@@ -55,7 +54,7 @@ export function OrderPage() {
 
 					<p className="flex justify-between py-2 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Pagamento</h3>
-						<span className="text-moneyColor">0</span>{/**adicionar novos valores */}
+						<span className="text-moneyColor">{result}</span>{/**adicionar novos valores */}
 					</p>
 
 					<div className="flex flex-col gap-3">

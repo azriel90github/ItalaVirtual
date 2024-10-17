@@ -8,62 +8,58 @@ import {
 	ShoppingCart,
 	Star,
 	Trash2,
-} from "lucide-react";
-import { useState, useEffect } from "react";
+} from "lucide-react"; //Importando icones do lucide-react
+import { useState, useEffect } from "react"; //Usar useState e useEffect do react
 import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 //import { LanguageModal } from "../../components/modal/language-modal";
 //import { NotificationModal } from "../../components/modal/notification-modal";
 
-
+//Função para retornar a MenuPage 
 export function MenuPage() {
+
+	//Iniciando lógica para a página MenuPage------------------------------------------------------------
+	//Lógica para adicionar e remover colheres
 	const [count, setCount] = useState(0); // Armazena o contador
 	// Função para incrementar o count
 	const incrementCount = () => {
 		setCount((count: number) => count + 1);
 	};
 
+	 // Função para multiplicar o count por 320 e preparar a navegação
+	 const calculateAndNavigate = () => {
+    const result = count * 320; // Calcula o valor
+    // Navega para a página de resultado e passa o valor pelo state
+    navigate('/result', { state: { result } });
+  };
+
+
 	const handleClick = () => {
 		alterIcon();
-		sendOrder(count);
 	};
 
-	function sendOrder(count: number) {
-		// Código de cálculo e navegação adicionado
-		const navigate = useNavigate(); // Certifique-se de que useNavigate está disponível
-		const result = count * 320; // Calcula o valor
 
-		// Navega para a página de resultado e passa o valor pelo state
-		navigate("/order/123", { state: { result } });
-	}
+
 
 	const [isAlternateIcon, setIsAlternateIcon] = useState(false); // Estado para os icons
-
 	// Função para alternar os icons
 	const alterIcon = () => {
 		// Mostra o ícone alternativo por 1 segundo
 		setIsAlternateIcon(true);
-
-		// Volta ao ícone original após 1 segundo
-		setTimeout(() => {
-			setIsAlternateIcon(false);
-		}, 1000); // 1000 ms = 1 segundo
 	};
+
+
+
 
 	const removeSpoonsAndCart = () => {
 		setCount(0); // Remover quantia de colheres
-		removeCart(); // Remover Produto do carrinho
 	};
 
-	function removeCart() {
-		// Função para remover produto do carrinho
-		throw new Error("Function not implemented.");
-	}
+
 
 	// Estado para o sroller
 	const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
 		const handleScroll = () => {
 			// Verifica se o usuário rolou mais de 50px da página
@@ -73,14 +69,13 @@ export function MenuPage() {
 				setIsScrolled(false);
 			}
 		};
-
 		window.addEventListener('scroll', handleScroll);
-
 		// Limpar o event listener quando o componente for desmontado
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
+
 
 	// Clicar na seta da página menu e levar para o inicio 
 	const navigate = useNavigate()
@@ -165,7 +160,7 @@ export function MenuPage() {
 						</button>
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
-							onClick={handleClick}
+							onClick={calculateAndNavigate}
 							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Adicionar no Carrinho
@@ -220,7 +215,7 @@ export function MenuPage() {
 									onClick={() =>
 										setCount((count: number) => Math.max(count - 1, 0))
 									}
-								/>{" "}
+								/>{""}
 								{/* Subtrair Valores tendo como limite 0 * */}
 							</div>
 						</button>
@@ -230,7 +225,7 @@ export function MenuPage() {
 							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Adicionar no Carrinho
-							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />}{" "}
+							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />}{""}
 							{/* Alternar Icon */}
 						</button>
 						{/** Remover Quantidade Adicionada*/}
@@ -310,7 +305,8 @@ export function MenuPage() {
 
 
 			 {/* Rodapé que aparece após rolagem */}
-			 <footer
+			 {/**
+				* <footer
 					className={`flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
@@ -323,6 +319,8 @@ export function MenuPage() {
 
 				</div>
 				</footer>
+			  */}
+			 
 		</div>
 	);
 }
