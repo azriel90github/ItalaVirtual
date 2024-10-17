@@ -2,13 +2,13 @@ import {
 	Rss,
 	ShoppingCart,
 	SquareChartGantt,
-	UserRoundCheck,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 
 import { LanguageModal } from "../../components/modal/language-modal";
 import { ProfileModal } from "../../components/modal/profile-modal";
+import { AccountButton } from "../../components/buttons/account-button";
 
 export function HomePage() {
 	const navigate = useNavigate();
@@ -42,30 +42,23 @@ export function HomePage() {
 							Faça sua encomenda de qualquer lugar e a qualquer hora!
 						</p>
 					</div>
-					<div className="">
+					<div className="w-full">
 						<div className="flex justify-center flex-wrap gap-4 w-full">
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
 								onClick={blogPage}
-								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Blogue</p>
 								<Rss className="size-6" />
 							</button>
-							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-							<button className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl">
-								<p className="text-1xl font-normal">Conta</p>
-								{/*
-									<div className="w-px h-6 bg-zinc-800">
-									</div>
-								*/}
-								<UserRoundCheck className="size-6" />
-							</button>
+
+							<AccountButton />
 
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
 								onClick={menuPage}
-								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Cárdapio</p>
 								{/*
@@ -77,7 +70,7 @@ export function HomePage() {
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
 								onClick={orderPage}
-								className="border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Carrinho</p>
 								<ShoppingCart className="size-6" />

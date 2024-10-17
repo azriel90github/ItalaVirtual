@@ -15,6 +15,11 @@
 		padding-left: 0.75rem;
 		justify-content: left;
 	}
+
+	.accountButton {
+		width: 100%;
+	}
+
 }
 
 

@@ -11,7 +11,9 @@ import { useNavigate } from "react-router-dom"; //Importando useNavigate do reac
 import { MenuButton } from "../../components/buttons/menu-button"; //Importando o componente menu-button
 import { LanguageModal } from "../../components/modal/language-modal"; //Importando o componente Language
 //import { ProfileModal } from "../../components/modal/profile-modal"; //Importando o componente Profile
-import { CartButton } from "../../components/buttons/cart-button";
+//import { CartButton } from "../../components/buttons/cart-button";
+//import { AccountButton } from "../../components/buttons/account-button";
+import { AccountButtonBlog } from "../../components/buttons/account-button-blog";
 
 //Retornando função BlogPage( Página do blog ) e exportando a mesma
 export function BlogPage() {
@@ -243,12 +245,11 @@ export function BlogPage() {
 			>
 
 				{/** <ProfileModal /> */}
-				<MenuButton />
-
+				<AccountButtonBlog />
+				
 				<div className="flex gap-4">
-					
-					<CartButton />
-
+				<MenuButton />
+				
 					{/**
 					 <div className="w-px h-12 bg-buttonColor2"></div>
 					*/}
