@@ -13,6 +13,8 @@ import { useState, useEffect } from "react"; //Usar useState e useEffect do reac
 import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
+import { useResult } from "../../context/ResultContext.tsx";
+//import React from "react";
 //import { LanguageModal } from "../../components/modal/language-modal";
 //import { NotificationModal } from "../../components/modal/notification-modal";
 
@@ -21,31 +23,20 @@ export function MenuPage() {
 
 	//Iniciando lógica para a página MenuPage------------------------------------------------------------
 	//Lógica para adicionar e remover colheres
-	const [count, setCount] = useState(0); // Contador para colheres
-  const [isAlternateIcon, setIsAlternateIcon] = useState(false); // Controle do ícone do botão
-  const [total, setTotal] = useState(0); // Armazena o total calculado
+	const { count, incrementCount, decrementCount, calculateTotal, resetCart, isAlternateIcon, toggleIcon } = useResult();
   const navigate = useNavigate(); // Para navegação entre as páginas
 
-  // Função para incrementar o valor de colheres
-  const incrementCount = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
 
-  // Função para adicionar colheres no carrinho, multiplicando por 320
-  const calculateAndNavigate = () => {
-    const calculatedTotal = count * 320;
-    setTotal(calculatedTotal); // Armazena o valor multiplicado
-    setIsAlternateIcon(true); // Altera o ícone para CircleCheck
-    // Navegar para outra página manualmente, se necessário, por exemplo:
-    navigate('/order123', { state: { total: calculatedTotal } });
-  };
-
-	  // Função para remover colheres e resetar o carrinho
-		const removeSpoonsAndCart = () => {
-			setCount(0); // Reseta o número de colheres
-			setTotal(0); // Zera o valor do carrinho
-			setIsAlternateIcon(false); // Altera o ícone de volta para ShoppingCart
+	  // Função para adicionar ao carrinho e alternar o ícone
+		const handleAddToCart = () => {
+			calculateTotal();
+			toggleIcon(); // Alterna o ícone para o check
 		};
+	
+		  // Função para remover do carrinho
+			const handleRemoveFromCart = () => {
+				resetCart();
+			};
 	
 
 	// Estado para o sroller
@@ -141,27 +132,25 @@ export function MenuPage() {
 							<div className="flex gap-5">
 								<Plus onClick={incrementCount} />{" "}
 								{/* Adicionar Valores de 1 pra cima* */}
-								<Minus
-									onClick={() =>
-										setCount((prevCount) => Math.max(prevCount - 1, 0))
-									}
-								/>{" "}
+								<Minus onClick={decrementCount}/>{" "}
 								{/* Subtrair Valores tendo como limite 0 * */}
 							</div>
 						</button>
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
-							onClick={calculateAndNavigate}
+							onClick={handleAddToCart}
+							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas
 							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Adicionar no Carrinho
-							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />}
+							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />} {/* Alterna o ícone */}
 							{/* Alternar Icon */}
 						</button>
 						{/** Remover Quantidade Adicionada*/}
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
-							onClick={removeSpoonsAndCart}
+							onClick={handleRemoveFromCart}
+							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas
 							className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Remover do Carrinho
@@ -169,128 +158,7 @@ export function MenuPage() {
 						</button>
 					</div>
 				</div>
-
-				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
-					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
-						<p className="text-buttonColor text-xl">Chocolate</p>
-						<Heart />
-					</div>
-					<div className="py-3">
-						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
-					</div>
-					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
-						<small>kz</small> <p className="text-5xl text-moneyColor">320</p><small>00</small>
-					</span>
-
-					<div className="flex items-center justify-center gap-2 py-3">
-						<Star />
-						<Star />
-						<Star />
-						<Star />
-					</div>
-
-					<p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
-						Mistura de morango com chocolate, bolachas e uma cereginha
-					</p>
-
-					<div className="flex flex-col gap-3">
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-							<div>
-								Colheres <span className="ml-2">{count}</span>
-							</div>
-							<div className="flex gap-5">
-								<Plus onClick={incrementCount} />{" "}
-								{/* Adicionar Valores de 1 pra cima* */}
-								<Minus
-									onClick={() =>
-										setCount((count: number) => Math.max(count - 1, 0))
-									}
-								/>{""}
-								{/* Subtrair Valores tendo como limite 0 * */}
-							</div>
-						</button>
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button
-							onClick={handleClick}
-							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
-						>
-							Adicionar no Carrinho
-							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />}{""}
-							{/* Alternar Icon */}
-						</button>
-						{/** Remover Quantidade Adicionada*/}
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button
-							onClick={removeSpoonsAndCart}
-							className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
-						>
-							Remover do Carrinho
-							<Trash2 />
-						</button>
-					</div>
-				</div>
-
-				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80">
-					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
-						<p className="text-buttonColor text-xl">Chocolate</p>
-						<Heart />
-					</div>
-					<div className="py-3">
-						<img className="mx-auto w-20" src="/ice-cream 6.png" alt="gelado" />
-					</div>
-					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
-						<small>kz</small> <p className="text-5xl text-moneyColor">320</p> <small>00</small>
-					</span>
-
-					<div className="flex items-center justify-center gap-2 py-3">
-						<Star />
-						<Star />
-						<Star />
-						<Star />
-					</div>
-
-					<p className="text-center py-4 mb-2 text-buttonColor font-normal text-xl">
-						Mistura de morango com chocolate, bolachas e uma cereginha
-					</p>
-
-					<div className="flex flex-col gap-3">
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
-							<div>
-								Colheres <span className="ml-2">{count}</span>
-							</div>
-							<div className="flex gap-5">
-								<Plus onClick={incrementCount} />{" "}
-								{/* Adicionar Valores de 1 pra cima* */}
-								<Minus
-									onClick={() =>
-										setCount((count: number) => Math.max(count - 1, 0))
-									}
-								/>{" "}
-								{/* Subtrair Valores tendo como limite 0 * */}
-							</div>
-						</button>
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button
-							onClick={handleClick}
-							className="flex bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
-						>
-							Adicionar no Carrinho
-							{isAlternateIcon ? <CircleCheck /> : <ShoppingCart />}{" "}
-							{/* Alternar Icon */}
-						</button>
-						{/** Remover Quantidade Adicionada*/}
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button
-							onClick={removeSpoonsAndCart}
-							className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
-						>
-							Remover do Carrinho
-							<Trash2 />
-						</button>
-					</div>
-				</div>					
+	
 
 			</div>
 

@@ -4,17 +4,16 @@ import {
 	ShoppingCart,
 	Trash2,
 } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { OrderDetailsModal } from "../../components/modal/order-detail-modal";
+import { useResult } from "../../context/ResultContext.tsx";
 
 
 export function OrderPage() {
 	
-	const location = useLocation(); // Hook para pegar o estado da navegação
-  const { result } = location.state || { result: 0 }; // Desestrutura os dados ou define valor padrão
-
+	const { total } = useResult(); // Acessa o valor do total do contexto
 	const navigate = useNavigate();
 
 	function menuPage() {
@@ -54,7 +53,9 @@ export function OrderPage() {
 
 					<p className="flex justify-between py-2 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Pagamento</h3>
-						<span className="text-moneyColor"></span>{/**adicionar novos valores */}
+						<span className="text-moneyColor">
+						{total}
+						</span>{/**adicionar novos valores */}
 					</p>
 
 					<div className="flex flex-col gap-3">

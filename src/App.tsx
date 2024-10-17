@@ -3,6 +3,8 @@ import { HomePage } from "./pages/home";
 import { MenuPage } from "./pages/menu";
 import { OrderPage } from "./pages/order";
 import { BlogPage } from "./pages/blog";
+import { ResultProvider } from "./context/ResultContext";
+
 
 const router = createBrowserRouter([
 	{
@@ -23,6 +25,11 @@ const router = createBrowserRouter([
 	},
 ]);
 
+// Envolvendo o RouterProvider com ResultProvider
 export function App() {
-	return <RouterProvider router={router} />;
+  return (
+    <ResultProvider> {/* ResultProvider para disponibilizar o contexto em todo o app */}
+      <RouterProvider router={router} /> {/* RouterProvider para as rotas definidas */}
+    </ResultProvider>
+  );
 }
