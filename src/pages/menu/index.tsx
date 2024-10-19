@@ -104,7 +104,7 @@ export function MenuPage() {
 						<Heart className="text-buttonColor" />
 					</div>
 					<div className="py-3">
-						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/pexels-andrea-imre-151632551-16926805.jpg" alt="gelado" />
+						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
 						<small>kz</small> <p className="text-5xl text-moneyColor">310</p> <small>00</small>
@@ -165,7 +165,7 @@ export function MenuPage() {
 						<Heart className="text-buttonColor" />
 					</div>
 					<div className="py-3">
-						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/pexels-damir-12941956.jpg" alt="gelado" />
+						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
 						<small>kz</small> <p className="text-5xl text-moneyColor">330</p> <small>00</small>
@@ -226,7 +226,7 @@ export function MenuPage() {
 						<Heart className="text-buttonColor" />
 					</div>
 					<div className="py-3">
-						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/pexels-sebastian-coman-photography-1598188-3625371.jpg" alt="gelado" />
+						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
 						<small>kz</small> <p className="text-5xl text-moneyColor">340</p> <small>00</small>
@@ -287,7 +287,7 @@ export function MenuPage() {
 						<Heart className="text-buttonColor" />
 					</div>
 					<div className="py-3">
-						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/pexels-enesfilm-8713083.jpg" alt="gelado" />
+						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
 						<small>kz</small> <p className="text-5xl text-moneyColor">350</p> <small>00</small>
@@ -348,7 +348,7 @@ export function MenuPage() {
 						<Heart className="text-buttonColor" />
 					</div>
 					<div className="py-3">
-						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/pexels-ehioma-osih-109764575-9605294.jpg" alt="gelado" />
+						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
 						<small>kz</small> <p className="text-5xl text-moneyColor">360</p> <small>00</small>
@@ -409,7 +409,7 @@ export function MenuPage() {
 						<Heart className="text-buttonColor" />
 					</div>
 					<div className="py-3">
-						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/pexels-karyna-panchenko-14612417.jpg" alt="gelado" />
+						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
 						<small>kz</small> <p className="text-5xl text-moneyColor">370</p> <small>00</small>
