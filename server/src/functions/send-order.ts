@@ -1,3 +1,5 @@
+import { db } from "../db";
+import { customerOrder } from "../db/schema";
 
 interface CreateGoalRequest {
 	name: string;
@@ -5,5 +7,13 @@ interface CreateGoalRequest {
 	location: string;
 }
 
-export function sendOrder(request: CreateGoalRequest) {}
-
+export async function sendOrder({ name, number, location }: CreateGoalRequest) {
+	const result = await db
+		.insert(customerOrder)
+		.values({
+			name,
+			number,
+			location,
+		})
+		.returning();
+}
