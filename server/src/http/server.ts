@@ -8,7 +8,7 @@ app.post('/goods', async (request) => {
 	const createOrderSchema = z.object({
 		name: z.string(),
 		number: z.number().int().min(9).max(9),
-		location: z.string().min(10).max(15)
+		location: z.string().min(10).max(15),
 	})
 
 	const body = createOrderSchema.parse(request.body)
