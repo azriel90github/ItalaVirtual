@@ -1,25 +1,18 @@
-import {
-	RotateCcw,
-	Send,
-	ShoppingCart,
-	Trash2,
-} from "lucide-react";
+import { RotateCcw, Send, ShoppingCart, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { OrderDetailsModal } from "../../components/modal/order-detail-modal";
 import { useResult } from "../../context/ResultContext.tsx";
 
-
 export function OrderPage() {
-	
 	const { total } = useResult(); // Acessa o valor do total do contexto
 	const navigate = useNavigate();
 
 	function menuPage() {
 		navigate("/menu/123");
 	}
-	
+
 	return (
 		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-right">
 			<div className="border-2 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
@@ -28,13 +21,12 @@ export function OrderPage() {
 				</div>
 
 				<div className="flex items-center gap-4">
-
 					<MenuButton />
 
 					<div className="w-px h-12 bg-buttonColor2">
-							
+
 					</div>
-						<LanguageModal />
+					<LanguageModal />
 				</div>
 			</div>
 
@@ -48,14 +40,14 @@ export function OrderPage() {
 
 					<p className="flex justify-between pt-5 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Sabores</h3>
-						<span className="text-moneyColor">0</span>{/**adicionar novos valores */}
+						<span className="text-moneyColor">0</span>
+						{/**adicionar novos valores */}
 					</p>
 
 					<p className="flex justify-between py-2 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Pagamento</h3>
-						<span className="text-moneyColor">
-						{total}
-						</span>{/**adicionar novos valores */}
+						<span className="text-moneyColor">{total}</span>
+						{/**adicionar novos valores */}
 					</p>
 
 					<div className="flex flex-col gap-3">
@@ -75,7 +67,6 @@ export function OrderPage() {
 							Remover Sabores
 							<Trash2 />
 						</button>
-					
 					</div>
 				</div>
 
@@ -96,7 +87,7 @@ export function OrderPage() {
 								/>
 								<input
 									type="number"
-									placeholder="Seu número"
+									placeholder="Número(+244)"
 									className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
 								<input
