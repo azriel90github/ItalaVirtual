@@ -1,6 +1,7 @@
 import {
 	ArrowLeft,
 	CircleCheck,
+	Headset,
 	Heart,
 	House,
 	Minus,
@@ -80,7 +81,7 @@ export function MenuPage() {
 				 {/* Menu de navegação */}
 
 				<div className="flex items-center gap-4" >
-
+					<Headset />
 					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
@@ -475,6 +476,7 @@ export function MenuPage() {
 				> 
 				<Searchbox />
 				<div className="flex gap-4 items-center">
+				<Headset className="text-buttonColor" />
 				<div className="w-px h-12 bg-buttonColor2">
 				</div>
 					<CartButton />

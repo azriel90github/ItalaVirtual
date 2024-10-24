@@ -29,7 +29,7 @@ export function NotificationModal() {
             <div className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo">
               <div className="flex items-center justify-between text-buttonColor font-medium text-xl">
                 Notificações
-                <X className="size-6" />
+                <X className="size-6 cursor-pointer" />
               </div>
             </div>
           </div>

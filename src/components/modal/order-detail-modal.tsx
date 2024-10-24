@@ -1,4 +1,4 @@
-import { Headset, ListCollapse, X } from "lucide-react";
+import { Headset, X } from "lucide-react";
 import { useState } from "react";
 
 export function OrderDetailsModal() {
@@ -20,7 +20,7 @@ export function OrderDetailsModal() {
 				className="flex text-lg bg-buttonColor2 text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between transition duration-400"
 			>
 				Ver encomenda
-				<ListCollapse />
+				<Headset />
 			</button>
 			<div>
 				{isOrderDetailsModalOpen && (
@@ -29,13 +29,13 @@ export function OrderDetailsModal() {
 						onClick={closeOrderDetailsModal}
 						className="fixed inset-0 bg-black/60 flex items-center justify-center"
 					>
-						<div className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo">
+						<div className="w-[640px] rounded-3xl py-5 px-6 bg-colorFundo">
 							<div className="flex items-center justify-between text-buttonColor font-medium text-xl">
 								Detalhes da Encomenda
-								<X className="size-6" />
+								<X className="size-6 cursor-pointer" />
 							</div>
 							<button
-									className="flex bg-buttonColor w-60 hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+									className="flex bg-buttonColor w-60 hover:bg-colorRemove text-zinc-100 mt-9 py-3 px-6 rounded-2xl justify-between"
 									type="reset"
 								>
 									Ligar
