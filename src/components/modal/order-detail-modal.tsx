@@ -1,4 +1,4 @@
-import { ListCollapse, X } from "lucide-react";
+import { Headset, ListCollapse, X } from "lucide-react";
 import { useState } from "react";
 
 export function OrderDetailsModal() {
@@ -34,6 +34,13 @@ export function OrderDetailsModal() {
 								Detalhes da Encomenda
 								<X className="size-6" />
 							</div>
+							<button
+									className="flex bg-buttonColor w-60 hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+									type="reset"
+								>
+									Ligar
+									<Headset />
+							</button>
 						</div>
 					</div>
 				)}

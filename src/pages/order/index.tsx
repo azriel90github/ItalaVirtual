@@ -1,4 +1,4 @@
-import { RotateCcw, Send, ShoppingCart, Trash2 } from "lucide-react";
+import {  RotateCcw, Send, ShoppingCart, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";

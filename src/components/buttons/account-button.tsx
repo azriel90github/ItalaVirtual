@@ -1,4 +1,4 @@
-import { UserRoundCheck } from "lucide-react";
+import { Headset} from "lucide-react";
 import { tv } from "tailwind-variants";
 
 const buttonVariants = tv({
@@ -15,12 +15,12 @@ const buttonVariants = tv({
 export function AccountButton() {
 	return (
 		<button type="button" className={buttonVariants({ variant: "primary" })}>
-			<p className="text-1xl font-normal">Conta</p>
+			<p className="text-1xl font-normal">Ligar</p>
 			{/*
       <div className="w-px h-6 bg-zinc-800">
       </div>
       */}
-			<UserRoundCheck className="size-6" />
+			<Headset className="size-6" />
 		</button>
 	);
 }
