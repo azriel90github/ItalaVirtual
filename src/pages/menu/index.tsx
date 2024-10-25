@@ -1,6 +1,7 @@
 import {
 	ArrowLeft,
 	CircleCheck,
+	Headset,
 	Heart,
 	House,
 	Minus,
@@ -84,6 +85,7 @@ export function MenuPage() {
 
 				<div className="flex items-center gap-4" >
 					{/** <ContactModal />*/}
+					<Headset className="size-6 text-colorText1" />
 					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
@@ -182,13 +184,14 @@ export function MenuPage() {
 
 			 {/* Rodapé que aparece após rolagem */}
 				* <footer
-					className={`flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
+					className={`footerMenu flex flex-wrap p-3 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
 				<Searchbox />
 				<div className="flex gap-4 items-center">
 				{/** Colar modal dos contactos */}
+				<Headset className="size-6 text-colorText1" />
 				<div className="w-px h-12 bg-buttonColor2">
 				</div>
 					<CartButton />
