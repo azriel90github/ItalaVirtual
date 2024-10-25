@@ -47,7 +47,7 @@ export const ResultProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setCount(0);
     setTotal(0);
     setIsAlternateIcon(false); // Volta o ícone ao original
-    setButtonColor(''); // Reseta a cor ao remover do carrinho
+    setButtonColor('red'); // Reseta a cor ao remover do carrinho
   };
 
   // Alterna o ícone
@@ -68,7 +68,7 @@ export const ResultProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         calculateTotal,
         resetCart,
         toggleIcon,
-        setButtonColor, // Adiciona a função ao contexto
+         // Adiciona a função ao contexto
       }}
     >
       {children}
