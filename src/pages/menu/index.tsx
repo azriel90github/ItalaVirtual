@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 import { useResult } from "../../context/ResultContext.tsx";
+import { ContactModal } from "../../components/modal/contact-modal.tsx";
 //import React from "react";
 //import { LanguageModal } from "../../components/modal/language-modal";
 //import { NotificationModal } from "../../components/modal/notification-modal";
@@ -80,7 +81,7 @@ export function MenuPage() {
 				 {/* Menu de navegação */}
 
 				<div className="flex items-center gap-4" >
-					{/** Colar modal dos contactos */}
+					<ContactModal />
 					<div className="w-px h-12 bg-buttonColor2">
 
 					</div>
