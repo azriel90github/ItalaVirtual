@@ -6,6 +6,7 @@ interface ResultContextType {
   count: number;
   total: number;
   isAlternateIcon: boolean;
+  buttonColor: string; // Novo estado para controlar a cor do botão
   incrementCount: () => void;
   decrementCount: () => void;
   calculateTotal: () => void;
@@ -30,6 +31,7 @@ export const ResultProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
   const [isAlternateIcon, setIsAlternateIcon] = useState(false); // Novo estado para controlar o ícone
+  const [buttonColor, setButtonColor] = useState<string>(''); // Define o estado inicial como vazio
 
   // Incrementa o número de colheres
   const incrementCount = () => setCount((prev) => prev + 1);
@@ -45,10 +47,14 @@ export const ResultProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setCount(0);
     setTotal(0);
     setIsAlternateIcon(false); // Volta o ícone ao original
+    setButtonColor(''); // Reseta a cor ao remover do carrinho
   };
 
   // Alterna o ícone
-  const toggleIcon = () => setIsAlternateIcon(true); // Alterna para o ícone de check
+  const toggleIcon = () => {
+    setButtonColor('green'); // Define a cor verde ao adicionar ao carrinho
+    setIsAlternateIcon(true); // Alterna para o ícone de check
+  } 
 
   return (
     <ResultContext.Provider
@@ -56,11 +62,13 @@ export const ResultProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         count,
         total,
         isAlternateIcon,
+        buttonColor,
         incrementCount,
         decrementCount,
         calculateTotal,
         resetCart,
         toggleIcon,
+        setButtonColor, // Adiciona a função ao contexto
       }}
     >
       {children}
