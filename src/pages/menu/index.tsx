@@ -128,7 +128,7 @@ export function MenuPage() {
 
 					<div className="flex flex-col gap-3">
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button className="flex bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
+						<button className="flex transition duration-400 bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between">
 							<div>
 								Colheres <span className="ml-2">
 									{count}
@@ -150,7 +150,7 @@ export function MenuPage() {
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
 							onClick={handleAddToCart}
-							className={`flex hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
+							className={`flex transition duration-400 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
 								buttonColor === 'red' ? 'bg-buttonColor2' : 'bg-moneyColor'
 							}`}
 							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas
@@ -164,7 +164,7 @@ export function MenuPage() {
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
 							onClick={handleRemoveFromCart}
-							className={`flex hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
+							className={`flex transition duration-400 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
 								buttonColor === 'red' ? 'bg-colorRemove' : 'bg-buttonColor2'
 							}`}
 							disabled={count === 0} // Desativa o botão se não houver colheres adicionadas

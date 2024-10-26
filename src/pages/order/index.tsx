@@ -4,6 +4,7 @@ import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { OrderDetailsModal } from "../../components/modal/order-detail-modal";
 import { useResult } from "../../context/ResultContext.tsx";
+import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
 	const { total } = useResult(); // Acessa o valor do total do contexto
@@ -36,7 +37,11 @@ export function OrderPage() {
 
 			<main className="flex flex-wrap gap-16">
 				<div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
-					<OrderDetailsModal />
+
+					<div className="flex flex-col gap-1.5">
+						<OrderDetailsModal />
+						<PaymentMethodModal />
+					</div>
 
 					<p className="flex justify-between pt-5 px-3 text-xl">
 						<h3 className="text-buttonColor font-medium">Sabores</h3>
@@ -54,7 +59,7 @@ export function OrderPage() {
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
 							onClick={menuPage}
-							className="flex mt-6 bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+							className="flex mt-6 transition duration-400 bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Adicionar Sabores
 							<ShoppingCart />
@@ -62,7 +67,7 @@ export function OrderPage() {
 						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 						<button
 							onClick={menuPage}
-							className="flex bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+							className="flex transition duration-400 bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 						>
 							Remover Sabores
 							<Trash2 />
@@ -99,7 +104,7 @@ export function OrderPage() {
 
 							<div className="flex flex-col gap-3 w-72 py-5">
 								<button
-									className="flex bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+									className="flex transition duration-400 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
 									type="submit"
 								>
 									Enviar
@@ -107,7 +112,7 @@ export function OrderPage() {
 								</button>
 
 								<button
-									className="flex bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+									className="flex transition duration-400 bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
 									type="reset"
 								>
 									Limpar

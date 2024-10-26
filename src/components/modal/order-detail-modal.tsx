@@ -17,7 +17,7 @@ export function OrderDetailsModal() {
 			<button
 				type="button"
 				onClick={openOrderDetailsModal}
-				className="flex text-lg bg-buttonColor2 text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between transition duration-400"
+				className="flex text-lg hover:bg-colorHover bg-buttonColor2 text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between transition duration-400"
 			>
 				Ver encomenda
 				<Headset />
