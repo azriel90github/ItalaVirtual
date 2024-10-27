@@ -1,29 +1,39 @@
 import fastify from "fastify";
-import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
+import {
+	serializerCompiler,
+	validatorCompiler,
+	type ZodTypeProvider,
+} from "fastify-type-provider-zod";
 import { createOrder } from "../functions/send-order";
 import z from "zod";
 
-const app = fastify();
+const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 // Add schema validator and serializer
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-app.post('/order', async (request) => {
-	const createOrderSchema = z.object({
-		name: z.string(),
-		number: z.number().int().min(9),
-		location: z.string().min(10).max(15),
-	})
+app.post(
+	"/order",
+	{
+		schema: {
+			body: z.object({
+				name: z.string(),
+				number: z.number().int().min(9),
+				location: z.string().min(10).max(15),
+			}),
+		},
+	},
+	async (request) => {
+		const { name, number, location } = request.body;
 
-	const body = createOrderSchema.parse(request.body)
-
-	await createOrder({
-		name: body.name,
-		number: body.number,
-		location: body.location,
-	})
-})
+		await createOrder({
+			name,
+			number,
+			location,
+		});
+	},
+);
 
 app
 	.listen({

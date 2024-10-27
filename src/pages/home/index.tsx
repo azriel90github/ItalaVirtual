@@ -100,7 +100,7 @@ export function HomePage() {
 					className=""
 					href="https://portofolio-perfil.vercel.app/"
 				>
-					Suélio Armando
+					Suélio Armando,
 				</a>{" "}
 				<span className="text-jsColor">JS</span>{" "}eXtreme Programming
 				{/** <span className="text-goColor">Go</span> */}

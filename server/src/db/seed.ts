@@ -34,6 +34,7 @@ async function seed() {
 			name: "Varstoque Armando",
 			number: 930285124,
 			location: "Samba, Luanda", 
+			paymentMethod: 
 			createdAt: new Date(),
 		},
     {
