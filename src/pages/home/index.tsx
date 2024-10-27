@@ -6,8 +6,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 
-import { LanguageModal } from "../../components/modal/language-modal";
-import { ProfileModal } from "../../components/modal/profile-modal";
+//import { LanguageModal } from "../../components/modal/language-modal";
+//import { ProfileModal } from "../../components/modal/profile-modal";
 import { AccountButton } from "../../components/buttons/account-button";
 
 export function HomePage() {
@@ -28,10 +28,12 @@ export function HomePage() {
 	return (
 		<div>
 			<div className="flex justify-between m-5">
-				<ProfileModal />
+				{/** <ProfileModal /> */}
+				
 
 				<div className="mr-1 mt-1">
-					<LanguageModal />
+					{/** <LanguageModal /> */}
+					
 				</div>
 			</div>
 			<div className="h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
@@ -95,13 +97,13 @@ export function HomePage() {
 			<p className="m-5 text-lg text-colorText1 text-center">
 				Desenvolvido por{" "}
 				<a
-					className="text-zinc-300"
+					className=""
 					href="https://portofolio-perfil.vercel.app/"
 				>
 					Suélio Armando
 				</a>{" "}
-				eXtreme Programming <span className="text-jsColor">JS</span> and{" "}
-				<span className="text-goColor">Go</span>
+				<span className="text-jsColor">JS</span>{" "}eXtreme Programming
+				{/** <span className="text-goColor">Go</span> */}
 			</p>
 		</div>
 	);
