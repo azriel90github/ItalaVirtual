@@ -1,7 +1,14 @@
-import { CircleDollarSign, X } from "lucide-react";
-import { useState } from "react";
+import { CreditCard, HandCoins, Landmark } from "lucide-react";
+import { type SetStateAction, useState } from "react";
 
 export function PaymentMethodModal() {
+
+	const [selectedOption, setSelectedOption] = useState(''); // Estado para o valor selecionado
+	  // Função para fechar o modal e definir a opção selecionada
+		const handleSelectOption = (option: SetStateAction<string>) => {
+			setSelectedOption(option);
+			setIsPaymentMethodModalOpen(false);
+		};
 
   const [isPaymentMethodModalOpen, setIsPaymentMethodModalOpen] = useState(false);
 
@@ -15,30 +22,47 @@ export function PaymentMethodModal() {
 
   return (
 		<>
-			<button
-				type="button"
+			<input
+				readOnly
+				value={selectedOption}
+				placeholder="Selecionar tipo de pagamento"
+				type="text"
 				onClick={openPaymentMethodModal}
-				className="flex text-lg hover:bg-colorHover bg-buttonColor2 text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between transition duration-400"
+				className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-headerColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"/
 			>
-				Método de Pagamento
-				<CircleDollarSign />
-			</button>
-			<div>
 				{isPaymentMethodModalOpen && (
 					// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 					<div
 						onClick={closePaymentMethodModal}
 						className="fixed inset-0 bg-black/60 flex items-center justify-center"
 					>
-						<div className="w-[640px] rounded-3xl py-5 px-6 bg-colorFundo">
-							<div className="flex items-center justify-between text-buttonColor font-medium text-xl">
-								Selecionar método de pagamento
-								<X className="size-6 cursor-pointer" />
+						{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+						<div onClick={() => setIsPaymentMethodModalOpen(false)} className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo">
+							{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+							<div onClick={(e) => e.stopPropagation()} className="text-buttonColor font-medium text-xl">
+								<div className="flex items-center justify-between">
+									Selecionar método de pagamento
+									{/** <X className="size-6 cursor-pointer" /> */} 
+									
+								</div>
+								<div className="flex flex-col text-lx py-3 mt-2 gap-3">
+									<button type="button" className="py-3 px-4 outline-none rounded-xl bg-searchColorInput flex items-center justify-between" onClick={() => handleSelectOption('Dinheiro em mão')}>
+										Dinheiro em mão
+										<HandCoins />
+									</button>
+									<button type="button" className="py-3 px-4 outline-none rounded-xl bg-searchColorInput flex items-center justify-between" onClick={() => handleSelectOption('Transferência Bancária')}>
+										Transferência báncaria
+										<Landmark />
+									</button>
+									<button type="button" className="py-3 px-4 outline-none rounded-xl bg-searchColorInput flex items-center justify-between" onClick={() => handleSelectOption('TPA (presencial)')}>
+										TPA (presencial)
+										<CreditCard />
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
 				)}
-			</div>
 		</>
 	);
 }

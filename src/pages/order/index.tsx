@@ -1,14 +1,18 @@
-import {  RotateCcw, Send, ShoppingCart, Trash2 } from "lucide-react";
+import {  AlignJustify, RotateCcw, Send, ShoppingCart, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
-import { OrderDetailsModal } from "../../components/modal/order-detail-modal";
+//import { OrderDetailsModal } from "../../components/modal/order-detail-modal";
 import { useResult } from "../../context/ResultContext.tsx";
+import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
+//import { useState } from "react";
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
 	const { total } = useResult(); // Acessa o valor do total do contexto
 	const navigate = useNavigate();
+
+	//const [isMethodPaymentOpen, setIsMethodPaymentOpen] = useState(false);
 
 	function menuPage() {
 		navigate("/menu/123");
@@ -39,7 +43,11 @@ export function OrderPage() {
 				<div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
 
 					<div className="flex flex-col gap-1.5">
-						<OrderDetailsModal />
+						<div className="bg-buttonColor2 items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
+							Detalhes Encomenda
+							<AlignJustify />
+						</div>
+						{/** <OrderDetailsModal /> */}
 						{/** <PaymentMethodModal /> */}
 					</div>
 
@@ -95,11 +103,7 @@ export function OrderPage() {
 									placeholder="Número(+244)"
 									className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
 								/>
-									<input
-									type="text"
-									placeholder="Escolher método de pagamento"
-									className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
-								/>
+								<PaymentMethodModal />
 								<input
 									type="text"
 									placeholder="Localição exata"
@@ -131,3 +135,4 @@ export function OrderPage() {
 		</div>
 	);
 }
+

@@ -26,7 +26,7 @@ export function NotificationModal() {
         {isNotificationModalOpen && (
           // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
           <div onClick={closeNotificationModal} className="fixed inset-0 bg-black/60 flex items-center justify-center">
-            <div className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo">
+            <div className="w-[640px] rounded-2xl py-5 px-6 bg-colorFundo">
               <div className="flex items-center justify-between text-buttonColor font-medium text-xl">
                 Notificações
                 <X className="size-6 cursor-pointer" />

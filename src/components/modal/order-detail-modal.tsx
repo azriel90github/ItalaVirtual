@@ -29,7 +29,7 @@ export function OrderDetailsModal() {
 						onClick={closeOrderDetailsModal}
 						className="fixed inset-0 bg-black/60 flex items-center justify-center"
 					>
-						<div className="w-[640px] rounded-3xl py-5 px-6 bg-colorFundo">
+						<div className="w-[640px] rounded-2xl py-5 px-6 bg-colorFundo">
 							<div className="flex items-center justify-between text-buttonColor font-medium text-xl">
 								Detalhes da Encomenda
 								<X className="size-6 cursor-pointer" />
