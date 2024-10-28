@@ -1,4 +1,10 @@
-import {  AlignJustify, RotateCcw, Send, ShoppingCart, Trash2 } from "lucide-react";
+import {
+	AlignJustify,
+	RotateCcw,
+	Send,
+	ShoppingCart,
+	Trash2,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
@@ -29,7 +35,7 @@ export function OrderPage() {
 					<MenuButton />
 
 					<div className="w-px h-12 bg-buttonColor2">
-
+						
 					</div>
 					<LanguageModal />
 				</div>
@@ -41,7 +47,6 @@ export function OrderPage() {
 
 			<main className="flex flex-wrap gap-16">
 				<div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
-
 					<div className="flex flex-col gap-1.5">
 						<div className="bg-buttonColor2 items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
 							Detalhes Encomenda
