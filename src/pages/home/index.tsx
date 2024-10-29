@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { LanguageModal } from "../../components/modal/language-modal";
 //import { ProfileModal } from "../../components/modal/profile-modal";
-import { AccountButton } from "../../components/buttons/account-button";
+//import { AccountButton } from "../../components/buttons/account-button";
+import { ContactModal } from "../../components/modal/contact-modal";
 
 export function HomePage() {
 	const navigate = useNavigate();
@@ -46,7 +47,7 @@ export function HomePage() {
 								<Rss className="size-6" />
 							</button>
 
-							<AccountButton />
+							<ContactModal />
 
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
