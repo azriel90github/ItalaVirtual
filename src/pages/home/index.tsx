@@ -1,7 +1,7 @@
 import { Rss, ShoppingCart, SquareChartGantt } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-//import { LanguageModal } from "../../components/modal/language-modal";
+import { LanguageModal } from "../../components/modal/language-modal";
 //import { ProfileModal } from "../../components/modal/profile-modal";
 import { AccountButton } from "../../components/buttons/account-button";
 
@@ -25,7 +25,7 @@ export function HomePage() {
 			<div className="flex justify-between m-5">
 				{/** <ProfileModal /> */}
 
-				<div className="mr-1 mt-1">{/** <LanguageModal /> */}</div>
+				<LanguageModal />
 			</div>
 			<div className="h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
 				<div className="max-w-3xl w-full px-6 text-center space-y-10">
@@ -87,7 +87,7 @@ export function HomePage() {
 			</div>
 			<p className="m-5 text-lg text-colorText1 text-center">
 				Desenvolvido por{" "}
-				<a className="" href="https://portofolio-perfil.vercel.app/">
+				<a className="" target="_blank" href="https://portofolio-perfil.vercel.app/" rel="noreferrer">
 					Suélio Armando,
 				</a>{" "}
 				<span className="text-jsColor">JS</span> eXtreme Programming
