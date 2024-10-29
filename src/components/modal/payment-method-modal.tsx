@@ -1,4 +1,4 @@
-import { CreditCard, HandCoins, Landmark } from "lucide-react";
+import { CreditCard, HandCoins, Landmark, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 
 export function PaymentMethodModal() {
@@ -44,36 +44,37 @@ export function PaymentMethodModal() {
 						{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 						<div
 							onClick={(e) => e.stopPropagation()}
-							className="text-buttonColor font-medium text-xl"
+							className="text-buttonColor font-medium"
 						>
-							<div className="flex items-center justify-between">
+							<div className="flex items-center justify-between text-xl ml-1">
 								Selecionar método de pagamento
+								<X onClick={closePaymentMethodModal} className="cursor-pointer" />
 								{/** <X className="size-6 cursor-pointer" /> */}
 							</div>
-							<div className="flex flex-col text-lx py-3 mt-2 gap-3">
+							<div className="flex flex-col py-3 mt-2 gap-3">
 								<button
 									type="button"
-									className="py-3 px-4 outline-none rounded-xl bg-searchColorInput flex items-center justify-between"
+									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("Dinheiro em mão")}
 								>
-									Dinheiro em mão
-									<HandCoins />
+									<p className="text-zinc-300">Dinheiro em mão</p>
+									<HandCoins/>
 								</button>
 								<button
 									type="button"
-									className="py-3 px-4 outline-none rounded-xl bg-searchColorInput flex items-center justify-between"
+									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("Transferência Bancária")}
 								>
-									Transferência báncaria
-									<Landmark />
+									<p className="text-zinc-300">Transferência báncaria</p>
+									<Landmark/>
 								</button>
 								<button
 									type="button"
-									className="py-3 px-4 outline-none rounded-xl bg-searchColorInput flex items-center justify-between"
+									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("TPA (presencial)")}
 								>
-									TPA (presencial)
-									<CreditCard />
+									<p className="text-zinc-300">TPA (presencial)</p>
+									<CreditCard/>
 								</button>
 							</div>
 						</div>
