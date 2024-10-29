@@ -29,7 +29,6 @@ export function ContactModal() {
 				<p className="text-1xl font-normal">Ligar</p>
 				<Headset />
 			</button>
-			<div>
 				{isContactModalOpen && (
 					// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 					<div
@@ -47,38 +46,48 @@ export function ContactModal() {
 								className="text-buttonColor font-medium"
 							>
 								<div className="flex items-center justify-between text-xl ml-1">
-									Selecionar método de pagamento
+									Entrar em contacto
 									<X onClick={closeContactModal} className="cursor-pointer" />
 									{/** <X className="size-6 cursor-pointer" /> */}
 								</div>
 								<div className="flex flex-col py-3 mt-2 gap-3">
+                <button
+										type="button"
+										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("Dinheiro em mão")}
+									>
+										<p className="text-zinc-300">Africel - 959 261 926</p>
+                    <Headset />
+									</button>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
-										<p className="text-zinc-300">Dinheiro em mão</p>
+										<p className="text-zinc-300">Unitel - 929 261 926</p>
+                    <Headset />
 									</button>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Transferência Bancária")}
 									>
-										<p className="text-zinc-300">Transferência báncaria</p>
+										<p className="text-zinc-300">Movicel - 999 261 926</p>
+                    <Headset />
 									</button>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
-										<p className="text-zinc-300">TPA (presencial)</p>
+                    <p className="text-zinc-300">Whatsapp - 929 261 926</p>
+                    <Headset />
 									</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				)}
-			</div>
 		</>
 	);
 }

@@ -1,7 +1,6 @@
 import {
 	ArrowLeft,
 	CircleCheck,
-	Headset,
 	Heart,
 	House,
 	Minus,
@@ -15,6 +14,7 @@ import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 import { useResult } from "../../context/ResultContext.tsx";
+import { ContactAndLanguage } from "../../components/contact-and-language/contact-and-language.tsx";
 //import { ContactModal } from "../../components/modal/contact-modal.tsx";
 //import React from "react";
 //import { LanguageModal } from "../../components/modal/language-modal";
@@ -83,18 +83,15 @@ export function MenuPage() {
 
 				 {/* Menu de navegação */}
 
-				<div className="flex items-center gap-4" >
+				<div className="flex items-center gap-4	" >
 					{/** <ContactModal />*/}
-					<Headset className="size-6 text-colorText1" />
-					<div className="w-px h-12 bg-buttonColor2">
-
-					</div>
-						<CartButton />
-						{/** <NotificationModal />*/}
+					<CartButton />
+					{/** <NotificationModal />*/}
 				</div>
 			</div>
 
-				<div className="flex items-center justify-center gap-4">
+				<div className="flex flex-wrap justify-center gap-4">
+					<ContactAndLanguage />
 					<Searchbox />
 					<div>
 						{/** <LanguageModal /> */}
@@ -188,13 +185,13 @@ export function MenuPage() {
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
-				<Searchbox />
+					<button type="button" onClick={HomePage} className="flex gap-3 text-buttonColor"> {/* Clicar na seta da página menu e levar para o inicio*/}
+						<ArrowLeft className="size-6" />
+						<House />
+					</button>
 				<div className="flex gap-4 items-center">
 				{/** Colar modal dos contactos */}
-				<Headset className="size-6 text-colorText1" />
-				<div className="w-px h-12 bg-buttonColor2">
-				</div>
-					<CartButton />
+				<CartButton />
 
 				</div>
 				</footer>		 

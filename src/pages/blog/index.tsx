@@ -13,7 +13,6 @@ import { LanguageModal } from "../../components/modal/language-modal"; //Importa
 //import { ProfileModal } from "../../components/modal/profile-modal"; //Importando o componente Profile
 //import { CartButton } from "../../components/buttons/cart-button";
 //import { AccountButton } from "../../components/buttons/account-button";
-import { AccountButtonBlog } from "../../components/buttons/account-button-blog";
 
 //Retornando função BlogPage( Página do blog ) e exportando a mesma
 export function BlogPage() {
@@ -245,7 +244,12 @@ export function BlogPage() {
 			>
 
 				{/** <ProfileModal /> */}
-				<AccountButtonBlog />
+				<button type="button" className="flex items-center gap-3 text-buttonColor" onClick={homePage}>
+					<ArrowLeft className="size-6" />
+					<p className="text-2xl font-normal">
+						<House />
+					</p>
+				</button>
 				
 				<div className="flex gap-4">
 				<MenuButton />

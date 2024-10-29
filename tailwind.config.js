@@ -23,6 +23,7 @@ export default {
 				colorExtra: "#955573",
 				jsColor: "#FFDF00",
 				goColor: "#007D9C",
+				whatsappColor: "#25D366",
 			},
 
 			fontFamily: {

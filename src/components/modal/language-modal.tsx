@@ -30,7 +30,6 @@ export function LanguageModal() {
 				<Languages className="size-7" />
 			</button>
 
-			<div>
 				{isLanguageModalOpen && (
 					// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 					<div
@@ -45,7 +44,7 @@ export function LanguageModal() {
 							{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 							<div
 								onClick={(e) => e.stopPropagation()}
-								className="text-buttonColor font-light"
+								className="text-buttonColor font-normal"
 							>
 								<div className="flex items-center justify-between text-2xl ml-1">
 									Selecionar Idioma
@@ -123,7 +122,6 @@ export function LanguageModal() {
 						</div>
 					</div>
 				)}
-			</div>
 		</>
 	);
 }

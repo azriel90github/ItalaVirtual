@@ -1,10 +1,10 @@
 import { Rss, ShoppingCart, SquareChartGantt } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
 import { LanguageModal } from "../../components/modal/language-modal";
 //import { ProfileModal } from "../../components/modal/profile-modal";
 //import { AccountButton } from "../../components/buttons/account-button";
 import { ContactModal } from "../../components/modal/contact-modal";
+import { GalleryModal } from "../../components/modal/gallery-modal";
 
 export function HomePage() {
 	const navigate = useNavigate();
@@ -23,9 +23,9 @@ export function HomePage() {
 
 	return (
 		<div>
-			<div className="flex justify-between m-5">
+			<div className="flex items-center py-3 px-3 justify-between">
 				{/** <ProfileModal /> */}
-
+				<GalleryModal />
 				<LanguageModal />
 			</div>
 			<div className="h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
