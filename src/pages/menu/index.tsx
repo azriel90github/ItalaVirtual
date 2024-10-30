@@ -72,30 +72,21 @@ export function MenuPage() {
 			<div className={`border-b-2 border-colorInput h-20 shadow-shape bg-searchColor text-buttonColor flex flex-wrap items-center justify-around font-medium text-xl ${
 					isScrolled ? '-translate-y-10' : 'translate-y-0'
 				}`}>
-				<div className="flex items-center px-3">
-					{/** <img className="w-28" src="/logo-geladaria.png" alt="logoItalala" />*/}
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-					<button onClick={HomePage} className="flex gap-3"> {/* Clicar na seta da página menu e levar para o inicio*/}
+				<div className="flex items-center">
+					<button type="button" onClick={HomePage} className="flex gap-2"> {/* Clicar na seta da página menu e levar para o inicio*/}
 						<ArrowLeft className="size-6" />
 						<House />
 					</button>
 				</div>
 
-				 {/* Menu de navegação */}
-
-				<div className="flex items-center gap-4	" >
-					{/** <ContactModal />*/}
+				<div className="flex items-center" >
 					<CartButton />
-					{/** <NotificationModal />*/}
 				</div>
 			</div>
 
 				<div className="flex flex-wrap justify-center gap-4">
 					<ContactAndLanguage />
 					<Searchbox />
-					<div>
-						{/** <LanguageModal /> */}
-					</div>
 				</div>
 
 			<div className="flex flex-wrap gap-5 justify-center pb-40">
@@ -108,7 +99,7 @@ export function MenuPage() {
 					<div className="py-3">
 						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
-					<span className="flex justify-center text-zinc-100 font-normal text-2xl gap-2 py-3">
+					<span className="flex justify-center text-zinc-200 font-normal text-2xl gap-2 py-3">
 						<small>kz</small> <p className="text-5xl">310</p> <small>00</small>
 					</span>
 
@@ -185,10 +176,12 @@ export function MenuPage() {
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
-					<button type="button" onClick={HomePage} className="flex gap-3 text-buttonColor"> {/* Clicar na seta da página menu e levar para o inicio*/}
+				<div className="flex items-center">
+					<button type="button" onClick={HomePage} className="flex gap-2 text-buttonColor"> {/* Clicar na seta da página menu e levar para o inicio*/}
 						<ArrowLeft className="size-6" />
 						<House />
 					</button>
+				</div>
 				<div className="flex gap-4 items-center">
 				{/** Colar modal dos contactos */}
 				<CartButton />
