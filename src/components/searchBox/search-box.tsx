@@ -1,4 +1,4 @@
-import { AlignJustify, ChartBarStacked } from "lucide-react";
+import { ChartBarStacked } from "lucide-react";
 
 export function Searchbox() {
 	return (
@@ -10,9 +10,8 @@ export function Searchbox() {
 					<p>Categoria</p>
 					<ChartBarStacked />
 				</div>
-				<div className="bg-colorFundo w-full flex justify-between rounded-full py-2.5 px-5">
+				<div className="bg-colorFundo w-full flex justify-center rounded-full py-2.5 px-5">
 					<p>Todos</p>
-					<AlignJustify />
 				</div>
 			</div>
 		</div>
