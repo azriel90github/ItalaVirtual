@@ -40,7 +40,7 @@ export const ResultProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const decrementCount = () => setCount((prev) => Math.max(prev - 1, 0));
 
   // Calcula o total multiplicando por 320
-  const calculateTotal = () => setTotal(count * 320);
+  const calculateTotal = () => setTotal(count * 310);
 
   // Reseta o número de colheres, total e ícone
   const resetCart = () => {

@@ -163,30 +163,26 @@ export function MenuPage() {
 					</div>
 				</div>
 
-				{/**
-				 * 
-				 */}
-
-			</div>
-
-
-			 {/* Rodapé que aparece após rolagem */}
-				* <footer
-					className={`footerMenu flex flex-wrap p-3 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
+			</div>	
+					<div className="flex pb-32 flex-wrap justify-center gap-4">
+						<ContactAndLanguage />
+						<Searchbox />
+					</div>
+				<footer
+					className={`footerMenu flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
 						isScrolled ? 'translate-y-0' : 'translate-y-full'
 					}`}
 				> 
-				<div className="flex items-center">
-					<button type="button" onClick={HomePage} className="flex gap-2 text-buttonColor"> {/* Clicar na seta da página menu e levar para o inicio*/}
-						<ArrowLeft className="size-6" />
-						<House />
-					</button>
-				</div>
-				<div className="flex gap-4 items-center">
-				{/** Colar modal dos contactos */}
-				<CartButton />
+					<div className="flex items-center">
+						<button type="button" onClick={HomePage} className="flex gap-2 text-buttonColor"> {/* Clicar na seta da página menu e levar para o inicio*/}
+							<ArrowLeft className="size-6" />
+							<House />
+						</button>
+					</div>
 
-				</div>
+					<div className="flex gap-4 items-center">
+					<CartButton />
+					</div>
 				</footer>		 
 		</div>
 	);
