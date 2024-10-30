@@ -1,4 +1,4 @@
-import { Globe, Languages, X } from "lucide-react";
+import { Languages, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 
 export function LanguageModal() {
@@ -53,69 +53,61 @@ export function LanguageModal() {
 								</div>
 
 								<div className="flex flex-col py-3 mt-2 gap-3">
-									<button
+								<button
 										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("Dinheiro em mão")}
-									>
-										<p className="text-zinc-300">Português</p>
-										<Globe />
-									</button>
-									<button
-										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Transferência Bancária")}
 									>
 										<p className="text-zinc-300">Umbundu</p>
-										<Globe />
+										<img className="w-10" src="/languages/angola.png" alt="emojiAngola" />
 									</button>
 									<button
 										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("TPA (presencial)")}
-									>
-										<p className="text-zinc-300">Inglês</p>
-										<Globe />
-									</button>
-                  <button
-										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Kimbundu</p>
-										<Globe />
+										<img className="w-10" src="/languages/angola.png" alt="emojiAngola" />
+									</button>
+									<button
+										type="button"
+										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("Dinheiro em mão")}
+									>
+										<p className="text-zinc-300">Português</p>
+										<img className="w-10" src="/languages/portugal.png" alt="emojiPortugal" />
+									</button>
+									<button
+										type="button"
+										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("TPA (presencial)")}
+									>
+										<p className="text-zinc-300">Inglês</p>
+										<img className="w-10" src="/languages/eua.png" alt="emojiEUA" />
 									</button>
                   <button
 										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Francês</p>
-										<Globe />
+										<img className="w-10" src="/languages/franca.png" alt="emojiFrança" />
 									</button>
                   <button
 										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Chinês (Mandarim)</p>
-										<Globe />
+										<img className="w-10" src="/languages/china.png" alt="emojiChina" />
 									</button>
                   <button
 										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("TPA (presencial)")}
-									>
-										<p className="text-zinc-300">Francês</p>
-										<Globe />
-									</button>
-                  <button
-										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Russo</p>
-										<Globe />
+										<img className="w-10" src="/languages/russia.png" alt="emojiRussia" />
 									</button>
 								</div>
 							</div>
