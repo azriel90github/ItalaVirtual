@@ -89,7 +89,7 @@ export function MenuPage() {
 					<Searchbox />
 				</div>
 
-			<div className="flex flex-wrap gap-5 justify-center pb-40">
+			<div className="flex flex-wrap gap-5 justify-center pb-10">
 
 				<div className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
 					<div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
