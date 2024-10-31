@@ -6,14 +6,14 @@ export function ContactAndLanguage() {
 			{/** <img className="w-40" src="/logo-geladaria.png" alt="logoItalala" /> */}
 
 			<div className="flex gap-2 items-center bg-searchColor text-buttonColor p-2.5 rounded-full w-96 justify-between font-medium text-lg">
-        <div className="bg-colorFundo w-full flex justify-between rounded-full py-2.5 px-5">
+        <button type="button" className="bg-colorFundo w-full flex justify-between rounded-full py-2.5 px-5">
 					<p>Ligar</p>
 					<Headset  />
-				</div>
-        <div className="bg-colorFundo w-full flex justify-between rounded-full py-2.5 px-5">
+				</button>
+        <button type="button" className="bg-colorFundo w-full flex justify-between rounded-full py-2.5 px-5">
 					<p>Idioma</p>
 					<Languages  />
-				</div>
+				</button>
 			</div>
 		</div>
 	);

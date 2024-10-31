@@ -55,7 +55,7 @@ export function LanguageModal() {
 								<div className="flex flex-col py-3 mt-2 gap-3">
 								<button
 										type="button"
-										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Transferência Bancária")}
 									>
 										<p className="text-zinc-300">Umbundu</p>
@@ -63,7 +63,7 @@ export function LanguageModal() {
 									</button>
 									<button
 										type="button"
-										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Kimbundu</p>
@@ -71,7 +71,7 @@ export function LanguageModal() {
 									</button>
 									<button
 										type="button"
-										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
 										<p className="text-zinc-300">Português</p>
@@ -79,7 +79,7 @@ export function LanguageModal() {
 									</button>
 									<button
 										type="button"
-										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Inglês</p>
@@ -87,7 +87,7 @@ export function LanguageModal() {
 									</button>
                   <button
 										type="button"
-										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Francês</p>
@@ -95,7 +95,7 @@ export function LanguageModal() {
 									</button>
                   <button
 										type="button"
-										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Chinês (Mandarim)</p>
@@ -103,7 +103,7 @@ export function LanguageModal() {
 									</button>
                   <button
 										type="button"
-										className="py-2 px-4 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
 										<p className="text-zinc-300">Russo</p>

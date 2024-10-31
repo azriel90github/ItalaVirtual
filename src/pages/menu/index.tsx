@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom"; // Para navegação manual
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 import { useResult } from "../../context/ResultContext.tsx";
-import { ContactAndLanguage } from "../../components/contact-and-language/contact-and-language.tsx";
+//import { ContactAndLanguage } from "../../components/contact-and-language/contact-and-language.tsx";
 //import { ContactModal } from "../../components/modal/contact-modal.tsx";
 //import React from "react";
 //import { LanguageModal } from "../../components/modal/language-modal";
@@ -85,7 +85,7 @@ export function MenuPage() {
 			</div>
 
 				<div className="flex flex-wrap justify-center gap-4">
-					<ContactAndLanguage />
+					{/** <ContactAndLanguage /> */}
 					<Searchbox />
 				</div>
 
@@ -165,7 +165,7 @@ export function MenuPage() {
 
 			</div>	
 					<div className="flex pb-32 flex-wrap justify-center gap-4">
-						<ContactAndLanguage />
+						{/** <ContactAndLanguage /> */}
 						<Searchbox />
 					</div>
 				<footer
