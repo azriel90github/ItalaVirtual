@@ -33,21 +33,21 @@ async function seed() {
 		{
 			name: "Varstoque Armando",
 			number: 930285124,
-			paymentMethod: "Dinheiro",
+			paymentMethod: "Dinheiro em mão",
 			location: "Samba, Luanda", 
 			createdAt: new Date(),
 		},
     {
 			name: "Cunha Chombossi",
 			number: 930882670,
-			paymentMethod: "Dinheiro",
+			paymentMethod: "Transferência báncaria",
 			location: "Samba, Luanda", 
 			createdAt: new Date(),
 		},
     {
 			name: "Isabel Tatiana",
 			number: 939765411,
-			paymentMethod: "Dinheiro",
+			paymentMethod: "TPA (presencial)",
 			location: "Samba, Luanda", 
 			createdAt: new Date(),
 		}
