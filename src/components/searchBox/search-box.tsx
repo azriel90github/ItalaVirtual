@@ -1,3 +1,4 @@
+import { ShoppingBasket } from "lucide-react";
 import { SearchBoxModal } from "../modal/search-box-modal";
 
 export function Searchbox() {
@@ -9,8 +10,9 @@ export function Searchbox() {
 				<div className="bg-colorFundo w-full flex justify-between rounded-full">
 					<SearchBoxModal />
 				</div>
-				<div className="bg-colorFundo w-full flex justify-center rounded-full py-2.5 px-5">
+				<div className="bg-colorFundo w-full flex items-center justify-between rounded-full py-2.5 px-4">
 					<p>Todos</p>
+					<ShoppingBasket />
 				</div>
 			</div>
 		</div>

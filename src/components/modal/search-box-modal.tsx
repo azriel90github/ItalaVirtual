@@ -24,7 +24,7 @@ export function SearchBoxModal() {
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
 				onClick={openSearchBoxModal}
-				className="bg-colorFundo w-full flex items-center rounded-full py-2.5 px-5 justify-between"
+				className="bg-colorFundo w-full flex items-center rounded-full py-2.5 px-4 justify-between"
       >
         Categoria
         <Logs />
