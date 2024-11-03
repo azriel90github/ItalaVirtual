@@ -20,8 +20,8 @@ export const customerOrder = pgTable("customer_order", {
 	id: text("id").primaryKey().$defaultFn(() => createId()),
 	name: text().notNull(),
 	number: integer("number").notNull(),
-	location: text().notNull(),
 	paymentMethod: text().notNull(),
+	location: text().notNull(),
 	createdAt: timestamp("created_at", { withTimezone: true })
 		.notNull()
 		.defaultNow(),

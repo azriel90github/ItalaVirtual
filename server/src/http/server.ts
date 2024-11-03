@@ -26,7 +26,7 @@ app.post(
 		},
 	},
 	async (request) => {
-		const { name, number, paymentMethod, location } = request.body;
+		const { name, number, location, paymentMethod } = request.body;
 
 		await createOrder({
 			name,
