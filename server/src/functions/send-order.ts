@@ -21,9 +21,9 @@ export async function createOrder({
     location,
   }).returning()
 
-  const good = result[0]
+  const order = result[0]
 
   return {
-    good,
+    order,
   }
 }
