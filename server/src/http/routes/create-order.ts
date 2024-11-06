@@ -11,18 +11,20 @@ export const createSendOrder: FastifyPluginAsyncZod = async ( app ) => {
           name: z.string(),
           number: z.number().int().min(9),
           paymentMethod: z.string(),
-          location: z.string().min(10).max(15),
+          cityOrNeighborhood: z.string().min(10).max(25),
+          landmark: z.string().min(10).max(25),
         }),
       },
     },
     async (request) => {
-      const { name, number, location, paymentMethod } = request.body;
+      const { name, number, paymentMethod, cityOrNeighborhood, landmark } = request.body;
   
       await createOrder({
         name,
         number,
         paymentMethod,
-        location,
+        cityOrNeighborhood,
+        landmark,
       });
     },
   );

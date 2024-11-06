@@ -59,6 +59,6 @@ async function seed() {
 
 seed().finally(() => { 
 	client.end();
-});
+}); 
 
 
