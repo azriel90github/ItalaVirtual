@@ -25,13 +25,13 @@ export function PaymentMethodModal() {
 			<input
 				readOnly
 				value={selectedOption}
-				placeholder="Selecionar tipo de pagamento"
+				placeholder="Método de Pagamento"
 				type="text"
 				onClick={openPaymentMethodModal}
-				className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-headerColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
+				className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
 			/>
 			{isPaymentMethodModalOpen && (
-				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+				//biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 				<div
 					onClick={closePaymentMethodModal}
 					className="fixed inset-0 bg-black/60 flex items-center justify-center"
@@ -65,7 +65,7 @@ export function PaymentMethodModal() {
 									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("Transferência Bancária")}
 								>
-									<p className="text-zinc-300">Transferência báncaria</p>
+									<p className="text-zinc-300">Multicaixa Express</p>
 									<Landmark/>
 								</button>
 								<button
@@ -73,7 +73,7 @@ export function PaymentMethodModal() {
 									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("TPA (presencial)")}
 								>
-									<p className="text-zinc-300">TPA (presencial)</p>
+									<p className="text-zinc-300">TPA - Presencial</p>
 									<CreditCard/>
 								</button>
 							</div>

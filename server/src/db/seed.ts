@@ -34,21 +34,24 @@ async function seed() {
 			name: "Varstoque Armando",
 			number: 930285124,
 			paymentMethod: "Dinheiro em mão",
-			location: "Samba, Luanda", 
+			cityOrNeighborhood: "Samba",
+			landmark: "Frente a Igreja Universal",
 			createdAt: new Date(),
 		},
     {
 			name: "Cunha Chombossi",
 			number: 930882670,
 			paymentMethod: "Transferência báncaria",
-			location: "Samba, Luanda", 
+			cityOrNeighborhood: "Samba",
+			landmark: "Frente a Igreja Universal",
 			createdAt: new Date(),
 		},
     {
 			name: "Isabel Tatiana",
 			number: 939765411,
 			paymentMethod: "TPA (presencial)",
-			location: "Samba, Luanda", 
+			cityOrNeighborhood: "Samba",
+			landmark: "Frente a Igreja Universal",
 			createdAt: new Date(),
 		}
 	]);
