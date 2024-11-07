@@ -63,7 +63,7 @@ export function PaymentMethodModal() {
 								<button
 									type="button"
 									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-									onClick={() => handleSelectOption("Transferência Bancária")}
+									onClick={() => handleSelectOption("Multicaixa Express")}
 								>
 									<p className="text-zinc-300">Multicaixa Express</p>
 									<Landmark/>
@@ -71,7 +71,7 @@ export function PaymentMethodModal() {
 								<button
 									type="button"
 									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-									onClick={() => handleSelectOption("TPA (presencial)")}
+									onClick={() => handleSelectOption("TPA - Presencial")}
 								>
 									<p className="text-zinc-300">TPA - Presencial</p>
 									<CreditCard/>
