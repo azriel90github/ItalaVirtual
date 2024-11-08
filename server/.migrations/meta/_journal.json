@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1729286668398,
+      "tag": "0000_yielding_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1729333182215,
+      "tag": "0001_burly_deathstrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729338886252,
+      "tag": "0002_conscious_fixer",
+      "breakpoints": true
+    }
+  ]
+}
