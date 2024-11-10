@@ -15,6 +15,7 @@ import { PaymentMethodModal } from "../../components/modal/payment-method-modal.
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
+
 	const { total } = useResult(); // Acessa o valor do total do contexto
 	const navigate = useNavigate();
 
