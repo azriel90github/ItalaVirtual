@@ -1,25 +1,25 @@
-import fastify from "fastify";
-import {
-	serializerCompiler,
-	validatorCompiler,
-	type ZodTypeProvider,
-} from "fastify-type-provider-zod";
-import { createSendOrder } from "./routes/create-order";
-//import { createOrder } from "../functions/send-order";
-//import z from "zod";
+import express, { type Request, type Response } from 'express';
+import cors from 'cors';
 
-const app = fastify().withTypeProvider<ZodTypeProvider>();
+const app = express();
+const PORT = 3334;
 
-//Add schema validator and serializer
-app.setValidatorCompiler(validatorCompiler);
-app.setSerializerCompiler(serializerCompiler);
+// Configuração do CORS para permitir requisições do front-end
+app.use(cors({ origin: 'http://localhost:3000' })); // Altere para a URL correta do seu front-end
+app.use(express.json()); // Middleware para interpretar JSON no corpo das requisições
 
-app.register(createSendOrder)
+// Endpoint para receber dados da encomenda
+app.post('/order', (req: Request, res: Response) => {
+  const { name, number, paymentMethod, cityOrNeighborhood, landmark, payment } = req.body;
 
-app
-	.listen({
-		port: 3334,
-	})
-	.then(() => {
-		console.log("HTTP server running!");
-	});
+  // Aqui você pode adicionar a lógica para salvar ou processar a encomenda
+  console.log("Dados recebidos:", req.body);
+
+  // Envia uma resposta de sucesso ao cliente
+  res.status(200).json({ message: 'Encomenda recebida com sucesso!' });
+});
+
+// Inicia o servidor
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});

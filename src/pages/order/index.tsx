@@ -61,15 +61,9 @@ export function OrderPage() {
   };
 
   // Função para lidar com o envio do formulário
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+const handleSubmit = async (e: { preventDefault: () => void }) => {
   e.preventDefault();
-
   try {
-    console.log("Dados a serem enviados:", {
-      ...formData,
-      payment: total,
-    });
-
     const response = await fetch("http://localhost:3334/order", {
       method: "POST",
       headers: {
@@ -77,20 +71,19 @@ export function OrderPage() {
       },
       body: JSON.stringify({
         ...formData,
-        payment: total,
+        payment: total, // Incluindo o total no corpo da requisição
       }),
     });
 
     if (response.ok) {
-      console.log("Pedido enviado com sucesso!");
       setShowSuccessModal(true); // Exibe o modal de sucesso
     } else {
-      console.error("Erro ao enviar os dados:", response.statusText);
+      console.error("Erro ao enviar os dados.");
     }
-  } catch (error) {
-    console.error("Erro na requisição:", error);
-  }
-};
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
 
 
   return (
