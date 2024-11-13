@@ -1,5 +1,5 @@
 import { type SetStateAction, useState } from "react";
-import { CreditCard, HandCoins, Landmark, X } from "lucide-react";
+import { Check, CreditCard, Download, HandCoins, Landmark, X } from "lucide-react";
 import {
   AlignJustify,
   RotateCcw,
@@ -270,10 +270,23 @@ const handleSubmit = async (e: { preventDefault: () => void }) => {
       </main>
 
       {showSuccessModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
-          <div className="w-[640px] items-center flex justify-between rounded-xl py-5 px-6 bg-colorFundo">
-            <p className="text-colorText1 text-xl font-normal">Mensagem enviada com sucesso!</p>
-            <X className="cursor-pointer text-colorText1" onClick={() => setShowSuccessModal(false)} />
+        // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+        <div onClick={() => setShowSuccessModal(false)} className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
+          <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
+            <div className="items-center flex justify-between">
+              <p className="text-moneyColor1 text-xl font-normal">Mensagem enviada com sucesso</p>
+              <Check className="cursor-pointer text-moneyColor1" />
+            </div>
+            <div className="py-3">
+              <h3 className="text-buttonColor pb-2">Lembrete Importante:</h3>
+              <p className="text-zinc-300 pb-2 flex-1">Não esqueça de manter ativo o  sistema de localização do seu telemovél, para melhor localização e entrega em tempo real da sua encomenda.</p>
+            </div>
+            <div className="items-center gap-3 flex flex-wrap">
+              <button className="w-full flex transition duration-400 bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                Fatura digital
+                <Download />
+              </button>
+            </div>
           </div>
         </div>
       )}
