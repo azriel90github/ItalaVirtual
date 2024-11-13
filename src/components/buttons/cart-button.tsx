@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 export function CartButton() {
 	const navigate = useNavigate(); // Esportar useNavigate do react-router-dom
 
-
 	return (
 		// biome-ignore lint/a11y/useButtonType: <explanation>
 		<button

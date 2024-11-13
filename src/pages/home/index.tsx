@@ -86,10 +86,10 @@ export function HomePage() {
 					</p>
 				</div>
 			</div>
-			<p className="m-5 text-lg text-colorText1 text-center">
-				Desenvolvido por{" "}
+			<p className="m-5 text-1xl text-colorText1 text-center">
+				Programado por{" "}
 				<a className="" target="_blank" href="https://portofolio-perfil.vercel.app/" rel="noreferrer">
-					Suélio Armando,
+					Suélio Armando
 				</a>{" "}
 				<span className="text-jsColor">JS</span> eXtreme Programming
 				{/** <span className="text-goColor">Go</span> */}

@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3334;
 
 // Configuração do CORS para permitir requisições do front-end
-app.use(cors({ origin: 'http://localhost:3000' })); // Altere para a URL correta do seu front-end
+app.use(cors({ origin: 'http://localhost:5173' })); // Altere para a URL correta do seu front-end
 app.use(express.json()); // Middleware para interpretar JSON no corpo das requisições
 
 // Endpoint para receber dados da encomenda

@@ -270,15 +270,10 @@ const handleSubmit = async (e: { preventDefault: () => void }) => {
       </main>
 
       {showSuccessModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="bg-white p-6 rounded-xl text-center">
-            <p className="text-lg font-semibold">Mensagem enviada com sucesso!</p>
-            <button type="button"
-              onClick={() => setShowSuccessModal(false)}
-              className="mt-4 px-4 py-2 bg-buttonColor hover:bg-moneyColor text-white rounded-md"
-            >
-              Fechar
-            </button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
+          <div className="w-[640px] items-center flex justify-between rounded-xl py-5 px-6 bg-colorFundo">
+            <p className="text-colorText1 text-xl font-normal">Mensagem enviada com sucesso!</p>
+            <X className="cursor-pointer text-colorText1" onClick={() => setShowSuccessModal(false)} />
           </div>
         </div>
       )}
