@@ -1,5 +1,18 @@
 {
+  "blogpage": {
+    "h2": "Sobre nós",
+    "par1": "Olá! Sou o Cunha Shombossi, a mente e o coração por trás da Geladaria Italala. Minha paixão por criar sabores únicos e oferecer momentos doces para as pessoas começou há muitos anos, quando descobri a magia que um simples sorvete pode trazer para o dia de alguém.",
+    "par2": "Na Geladaria Itala, usamos apenas ingredientes frescos e de alta qualidade. Todos os nossos sorvetes são preparados com muito cuidado e amor, para garantir uma explosão de sabores em cada mordida. Valorizamos o processo artesanal, e cada detalhe é pensado para oferecer a melhor experiência aos nossos clientes.",
+    "par3": "Na Italala, você encontrará um ambiente familiar e descontraído, perfeito para saborear um delicioso sorvete em boa companhia. Além dos nossos sabores tradicionais, oferecemos opções veganas e sem lactose, para que todos possam aproveitar essa experiência. Acompanhe nossas redes sociais e fique por dentro das nossas promoções e novidades, Visite-nos ja, ou faça sua encomenda por aqui!",
+    "h3": "Depoimentos",
+    "dep1": "O melhor sorvete que já provei! Sabores incríveis e textura perfeita. Já virei cliente fiel",
+    "dep2": "O melhor sorvete que já provei! Sabores incríveis e textura perfeita. Já virei cliente fiel",
+    "dep3": "O melhor sorvete que já provei! Sabores incríveis e textura perfeita. Já virei cliente fiel",
+    "dep4": "O melhor sorvete que já provei! Sabores incríveis e textura perfeita. Já virei cliente fiel"
+  },
+
   "homepage": {
+    "h3modal": "Selecionar Idioma",
     "gallery": "Galeria",
     "description": "Faça sua encomenda de qualquer lugar e a qualquer hora!",
     "buttonBlog": "Blogue",
@@ -8,5 +21,13 @@
     "buttonCart": "Carrinho",
     "terms": "Ao fazer suas encomendas pela itala virtual você automaticamente concorda com nossos termos de uso e políticas de privacidade.",
     "footer": "Programado por Suélio Armando JS eXtreme Programming"
+  },
+
+  "menupage": {
+
+  },
+
+  "orderpage": {
+
   }
 }

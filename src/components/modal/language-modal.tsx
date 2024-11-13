@@ -1,6 +1,7 @@
 import { Languages, X } from "lucide-react";
 import { useState } from "react";
 import i18n from "../../i18n";
+import { t } from "i18next";
 // Certifique-se de que o caminho para o i18n está correto
 
 export function LanguageModal() {
@@ -47,7 +48,7 @@ export function LanguageModal() {
 							className="text-buttonColor font-normal"
 						>
 							<div className="flex items-center justify-between text-2xl ml-1">
-								Selecionar Idioma
+							{t('homepage.h3modal')}
 								<X onClick={closeLanguageModal} className="cursor-pointer" />
 							</div>
 

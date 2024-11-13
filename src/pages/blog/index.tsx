@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"; //Importando useEffect e useState d
 import { useNavigate } from "react-router-dom"; //Importando useNavigate do react
 import { MenuButton } from "../../components/buttons/menu-button"; //Importando o componente menu-button
 import { LanguageModal } from "../../components/modal/language-modal"; //Importando o componente Language
+import { t } from "i18next";
 //import { ProfileModal } from "../../components/modal/profile-modal"; //Importando o componente Profile
 //import { CartButton } from "../../components/buttons/cart-button";
 //import { AccountButton } from "../../components/buttons/account-button";
@@ -102,40 +103,26 @@ export function BlogPage() {
 					<div>
 						<div className="w-10/12 leading-loose flex flex-col gap-4 mx-auto">
 							<h1 className="text-5xl flex items-start justify-between text-buttonColor py-2 mt-12 font-normal">
-								Sobre nós
+								{t('blogpage.h2')}
 								<p>
 									<LanguageModal />
 								</p>
 							</h1>
 							<p className="text-lg text-zinc-300">
-								"Olá! Sou o Cunha Shombossi, a mente e o coração por trás da
-								Geladaria Italala. Minha paixão por criar sabores únicos e
-								oferecer momentos doces para as pessoas começou há muitos anos,
-								quando descobri a magia que um simples sorvete pode trazer para
-								o dia de alguém."
+								{t('blogpage.par1')}
 							</p>
 							<p className="text-lg text-zinc-300">
-								"Na Geladaria Itala, usamos apenas ingredientes frescos e de
-								alta qualidade. Todos os nossos sorvetes são preparados com
-								muito cuidado e amor, para garantir uma explosão de sabores em
-								cada mordida. Valorizamos o processo artesanal, e cada detalhe é
-								pensado para oferecer a melhor experiência aos nossos clientes."
+								{t('blogpage.par2')}
 							</p>
 							<p className="text-lg text-zinc-300">
-								"Na Italala, você encontrará um ambiente familiar e
-								descontraído, perfeito para saborear um delicioso sorvete em boa
-								companhia. Além dos nossos sabores tradicionais, oferecemos
-								opções veganas e sem lactose, para que todos possam aproveitar
-								essa experiência. Acompanhe nossas redes sociais e fique por
-								dentro das nossas promoções e novidades, Visite-nos ja, ou faça
-								sua encomenda por aqui!"
+								{t('blogpage.par3')}
 							</p>
 						</div>
 					</div>
 
 					<div className="w-10/12 flex flex-col mx-auto gap-4">
 						<h1 className="text-5xl text-buttonColor py-5 mt-3 font-normal">
-							Depoimentos
+							{t('blogpage.h3')}
 						</h1>
 						<div className="flex flex-wrap gap-7">
 							<figure className="flex flex-wrap gap-4">

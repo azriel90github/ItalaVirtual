@@ -1,5 +1,18 @@
 {
+  "blogpage": {
+    "h2": "About Us",
+    "par1": "Hello! I am Cunha Shombossi, the mind and heart behind Geladaria Italala. My passion for creating unique flavors and offering sweet moments to people began many years ago when I discovered the magic a simple ice cream can bring to someone's day.",
+    "par2": "At Geladaria Italala, we use only fresh, high-quality ingredients. All our ice creams are made with great care and love to ensure an explosion of flavors in every bite. We value the artisanal process, and every detail is thought through to provide the best experience to our customers.",
+    "par3": "At Italala, you'll find a family-friendly, relaxed atmosphere, perfect for enjoying a delicious ice cream in good company. In addition to our traditional flavors, we offer vegan and lactose-free options so that everyone can enjoy this experience. Follow us on social media to stay updated on our promotions and news. Visit us today or place your order here!",
+    "h3": "Testimonials",
+    "dep1": "The best ice cream I've ever had! Amazing flavors and perfect texture. I’m already a loyal customer.",
+    "dep2": "The best ice cream I've ever had! Amazing flavors and perfect texture. I’m already a loyal customer.",
+    "dep3": "The best ice cream I've ever had! Amazing flavors and perfect texture. I’m already a loyal customer.",
+    "dep4": "The best ice cream I've ever had! Amazing flavors and perfect texture. I’m already a loyal customer."
+  },
+
   "homepage": {
+    "h3modal": "Select Language",
     "gallery": "Gallery",
     "description": "Place your order from anywhere and anytime!",
     "buttonBlog": "Blogue",
