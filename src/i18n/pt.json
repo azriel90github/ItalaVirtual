@@ -1,0 +1,12 @@
+{
+  "homepage": {
+    "gallery": "Galeria",
+    "description": "Faça sua encomenda de qualquer lugar e a qualquer hora!",
+    "buttonBlog": "Blogue",
+    "buttonContact": "Ligar",
+    "buttonMenu": "Cárdapio",
+    "buttonCart": "Carrinho",
+    "terms": "Ao fazer suas encomendas pela itala virtual você automaticamente concorda com nossos termos de uso e políticas de privacidade.",
+    "footer": "Programado por Suélio Armando JS eXtreme Programming"
+  }
+}

@@ -5,8 +5,10 @@ import { LanguageModal } from "../../components/modal/language-modal";
 //import { AccountButton } from "../../components/buttons/account-button";
 import { ContactModal } from "../../components/modal/contact-modal";
 import { GalleryModal } from "../../components/modal/gallery-modal";
+import { useTranslation } from 'react-i18next';
 
 export function HomePage() {
+	const { t } = useTranslation();
 	const navigate = useNavigate();
 
 	function menuPage() {
@@ -33,7 +35,7 @@ export function HomePage() {
 					<div className="flex flex-col items-center gap-4">
 						<img className="w-64" src="/logo-geladaria.png" alt="logoItalala" />
 						<p className="text-zinc-300 text-2xl font-light">
-							Faça sua encomenda de qualquer lugar e a qualquer hora!
+							{t('homepage.description')}
 						</p>
 					</div>
 					<div className="w-full">
@@ -43,7 +45,7 @@ export function HomePage() {
 								onClick={blogPage}
 								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
-								<p className="text-1xl font-normal">Blogue</p>
+								<p className="text-1xl font-normal">{t('homepage.buttonBlog')}</p>
 								<Rss className="size-6" />
 							</button>
 
@@ -54,7 +56,7 @@ export function HomePage() {
 								onClick={menuPage}
 								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
-								<p className="text-1xl font-normal">Cárdapio</p>
+								<p className="text-1xl font-normal">{t('homepage.buttonMenu')}</p>
 								{/*
 									<div className="w-px h-6 bg-zinc-800">
 									</div>
@@ -66,33 +68,18 @@ export function HomePage() {
 								onClick={orderPage}
 								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
-								<p className="text-1xl font-normal">Carrinho</p>
+								<p className="text-1xl font-normal">{t('homepage.buttonCart')}</p>
 								<ShoppingCart className="size-6" />
 							</button>
 						</div>
 					</div>
-					<p className="text-lg text-colorText1">
-						Ao fazer suas encomendas pela itala virtual você automaticamente
-						concorda <br /> com nossos{" "}
-						{/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-						<a className="text-zinc-300" href="#">
-							termos de uso
-						</a>{" "}
-						e {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-						<a className="text-zinc-300" href="#">
-							políticas de privacidade
-						</a>
-						.
+					<p className="text-lg text-colorText1 font-normal">
+						{t('homepage.terms')}
 					</p>
 				</div>
 			</div>
 			<p className="m-5 text-1xl text-colorText1 text-center">
-				Programado por{" "}
-				<a className="" target="_blank" href="https://portofolio-perfil.vercel.app/" rel="noreferrer">
-					Suélio Armando
-				</a>{" "}
-				<span className="text-jsColor">JS</span> eXtreme Programming
-				{/** <span className="text-goColor">Go</span> */}
+				{t('homepage.footer')}
 			</p>
 		</div>
 	);

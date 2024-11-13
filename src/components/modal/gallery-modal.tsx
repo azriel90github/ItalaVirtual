@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { Images, X } from "lucide-react";
 import { useState } from "react";
 
@@ -20,7 +21,7 @@ export function GalleryModal() {
         onClick={openGalleryModal}
         className="flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5"
       >
-        <div>Galeria</div>
+        <div>{t('homepage.gallery')}</div>
         <div>
           <Images />
         </div>

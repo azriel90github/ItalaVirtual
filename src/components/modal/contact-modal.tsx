@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { Headset, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 
@@ -26,7 +27,7 @@ export function ContactModal() {
 				className="accountButton px-8 py-4 w-80 border-2 border-colorInput flex items-center justify-between bg-searchColor rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 				onClick={openContactModal}
 			>
-				<p className="text-1xl font-normal">Ligar</p>
+				<p className="text-1xl font-normal">{t('homepage.buttonContact')}</p>
 				<Headset />
 			</button>
 				{isContactModalOpen && (

@@ -1,0 +1,12 @@
+{
+  "homepage": {
+    "gallery": "Galerie",
+    "description": "Faites votre commande à tout moment et de n'importe où!",
+    "buttonBlog": "Blog",
+    "buttonContact": "Appeler",
+    "buttonMenu": "Menu",
+    "buttonCart": "Panier",
+    "terms": "En passant commande via itala virtual, vous acceptez automatiquement nos conditions d'utilisation et notre politique de confidentialité.",
+    "footer": "Programmé par Suélio Armando JS etXtreme Programming"
+  }
+}

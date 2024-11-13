@@ -4,32 +4,34 @@ import { MenuPage } from "./pages/menu";
 import { OrderPage } from "./pages/order";
 import { BlogPage } from "./pages/blog";
 import { ResultProvider } from "./context/ResultContext";
-
+import i18n from './i18n'; //Importação do i18n configurado
+import { I18nextProvider } from 'react-i18next';
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <HomePage />,
-	},
-	{
-		path: "/blog/:blogId",
-		element: <BlogPage />,
-	},
-	{
-		path: "/menu/:menuId",
-		element: <MenuPage />,
-	},
-	{
-		path: "/order/:orderId",
-		element: <OrderPage />,
-	},
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/blog/:blogId",
+    element: <BlogPage />,
+  },
+  {
+    path: "/menu/:menuId",
+    element: <MenuPage />,
+  },
+  {
+    path: "/order/:orderId",
+    element: <OrderPage />,
+  },
 ]);
 
-// Envolvendo o RouterProvider com ResultProvider
 export function App() {
   return (
-    <ResultProvider> {/* ResultProvider para disponibilizar o contexto em todo o app */}
-      <RouterProvider router={router} /> {/* RouterProvider para as rotas definidas */}
-    </ResultProvider>
+    <I18nextProvider i18n={i18n}> {/* Provedor do i18next */}
+      <ResultProvider> {/* ResultProvider para o contexto global */}
+        <RouterProvider router={router} /> {/* RouterProvider para as rotas */}
+      </ResultProvider>
+    </I18nextProvider>
   );
 }

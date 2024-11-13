@@ -1,0 +1,12 @@
+{
+  "homepage": {
+    "gallery": "画廊",
+    "description": "随时随地下单！",
+    "buttonBlog": "博客",
+    "buttonContact": "呼叫",
+    "buttonMenu": "菜单",
+    "buttonCart": "购物车",
+    "terms": "通过 itala virtual 下单，即表示您自动同意我们的使用条款和隐私政策。",
+    "footer": "由 Suélio Armando JS 和 Xtreme Programming 编程"
+  }
+}
