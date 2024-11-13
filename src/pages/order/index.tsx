@@ -87,8 +87,8 @@ const handleSubmit = async (e: { preventDefault: () => void }) => {
 
 
   return (
-    <div className="max-w-6xl px-6 py-10 mx-auto space-y-8 bg-fundoHome bg-no-repeat bg-right">
-      <div className="border-2 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
+    <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
+      <div className="border-2 mb-10 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
         <div className="flex items-center">
           <p className="pl-3 text-2xl font-normal">Carrinho de Compras</p>
         </div>
@@ -278,12 +278,12 @@ const handleSubmit = async (e: { preventDefault: () => void }) => {
               <Check className="cursor-pointer text-moneyColor1" />
             </div>
             <div className="py-3">
-              <h3 className="text-buttonColor pb-2">Lembrete Importante:</h3>
-              <p className="text-zinc-300 pb-2 flex-1">Não esqueça de manter ativo o  sistema de localização do seu telemovél, para melhor localização e entrega em tempo real da sua encomenda.</p>
+              <h3 className="text-buttonColor pb-1">Lembrete Importante:</h3>
+              <p className="text-zinc-300 pb-2 flex-1">Não esqueça de manter ativo o  sistema de localização do seu telemovél para melhor localização e entrega em tempo real da sua encomenda.</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">
-              <button className="w-full flex transition duration-400 bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
-                Fatura digital
+              <button className="w-full flex transition duration-400 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                Fatura Digital
                 <Download />
               </button>
             </div>
