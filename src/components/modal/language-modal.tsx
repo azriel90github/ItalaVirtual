@@ -35,14 +35,17 @@ export function LanguageModal() {
 			</button>
 
 			{isLanguageModalOpen && (
-				<div
+				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+					<div
 					onClick={closeLanguageModal}
 					className="fixed inset-0 bg-black/60 flex items-center justify-center text-xl"
-				>
+					>
+					{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 					<div
 						onClick={() => setIsLanguageModalOpen(false)}
 						className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo"
 					>
+						{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 						<div
 							onClick={(e) => e.stopPropagation()}
 							className="text-buttonColor font-normal"

@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react"; //Importando useEffect e useState do react
 import { useNavigate } from "react-router-dom"; //Importando useNavigate do react
 import { MenuButton } from "../../components/buttons/menu-button"; //Importando o componente menu-button
-import { LanguageModal } from "../../components/modal/language-modal"; //Importando o componente Language
+//import { LanguageModal } from "../../components/modal/language-modal"; //Importando o componente Language
 import { t } from "i18next";
 //import { ProfileModal } from "../../components/modal/profile-modal"; //Importando o componente Profile
 //import { CartButton } from "../../components/buttons/cart-button";
@@ -105,7 +105,7 @@ export function BlogPage() {
 							<h1 className="text-5xl flex items-start justify-between text-buttonColor py-2 mt-12 font-normal">
 								{t('blogpage.h2')}
 								<p>
-									<LanguageModal />
+									{/**<LanguageModal /> */}
 								</p>
 							</h1>
 							<p className="text-lg text-zinc-300">
@@ -135,8 +135,7 @@ export function BlogPage() {
 								</div>
 								<div className="">
 									<p className="text-lg text-zinc-300 w-80">
-										"O melhor sorvete que já provei! Sabores incríveis e textura
-										perfeita. Já virei cliente fiel"
+										{t('blogpage.dep1')}
 									</p>
 									<div>
 										<span className="text-2xl text-colorText1">
@@ -159,8 +158,7 @@ export function BlogPage() {
 								</div>
 								<div className="">
 									<p className="text-lg text-zinc-300 w-80">
-										"O melhor sorvete que já provei! Sabores incríveis e textura
-										perfeita. Já virei cliente fiel"
+										{t('blogpage.dep2')}
 									</p>
 									<div>
 										<span className="text-2xl text-colorText1">
@@ -183,8 +181,7 @@ export function BlogPage() {
 								</div>
 								<div className="">
 									<p className="text-lg text-zinc-300 w-80">
-										"O melhor sorvete que já provei! Sabores incríveis e textura
-										perfeita. Já virei cliente fiel"
+										{t('blogpage.dep3')}
 									</p>
 									<div>
 										<span className="text-2xl text-colorText1">
@@ -207,8 +204,7 @@ export function BlogPage() {
 								</div>
 								<div className="">
 									<p className="text-lg text-zinc-300 w-80">
-										"O melhor sorvete que já provei! Sabores incríveis e textura
-										perfeita. Já virei cliente fiel"
+										{t('blogpage.dep4')}
 									</p>
 									<div>
 										<span className="text-2xl text-colorText1">Isabel Tatiana</span>
