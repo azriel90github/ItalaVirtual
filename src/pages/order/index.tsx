@@ -61,8 +61,15 @@ export function OrderPage() {
   };
 
   // Função para lidar com o envio do formulário
-const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
   e.preventDefault();
+
+    // Verifique se o paymentMethod está selecionado
+    if (!formData.paymentMethod) {
+      alert("Por favor, selecione um método de pagamento.");
+      return;
+    }
+  
   try {
     const response = await fetch("http://localhost:3334/order", {
       method: "POST",
@@ -71,7 +78,6 @@ const handleSubmit = async (e: { preventDefault: () => void }) => {
       },
       body: JSON.stringify({
         ...formData,
-        payment: total, // Incluindo o total no corpo da requisição
       }),
     });
 
@@ -84,7 +90,6 @@ const handleSubmit = async (e: { preventDefault: () => void }) => {
         console.error("Erro na requisição:", error);
       }
     };
-
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">

@@ -10,16 +10,26 @@ app.use(express.json()); // Middleware para interpretar JSON no corpo das requis
 
 // Endpoint para receber dados da encomenda
 app.post('/order', (req: Request, res: Response) => {
-  const { name, number, paymentMethod, cityOrNeighborhood, landmark, payment } = req.body;
+  const { name, number, paymentMethod, cityOrNeighborhood, landmark } = req.body;
 
-  // Aqui você pode adicionar a lógica para salvar ou processar a encomenda
-  console.log("Dados recebidos:", req.body);
+  // Remova o campo payment se ele estiver presente
+  const orderData = {
+    name,
+    number,
+    paymentMethod,
+    cityOrNeighborhood,
+    landmark
+  };
+
+  // Lógica para salvar ou processar a encomenda
+  console.log("Dados recebidos:", orderData);
 
   // Envia uma resposta de sucesso ao cliente
-  res.status(200).json({ message: 'Encomenda recebida com sucesso!' });
+  res.status(200).json({ message: 'Encomenda recebida com sucesso!', orderData });
 });
 
 // Inicia o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
