@@ -1,4 +1,12 @@
 {
+  "buttons": {
+    "menuButton": "Кардапио"
+  },
+
+  "modal": {
+
+  },
+
   "blogpage": {
     "h2": "Sobre nós",
     "par1": "Olá! Sou o Cunha Shombossi, a mente e o coração por trás da Geladaria Italala. Minha paixão por criar sabores únicos e oferecer momentos doces para as pessoas começou há muitos anos, quando descobri a magia que um simples sorvete pode trazer para o dia de alguém.",
@@ -42,9 +50,9 @@
     "send": "Enviar",
     "reset": "Limpar",
     "modalSend": "Mensagem enviada com sucesso",
-    "modalSendh2": "",
-    "modalSendP": "",
-    "modalSendButton": ""
-
+    "modalSendh3": "Lembrete Importante:",
+    "modalSendP": "Não esqueça de manter ativo o  sistema de localização do seu telemovél para melhor localização e entrega em tempo real da sua encomenda.",
+    "modalSendButton": "Fatura Digital",
+    "modalValidation": "Todos os campos são obrigatórios"
   }
 }

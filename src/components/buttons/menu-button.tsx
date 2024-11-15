@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { SquareChartGantt } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +15,7 @@ export function MenuButton() {
 			onClick={menuPage}
 			className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-200 hover:text-zinc-200 rounded-2xl px-7 py-3.5"
 		>
-			Cardápio
+			{t('buttons.menuButton')}
 			<SquareChartGantt />
 		</button>
 	);

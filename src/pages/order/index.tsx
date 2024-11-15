@@ -284,16 +284,16 @@ export function OrderPage() {
         <div onClick={() => setShowSuccessModal(false)} className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
           <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
             <div className="items-center flex justify-between">
-              <p className="text-moneyColor1 text-xl font-normal">{t('orderpage.reset')}</p>
+              <p className="text-moneyColor1 text-xl font-normal">{t('orderpage.modalSend')}</p>
               <Check className="cursor-pointer text-moneyColor1" />
             </div>
             <div className="py-3">
-              <h3 className="text-buttonColor text-[19px] pb-1.5">Lembrete Importante:</h3>
-              <p className="text-zinc-300 pb-2 flex-1">Não esqueça de manter ativo o  sistema de localização do seu telemovél para melhor localização e entrega em tempo real da sua encomenda.</p>
+              <h3 className="text-buttonColor text-[19px] pb-1.5">{t('orderpage.modalSendh3')}</h3>
+              <p className="text-zinc-300 pb-2 flex-1">{t('orderpage.modalSendP')}</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">
               <button className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
-                Fatura Digital
+                {t('orderpage.modalSendButton')}
                 <Download />
               </button>
             </div>
@@ -305,7 +305,7 @@ export function OrderPage() {
       {showValidationModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
           <div className="w-[540px] rounded-xl py-6 px-7 flex items-center justify-between bg-colorHover">
-            <p className="text-red-500 text-lg font-medium">Todos os campos são obrigatórios</p>
+            <p className="text-red-500 text-lg font-medium">{t('orderpage.modalValidation')}</p>
             <Siren className="text-red-500" />
           </div>
         </div>
