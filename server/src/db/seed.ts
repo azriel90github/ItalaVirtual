@@ -32,7 +32,7 @@ async function seed() {
   await db.insert(customerOrder).values([
 		{
 			name: "Varstoque Armando",
-			number: 930285124,
+			number: "930882670",
 			paymentMethod: "Dinheiro em mão",
 			cityOrNeighborhood: "Samba",
 			landmark: "Frente a Igreja Universal",
@@ -40,7 +40,7 @@ async function seed() {
 		},
     {
 			name: "Cunha Chombossi",
-			number: 930882670,
+			number: "930882670",
 			paymentMethod: "Transferência báncaria",
 			cityOrNeighborhood: "Samba",
 			landmark: "Frente a Igreja Universal",
@@ -48,7 +48,7 @@ async function seed() {
 		},
     {
 			name: "Isabel Tatiana",
-			number: 939765411,
+			number: "930882670",
 			paymentMethod: "TPA (presencial)",
 			cityOrNeighborhood: "Samba",
 			landmark: "Frente a Igreja Universal",

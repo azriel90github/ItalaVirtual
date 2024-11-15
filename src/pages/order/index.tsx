@@ -1,5 +1,5 @@
-import { type SetStateAction, useState } from "react";
-import { Check, CreditCard, Download, HandCoins, Landmark, X } from "lucide-react";
+import { useState } from "react";
+import { Check, CreditCard, Download, HandCoins, Landmark, Siren, X } from "lucide-react";
 import {
   AlignJustify,
   RotateCcw,
@@ -11,19 +11,31 @@ import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { useResult } from "../../context/ResultContext.tsx";
+import { t } from "i18next";
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
 
-	const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado
-	// Função para fechar o modal e definir a opção selecionada
-	const handleSelectOption = (option: SetStateAction<string>) => {
-		setSelectedOption(option);
-		setIsPaymentMethodModalOpen(false);
-	};
+  const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado
+  const [isPaymentMethodModalOpen, setIsPaymentMethodModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    number: "",
+    paymentMethod: "",
+    cityOrNeighborhood: "",
+    landmark: "",
+  });
 
-	const [isPaymentMethodModalOpen, setIsPaymentMethodModalOpen] =
-		useState(false);
+	// Função para fechar o modal e definir a opção selecionada
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const { total } = useResult(); // Acessa o valor do total do contexto
+  const navigate = useNavigate();
+
+  const handleSelectOption = (option: string) => {
+    setSelectedOption(option);
+    setIsPaymentMethodModalOpen(false);
+  };
+
 
 	function openPaymentMethodModal() {
 		setIsPaymentMethodModalOpen(true);
@@ -33,26 +45,10 @@ export function OrderPage() {
 		setIsPaymentMethodModalOpen(false);
 	}
 
-  const { total } = useResult(); // Acessa o valor do total do contexto
-  const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    name: "",
-    number: "",
-    paymentMethod: "",
-    cityOrNeighborhood: "",
-		landmark: "",
-  });
-
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-
-  function menuPage() {
-    navigate("/menu/123");
-  }
+  const menuPage = () => navigate("/menu/123");
 
   // Função para lidar com a mudança dos campos do formulário
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -60,32 +56,41 @@ export function OrderPage() {
     }));
   };
 
+  const [showValidationModal, setShowValidationModal] = useState(false); // Novo estado para validação
+
+  const validateForm = () => {
+    const { name, number, cityOrNeighborhood, landmark } = formData;
+    if (!name || !number || !selectedOption || !cityOrNeighborhood || !landmark) {
+      setShowValidationModal(true); // Exibe o modal de validação
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha após 2 segundos
+      return false;
+    }
+    return true;
+  };
+
   // Função para lidar com o envio do formulário
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    // Verifique se o paymentMethod está selecionado
-    if (!formData.paymentMethod) {
-      alert("Por favor, selecione um método de pagamento.");
-      return;
-    }
-  
-  try {
-    const response = await fetch("http://localhost:3334/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...formData,
-      }),
-    });
+    if (!validateForm()) return;
 
-    if (response.ok) {
-      setShowSuccessModal(true); // Exibe o modal de sucesso
-    } else {
-      console.error("Erro ao enviar os dados.");
-    }
+    try {
+      const response = await fetch("http://localhost:3334/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          paymentMethod: selectedOption, // Inclui o método de pagamento selecionado
+        }),
+      });
+
+      if (response.ok) {
+        setShowSuccessModal(true); // Exibe o modal de sucesso
+      } else {
+        console.error("Erro ao enviar os dados.");
+      }
       } catch (error) {
         console.error("Erro na requisição:", error);
       }
@@ -95,7 +100,7 @@ export function OrderPage() {
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
       <div className="border-2 mb-10 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
         <div className="flex items-center">
-          <p className="pl-3 text-2xl font-normal">Carrinho de Compras</p>
+          <p className="pl-3 text-2xl font-normal">{t('orderpage.h3menu')}</p>
         </div>
 
         <div className="flex items-center gap-4">
@@ -111,18 +116,18 @@ export function OrderPage() {
         <div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
           <div className="flex flex-col gap-1.5">
             <div className="bg-buttonColor2 items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
-              Detalhes Encomenda
+              {t('orderpage.h2order')}
               <AlignJustify />
             </div>
           </div>
 
           <p className="flex justify-between pt-5 px-3 text-xl">
-            <h3 className="text-buttonColor font-medium">Sabores</h3>
+            <h3 className="text-buttonColor font-medium">{t('orderpage.sabores')}</h3>
             <span className="text-moneyColor1">0</span>
           </p>
 
           <p className="flex justify-between py-2 px-3 text-xl">
-            <h3 className="text-buttonColor font-medium">Pagamento</h3>
+            <h3 className="text-buttonColor font-medium">{t('orderpage.pagamento')}</h3>
             <span className="text-moneyColor1">{total}</span>
           </p>
 
@@ -131,14 +136,14 @@ export function OrderPage() {
               onClick={menuPage}
               className="flex mt-6 transition duration-400 bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
             >
-              Adicionar Sabores
+              {t('orderpage.adicionar')}
               <ShoppingCart />
             </button>
             <button type="button"
               onClick={menuPage}
               className="flex transition duration-400 bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
             >
-              Remover Sabores
+              {t('orderpage.remover')}
               <Trash2 />
             </button>
           </div>
@@ -146,7 +151,7 @@ export function OrderPage() {
 
         <div className="flex-1">
           <h1 className="pb-5 text-4xl flex items-center font-light text-zinc-300">
-            Encomendar - Agora
+            {t('orderpage.h2encomendar')}
           </h1>
 
           <div className="py-4">
@@ -194,7 +199,7 @@ export function OrderPage() {
 												className="text-buttonColor font-medium"
 											>
 												<div className="flex items-center justify-between text-xl ml-1">
-													Selecionar método de pagamento
+                          {t('orderpage.h2selectMethod')}
 													<X onClick={closePaymentMethodModal} className="cursor-pointer" />
 													{/** <X className="size-6 cursor-pointer" /> */}
 												</div>
@@ -204,7 +209,7 @@ export function OrderPage() {
 														className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 														onClick={() => handleSelectOption("Dinheiro em mão")}
 													>
-														<p className="text-zinc-300">Dinheiro em mão</p>
+														<p className="text-zinc-300">{t('orderpage.money')}</p>
 														<HandCoins/>
 													</button>
 													<button
@@ -212,7 +217,7 @@ export function OrderPage() {
 														className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 														onClick={() => handleSelectOption("Multicaixa Express")}
 													>
-														<p className="text-zinc-300">Multicaixa Express</p>
+														<p className="text-zinc-300">{t('orderpage.express')}</p>
 														<Landmark/>
 													</button>
 													<button
@@ -220,7 +225,7 @@ export function OrderPage() {
 														className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 														onClick={() => handleSelectOption("TPA - Presencial")}
 													>
-														<p className="text-zinc-300">TPA - Presencial</p>
+														<p className="text-zinc-300">{t('orderpage.tpa')}</p>
 														<CreditCard/>
 													</button>
 												</div>
@@ -252,7 +257,7 @@ export function OrderPage() {
 								type="submit"
 								onClick={handleSubmit} // Certifique-se de que o onClick está chamando handleSubmit
 							>
-								Enviar
+                {t('orderpage.send')}
 								<Send />
 							</button>
 
@@ -264,7 +269,7 @@ export function OrderPage() {
 									setSelectedOption(""); // Reseta o método de pagamento selecionado
 								}}
 							>
-								Limpar
+                {t('orderpage.reset')}
 								<RotateCcw />
 							</button>
 
@@ -279,15 +284,15 @@ export function OrderPage() {
         <div onClick={() => setShowSuccessModal(false)} className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
           <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
             <div className="items-center flex justify-between">
-              <p className="text-moneyColor1 text-xl font-normal">Mensagem enviada com sucesso</p>
+              <p className="text-moneyColor1 text-xl font-normal">{t('orderpage.reset')}</p>
               <Check className="cursor-pointer text-moneyColor1" />
             </div>
             <div className="py-3">
-              <h3 className="text-buttonColor pb-1">Lembrete Importante:</h3>
+              <h3 className="text-buttonColor text-[19px] pb-1.5">Lembrete Importante:</h3>
               <p className="text-zinc-300 pb-2 flex-1">Não esqueça de manter ativo o  sistema de localização do seu telemovél para melhor localização e entrega em tempo real da sua encomenda.</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">
-              <button className="w-full flex transition duration-400 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+              <button className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 Fatura Digital
                 <Download />
               </button>
@@ -295,7 +300,18 @@ export function OrderPage() {
           </div>
         </div>
       )}
+
+      {/* Validation Modal */}
+      {showValidationModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
+          <div className="w-[540px] rounded-xl py-6 px-7 flex items-center justify-between bg-colorHover">
+            <p className="text-red-500 text-lg font-medium">Todos os campos são obrigatórios</p>
+            <Siren className="text-red-500" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
 

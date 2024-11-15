@@ -28,6 +28,23 @@
   },
 
   "orderpage": {
+    "h3menu": "Carrinho de Compras",
+    "h2order": "Detalhes Encomenda",
+    "sabores": "Sabores",
+    "pagamento": "Pagamento",
+    "adicionar": "Adicionar Sabores",
+    "remover": "Remover Sabores",
+    "h2encomendar": "Encomendar - Agora",
+    "h2selectMethod": "Selecionar método de pagamento",
+    "money": "Dinheiro em mão",
+    "express": "Multicaixa Express",
+    "tpa": "TPA - Presencial",
+    "send": "Enviar",
+    "reset": "Limpar",
+    "modalSend": "Mensagem enviada com sucesso",
+    "modalSendh2": "",
+    "modalSendP": "",
+    "modalSendButton": ""
 
   }
 }

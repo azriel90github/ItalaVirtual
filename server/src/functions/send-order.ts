@@ -18,7 +18,7 @@ export async function createOrder({
 } : CreateOrderRequests ) {
   const result = await db.insert(customerOrder).values({
     name,
-    number,
+    number: String(number), // Converte `number` para string
     paymentMethod,
     cityOrNeighborhood,
     landmark,

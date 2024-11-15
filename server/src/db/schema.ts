@@ -19,7 +19,7 @@ export const goods = pgTable("goods", {
 export const customerOrder = pgTable("customer_order", {
 	id: text("id").primaryKey().$defaultFn(() => createId()),
 	name: text().notNull(),
-	number: integer("number").notNull(),
+	number: text("number").notNull(),
 	paymentMethod: text().notNull(),
 	cityOrNeighborhood: text().notNull(),
 	landmark: text().notNull(),
