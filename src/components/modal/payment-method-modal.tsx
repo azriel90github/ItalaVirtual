@@ -2,8 +2,6 @@
 
 export function PaymentMethodModal() {
 
-
-
 	return (
 		<>
 			

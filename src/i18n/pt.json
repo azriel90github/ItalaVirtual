@@ -1,10 +1,44 @@
 {
   "buttons": {
-    "menuButton": "Кардапио"
+    "menuButton": "Cárdapio",
+    "cartButton": "Carrinho"
   },
 
   "modal": {
+    "modalContact": {
+      "title": "Entrar em contacto"
+    },
+    "modalGallery": {
+      "title": "Galeria"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Português",
+      "ingles": "Inglês",
+      "frances": "Francês",
+      "chines": "Chinês",
+      "russo": "Russo"
 
+    },
+    "modalNotification": {
+      "title": "Galeria"
+    },
+    "modalOrderDetail": {
+      "title": "Galeria"
+    },
+    "modalPaymentMethod": {
+      "title": "Galeria"
+    },
+    "modalProfile": {
+      "title": "Galeria"
+    },
+    "modalSearchBox": {
+      "title": "Escolher categoria",
+      "category1": "Menta",
+      "category2": "Chocolate",
+      "category3": "Morango"
+    }
   },
 
   "blogpage": {
@@ -47,6 +81,11 @@
     "money": "Dinheiro em mão",
     "express": "Multicaixa Express",
     "tpa": "TPA - Presencial",
+    "placeholderName": "Nome",
+    "placeholderNumber": "Número(+244)",
+    "placeholderPaymentMethod": "Método de Pagamento",
+    "placeholderCityOrNeighborhood": "Cidade ou Bairro",
+    "placeholderLandmark": "Ponto de Referência",
     "send": "Enviar",
     "reset": "Limpar",
     "modalSend": "Mensagem enviada com sucesso",

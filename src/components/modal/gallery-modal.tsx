@@ -32,7 +32,7 @@ export function GalleryModal() {
           <div onClick={closeGalleryModal} className="fixed inset-0 bg-black/60 flex items-center justify-center">
             <div className="w-[640px] rounded-2xl py-5 px-6 bg-colorFundo">
               <div className="flex items-center justify-between text-buttonColor font-medium text-xl">
-                Galeria
+                {t('modal.modalGallery.title')}
                 <X className="size-6 cursor-pointer" />
               </div>
             </div>

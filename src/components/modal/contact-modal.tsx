@@ -47,7 +47,7 @@ export function ContactModal() {
 								className="text-buttonColor font-medium"
 							>
 								<div className="flex items-center justify-between text-xl ml-1">
-									Entrar em contacto
+									{t('modal.modalContact.title')}
 									<X onClick={closeContactModal} className="cursor-pointer" />
 									{/** <X className="size-6 cursor-pointer" /> */}
 								</div>

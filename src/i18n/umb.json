@@ -1,4 +1,9 @@
 {
+  "buttons": {
+    "menuButton": "Ondi",
+    "cartButton": "Ondi yoku kuka"
+  },
+
   "blogpage": {
     "h2": "Okwetu",
     "par1": "Wamukongo! Ndje Cunha Shombossi, uluvo nembela wa Geladaria Italala. Uvuko wange ovelako kupanga i-sabores okundjenga otembo, ona ulufino okuhepa ice cream ki kaunga okuzama okushenga esela.",
@@ -21,6 +26,27 @@
     "buttonCart": "Makala",
     "terms": "Okwenda kima na itala virtual, olonga okuti ulenda kuza na ‘termos de uso’ na ‘políticas de privacidade’.",
     "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
-  }
+  },
+
+  "orderpage": {
+    "h3menu": "Ondi yoku kuka",
+    "h2order": "Oukamba wa cimbu ci kuka",
+    "sabores": "Ovimbo",
+    "pagamento": "Okukula",
+    "adicionar": "Ku tiya ovivimbo",
+    "remover": "Ku katula ovivimbo",
+    "h2encomendar": "Kuka Ngolo",
+    "h2selectMethod": "Ka sola oukukula",
+    "money": "Ombiji",
+    "express": "Multicaixa Express", 
+    "tpa": "TPA - Omunhu u li u muntu",
+    "placeholderName": "Ovina",
+    "placeholderNumber": "O njimbu (+244)",
+    "placeholderPaymentMethod": "Oukukula",
+    "placeholderCityOrNeighborhood": "O mbanza mba okutimba",
+    "placeholderLandmark": "Ocimbu ci ku sanga",
+    "send": "Tuma",
+    "reset": "Katula yosi"
+}
 }
 

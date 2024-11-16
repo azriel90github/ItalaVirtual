@@ -1,4 +1,9 @@
 {
+  "buttons": {
+    "menuButton": "Меню",
+    "cartButton": "Корзина"
+  },
+
   "blogpage": {
     "h2": "О нас",
     "par1": "Привет! Я — Кунья Шомбосси, ум и сердце Geladaria Italala. Моя страсть к созданию уникальных вкусов и предоставлению сладких моментов людям началась много лет назад, когда я открыл для себя магию того, как простой мороженое может улучшить чей-то день.",
@@ -20,5 +25,26 @@
     "buttonCart": "Корзина",
     "terms": "При заказе через itala virtual вы автоматически соглашаетесь с нашими условиями использования и политикой конфиденциальности.",
     "footer": "Программировал Суэлио Армандо JS иXtreme Programming"
-  }
+  },
+
+  "orderpage": {
+    "h3menu": "Корзина покупок",
+    "h2order": "Детали заказа",
+    "sabores": "Вкусы",
+    "pagamento": "Оплата",
+    "adicionar": "Добавить вкусы",
+    "remover": "Удалить вкусы",
+    "h2encomendar": "Заказать Сейчас",
+    "h2selectMethod": "Выберите способ оплаты",
+    "money": "Наличные",
+    "express": "Multicaixa Express", 
+    "tpa": "TPA - Личное",
+    "placeholderName": "Имя",
+    "placeholderNumber": "Номер(+244)",
+    "placeholderPaymentMethod": "Способ оплаты",
+    "placeholderCityOrNeighborhood": "Город или Район",
+    "placeholderLandmark": "Ориентир",
+    "send": "Отправить",
+    "reset": "Очистить"
+}
 }

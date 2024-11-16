@@ -1,4 +1,9 @@
 {
+  "buttons": {
+    "menuButton": "Menu",
+    "cartButton": "Cart"
+  },
+
   "blogpage": {
     "h2": "About Us",
     "par1": "Hello! I am Cunha Shombossi, the mind and heart behind Geladaria Italala. My passion for creating unique flavors and offering sweet moments to people began many years ago when I discovered the magic a simple ice cream can bring to someone's day.",
@@ -21,5 +26,26 @@
     "buttonCart": "Cart",
     "terms": "By placing your orders through itala virtual you automatically agree to our terms of use and privacy policies.",
     "footer": "Programmed by Suélio Armando JS eXtreme Programming"
-  }
+  },
+
+  "orderpage": {
+    "h3menu": "Shopping Cart",
+    "h2order": "Order Details",
+    "sabores": "Flavors",
+    "pagamento": "Payment",
+    "adicionar": "Add Flavors",
+    "remover": "Remove Flavors",
+    "h2encomendar": "Order Now",
+    "h2selectMethod": "Select payment method",
+    "money": "Cash",
+    "express": "Multicaixa Express", 
+    "tpa": "TPA - Face-to-face",
+    "placeholderName": "Name",
+    "placeholderNumber": "Number(+244)",
+    "placeholderPaymentMethod": "Payment Method",
+    "placeholderCityOrNeighborhood": "City or Neighborhood",
+    "placeholderLandmark": "Landmark",
+    "send": "Send",
+    "reset": "Clear"
+}
 }

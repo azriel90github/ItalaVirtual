@@ -11,10 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { useResult } from "../../context/ResultContext.tsx";
-import { t } from "i18next";
+
+import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
+  const { t } = useTranslation();
 
   const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado
   const [isPaymentMethodModalOpen, setIsPaymentMethodModalOpen] = useState(false);
@@ -162,7 +164,7 @@ export function OrderPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Nome"
+                  placeholder={t('orderpage.placeholderName')}
                   className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                 />
                 <input
@@ -170,14 +172,14 @@ export function OrderPage() {
                   name="number"
                   value={formData.number}
                   onChange={handleChange}
-                  placeholder="Número(+244)"
+                  placeholder={t('orderpage.placeholderNumber')}
                   className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                 />
                 <input
 									readOnly
 									value={selectedOption}
 									onChange={handleChange}
-									placeholder="Método de Pagamento"
+									placeholder={t('orderpage.placeholderPaymentMethod')}
 									type="text"
 									onClick={openPaymentMethodModal}
 									className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
@@ -238,7 +240,7 @@ export function OrderPage() {
                   name="cityOrNeighborhood"
                   value={formData.cityOrNeighborhood}
                   onChange={handleChange}
-                  placeholder="Cidade ou Bairro"
+                  placeholder={t('orderpage.placeholderCityOrNeighborhood')}
                   className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                 />
                 <input
@@ -246,7 +248,7 @@ export function OrderPage() {
                   name="landmark"
                   value={formData.landmark}
                   onChange={handleChange}
-                  placeholder="Ponto de Referência"
+                  placeholder={t('orderpage.placeholderLandmark')}
                   className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                 />
               </div>

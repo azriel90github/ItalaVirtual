@@ -1,4 +1,9 @@
 {
+  "buttons": {
+    "menuButton": "菜单",
+    "cartButton": "购物车"
+  },
+
   "blogpage": {
     "h2": "关于我们",
     "par1": "您好！我是Cunha Shombossi，是Geladaria Italala的创意和核心。多年前，我开始热衷于创造独特的口味并为人们带来甜蜜的时刻，因为我发现一份简单的冰淇淋可以为某人的一天带来魔力。",
@@ -20,5 +25,26 @@
     "buttonCart": "购物车",
     "terms": "通过 itala virtual 下单，即表示您自动同意我们的使用条款和隐私政策。",
     "footer": "由 Suélio Armando JS 和 Xtreme Programming 编程"
-  }
+  },
+
+  "orderpage": {
+    "h3menu": "购物车",
+    "h2order": "订单详情",
+    "sabores": "口味",
+    "pagamento": "付款",
+    "adicionar": "添加口味",
+    "remover": "删除口味",
+    "h2encomendar": "立即下单",
+    "h2selectMethod": "选择付款方式",
+    "money": "现金",
+    "express": "Multicaixa Express", 
+    "tpa": "TPA - 面对面",
+    "placeholderName": "姓名",
+    "placeholderNumber": "号码(+244)",
+    "placeholderPaymentMethod": "付款方式",
+    "placeholderCityOrNeighborhood": "城市或街区",
+    "placeholderLandmark": "地标",
+    "send": "发送",
+    "reset": "清除"
+}
 }

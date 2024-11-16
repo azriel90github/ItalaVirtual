@@ -1,4 +1,9 @@
 {
+  "buttons": {
+    "menuButton": "Kalunga",
+    "cartButton": "Kalunga ia ku sumba"
+  },
+
   "blogpage": {
     "h2": "Kuna Kisalu",
     "par1": "Moninga! Ngué Cunha Shombossi, nzinga yama na mutima wa Geladaria Italala. Voké yama ku kuvala mikese miyele yama kikondi keti, ne kotamba ntoto yama kutenda mbote mu bantu, voyenda puwa likisi kuvuaká vose wa esalu ya ice cream.",
@@ -20,6 +25,27 @@
     "buttonCart": "Kaxilumbu",
     "terms": "Kuwena kima na itala virtual, o lenda kuza na kuntunu ki 'termos de uso' na 'políticas de privacidade'.",
     "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
-  }
+  },
+
+  "orderpage": {
+    "h3menu": "Kalunga ia ku sumba",
+    "h2order": "Ungi ua kima ki kuka",
+    "sabores": "Mbandu",
+    "pagamento": "Kubha",
+    "adicionar": "Tiana mbandu",
+    "remover": "Katula mbandu",
+    "h2encomendar": "Koka Ngolo",
+    "h2selectMethod": "Sanga njila ia kubha",
+    "money": "Mbiji",
+    "express": "Multicaixa Express", 
+    "tpa": "TPA - Mu ndenge",
+    "placeholderName": "Jina",
+    "placeholderNumber": "Kimbangu (+244)",
+    "placeholderPaymentMethod": "Njila ia kubha",
+    "placeholderCityOrNeighborhood": "Mbanza mba kilombo",
+    "placeholderLandmark": "Kidimu kia ku sanga",
+    "send": "Tuma",
+    "reset": "Katula yonso"
+}
 }
 

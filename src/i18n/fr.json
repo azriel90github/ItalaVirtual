@@ -1,4 +1,10 @@
-{"blogpage": {
+{
+  "buttons": {
+    "menuButton": "Menu",
+    "cartButton": "Panier"
+  },
+
+  "blogpage": {
     "h2": "À propos de nous",
     "par1": "Bonjour! Je suis Cunha Shombossi, l'esprit et le cœur derrière Geladaria Italala. Ma passion pour créer des saveurs uniques et offrir des moments sucrés aux gens a commencé il y a de nombreuses années, lorsque j'ai découvert la magie qu'une simple glace peut apporter à la journée de quelqu'un.",
     "par2": "Chez Geladaria Italala, nous utilisons uniquement des ingrédients frais et de haute qualité. Toutes nos glaces sont préparées avec beaucoup de soin et d'amour pour garantir une explosion de saveurs à chaque bouchée. Nous valorisons le processus artisanal et chaque détail est pensé pour offrir la meilleure expérience à nos clients.",
@@ -19,5 +25,25 @@
     "buttonCart": "Panier",
     "terms": "En passant commande via itala virtual, vous acceptez automatiquement nos conditions d'utilisation et notre politique de confidentialité.",
     "footer": "Programmé par Suélio Armando JS etXtreme Programming"
-  }
+  },
+  "orderpage": {
+    "h3menu": "Panier",
+    "h2order": "Détails de la commande",
+    "sabores": "Saveurs",
+    "pagamento": "Paiement",
+    "adicionar": "Ajouter des saveurs",
+    "remover": "Supprimer des saveurs",
+    "h2encomendar": "Commander Maintenant",
+    "h2selectMethod": "Sélectionner le mode de paiement",
+    "money": "Espèce",
+    "express": "Multicaixa Express",
+    "tpa": "TPA - Face-à-face",
+    "placeholderName": "Nom",
+    "placeholderNumber": "Numéro(+244)",
+    "placeholderPaymentMethod": "Mode de paiement",
+    "placeholderCityOrNeighborhood": "Ville ou Quartier",
+    "placeholderLandmark": "Point de repère",
+    "send": "Envoyer",
+    "reset": "Effacer"
+}
 }

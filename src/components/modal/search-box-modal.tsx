@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { Logs, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 
@@ -46,7 +47,7 @@ export function SearchBoxModal() {
 							className="text-buttonColor font-medium"
 						>
 							<div className="flex items-center justify-between text-xl ml-1">
-								Escolher categoria
+								{t('modal.modalSearchBox.title')}
 								<X onClick={closeSearchBoxModal} className="cursor-pointer" />
 								{/** <X className="size-6 cursor-pointer" /> */}
 							</div>
@@ -54,25 +55,25 @@ export function SearchBoxModal() {
 								<button
 									type="button"
 									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-									onClick={() => handleSelectOption("Dinheiro em mão")}
+									onClick={() => handleSelectOption("category1")}
 								>
-									<p className="text-zinc-300">Menta</p>
+									<p className="text-zinc-300">{t('modal.modalSearchBox.category1')}</p>
 									<Logs />
 								</button>
 								<button
 									type="button"
 									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-									onClick={() => handleSelectOption("Transferência Bancária")}
+									onClick={() => handleSelectOption("category2")}
 								>
-									<p className="text-zinc-300">Chocolate</p>
+									<p className="text-zinc-300">{t('modal.modalSearchBox.category2')}</p>
 									<Logs />
 								</button>
 								<button
 									type="button"
 									className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-									onClick={() => handleSelectOption("TPA (presencial)")}
+									onClick={() => handleSelectOption("category3")}
 								>
-									<p className="text-zinc-300">Morango</p>
+									<p className="text-zinc-300">{t('modal.modalSearchBox.category3')}</p>
 									<Logs />
 								</button>
 							</div>
