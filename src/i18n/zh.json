@@ -6,32 +6,32 @@
   
   "modal": {
     "modalContact": {
-      "title": "Entrar em contacto"
+      "title": "联系我们"
     },
     "modalGallery": {
-      "title": "Galeria"
+      "title": "图库"
     },
     "modalLanguage": {
-      "umbundu": "Umbundu",
-      "kimbundo": "Kimbundu",
-      "portugues": "Português",
-      "ingles": "Inglês",
-      "frances": "Francês",
-      "chines": "Chinês",
-      "russo": "Russo"
+      "umbundu": "恩邦杜语",
+      "kimbundo": "金邦杜语",
+      "portugues": "葡萄牙语",
+      "ingles": "英语",
+      "frances": "法语",
+      "chines": "中文",
+      "russo": "俄语"
 
     },
     "modalNotification": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalOrderDetail": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalPaymentMethod": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalProfile": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalSearchBox": {
       "h2": "类别",
@@ -84,6 +84,11 @@
     "placeholderCityOrNeighborhood": "城市或街区",
     "placeholderLandmark": "地标",
     "send": "发送",
-    "reset": "清除"
+    "reset": "清除",
+    "modalSend": "邮件发送成功",
+    "modalSendh3": "重要提示:",
+    "modalSendP": "请勿忘记开启手机定位功能，以便更好地跟踪您的订单并实时送达.",
+    "modalSendButton": "电子发票",
+    "modalValidation": "所有字段是必填的"
 }
 }

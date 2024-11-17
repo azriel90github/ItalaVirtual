@@ -9,29 +9,29 @@
       "title": "kutubha"
     },
     "modalGallery": {
-      "title": "Galeria"
+      "title": "Foto"
     },
     "modalLanguage": {
       "umbundu": "Umbundu",
       "kimbundo": "Kimbundu",
-      "portugues": "Português",
-      "ingles": "Inglês",
-      "frances": "Francês",
-      "chines": "Chinês",
-      "russo": "Russo"
+      "portugues": "Portugal",
+      "ingles": "Ingleza",
+      "frances": "Francesa",
+      "chines": "Txina",
+      "russo": "Rúxia"
 
     },
     "modalNotification": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalOrderDetail": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalPaymentMethod": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalProfile": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalSearchBox": {
       "h2": "Kimbandu",
@@ -84,7 +84,12 @@
     "placeholderCityOrNeighborhood": "Mbanza mba kilombo",
     "placeholderLandmark": "Kidimu kia ku sanga",
     "send": "Tuma",
-    "reset": "Katula yonso"
+    "reset": "Katula yonso",
+    "modalSend": "Njimbu tua tumina kiambote",
+    "modalSendh3": "Mbondo ia dikota:",
+    "modalSendP": "Ku lemba ku bika kiavulu kisakidilu kia ku mona kisika kia telefone kiaku phala ku mona kiambote kisika ki tua kuenda na kima ki ua koka kia konda.",
+    "modalSendButton": "Fatura ya dijital",
+    "modalValidation": "Omu mbote u tua bhanga uê u bhingi"
 }
 }
 

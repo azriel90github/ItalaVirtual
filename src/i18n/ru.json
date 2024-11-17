@@ -9,29 +9,29 @@
       "title": "Связаться с нами"
     },
     "modalGallery": {
-      "title": "Galeria"
+      "title": "Галерея"
     },
     "modalLanguage": {
-      "umbundu": "Umbundu",
-      "kimbundo": "Kimbundu",
-      "portugues": "Português",
-      "ingles": "Inglês",
-      "frances": "Francês",
-      "chines": "Chinês",
-      "russo": "Russo"
-
+      "umbundu": "Умбунду",
+      "kimbundo": "Кимбунду",
+      "portugues": "Португальский",
+      "ingles": "Английский",
+      "frances": "Французский",
+      "chines": "Китайский",
+      "russo": "Русский"
     },
+
     "modalNotification": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalOrderDetail": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalPaymentMethod": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalProfile": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalSearchBox": {
       "h2": "Категория",
@@ -84,6 +84,11 @@
     "placeholderCityOrNeighborhood": "Город или Район",
     "placeholderLandmark": "Ориентир",
     "send": "Отправить",
-    "reset": "Очистить"
+    "reset": "Очистить",
+    "modalSend": "Сообщение отправлено успешно",
+    "modalSendh3": "Важное напоминание:",
+    "modalSendP": "Не забудьте включить геолокацию на вашем телефоне для более точного отслеживания вашего заказа и его доставки в режиме реального времени.",
+    "modalSendButton": "Электронный счет",
+    "modalValidation": "Все поля обязательны"
 }
 }

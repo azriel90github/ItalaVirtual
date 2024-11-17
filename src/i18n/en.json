@@ -9,29 +9,29 @@
       "title": "Contact Us"
     },
     "modalGallery": {
-      "title": "Galeria"
+      "title": "Gallery"
     },
     "modalLanguage": {
       "umbundu": "Umbundu",
       "kimbundo": "Kimbundu",
-      "portugues": "Português",
-      "ingles": "Inglês",
-      "frances": "Francês",
-      "chines": "Chinês",
-      "russo": "Russo"
+      "portugues": "Portuguese",
+      "ingles": "English",
+      "frances": "French",
+      "chines": "Chinese",
+      "russo": "Russian"
 
     },
     "modalNotification": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalOrderDetail": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalPaymentMethod": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalProfile": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalSearchBox": {
       "h2": "Category",
@@ -85,6 +85,11 @@
     "placeholderCityOrNeighborhood": "City or Neighborhood",
     "placeholderLandmark": "Landmark",
     "send": "Send",
-    "reset": "Clear"
+    "reset": "Clear",
+    "modalSend": "Message sent successfully",
+    "modalSendh3": "Important Reminder:",
+    "modalSendP": "Don't forget to keep your phone's location services enabled for better location tracking and real-time delivery of your order.",
+    "modalSendButton": "Digital Invoice",
+    "modalValidation": "All fields are required"
 }
 }

@@ -9,29 +9,29 @@
       "title": "Kutamba"
     },
     "modalGallery": {
-      "title": "Galeria"
+      "title": "Fotu"
     },
     "modalLanguage": {
       "umbundu": "Umbundu",
       "kimbundo": "Kimbundu",
-      "portugues": "Português",
-      "ingles": "Inglês",
-      "frances": "Francês",
-      "chines": "Chinês",
-      "russo": "Russo"
+      "portugues": "Portugal",
+      "ingles": "Ingleza",
+      "frances": "Francesa",
+      "chines": "Txina",
+      "russo": "Rúxia"
 
     },
     "modalNotification": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalOrderDetail": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalPaymentMethod": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalProfile": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalSearchBox": {
       "h2": "Vimbo",
@@ -85,7 +85,12 @@
     "placeholderCityOrNeighborhood": "O mbanza mba okutimba",
     "placeholderLandmark": "Ocimbu ci ku sanga",
     "send": "Tuma",
-    "reset": "Katula yosi"
+    "reset": "Katula yosi",
+    "modalSend": "Omunima ua tumina kiambote",
+    "modalSendh3": "Omunima ua kondwa:",
+    "modalSendP": "Ku lemba ku bika kiavulu kisakidilu kia ku mona kisika kia telefone kiaku phala ku mona kiambote kisika ki tua kuenda na kima ki ua koka kia konda.",
+    "modalSendButton": "Fatura ya dijital",
+    "modalValidation": "Omu mbote u tua bhanga uê u bhingi"
 }
 }
 

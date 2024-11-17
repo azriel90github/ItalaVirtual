@@ -9,29 +9,29 @@
       "title": "Nous contacter"
     },
     "modalGallery": {
-      "title": "Galeria"
+      "title": "Galerie"
     },
     "modalLanguage": {
       "umbundu": "Umbundu",
       "kimbundo": "Kimbundu",
-      "portugues": "Português",
-      "ingles": "Inglês",
-      "frances": "Francês",
-      "chines": "Chinês",
-      "russo": "Russo"
+      "portugues": "Portugais",
+      "ingles": "Anglais",
+      "frances": "Français",
+      "chines": "Chinois",
+      "russo": "Russe"
 
     },
     "modalNotification": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalOrderDetail": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalPaymentMethod": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalProfile": {
-      "title": "Galeria"
+      "title": ""
     },
     "modalSearchBox": {
       "h2": "Catégorie",
@@ -83,6 +83,11 @@
     "placeholderCityOrNeighborhood": "Ville ou Quartier",
     "placeholderLandmark": "Point de repère",
     "send": "Envoyer",
-    "reset": "Effacer"
+    "reset": "Effacer",
+    "modalSend": "Message envoyée avec succès",
+    "modalSendh3": "Rappel important:",
+    "modalSendP": "N'oubliez pas d'activer la localisation de votre téléphone pour un meilleur suivi de votre commande et une livraison en temps réel.",
+    "modalSendButton": "Facture Numérique",
+    "modalValidation": "Tous les champs sont obligatoires"
 }
 }
