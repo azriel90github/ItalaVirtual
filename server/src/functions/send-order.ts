@@ -1,12 +1,13 @@
 import { db } from "../db";
 import { customerOrder } from "../db/schema";
 
-interface CreateOrderRequests {
-  name: string
-  number: number
-  paymentMethod: string
-  cityOrNeighborhood: string
-  landmark: string
+// Defina e exporte a interface
+export interface CreateOrderRequests {
+  name: string;
+  number: number;
+  paymentMethod: string;
+  cityOrNeighborhood: string;
+  landmark: string;
 }
 
 export async function createOrder({
@@ -15,18 +16,18 @@ export async function createOrder({
   paymentMethod,
   cityOrNeighborhood,
   landmark,
-} : CreateOrderRequests ) {
+}: CreateOrderRequests) {
   const result = await db.insert(customerOrder).values({
     name,
-    number: String(number), // Converte `number` para string
+    number: String(number), // Converte number para string
     paymentMethod,
     cityOrNeighborhood,
     landmark,
-  }).returning()
+  }).returning();
 
-  const order = result[0]
+  const order = result[0];
 
   return {
     order,
-  }
+  };
 }

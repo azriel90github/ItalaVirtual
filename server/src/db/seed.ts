@@ -3,7 +3,7 @@ import { customerOrder, goods } from "./schema";
 
 async function seed() {
 	await db.delete(goods);
-	await db.delete(customerOrder);
+	//await db.delete(customerOrder);
 
 	await db.insert(goods).values([
 		{
@@ -27,34 +27,16 @@ async function seed() {
 			description: "Mistura de morango com chocolate, bolachas e uma cereginha",
 			category: "Banana",
 		},
+		{
+			title: "Água",
+			heart: 1,
+			price: 440, // Agora pode ser um number
+			description: "Mistura de morango com chocolate, bolachas e uma cereginha",
+			category: "Água",
+		},
 	]);
 
-  await db.insert(customerOrder).values([
-		{
-			name: "Varstoque Armando",
-			number: "930882670",
-			paymentMethod: "Dinheiro em mão",
-			cityOrNeighborhood: "Samba",
-			landmark: "Frente a Igreja Universal",
-			createdAt: new Date(),
-		},
-    {
-			name: "Cunha Chombossi",
-			number: "930882670",
-			paymentMethod: "Transferência báncaria",
-			cityOrNeighborhood: "Samba",
-			landmark: "Frente a Igreja Universal",
-			createdAt: new Date(),
-		},
-    {
-			name: "Isabel Tatiana",
-			number: "930882670",
-			paymentMethod: "TPA (presencial)",
-			cityOrNeighborhood: "Samba",
-			landmark: "Frente a Igreja Universal",
-			createdAt: new Date(),
-		}
-	]);
+  
 }
 
 seed().finally(() => { 

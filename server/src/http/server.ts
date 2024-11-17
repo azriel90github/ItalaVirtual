@@ -1,35 +1,40 @@
-import express, { type Request, type Response } from 'express';
-import cors from 'cors';
+import fastify from 'fastify';
+import cors from '@fastify/cors';
+import { createSendOrder } from './routes/create-order';
+import { getProducts } from './routes/create-menu';
+import { goods } from '../db/schema';
+import { db } from '../db';
 
-const app = express();
-const PORT = 3334;
 
-// Configuração do CORS para permitir requisições do front-end
-app.use(cors({ origin: 'http://localhost:5173' })); // Altere para a URL correta do seu front-end
-app.use(express.json()); // Middleware para interpretar JSON no corpo das requisições
+const app = fastify();
+  async function startServer() {
+  // Registra o plugin CORS
+  await app.register(cors, {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  });
 
-// Endpoint para receber dados da encomenda
-app.post('/order', (req: Request, res: Response) => {
-  const { name, number, paymentMethod, cityOrNeighborhood, landmark } = req.body;
+  // Registra as rotas
+  app.register(createSendOrder);
+  app.register(getProducts);
 
-  // Remova o campo payment se ele estiver presente
-  const orderData = {
-    name,
-    number,
-    paymentMethod,
-    cityOrNeighborhood,
-    landmark
-  };
+  // Tratamento de erros
+  app.setErrorHandler((error, _, reply) => {
+    console.error(error);
+    return reply.status(500).send({ message: 'Erro interno do servidor.' });
+  });
 
-  // Lógica para salvar ou processar a encomenda
-  console.log("Dados recebidos:", orderData);
+  // Inicia o servidor
+  try {
+    await app.listen({
+      host: '0.0.0.0',
+      port: 3334,
+    });
+    console.log('🚀 Servidor HTTP em execução!');
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
 
-  // Envia uma resposta de sucesso ao cliente
-  res.status(200).json({ message: 'Encomenda recebida com sucesso!', orderData });
-});
-
-// Inicia o servidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
-
+startServer();

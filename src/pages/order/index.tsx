@@ -73,9 +73,9 @@ export function OrderPage() {
   // Função para lidar com o envio do formulário
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!validateForm()) return;
-
+  
     try {
       const response = await fetch("http://localhost:3334/order", {
         method: "POST",
@@ -84,20 +84,23 @@ export function OrderPage() {
         },
         body: JSON.stringify({
           ...formData,
-          paymentMethod: selectedOption, // Inclui o método de pagamento selecionado
+          number: Number.parseInt(formData.number), // Converte para número
+          paymentMethod: selectedOption,
         }),
       });
-
+  
       if (response.ok) {
-        setShowSuccessModal(true); // Exibe o modal de sucesso
+        const data = await response.json();
+        console.log('Ordem criada:', data);
+        setShowSuccessModal(true);
       } else {
         console.error("Erro ao enviar os dados.");
       }
-      } catch (error) {
-        console.error("Erro na requisição:", error);
-      }
-    };
-
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+    }
+  };
+  
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
       <div className="border-2 mb-10 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">

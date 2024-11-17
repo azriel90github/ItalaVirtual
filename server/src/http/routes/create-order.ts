@@ -1,32 +1,43 @@
-import { z } from 'zod';
-import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+//import { z } from 'zod';
+import type { FastifyPluginAsync } from 'fastify';
 import { createOrder } from '../../functions/send-order';
 
-export const createSendOrder: FastifyPluginAsyncZod = async ( app ) => {
+export const createSendOrder: FastifyPluginAsync = async (app) => {
   app.post(
-    "/order",
+    '/order',
     {
       schema: {
-        body: z.object({
-          name: z.string(),
-          number: z.number().int().min(9),
-          paymentMethod: z.string(),
-          cityOrNeighborhood: z.string().max(25),
-          landmark: z.string().max(25),
-        }),
-      },
+        body: {
+          type: 'object',
+          required: ['name', 'number', 'paymentMethod', 'cityOrNeighborhood', 'landmark'],
+          properties: {
+            name: { type: 'string' },
+            number: { type: 'number' },
+            paymentMethod: { type: 'string' },
+            cityOrNeighborhood: { type: 'string' },
+            landmark: { type: 'string' }
+          }
+        }
+      }
     },
-    async (request) => {
-      const { name, number, paymentMethod, cityOrNeighborhood, landmark } = request.body;
-  
-      await createOrder({
+    async (request, reply) => {
+      const { name, number, paymentMethod, cityOrNeighborhood, landmark } = request.body as {
+        name: string;
+        number: number;
+        paymentMethod: string;
+        cityOrNeighborhood: string;
+        landmark: string;
+      };
+
+      const result = await createOrder({
         name,
         number,
         paymentMethod,
         cityOrNeighborhood,
         landmark,
       });
-    },
+
+      return reply.status(201).send(result);
+    }
   );
-  
 };
