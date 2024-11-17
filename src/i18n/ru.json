@@ -4,6 +4,45 @@
     "cartButton": "Корзина"
   },
 
+  "modal": {
+    "modalContact": {
+      "title": "Связаться с нами"
+    },
+    "modalGallery": {
+      "title": "Galeria"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Português",
+      "ingles": "Inglês",
+      "frances": "Francês",
+      "chines": "Chinês",
+      "russo": "Russo"
+
+    },
+    "modalNotification": {
+      "title": "Galeria"
+    },
+    "modalOrderDetail": {
+      "title": "Galeria"
+    },
+    "modalPaymentMethod": {
+      "title": "Galeria"
+    },
+    "modalProfile": {
+      "title": "Galeria"
+    },
+    "modalSearchBox": {
+      "h2": "Категория",
+      "title": "Выберите категорию",
+      "category1": "Мята",
+      "category2": "Шоколад",
+      "category3": "Клубника"
+    },
+    "Searchbox": "Все"
+  },
+
   "blogpage": {
     "h2": "О нас",
     "par1": "Привет! Я — Кунья Шомбосси, ум и сердце Geladaria Italala. Моя страсть к созданию уникальных вкусов и предоставлению сладких моментов людям началась много лет назад, когда я открыл для себя магию того, как простой мороженое может улучшить чей-то день.",

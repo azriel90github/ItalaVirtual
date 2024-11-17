@@ -4,6 +4,45 @@
     "cartButton": "Panier"
   },
 
+  "modal": {
+    "modalContact": {
+      "title": "Nous contacter"
+    },
+    "modalGallery": {
+      "title": "Galeria"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Português",
+      "ingles": "Inglês",
+      "frances": "Francês",
+      "chines": "Chinês",
+      "russo": "Russo"
+
+    },
+    "modalNotification": {
+      "title": "Galeria"
+    },
+    "modalOrderDetail": {
+      "title": "Galeria"
+    },
+    "modalPaymentMethod": {
+      "title": "Galeria"
+    },
+    "modalProfile": {
+      "title": "Galeria"
+    },
+    "modalSearchBox": {
+      "h2": "Catégorie",
+      "title": "Choisir une catégorie",
+      "category1": "Menthe",
+      "category2": "Chocolat",
+      "category3": "Fraise"
+    },
+    "Searchbox": "Tout"
+  },
+
   "blogpage": {
     "h2": "À propos de nous",
     "par1": "Bonjour! Je suis Cunha Shombossi, l'esprit et le cœur derrière Geladaria Italala. Ma passion pour créer des saveurs uniques et offrir des moments sucrés aux gens a commencé il y a de nombreuses années, lorsque j'ai découvert la magie qu'une simple glace peut apporter à la journée de quelqu'un.",

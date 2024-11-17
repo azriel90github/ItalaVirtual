@@ -4,6 +4,45 @@
     "cartButton": "Cart"
   },
 
+  "modal": {
+    "modalContact": {
+      "title": "Contact Us"
+    },
+    "modalGallery": {
+      "title": "Galeria"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Português",
+      "ingles": "Inglês",
+      "frances": "Francês",
+      "chines": "Chinês",
+      "russo": "Russo"
+
+    },
+    "modalNotification": {
+      "title": "Galeria"
+    },
+    "modalOrderDetail": {
+      "title": "Galeria"
+    },
+    "modalPaymentMethod": {
+      "title": "Galeria"
+    },
+    "modalProfile": {
+      "title": "Galeria"
+    },
+    "modalSearchBox": {
+      "h2": "Category",
+      "title": "Choose category",
+      "category1": "Mint",
+      "category2": "Chocolate",
+      "category3": "Strawberry"
+    },
+    "Searchbox": "All"
+  },
+
   "blogpage": {
     "h2": "About Us",
     "par1": "Hello! I am Cunha Shombossi, the mind and heart behind Geladaria Italala. My passion for creating unique flavors and offering sweet moments to people began many years ago when I discovered the magic a simple ice cream can bring to someone's day.",

@@ -1,8 +1,10 @@
-import { t } from "i18next";
+import { useTranslation } from 'react-i18next';
 import { Logs, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 
 export function SearchBoxModal() {
+	const { t } = useTranslation();
+
 	const [, setSelectedOption] = useState(""); // Estado para o valor selecionado
 	// Função para fechar o modal e definir a opção selecionada
 	const handleSelectOption = (option: SetStateAction<string>) => {
@@ -27,7 +29,7 @@ export function SearchBoxModal() {
 				onClick={openSearchBoxModal}
 				className="bg-colorFundo w-full flex items-center rounded-full py-2.5 px-4 justify-between"
       >
-        Categoria
+        {t('modal.modalSearchBox.h2')}
         <Logs />
       </div>
 			{isSearchBoxModalOpen && (

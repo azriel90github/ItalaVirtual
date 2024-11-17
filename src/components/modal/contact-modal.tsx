@@ -1,8 +1,10 @@
-import { t } from "i18next";
 import { Headset, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function ContactModal() {
+	const { t } = useTranslation()
+
 	const [, setSelectedOption] = useState(""); // Estado para o valor selecionado
 	// Função para fechar o modal e definir a opção selecionada
 	const handleSelectOption = (option: SetStateAction<string>) => {

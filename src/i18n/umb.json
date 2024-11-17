@@ -4,6 +4,45 @@
     "cartButton": "Ondi yoku kuka"
   },
 
+  "modal": {
+    "modalContact": {
+      "title": "Kutamba"
+    },
+    "modalGallery": {
+      "title": "Galeria"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Português",
+      "ingles": "Inglês",
+      "frances": "Francês",
+      "chines": "Chinês",
+      "russo": "Russo"
+
+    },
+    "modalNotification": {
+      "title": "Galeria"
+    },
+    "modalOrderDetail": {
+      "title": "Galeria"
+    },
+    "modalPaymentMethod": {
+      "title": "Galeria"
+    },
+    "modalProfile": {
+      "title": "Galeria"
+    },
+    "modalSearchBox": {
+      "h2": "Vimbo",
+      "title": "Sola o vimbo",
+      "category1": "Menta",
+      "category2": "Cokolate",
+      "category3": "Morangu"
+    },
+    "Searchbox": "Omu"
+  },
+
   "blogpage": {
     "h2": "Okwetu",
     "par1": "Wamukongo! Ndje Cunha Shombossi, uluvo nembela wa Geladaria Italala. Uvuko wange ovelako kupanga i-sabores okundjenga otembo, ona ulufino okuhepa ice cream ki kaunga okuzama okushenga esela.",

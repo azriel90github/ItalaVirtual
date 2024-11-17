@@ -3,6 +3,45 @@
     "menuButton": "菜单",
     "cartButton": "购物车"
   },
+  
+  "modal": {
+    "modalContact": {
+      "title": "Entrar em contacto"
+    },
+    "modalGallery": {
+      "title": "Galeria"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Português",
+      "ingles": "Inglês",
+      "frances": "Francês",
+      "chines": "Chinês",
+      "russo": "Russo"
+
+    },
+    "modalNotification": {
+      "title": "Galeria"
+    },
+    "modalOrderDetail": {
+      "title": "Galeria"
+    },
+    "modalPaymentMethod": {
+      "title": "Galeria"
+    },
+    "modalProfile": {
+      "title": "Galeria"
+    },
+    "modalSearchBox": {
+      "h2": "类别",
+      "title": "选择类别",
+      "category1": "薄荷",
+      "category2": " 巧克力",
+      "category3": " 草莓"
+    },
+    "Searchbox": "全部"
+  },
 
   "blogpage": {
     "h2": "关于我们",

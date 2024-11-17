@@ -34,11 +34,13 @@
       "title": "Galeria"
     },
     "modalSearchBox": {
+      "h2": "Categoria",
       "title": "Escolher categoria",
       "category1": "Menta",
       "category2": "Chocolate",
       "category3": "Morango"
-    }
+    },
+    "Searchbox": "Todos"
   },
 
   "blogpage": {
