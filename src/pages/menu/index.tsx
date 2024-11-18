@@ -100,7 +100,7 @@ export function MenuPage() {
 						<img className="mx-auto w-36 h-36 rounded-full" src="/menu/ice-cream 1.png" alt="gelado" />
 					</div>
 					<span className="flex justify-center text-zinc-200 font-normal text-2xl gap-2 py-3">
-						<small>kz</small> <p className="text-5xl">310</p> <small>00</small>
+						<small className="text-lx">kz</small> <p className="text-6xl">310</p> <small className="text-lx">00</small>
 					</span>
 
 					<div className="text-buttonColor flex items-center justify-center gap-2 py-3">
