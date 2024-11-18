@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, CreditCard, Download, HandCoins, Landmark, Siren, X } from "lucide-react";
+import { CreditCard, Download, HandCoins, Landmark, Package, Siren, X } from "lucide-react";
 import {
   AlignJustify,
   RotateCcw,
@@ -225,10 +225,10 @@ export function OrderPage() {
 														<p className="text-zinc-300">{t('orderpage.express')}</p>
 														<Landmark/>
 													</button>
-													<button
+                          <button
 														type="button"
 														className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-														onClick={() => handleSelectOption("TPA - Presencial")}
+														onClick={() => handleSelectOption("Transfência Bancária")}
 													>
 														<p className="text-zinc-300">{t('orderpage.tpa')}</p>
 														<CreditCard/>
@@ -290,10 +290,12 @@ export function OrderPage() {
           <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
             <div className="items-center flex justify-between">
               <p className="text-moneyColor1 text-xl font-normal">{t('orderpage.modalSend')}</p>
-              <Check className="cursor-pointer text-moneyColor1" />
+              <div className="flex">
+                <Package className="cursor-pointer size-7 text-moneyColor1" />
+              </div>
             </div>
             <div className="py-3">
-              <h3 className="text-buttonColor text-[19px] pb-1.5">{t('orderpage.modalSendh3')}</h3>
+              <h3 className="text-buttonColor font-semibold text-[19px] pb-1.5">{t('orderpage.modalSendh3')}</h3>
               <p className="text-zinc-300 pb-2 flex-1">{t('orderpage.modalSendP')}</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">

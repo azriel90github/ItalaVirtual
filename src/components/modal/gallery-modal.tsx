@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { Images, X } from "lucide-react";
+import { Handshake, X } from "lucide-react";
 import { useState } from "react";
 
 export function GalleryModal() {
@@ -23,17 +23,21 @@ export function GalleryModal() {
       >
         <div>{t('homepage.gallery')}</div>
         <div>
-          <Images />
+          <Handshake />
         </div>
       </button>
       <div>
         {isGalleryModalOpen && (
-          // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-          <div onClick={closeGalleryModal} className="fixed inset-0 bg-black/60 flex items-center justify-center">
-            <div className="w-[640px] rounded-2xl py-5 px-6 bg-colorFundo">
-              <div className="flex items-center justify-between text-buttonColor font-medium text-xl">
-                {t('modal.modalGallery.title')}
-                <X className="size-6 cursor-pointer" />
+          <div  className="fixed inset-0 bg-black/60 flex items-center justify-center">
+            <div className="w-full h-full py-5 px-6 bg-colorFundo">
+              <div className="flex items-center justify-between text-zinc-200 font-normal text-2xl">
+                {t('modal.modalTerms.title')}
+                
+              </div>
+              <div className="flex">
+                <button type="button">
+                  <X onClick={closeGalleryModal} className="size-6 cursor-pointer" />
+                </button>
               </div>
             </div>
           </div>

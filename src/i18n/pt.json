@@ -8,8 +8,8 @@
     "modalContact": {
       "title": "Entrar em contacto"
     },
-    "modalGallery": {
-      "title": "Galeria"
+    "modalTerms": {
+      "title": "Termos de uso e políticas de privacidade"
     },
     "modalLanguage": {
       "umbundu": "Umbundu",
@@ -56,7 +56,7 @@
 
   "homepage": {
     "h3modal": "Selecionar Idioma",
-    "gallery": "Galeria",
+    "gallery": "Políticas e Termos",
     "description": "Faça sua encomenda de qualquer lugar e a qualquer hora!",
     "buttonBlog": "Blogue",
     "buttonContact": "Ligar",
@@ -81,7 +81,7 @@
     "h2selectMethod": "Selecionar método de pagamento",
     "money": "Dinheiro em mão",
     "express": "Multicaixa Express",
-    "tpa": "TPA - Presencial",
+    "tpa": "Transfência Bancária",
     "placeholderName": "Nome",
     "placeholderNumber": "Número(+244)",
     "placeholderPaymentMethod": "Método de Pagamento",
@@ -90,8 +90,8 @@
     "send": "Enviar",
     "reset": "Limpar",
     "modalSend": "Mensagem enviada com sucesso",
-    "modalSendh3": "Lembrete Importante:",
-    "modalSendP": "Não esqueça de manter ativo o  sistema de localização do seu telemovél para melhor localização e entrega em tempo real da sua encomenda.",
+    "modalSendh3": "Nota Importante:",
+    "modalSendP": "Caso seu método de pagamento seja Multicaixa Express ou Transfêrencia, a encomenda será entregue apenas, depois do envio do comprovativo de pagamento, que deve ser enviado pelo whatsapp da geladaria.",
     "modalSendButton": "Fatura Digital",
     "modalValidation": "Todos os campos são obrigatórios"
   }
