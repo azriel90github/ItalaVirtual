@@ -36,15 +36,26 @@ export function OrderPage() {
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
     setIsPaymentMethodModalOpen(false);
+    enableScroll(); // Reativa a rolagem após a seleção
   };
 
-
 	function openPaymentMethodModal() {
+
+    function disableScroll() {
+      document.body.style.overflow = "hidden";
+    }
+    
 		setIsPaymentMethodModalOpen(true);
+    disableScroll(); // Bloqueia rolagem ao abrir
 	}
+
+  function enableScroll() {
+    document.body.style.overflow = "";
+  }
 
 	function closePaymentMethodModal() {
 		setIsPaymentMethodModalOpen(false);
+    enableScroll(); // Desbloqueia rolagem ao fechar
 	}
 
   const menuPage = () => navigate("/menu/123");
@@ -64,6 +75,7 @@ export function OrderPage() {
     const { name, number, cityOrNeighborhood, landmark } = formData;
     if (!name || !number || !selectedOption || !cityOrNeighborhood || !landmark) {
       setShowValidationModal(true); // Exibe o modal de validação
+      enableScroll(); // Desbloqueia rolagem após fechar o modal automaticamente
       setTimeout(() => setShowValidationModal(false), 2000); // Fecha após 2 segundos
       return false;
     }

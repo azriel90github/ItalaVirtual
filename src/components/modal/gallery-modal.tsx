@@ -4,14 +4,24 @@ import { useState } from "react";
 
 export function GalleryModal() {
 
+  function disableScroll() {
+    document.body.style.overflow = "hidden";
+  }
+  
+  function enableScroll() {
+    document.body.style.overflow = "";
+  }
+
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
 
   function openGalleryModal() {
     setIsGalleryModalOpen(true);
+    disableScroll(); // Bloqueia rolagem ao abrir
   }
 
   function closeGalleryModal() {
     setIsGalleryModalOpen(false);
+    enableScroll(); // Desbloqueia rolagem ao fechar
   }
 
   return (
@@ -34,7 +44,7 @@ export function GalleryModal() {
                 {t('modal.modalTerms.title')}
                 
               </div>
-              <div className="flex">
+              <div className="flex">  
                 <button type="button">
                   <X onClick={closeGalleryModal} className="size-6 cursor-pointer" />
                 </button>

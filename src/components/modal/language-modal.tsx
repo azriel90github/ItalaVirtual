@@ -5,6 +5,15 @@ import { t } from "i18next";
 // Certifique-se de que o caminho para o i18n está correto
 
 export function LanguageModal() {
+
+	function disableScroll() {
+    document.body.style.overflow = "hidden";
+  }
+  
+  function enableScroll() {
+    document.body.style.overflow = "";
+  }
+
 	const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado
 	const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
@@ -13,14 +22,17 @@ export function LanguageModal() {
 		setSelectedOption(option);
 		i18n.changeLanguage(languageCode); // Muda o idioma de toda a aplicação
 		setIsLanguageModalOpen(false);
+		enableScroll(); // Reativa a rolagem após a seleção
 	};
 
 	function openLanguageModal() {
 		setIsLanguageModalOpen(true);
+		disableScroll(); // Bloqueia rolagem ao abrir
 	}
 
 	function closeLanguageModal() {
 		setIsLanguageModalOpen(false);
+		enableScroll(); // Desbloqueia rolagem ao fechar
 	}
 
 	return (
