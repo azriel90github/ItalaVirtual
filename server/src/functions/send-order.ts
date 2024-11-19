@@ -5,6 +5,8 @@ import { customerOrder } from "../db/schema";
 export interface CreateOrderRequests {
   name: string;
   number: number;
+  flavors: number;
+  payment: number;
   paymentMethod: string;
   cityOrNeighborhood: string;
   landmark: string;
@@ -13,6 +15,8 @@ export interface CreateOrderRequests {
 export async function createOrder({
   name,
   number,
+  flavors,
+  payment,
   paymentMethod,
   cityOrNeighborhood,
   landmark,
@@ -20,6 +24,8 @@ export async function createOrder({
   const result = await db.insert(customerOrder).values({
     name,
     number: String(number), // Converte number para string
+    flavors: String(flavors), // Use flavors em vez de number
+    payment: String(payment), // Use payment em vez de number
     paymentMethod,
     cityOrNeighborhood,
     landmark,

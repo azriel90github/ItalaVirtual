@@ -97,6 +97,8 @@ export function OrderPage() {
         body: JSON.stringify({
           ...formData,
           number: Number.parseInt(formData.number), // Converte para número
+          flavors: total, // Insere o valor diretamente de total
+          payment: total, // Insere o valor diretamente de total
           paymentMethod: selectedOption,
         }),
       });
@@ -129,172 +131,188 @@ export function OrderPage() {
         </div>
       </div>
 
-      <main className="flex flex-wrap gap-16">
-        <div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
-          <div className="flex flex-col gap-1.5">
-            <div className="bg-buttonColor2 items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
-              {t('orderpage.h2order')}
-              <AlignJustify />
+      <form onSubmit={handleSubmit}>
+        <main className="flex flex-wrap gap-16">
+          <div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
+            <div className="flex flex-col gap-1.5">
+              <div className="bg-buttonColor2 items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
+                {t('orderpage.h2order')}
+                <AlignJustify />
+              </div>
+            </div>
+
+            <p className="flex justify-between pt-5 px-3 text-xl">
+              <h3 className="text-buttonColor font-medium">{t('orderpage.sabores')}</h3>
+              <input
+                readOnly
+                name="flavors"
+                className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
+                disabled
+                value={total} // O valor vindo do contexto
+                type="text"
+              />
+            </p>
+
+            <p className="flex justify-between py-2 px-3 text-xl">
+              <h3 className="text-buttonColor font-medium">{t('orderpage.pagamento')}</h3>
+              <input
+                readOnly
+                name="payment"
+                className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
+                disabled
+                type="text"
+                value={total} // O valor vindo do contexto
+              />
+            </p>
+
+            <div className="flex flex-col gap-3">
+              <button type="button"
+                onClick={menuPage}
+                className="flex mt-6 transition duration-400 bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+              >
+                {t('orderpage.adicionar')}
+                <ShoppingCart />
+              </button>
+              <button type="button"
+                onClick={menuPage}
+                className="flex transition duration-400 bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+              >
+                {t('orderpage.remover')}
+                <Trash2 />
+              </button>
             </div>
           </div>
 
-          <p className="flex justify-between pt-5 px-3 text-xl">
-            <h3 className="text-buttonColor font-medium">{t('orderpage.sabores')}</h3>
-            <span className="text-moneyColor1">0</span>
-          </p>
+          <div className="flex-1">
+            <h1 className="pb-5 text-4xl flex items-center font-light text-zinc-300">
+              {t('orderpage.h2encomendar')}
+            </h1>
 
-          <p className="flex justify-between py-2 px-3 text-xl">
-            <h3 className="text-buttonColor font-medium">{t('orderpage.pagamento')}</h3>
-            <span className="text-moneyColor1">{total}</span>
-          </p>
+            <div className="py-4">
+              
+                <div className="flex flex-col gap-4 w-full">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder={t('orderpage.placeholderName')}
+                    className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+                  />
+                  <input
+                    type="number"
+                    name="number"
+                    value={formData.number}
+                    onChange={handleChange}
+                    placeholder={t('orderpage.placeholderNumber')}
+                    className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+                  />
+                  <input
+                    readOnly
+                    value={selectedOption}
+                    onChange={handleChange}
+                    placeholder={t('orderpage.placeholderPaymentMethod')}
+                    type="text"
+                    onClick={openPaymentMethodModal}
+                    className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
+                  />
+                  {isPaymentMethodModalOpen && (
+                    //biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+                    <div
+                      onClick={closePaymentMethodModal}
+                      className="fixed inset-0 bg-black/60 flex items-center justify-center"
+                    >
+                      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                      <div
+                        onClick={() => setIsPaymentMethodModalOpen(false)}
+                        className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo"
+                      >
+                        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                        <div
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-buttonColor font-medium"
+                        >
+                          <div className="flex items-center justify-between text-xl ml-1">
+                            {t('orderpage.h2selectMethod')}
+                            <X onClick={closePaymentMethodModal} className="cursor-pointer" />
+                            {/** <X className="size-6 cursor-pointer" /> */}
+                          </div>
+                          <div className="flex flex-col py-3 mt-2 gap-3">
+                            <button
+                              type="button"
+                              className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+                              onClick={() => handleSelectOption("Dinheiro em mão")}
+                            >
+                              <p className="text-zinc-300">{t('orderpage.money')}</p>
+                              <HandCoins/>
+                            </button>
+                            <button
+                              type="button"
+                              className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+                              onClick={() => handleSelectOption("Multicaixa Express")}
+                            >
+                              <p className="text-zinc-300">{t('orderpage.express')}</p>
+                              <Landmark/>
+                            </button>
+                            <button
+                              type="button"
+                              className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+                              onClick={() => handleSelectOption("Transfência Bancária")}
+                            >
+                              <p className="text-zinc-300">{t('orderpage.tpa')}</p>
+                              <CreditCard/>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <input
+                    type="text"
+                    name="cityOrNeighborhood"
+                    value={formData.cityOrNeighborhood}
+                    onChange={handleChange}
+                    placeholder={t('orderpage.placeholderCityOrNeighborhood')}
+                    className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+                  />
+                  <input
+                    type="text"
+                    name="landmark"
+                    value={formData.landmark}
+                    onChange={handleChange}
+                    placeholder={t('orderpage.placeholderLandmark')}
+                    className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
+                  />
+                </div>
 
-          <div className="flex flex-col gap-3">
-            <button type="button"
-              onClick={menuPage}
-              className="flex mt-6 transition duration-400 bg-buttonColor2 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
-            >
-              {t('orderpage.adicionar')}
-              <ShoppingCart />
-            </button>
-            <button type="button"
-              onClick={menuPage}
-              className="flex transition duration-400 bg-buttonColor2 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
-            >
-              {t('orderpage.remover')}
-              <Trash2 />
-            </button>
+                <div className="flex flex-col gap-3 w-72 py-5">
+                <button
+                  className="flex transition duration-400 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+                  type="submit"
+                  onClick={handleSubmit} // Certifique-se de que o onClick está chamando handleSubmit
+                >
+                  {t('orderpage.send')}
+                  <Send />
+                </button>
+
+                <button
+                  className="flex transition duration-400 bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
+                  type="button"
+                  onClick={() => {
+                    setFormData({ name: "", number: "", paymentMethod: "", cityOrNeighborhood: "", landmark: "" });
+                    setSelectedOption(""); // Reseta o método de pagamento selecionado
+                  }}
+                >
+                  {t('orderpage.reset')}
+                  <RotateCcw />
+                </button>
+
+                </div>
+              
+            </div>
           </div>
-        </div>
-
-        <div className="flex-1">
-          <h1 className="pb-5 text-4xl flex items-center font-light text-zinc-300">
-            {t('orderpage.h2encomendar')}
-          </h1>
-
-          <div className="py-4">
-            <form onSubmit={handleSubmit}>
-              <div className="flex flex-col gap-4 w-full">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder={t('orderpage.placeholderName')}
-                  className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
-                />
-                <input
-                  type="number"
-                  name="number"
-                  value={formData.number}
-                  onChange={handleChange}
-                  placeholder={t('orderpage.placeholderNumber')}
-                  className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
-                />
-                <input
-									readOnly
-									value={selectedOption}
-									onChange={handleChange}
-									placeholder={t('orderpage.placeholderPaymentMethod')}
-									type="text"
-									onClick={openPaymentMethodModal}
-									className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
-								/>
-								{isPaymentMethodModalOpen && (
-									//biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-									<div
-										onClick={closePaymentMethodModal}
-										className="fixed inset-0 bg-black/60 flex items-center justify-center"
-									>
-										{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-										<div
-											onClick={() => setIsPaymentMethodModalOpen(false)}
-											className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo"
-										>
-											{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-											<div
-												onClick={(e) => e.stopPropagation()}
-												className="text-buttonColor font-medium"
-											>
-												<div className="flex items-center justify-between text-xl ml-1">
-                          {t('orderpage.h2selectMethod')}
-													<X onClick={closePaymentMethodModal} className="cursor-pointer" />
-													{/** <X className="size-6 cursor-pointer" /> */}
-												</div>
-												<div className="flex flex-col py-3 mt-2 gap-3">
-													<button
-														type="button"
-														className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-														onClick={() => handleSelectOption("Dinheiro em mão")}
-													>
-														<p className="text-zinc-300">{t('orderpage.money')}</p>
-														<HandCoins/>
-													</button>
-													<button
-														type="button"
-														className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-														onClick={() => handleSelectOption("Multicaixa Express")}
-													>
-														<p className="text-zinc-300">{t('orderpage.express')}</p>
-														<Landmark/>
-													</button>
-                          <button
-														type="button"
-														className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-														onClick={() => handleSelectOption("Transfência Bancária")}
-													>
-														<p className="text-zinc-300">{t('orderpage.tpa')}</p>
-														<CreditCard/>
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								)}
-                <input
-                  type="text"
-                  name="cityOrNeighborhood"
-                  value={formData.cityOrNeighborhood}
-                  onChange={handleChange}
-                  placeholder={t('orderpage.placeholderCityOrNeighborhood')}
-                  className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
-                />
-                <input
-                  type="text"
-                  name="landmark"
-                  value={formData.landmark}
-                  onChange={handleChange}
-                  placeholder={t('orderpage.placeholderLandmark')}
-                  className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
-                />
-              </div>
-
-              <div className="flex flex-col gap-3 w-72 py-5">
-							<button
-								className="flex transition duration-400 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
-								type="submit"
-								onClick={handleSubmit} // Certifique-se de que o onClick está chamando handleSubmit
-							>
-                {t('orderpage.send')}
-								<Send />
-							</button>
-
-							<button
-								className="flex transition duration-400 bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
-								type="button"
-								onClick={() => {
-									setFormData({ name: "", number: "", paymentMethod: "", cityOrNeighborhood: "", landmark: "" });
-									setSelectedOption(""); // Reseta o método de pagamento selecionado
-								}}
-							>
-                {t('orderpage.reset')}
-								<RotateCcw />
-							</button>
-
-              </div>
-            </form>
-          </div>
-        </div>
-      </main>
+        </main>
+      </form>
 
       {showSuccessModal && (
         // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>

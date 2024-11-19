@@ -13,6 +13,8 @@ export const createSendOrder: FastifyPluginAsync = async (app) => {
           properties: {
             name: { type: 'string' },
             number: { type: 'number' },
+            flavors: { type: 'number' },
+            payment: { type: 'number' },
             paymentMethod: { type: 'string' },
             cityOrNeighborhood: { type: 'string' },
             landmark: { type: 'string' }
@@ -21,9 +23,11 @@ export const createSendOrder: FastifyPluginAsync = async (app) => {
       }
     },
     async (request, reply) => {
-      const { name, number, paymentMethod, cityOrNeighborhood, landmark } = request.body as {
+      const { name, number, flavors, payment, paymentMethod, cityOrNeighborhood, landmark } = request.body as {
         name: string;
         number: number;
+        flavors: number;
+        payment: number;
         paymentMethod: string;
         cityOrNeighborhood: string;
         landmark: string;
@@ -32,6 +36,8 @@ export const createSendOrder: FastifyPluginAsync = async (app) => {
       const result = await createOrder({
         name,
         number,
+        flavors,
+        payment,
         paymentMethod,
         cityOrNeighborhood,
         landmark,
