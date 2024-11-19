@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { CreditCard, Download, HandCoins, Landmark, Package, Siren, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChartNoAxesCombined, CreditCard, Download, HandCoins, Landmark, Package, Siren, X } from "lucide-react";
 import {
-  AlignJustify,
   RotateCcw,
   Send,
   ShoppingCart,
@@ -20,24 +19,44 @@ export function OrderPage() {
 
   const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado
   const [isPaymentMethodModalOpen, setIsPaymentMethodModalOpen] = useState(false);
+  const { total } = useResult(); // Acessa o valor do total do contexto
+
   const [formData, setFormData] = useState({
     name: "",
     number: "",
+    flavors: total.toString(), // Converte para string
+    payment: total.toString(), // Converte para string
     paymentMethod: "",
     cityOrNeighborhood: "",
     landmark: "",
   });
+  
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      flavors: total.toString(), // Atualiza como string
+      payment: total.toString(), // Atualiza como string
+    }));
+  }, [total]);
+  
 
 	// Função para fechar o modal e definir a opção selecionada
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const { total } = useResult(); // Acessa o valor do total do contexto
   const navigate = useNavigate();
 
   const handleSelectOption = (option: string) => {
+    console.log("Método selecionado:", option);
     setSelectedOption(option);
+    setFormData((prev) => ({
+      ...prev,
+      paymentMethod: option, // Atualiza o método de pagamento no estado
+    }));
     setIsPaymentMethodModalOpen(false);
-    enableScroll(); // Reativa a rolagem após a seleção
+    enableScroll();
   };
+  
+  
+  
 
 	function openPaymentMethodModal() {
 
@@ -65,22 +84,34 @@ export function OrderPage() {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: value, // Atualiza o campo correto no estado
     }));
   };
+  
 
   const [showValidationModal, setShowValidationModal] = useState(false); // Novo estado para validação
 
   const validateForm = () => {
-    const { name, number, cityOrNeighborhood, landmark } = formData;
-    if (!name || !number || !selectedOption || !cityOrNeighborhood || !landmark) {
-      setShowValidationModal(true); // Exibe o modal de validação
-      enableScroll(); // Desbloqueia rolagem após fechar o modal automaticamente
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha após 2 segundos
+    const { name, number, flavors, payment, paymentMethod, cityOrNeighborhood, landmark } = formData;
+  
+    // Verifica se algum campo está vazio
+    if (
+      !name.trim() ||  // Nome não preenchido
+      !number.trim() ||  // Número de telefone não preenchido
+      !flavors.trim() || // Sabores (total) não preenchido
+      !payment.trim() || // Pagamento (total) não preenchido
+      !paymentMethod.trim() || // Verifica se paymentMethod está vazio
+      !cityOrNeighborhood.trim() || // Bairro não preenchido
+      !landmark.trim() // Referência não preenchida
+    ) {
+      setShowValidationModal(true);
+      enableScroll(); // Permite rolar enquanto o modal está visível
+      setTimeout(() => setShowValidationModal(false), 2000); // Esconde o modal após 2 segundos
       return false;
     }
     return true;
   };
+  
 
   // Função para lidar com o envio do formulário
   const handleSubmit = async (e: React.FormEvent) => {
@@ -97,8 +128,8 @@ export function OrderPage() {
         body: JSON.stringify({
           ...formData,
           number: Number.parseInt(formData.number), // Converte para número
-          flavors: total, // Insere o valor diretamente de total
-          payment: total, // Insere o valor diretamente de total
+          flavors: Number.parseInt(formData.flavors), // Garante que seja um número
+          payment: Number.parseInt(formData.payment), // Garante que seja um número
           paymentMethod: selectedOption,
         }),
       });
@@ -135,33 +166,35 @@ export function OrderPage() {
         <main className="flex flex-wrap gap-16">
           <div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
             <div className="flex flex-col gap-1.5">
-              <div className="bg-buttonColor2 items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
+              <div className="bg-buttonColor2 text-lx items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
                 {t('orderpage.h2order')}
-                <AlignJustify />
+                <ChartNoAxesCombined />
               </div>
             </div>
 
             <p className="flex justify-between pt-5 px-3 text-xl">
               <h3 className="text-buttonColor font-medium">{t('orderpage.sabores')}</h3>
               <input
-                readOnly
-                name="flavors"
-                className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
-                disabled
-                value={total} // O valor vindo do contexto
                 type="text"
+                name="flavors"
+                value={formData.payment.toString()} // Garante que seja string
+                onChange={handleChange} // Atualiza o estado
+                readOnly
+                disabled
+                className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
               />
             </p>
 
             <p className="flex justify-between py-2 px-3 text-xl">
               <h3 className="text-buttonColor font-medium">{t('orderpage.pagamento')}</h3>
               <input
-                readOnly
-                name="payment"
-                className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
-                disabled
                 type="text"
-                value={total} // O valor vindo do contexto
+                name="payment"
+                onChange={handleChange} // Atualiza o estado
+                value={formData.payment.toString()} // Garante que seja string
+                readOnly
+                disabled
+                className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
               />
             </p>
 
@@ -209,8 +242,8 @@ export function OrderPage() {
                   />
                   <input
                     readOnly
-                    value={selectedOption}
-                    onChange={handleChange}
+                    value={formData.paymentMethod} // Use o valor do estado
+                    onChange={handleChange} // Atualiza o estado
                     placeholder={t('orderpage.placeholderPaymentMethod')}
                     type="text"
                     onClick={openPaymentMethodModal}
@@ -299,8 +332,16 @@ export function OrderPage() {
                   className="flex transition duration-400 bg-buttonColor hover:bg-colorRemove text-zinc-100 py-3 px-6 rounded-2xl justify-between"
                   type="button"
                   onClick={() => {
-                    setFormData({ name: "", number: "", paymentMethod: "", cityOrNeighborhood: "", landmark: "" });
-                    setSelectedOption(""); // Reseta o método de pagamento selecionado
+                    setFormData({
+                      name: "",
+                      number: "",
+                      flavors: total.toString(), // Reinicia com valor de total
+                      payment: total.toString(),
+                      paymentMethod: "",
+                      cityOrNeighborhood: "",
+                      landmark: "",
+                    });
+                    setSelectedOption(""); // Reseta método de pagamento
                   }}
                 >
                   {t('orderpage.reset')}
@@ -315,13 +356,12 @@ export function OrderPage() {
       </form>
 
       {showSuccessModal && (
-        // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-        <div onClick={() => setShowSuccessModal(false)} className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
           <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
             <div className="items-center flex justify-between">
               <p className="text-moneyColor1 text-xl font-normal">{t('orderpage.modalSend')}</p>
               <div className="flex">
-                <Package className="cursor-pointer size-7 text-moneyColor1" />
+                <Package className="size-7 text-moneyColor1" />
               </div>
             </div>
             <div className="py-3">
@@ -329,7 +369,7 @@ export function OrderPage() {
               <p className="text-zinc-300 pb-2 flex-1">{t('orderpage.modalSendP')}</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">
-              <button className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+              <button onClick={() => setShowSuccessModal(false)} className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton')}
                 <Download />
               </button>
