@@ -1,7 +1,7 @@
-import { Rss, ShoppingCart, SquareChartGantt } from "lucide-react";
+import { Rss, ShoppingCart, SquareChartGantt, UserRoundCog } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { LanguageModal } from "../../components/modal/language-modal";
-//import { ProfileModal } from "../../components/modal/profile-modal";
+import { ProfileModal } from "../../components/modal/profile-modal";
 //import { AccountButton } from "../../components/buttons/account-button";
 import { ContactModal } from "../../components/modal/contact-modal";
 import { GalleryModal } from "../../components/modal/gallery-modal";
@@ -26,7 +26,6 @@ export function HomePage() {
 	return (
 		<div>
 			<div className="flex items-center py-3 px-3 justify-between">
-				{/** <ProfileModal /> */}
 				<GalleryModal />
 				<LanguageModal />
 			</div>
@@ -78,8 +77,12 @@ export function HomePage() {
 					</p>
 				</div>
 			</div>
-			<p className="m-5 text-1xl text-colorText1 text-center">
-				{t('homepage.footer')}
+			<p className="px-3 py-3 flex items-center justify-between text-1xl text-colorText1">
+				<ProfileModal />
+				<a href="https://portofolio-perfil.vercel.app/" target="_blank"  rel="noreferrer" >
+					<UserRoundCog className="mr-2 size-7" />
+				</a>
+				
 			</p>
 		</div>
 	);
