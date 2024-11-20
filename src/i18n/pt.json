@@ -93,6 +93,13 @@
     "modalSendh3": "Nota Importante:",
     "modalSendP": "Caso seu método de pagamento seja Multicaixa Express ou Transfêrencia, a encomenda será entregue apenas, depois do envio do comprovativo de pagamento, que deve ser enviado pelo whatsapp da geladaria.",
     "modalSendButton": "Fatura Digital",
-    "modalValidation": "Todos os campos são obrigatórios"
+    "validationAllFields": "Por favor preencha todos os campos.",
+    "validationName": "Por favor preencha o campo nome.",
+    "validationNumber": "Por favor preencha o campo número.",
+    "validationFlavors": "Por favor preencha o campo sabores.",
+    "validationPayment": "Por favor preencha o campo pagamento.",
+    "validationPaymentMethod": "Por favor selecione um método de pagamento.",
+    "validationCity": "Por favor preencha o campo bairro ou cidade.",
+    "validationLandmark": "Por favor preencha o campo ponto de referência." 
   }
 }

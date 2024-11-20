@@ -55,9 +55,6 @@ export function OrderPage() {
     enableScroll();
   };
   
-  
-  
-
 	function openPaymentMethodModal() {
 
     function disableScroll() {
@@ -90,47 +87,97 @@ export function OrderPage() {
   
 
   const [showValidationModal, setShowValidationModal] = useState(false); // Novo estado para validação
+  const [validationMessage, setValidationMessage] = useState("");
+
 
   const validateForm = () => {
-    const { name, number, flavors, payment, paymentMethod, cityOrNeighborhood, landmark } = formData;
-  
-    // Verifica se algum campo está vazio
-    if (
-      !name.trim() ||  // Nome não preenchido
-      !number.trim() ||  // Número de telefone não preenchido
-      !flavors.trim() || // Sabores (total) não preenchido
-      !payment.trim() || // Pagamento (total) não preenchido
-      !paymentMethod.trim() || // Verifica se paymentMethod está vazio
-      !cityOrNeighborhood.trim() || // Bairro não preenchido
-      !landmark.trim() // Referência não preenchida
-    ) {
+    const {
+      name,
+      number,
+      flavors,
+      payment,
+      paymentMethod,
+      cityOrNeighborhood,
+      landmark,
+    } = formData;
+
+    // Verifica se todos os campos estão vazios
+    const allFieldsEmpty = 
+    !name.trim() &&
+    !number.trim() &&
+    (!flavors || Number.parseFloat(flavors) === 0) &&
+    (!payment || Number.parseFloat(payment) === 0) &&
+    !paymentMethod.trim() &&
+    !cityOrNeighborhood.trim() &&
+    !landmark.trim();
+
+    if (allFieldsEmpty) {
+      setValidationMessage(t('orderpage.validationAllFields')); // Mensagem genérica
       setShowValidationModal(true);
-      enableScroll(); // Permite rolar enquanto o modal está visível
-      setTimeout(() => setShowValidationModal(false), 2000); // Esconde o modal após 2 segundos
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
       return false;
     }
-    return true;
+  
+    if (!name.trim()) {
+      setValidationMessage(t('orderpage.validationName')); // Mensagem para o campo de nome
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
+      return false;
+    }
+  
+    if (!number.trim()) {
+      setValidationMessage(t('orderpage.validationNumber')); // Mensagem para o campo de número
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
+      return false;
+    }
+  
+    if (!flavors || Number.parseFloat(flavors) === 0) {
+      setValidationMessage(t('orderpage.validationFlavors')); // Mensagem para o campo de sabores
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
+      return false;
+    }
+  
+    if (!payment || Number.parseFloat(payment) === 0) {
+      setValidationMessage(t('orderpage.validationPayment')); // Mensagem para o campo de pagamento
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
+      return false;
+    }
+  
+    if (!paymentMethod.trim()) {
+      setValidationMessage(t('orderpage.validationPaymentMethod')); // Mensagem para o método de pagamento
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
+      return false;
+    }
+  
+    if (!cityOrNeighborhood.trim()) {
+      setValidationMessage(t('orderpage.validationCity')); // Mensagem para o campo de bairro/cidade
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
+      return false;
+    }
+  
+    if (!landmark.trim()) {
+      setValidationMessage(t('orderpage.validationLandmark')); // Mensagem para o campo de referência
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
+      return false;
+    }
+  
+    return true; // Se tudo estiver preenchido, retorna true
   };
   
-
-  // Função para lidar com o envio do formulário
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Impede o envio padrão do formulário
   
-    if (!validateForm()) return;
-    const { flavors, paymentMethod } = formData; // Pegue os valores do estado
-
-    // Validação: Verifica se ambos os campos estão preenchidos
-    if (!flavors || flavors.length === 0 || !paymentMethod.trim()) {
-      setShowValidationModal(true); // Exibe o modal de validação
-      return; // Interrompe o envio
-    }
-
-    // Caso os campos estejam preenchidos, prossiga com o envio
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Previne o comportamento padrão do formulário
+  
+    if (!validateForm()) return; // Bloqueia envio se a validação falhar
+  
     console.log("Formulário válido, enviando...");
-    // Sua lógica de envio aqui (por exemplo, chamar a API)
-
-    
   
     try {
       const response = await fetch("http://localhost:3334/order", {
@@ -140,10 +187,10 @@ export function OrderPage() {
         },
         body: JSON.stringify({
           ...formData,
-          number: Number.parseInt(formData.number), // Converte para número
-          flavors: Number.parseInt(formData.flavors), // Garante que seja um número
-          payment: Number.parseInt(formData.payment), // Garante que seja um número
-          paymentMethod: selectedOption, // Passa o valor selecionado
+          number: Number.parseInt(formData.number), 
+          flavors: Number.parseInt(formData.flavors), 
+          payment: Number.parseInt(formData.payment), 
+          paymentMethod: selectedOption, 
         }),
       });
   
@@ -158,6 +205,8 @@ export function OrderPage() {
       console.error("Erro na requisição:", error);
     }
   };
+  
+  
   
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
@@ -188,14 +237,13 @@ export function OrderPage() {
             <p className="flex justify-between pt-5 px-3 text-xl">
               <h3 className="text-buttonColor font-medium">{t('orderpage.sabores')}</h3>
               <input
-                type="text"
-                name="flavors"
-                value={formData.payment.toString()} // Garante que seja string
-                onChange={handleChange} // Atualiza o estado
-                readOnly
-                disabled
-                className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
-              />
+                  type="text"
+                  name="flavors"
+                  onChange={handleChange}
+                  value={formData.flavors.toString()} // Certifique-se de que está sincronizado com o estado                 
+                  readOnly
+                  className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
+                />
             </p>
 
             <p className="flex justify-between py-2 px-3 text-xl">
@@ -206,7 +254,6 @@ export function OrderPage() {
                 onChange={handleChange} // Atualiza o estado
                 value={formData.payment.toString()} // Garante que seja string
                 readOnly
-                disabled
                 className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
               />
             </p>
@@ -335,7 +382,7 @@ export function OrderPage() {
                 <button
                   className="flex transition duration-400 bg-buttonColor hover:bg-moneyColor text-zinc-100 py-3 px-6 rounded-2xl justify-between"
                   type="submit"
-                  onClick={handleSubmit} // Certifique-se de que o onClick está chamando handleSubmit
+                  onSubmit={handleSubmit} // Certifique-se de que o onClick está chamando handleSubmit
                 >
                   {t('orderpage.send')}
                   <Send />
@@ -394,8 +441,9 @@ export function OrderPage() {
       {/* Validation Modal */}
       {showValidationModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
-          <div className="w-[540px] rounded-xl py-6 px-7 flex items-center justify-between bg-colorHover">
-            <p className="text-red-500 text-lg font-medium">{t('orderpage.modalValidation')}</p>
+          <div className="w-[540px] rounded-xl py-6 px-6 flex items-center justify-between bg-colorHover">
+            <p className="text-red-500 text-lg font-normal">{validationMessage}</p>
+
             <Siren className="text-red-500" />
           </div>
         </div>
