@@ -1,4 +1,4 @@
-import { Rss, ShoppingCart, SquareChartGantt, UserRoundCog } from "lucide-react";
+import { Library, PersonStanding, Rss, ShoppingCart, SquareChartGantt, UserRoundCog } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { ProfileModal } from "../../components/modal/profile-modal";
@@ -29,7 +29,7 @@ export function HomePage() {
 				<GalleryModal />
 				<LanguageModal />
 			</div>
-			<div className="h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
+			<div className="mainHome h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">
 				<div className="max-w-3xl w-full px-6 text-center space-y-10">
 					<div className="flex flex-col items-center gap-4">
 						<img className="w-64" src="/logo-geladaria.png" alt="logoItalala" />
@@ -69,6 +69,20 @@ export function HomePage() {
 							>
 								<p className="text-1xl font-normal">{t('homepage.buttonCart')}</p>
 								<ShoppingCart className="size-6" />
+							</button>
+							<button type="button"
+								onClick={orderPage}
+								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+							>
+								<p className="text-1xl font-normal">Biblioteca</p>
+								<Library className="size-6" />
+							</button>
+							<button type="button"
+								onClick={orderPage}
+								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
+							>
+								<p className="text-1xl font-normal">Acessibilidade</p>
+								<PersonStanding className="size-6" />
 							</button>
 						</div>
 					</div>

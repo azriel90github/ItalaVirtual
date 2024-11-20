@@ -115,9 +115,22 @@ export function OrderPage() {
 
   // Função para lidar com o envio do formulário
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Impede o envio padrão do formulário
   
     if (!validateForm()) return;
+    const { flavors, paymentMethod } = formData; // Pegue os valores do estado
+
+    // Validação: Verifica se ambos os campos estão preenchidos
+    if (!flavors || flavors.length === 0 || !paymentMethod.trim()) {
+      setShowValidationModal(true); // Exibe o modal de validação
+      return; // Interrompe o envio
+    }
+
+    // Caso os campos estejam preenchidos, prossiga com o envio
+    console.log("Formulário válido, enviando...");
+    // Sua lógica de envio aqui (por exemplo, chamar a API)
+
+    
   
     try {
       const response = await fetch("http://localhost:3334/order", {
@@ -130,7 +143,7 @@ export function OrderPage() {
           number: Number.parseInt(formData.number), // Converte para número
           flavors: Number.parseInt(formData.flavors), // Garante que seja um número
           payment: Number.parseInt(formData.payment), // Garante que seja um número
-          paymentMethod: selectedOption,
+          paymentMethod: selectedOption, // Passa o valor selecionado
         }),
       });
   
@@ -336,7 +349,7 @@ export function OrderPage() {
                       name: "",
                       number: "",
                       flavors: total.toString(), // Reinicia com valor de total
-                      payment: total.toString(),
+                      payment: total.toString(), // Reinicia com valor de total
                       paymentMethod: "",
                       cityOrNeighborhood: "",
                       landmark: "",
