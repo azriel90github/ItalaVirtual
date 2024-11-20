@@ -96,7 +96,7 @@
     "validationAllFields": "Por favor preencha todos os campos.",
     "validationName": "Por favor preencha o campo nome.",
     "validationNumber": "Por favor preencha o campo número.",
-    "validationFlavors": "Por favor preencha o campo sabores.",
+    "validationFlavors": "Escolha um sabor no cardápio.",
     "validationPayment": "Por favor preencha o campo pagamento.",
     "validationPaymentMethod": "Por favor selecione um método de pagamento.",
     "validationCity": "Por favor preencha o campo bairro ou cidade.",
