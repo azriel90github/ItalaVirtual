@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CreditCard, Download, HandCoins, Landmark, Package, Siren, X } from "lucide-react";
+import { ChartNoAxesCombined, CircleAlert, CreditCard, Download, HandCoins, Landmark, Package, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -443,8 +443,7 @@ export function OrderPage() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
           <div className="w-[540px] rounded-xl py-6 px-6 flex items-center justify-between bg-colorHover">
             <p className="text-red-500 text-lg font-normal">{validationMessage}</p>
-
-            <Siren className="text-red-500" />
+            <CircleAlert className="text-red-500" />
           </div>
         </div>
       )}
