@@ -12,7 +12,7 @@ import { number } from "zod";
 export const goods = pgTable("goods", {
 	id: text("id").primaryKey().$defaultFn(() => createId()),
 	title: text("title").notNull(),
-	price: integer('price').notNull(), // Aqui o campo price será numérico (com casas decimais)
+	price: integer("price").notNull(), // Aqui o campo price será numérico (com casas decimais)
 	description: text("description").notNull(),
 });
 

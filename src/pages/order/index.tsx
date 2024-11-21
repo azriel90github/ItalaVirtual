@@ -283,7 +283,7 @@ export function OrderPage() {
 
             <div className="py-4">
               
-                <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-3 w-full">
                   <input
                     type="text"
                     name="name"
@@ -292,6 +292,7 @@ export function OrderPage() {
                     placeholder={t('orderpage.placeholderName')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
+                  {/** <span className='error'>Preencha o seu e-mail corretamente.</span> */}
                   <input
                     type="number"
                     name="number"
