@@ -1,8 +1,17 @@
-import { Headset, X } from "lucide-react";
+import { Headset, Mail, MessageCircle, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function ContactModal() {
+
+	function disableScroll() {
+		document.body.style.overflow = "hidden";
+	}
+	
+	function enableScroll() {
+		document.body.style.overflow = "";
+	}
+
 	const { t } = useTranslation()
 
 	const [, setSelectedOption] = useState(""); // Estado para o valor selecionado
@@ -16,10 +25,12 @@ export function ContactModal() {
 
 	function openContactModal() {
 		setIsContactModalOpen(true);
+		disableScroll();
 	}
 
 	function closeContactModal() {
 		setIsContactModalOpen(false);
+		enableScroll();
 	}
 
 	return (
@@ -54,12 +65,13 @@ export function ContactModal() {
 									{/** <X className="size-6 cursor-pointer" /> */}
 								</div>
 								<div className="flex flex-col py-3 mt-2 gap-3">
+								<h3 className="flex mx-2 text-lx">Número</h3>
                 <button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
-										<p className="text-zinc-300">Africel - 959 261 926</p>
+										<p className="text-zinc-300">959 261 926</p>
                     <Headset />
 									</button>
 									<button
@@ -67,25 +79,44 @@ export function ContactModal() {
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
-										<p className="text-zinc-300">Unitel - 929 261 926</p>
+										<p className="text-zinc-300">929 261 926</p>
                     <Headset />
+									</button>
+									<h3 className="flex mx-2 text-lx">Whatsapp</h3>
+									<button
+										type="button"
+										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("TPA (presencial)")}
+									>
+                    <p className="text-zinc-300">929 261 926</p>
+                    <MessageCircle />
 									</button>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("Transferência Bancária")}
+										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
-										<p className="text-zinc-300">Movicel - 999 261 926</p>
-                    <Headset />
+										<p className="text-zinc-300">959 261 926</p>
+                    <MessageCircle />
+									</button>
+									<h3 className="flex mx-2 text-lx">Email</h3>
+									<button
+										type="button"
+										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("TPA (presencial)")}
+									>
+                    <p className="text-zinc-300">azrielgithub@gmail.com</p>
+                    <Mail />
 									</button>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
-                    <p className="text-zinc-300">Whatsapp - 929 261 926</p>
-                    <Headset />
+                    <p className="text-zinc-300">azrielmoreira@gmail.com</p>
+                    <Mail />
 									</button>
+									
 								</div>
 							</div>
 						</div>

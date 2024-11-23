@@ -27,8 +27,10 @@ export function MenuPage() {
   const [, setTotals] = useState<{ [key: number]: number }>({});
   const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
   const [icons, setIcons] = useState<{ [key: number]: boolean }>({});
-
   const navigate = useNavigate();
+
+  /**
+  
   const [orderSummary, setOrderSummary] = useState<{ flavors: number; total: number }>({
     flavors: 0,
     total: 0,
@@ -48,6 +50,7 @@ export function MenuPage() {
     useEffect(() => {
     updateOrderSummary();
   }, [counts]); // Atualiza sempre que os contadores mudarem.
+   */
   
 
   // Função para buscar os produtos do servidor
@@ -165,7 +168,6 @@ export function MenuPage() {
       }));
     }
   };
-  
 
   const toggleIcon = (id: number) => {
     setIcons((prev) => ({
@@ -236,9 +238,6 @@ export function MenuPage() {
     navigate("/");
   }
 
-  function OrderPage() {
-    navigate("/order/123", { state: orderSummary });
-  }
 
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">

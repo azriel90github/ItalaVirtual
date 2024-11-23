@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export function CartButton() {
 	const navigate = useNavigate(); // Esportar useNavigate do react-router-dom
 	function OrderPage() {
-    navigate("/order/123", { state: orderSummary });
+    navigate("/order/123");
   }
 
 	return (

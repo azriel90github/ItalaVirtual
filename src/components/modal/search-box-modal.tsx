@@ -3,6 +3,7 @@ import { Logs, X } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 
 export function SearchBoxModal() {
+	/**
 	function disableScroll() {
 		document.body.style.overflow = "hidden";
 	}
@@ -10,7 +11,7 @@ export function SearchBoxModal() {
 	function enableScroll() {
 		document.body.style.overflow = "";
 	}
-	
+	 */
 
 	const { t } = useTranslation();
 
@@ -19,19 +20,19 @@ export function SearchBoxModal() {
 	const handleSelectOption = (option: SetStateAction<string>) => {
 		setSelectedOption(option);
 		setIsSearchBoxModalOpen(false);
-		enableScroll(); // Reativa a rolagem após a seleção
+		//enableScroll(); // Reativa a rolagem após a seleção
 	};
 
 	const [isSearchBoxModalOpen, setIsSearchBoxModalOpen] = useState(false);
 
 	function openSearchBoxModal() {
 		setIsSearchBoxModalOpen(true);
-		disableScroll(); // Bloqueia rolagem ao abrir
+		//disableScroll(); // Bloqueia rolagem ao abrir
 	}
 
 	function closeSearchBoxModal() {
 		setIsSearchBoxModalOpen(false);
-		enableScroll(); // Desbloqueia rolagem ao fechar
+		//enableScroll(); // Desbloqueia rolagem ao fechar
 	}
 
 	return (

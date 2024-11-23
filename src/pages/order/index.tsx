@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
+  /**
   const location = useLocation();
   const { flavors, total } = location.state || { flavors: 0, total: 0 };
 
@@ -25,6 +26,7 @@ export function OrderPage() {
       payment: total.toString(),
     }));
   }, [flavors, total]);
+   */
 
   const { t } = useTranslation();
 
