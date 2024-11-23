@@ -82,7 +82,7 @@ export function ContactModal() {
 										<p className="text-zinc-300">929 261 926</p>
                     <Headset />
 									</button>
-									<h3 className="flex mx-2 text-lx">Whatsapp</h3>
+									<h3 className="flex mx-2 text-lx">WhatsApp</h3>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"

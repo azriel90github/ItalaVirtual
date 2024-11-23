@@ -23,6 +23,14 @@ export function HomePage() {
 		navigate("/blog/123");
 	}
 
+	function AccessibilityPage() {
+		navigate("/accessibility/123");
+	}
+
+	function LibraryPage() {
+		navigate("/library/123");
+	}
+
 	return (
 		<div>
 			<div className="flex items-center py-3 px-3 justify-between">
@@ -71,14 +79,14 @@ export function HomePage() {
 								<ShoppingCart className="size-6" />
 							</button>
 							<button type="button"
-								onClick={orderPage}
+								onClick={LibraryPage}
 								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Biblioteca</p>
 								<Library className="size-6" />
 							</button>
 							<button type="button"
-								onClick={orderPage}
+								onClick={AccessibilityPage}
 								className="accountButton border-2 border-colorInput flex items-center justify-between w-80 bg-searchColor px-8 py-4 rounded-full shadow-shape text-buttonColor hover:bg-colorHover hover:text-zinc-200 transition duration-400 font-medium text-xl"
 							>
 								<p className="text-1xl font-normal">Acessibilidade</p>

@@ -6,6 +6,8 @@ import { BlogPage } from "./pages/blog";
 import { ResultProvider } from "./context/ResultContext";
 import i18n from './i18n'; //Importação do i18n configurado
 import { I18nextProvider } from 'react-i18next';
+import { AccessibilityPage } from "./pages/accessibility";
+import { LibraryPage } from "./pages/library";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/order/:orderId",
     element: <OrderPage />,
+  },
+  {
+    path: "/accessibility/:accessibilityId",
+    element: <AccessibilityPage />,
+  },
+  {
+    path: "/library/:libraryId",
+    element: <LibraryPage />,
   },
 ]);
 

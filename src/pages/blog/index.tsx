@@ -18,7 +18,6 @@ import { t } from "i18next";
 //Retornando função BlogPage( Página do blog ) e exportando a mesma
 export function BlogPage() {
 
-
 	//Iniciando funcionalidades na página Blog-----------------------------------------------------------------
 
 	//Variavél navigate recebendo o useNavigate do react-router-dom
