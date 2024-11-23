@@ -8,23 +8,28 @@ async function seed() {
 	await db.insert(goods).values([
 		{
 			title: "Menta",
-			price: 310, // Agora pode ser um number
+			price: "310", // Agora pode ser um number
 			description: "Mistura de morango com chocolate, bolachas e uma cereginha",
 		},
 		{
 			title: "Chocolate",
-			price: 330, // Agora pode ser um number
+			price: "330", // Agora pode ser um number
 			description: "Mistura de morango com chocolate, bolachas e uma cereginha",
 		},
 		{
 			title: "Banana",
-			price: 340, // Agora pode ser um number
+			price: "340", // Agora pode ser um number
 			description: "Mistura de morango com chocolate, bolachas e uma cereginha",
 		},
 		{
 			title: "Água",
-			price: 440, // Agora pode ser um number
+			price: "440", // Agora pode ser um number
 			description: "Mistura de morango com chocolate, bolachas e uma cereginha",
+		},
+		{
+			title: "Baunilha",
+			price: "540", // Agora pode ser um number
+			description: "Mistura de morango com chocolate, bolachas e uma caneca de café",
 		},
 	]);
 

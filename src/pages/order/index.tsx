@@ -15,6 +15,17 @@ import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
+  const location = useLocation();
+  const { flavors, total } = location.state || { flavors: 0, total: 0 };
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      flavors: flavors.toString(),
+      payment: total.toString(),
+    }));
+  }, [flavors, total]);
+
   const { t } = useTranslation();
 
   const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado

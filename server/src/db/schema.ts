@@ -1,18 +1,17 @@
 import {
 	pgTable,
 	text,
-	integer,
 	timestamp,
 	numeric,
 } from "drizzle-orm/pg-core";
 
 import { createId } from "@paralleldrive/cuid2";
-import { number } from "zod";
+//import { number } from "zod";
 
 export const goods = pgTable("goods", {
 	id: text("id").primaryKey().$defaultFn(() => createId()),
 	title: text("title").notNull(),
-	price: integer("price").notNull(), // Aqui o campo price será numérico (com casas decimais)
+	price: numeric("price").notNull(), // Aqui o campo price será numérico (com casas decimais)
 	description: text("description").notNull(),
 });
 

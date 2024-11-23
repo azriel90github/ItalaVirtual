@@ -2,11 +2,10 @@ import fastify from 'fastify';
 import cors from '@fastify/cors';
 import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
-import { goods } from '../db/schema';
-import { db } from '../db';
 
 
 const app = fastify();
+
   async function startServer() {
   // Registra o plugin CORS
   await app.register(cors, {
