@@ -71,7 +71,7 @@ export function ContactModal() {
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
-										<p className="text-zinc-300">959 261 926</p>
+										<p className="text-zinc-300">Africel - 959 261 926</p>
                     <Headset />
 									</button>
 									<button
@@ -79,16 +79,16 @@ export function ContactModal() {
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
-										<p className="text-zinc-300">929 261 926</p>
+										<p className="text-zinc-300">Unitel - 929 261 926</p>
                     <Headset />
 									</button>
-									<h3 className="flex mx-2 text-lx">WhatsApp</h3>
+									<h3 className="flex mx-2 text-lx">Social</h3>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("TPA (presencial)")}
 									>
-                    <p className="text-zinc-300">929 261 926</p>
+                    <p className="text-zinc-300">WhatsApp 1 - 929 261 926</p>
                     <MessageCircle />
 									</button>
 									<button
@@ -96,7 +96,7 @@ export function ContactModal() {
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("Dinheiro em mão")}
 									>
-										<p className="text-zinc-300">959 261 926</p>
+										<p className="text-zinc-300">WhatsApp 2 - 959 261 926</p>
                     <MessageCircle />
 									</button>
 									<h3 className="flex mx-2 text-lx">Email</h3>

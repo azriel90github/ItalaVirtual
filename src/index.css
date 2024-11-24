@@ -24,6 +24,11 @@
 		height: 125vh;
 	}
 
+	.libraryPage {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.queryFooterBlog {
 		padding-left: 0.75rem;
 		justify-content: left;
