@@ -74,7 +74,9 @@ export function LibraryPage() {
 										Modelo Fatura Digital
 									</div>
 									<button className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 px-5 rounded-b-xl justify-between" type="button">
-										Baixar
+										<a href="/modelo_fatura.pdf" download="modelo_fatura.pdf">
+											Baixar
+										</a>
 										<Download />
 									</button>
 								</p>	
