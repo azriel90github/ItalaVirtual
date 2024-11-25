@@ -63,7 +63,7 @@ export function LibraryPage() {
 				<div>
 					<div>
 						<div className="w-10/12 leading-loose flex flex-col gap-4 mx-auto pl-2">
-							<h1 className="text-4xl flex items-start justify-center text-buttonColor py-2 mt-9 mb-5 font-normal">
+							<h1 className="text-4xl flex items-start justify-center text-buttonColor py-2 mt-8 mb-5 font-normal">
 								Biblioteca Online
 							</h1>
 							
