@@ -36,6 +36,7 @@ export default {
 
 			backgroundImage: {
 				fundoHome: "url('/ice-cream 2.png')",
+				fundoBg: "url('/bg.png')"
 			},
 
 			screens: {

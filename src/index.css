@@ -24,6 +24,11 @@
 		height: 125vh;
 	}
 
+	.homeBlogue {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.libraryPage {
 		display: flex;
 		flex-direction: column;

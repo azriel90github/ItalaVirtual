@@ -4,6 +4,8 @@ import {
 	House,
 	Instagram,
 	MapPin,
+	//Podcast,
+	Rss,
 	Twitter,
 } from "lucide-react"; //Importando icones do lucide-react
 import { useEffect, useState } from "react"; //Importando useEffect e useState do react
@@ -100,28 +102,42 @@ export function BlogPage() {
 
 				<div className="flex flex-wrap gap-2 mb-44">
 					<div>
-						<div className="w-10/12 leading-loose flex flex-col gap-4 mx-auto">
-							<h1 className="text-5xl flex items-start justify-between text-buttonColor py-2 mt-12 font-normal">
+						<div className="w-10/12 flex flex-col gap-4 mx-auto">
+							<h1 className="text-5xl flex items-center justify-between text-buttonColor py-2 mt-10 mb-5 font-normal">
 								{t('blogpage.h2')}
 								<p>
+									<Rss className="size-8" />
 									{/**<LanguageModal /> */}
 								</p>
 							</h1>
-							<p className="text-lg text-zinc-300">
-								{t('blogpage.par1')}
-							</p>
-							<p className="text-lg text-zinc-300">
-								{t('blogpage.par2')}
-							</p>
-							<p className="text-lg text-zinc-300">
-								{t('blogpage.par3')}
-							</p>
+
+							<div className="homeBlogue flex gap-10">
+								<p>
+									<img
+										className="w-dvw rounded-full"
+										src="/perfis-blog/perfilBlogue.jpg"
+										alt=""
+									/>
+								</p>
+								<p className="flex flex-col leading-loose">
+									<p className="text-lg mb-4 text-zinc-300">
+										{t('blogpage.par1')}
+									</p>
+									<p className="text-lg mb-4 text-zinc-300">
+										{t('blogpage.par2')}
+									</p>
+									<p className="text-lg mb-4 text-zinc-300">
+										{t('blogpage.par3')}
+									</p>
+								</p>
+							</div>
 						</div>
 					</div>
 
-					<div className="w-10/12 flex flex-col mx-auto gap-4">
-						<h1 className="text-5xl text-buttonColor py-5 mt-3 font-normal">
+					<div className="w-10/12 flex flex-col mx-auto pt-5 gap-4">
+						<h1 className="text-5xl flex justify-between text-buttonColor py-5 mt-3 font-normal">
 							{t('blogpage.h3')}
+							
 						</h1>
 						<div className="flex flex-wrap gap-7">
 							<figure className="flex flex-wrap gap-4">
@@ -216,6 +232,20 @@ export function BlogPage() {
 							</figure>
 						</div>
 					</div>
+
+					{/**
+					 * 
+					 * <div className="w-10/12 flex flex-col mx-auto pt-8 gap-4">
+						<h1 className="text-5xl flex items-center justify-between text-buttonColor py-5 mt-3 font-normal">
+							Podcasting
+							<Podcast className="size-8" />
+						</h1>
+						<div className="flex flex-wrap gap-7">
+							
+						</div>
+					</div>
+					 */}
+
 				</div>
 			</div>
 			{/* Rodapé que aparece após rolagem */}*{" "}
