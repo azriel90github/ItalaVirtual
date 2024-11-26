@@ -1,5 +1,5 @@
 //import { t } from "i18next";
-import { ArrowLeft, Download, House } from "lucide-react";
+import { ArrowLeft, Download, FolderOpen, House } from "lucide-react";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -69,29 +69,32 @@ export function LibraryPage() {
 							
 							<div className="libraryPage flex items-center w-full mb-48 justify-center gap-5">
 								<p>
-									<img className="rounded-t-xl w-80 h-auto opacity-80" src="/doc-1.jpeg" alt="" />
-									<div className="flex cursor-default items-center justify-center transition duration-400 bg-buttonColor text-zinc-100 py-2 px-5 w-80">
-										Modelo Fatura Digital
-									</div>
-									<button className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 px-10 rounded-b-xl justify-between" type="button">
-										<a href="/modelo_fatura.pdf" download="modelo_fatura.pdf">
-											Baixar
+									<a href="/pdf/modelo_fatura.pdf">
+										<img className="rounded-t-xl w-80 h-auto opacity-80" src="/doc-1.jpeg" alt="" />
+										<div className="flex cursor-pointer items-center justify-between transition duration-400 bg-buttonColor text-zinc-100 py-2 px-10 w-80">
+											Fatura Digital
+											<FolderOpen />
+										</div>
+									</a>
+										<a className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-3 px-10 rounded-b-xl justify-between" href="/pdf/modelo_fatura.pdf" download="modelo_fatura.pdf">
+											Download
+											<Download />
 										</a>
-										<Download />
-									</button>
 								</p>	
 								<p>
-									<img className="rounded-t-xl w-80 h-full opacity-80" src="/doc-1.jpeg" alt="" />
-									<div className="flex cursor-default items-center justify-center transition duration-400 bg-buttonColor text-zinc-100 py-2 px-5 w-80">
-										Coordenadas Bancárias
-									</div>
-									<button className="flex items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 px-10 w-full rounded-b-xl justify-between" type="button">
-										Baixar
-										<Download />
-									</button>
+									<a href="/pdf/coordenadas_bancarias.pdf"><img className="rounded-t-xl w-80 h-full opacity-80" src="/doc-1.jpeg" alt="" />
+										<div className="flex cursor-pointer items-center justify-between transition duration-400 bg-buttonColor text-zinc-100 py-2 px-10 w-80">
+											Coordenadas Bancárias
+											<FolderOpen />
+										</div>
+									</a>
+										<a className="flex items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-3 px-10 w-full rounded-b-xl justify-between" href="/pdf/coordenadas_bancarias.pdf" download="coordenadas_bancarias.pdf">
+											Download
+											<Download />
+										</a>
 								</p>							
 							</div>
-
+				
 						</div>
 					</div>
 				</div>
