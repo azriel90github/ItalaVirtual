@@ -3,7 +3,6 @@ import { type SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function ContactModal() {
-
 	function disableScroll() {
 		document.body.style.overflow = "hidden";
 	}
