@@ -1,4 +1,4 @@
-import { Headset, Mail, MessageCircle, X } from "lucide-react";
+import { Facebook, Headset, Instagram, Mail, MessageCircle, Twitter, X, Youtube } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -69,7 +69,7 @@ export function ContactModal() {
                 <button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("Dinheiro em mão")}
+										onClick={() => handleSelectOption("")}
 									>
 										<p className="text-zinc-300">Africel - 959 261 926</p>
                     <Headset />
@@ -77,7 +77,7 @@ export function ContactModal() {
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("Dinheiro em mão")}
+										onClick={() => handleSelectOption("")}
 									>
 										<p className="text-zinc-300">Unitel - 929 261 926</p>
                     <Headset />
@@ -86,24 +86,48 @@ export function ContactModal() {
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("TPA (presencial)")}
+										onClick={() => handleSelectOption("")}
 									>
-                    <p className="text-zinc-300">WhatsApp 1 - 929 261 926</p>
+                    <p className="text-zinc-300">WhatsApp</p>
                     <MessageCircle />
 									</button>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("Dinheiro em mão")}
+										onClick={() => handleSelectOption("")}
 									>
-										<p className="text-zinc-300">WhatsApp 2 - 959 261 926</p>
-                    <MessageCircle />
+                    <p className="text-zinc-300">Twitter</p>
+                    <Twitter />
+									</button>
+									<button
+										type="button"
+										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("")}
+									>
+										<p className="text-zinc-300">Instagram</p>
+                    <Instagram />
+									</button>
+									<button
+										type="button"
+										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("")}
+									>
+                    <p className="text-zinc-300">Facebook</p>
+                    <Facebook />
+									</button>
+									<button
+										type="button"
+										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										onClick={() => handleSelectOption("")}
+									>
+                    <p className="text-zinc-300">YouTube</p>
+                    <Youtube />
 									</button>
 									<h3 className="flex mx-2 text-lx">Email</h3>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("TPA (presencial)")}
+										onClick={() => handleSelectOption("")}
 									>
                     <p className="text-zinc-300">azrielgithub@gmail.com</p>
                     <Mail />
@@ -111,7 +135,7 @@ export function ContactModal() {
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("TPA (presencial)")}
+										onClick={() => handleSelectOption("")}
 									>
                     <p className="text-zinc-300">azrielmoreira@gmail.com</p>
                     <Mail />
