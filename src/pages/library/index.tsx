@@ -67,13 +67,13 @@ export function LibraryPage() {
 								Biblioteca Online
 							</h1>
 							
-							<div className="libraryPage flex items-center w-full justify-center gap-5">
+							<div className="libraryPage flex items-center w-full mb-48 justify-center gap-5">
 								<p>
 									<img className="rounded-t-xl w-80 h-auto opacity-80" src="/doc-1.jpeg" alt="" />
 									<div className="flex cursor-default items-center justify-center transition duration-400 bg-buttonColor text-zinc-100 py-2 px-5 w-80">
 										Modelo Fatura Digital
 									</div>
-									<button className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 px-5 rounded-b-xl justify-between" type="button">
+									<button className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 px-10 rounded-b-xl justify-between" type="button">
 										<a href="/modelo_fatura.pdf" download="modelo_fatura.pdf">
 											Baixar
 										</a>
@@ -85,7 +85,7 @@ export function LibraryPage() {
 									<div className="flex cursor-default items-center justify-center transition duration-400 bg-buttonColor text-zinc-100 py-2 px-5 w-80">
 										Coordenadas Bancárias
 									</div>
-									<button className="flex items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 px-5 w-full rounded-b-xl justify-between" type="button">
+									<button className="flex items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 px-10 w-full rounded-b-xl justify-between" type="button">
 										Baixar
 										<Download />
 									</button>
