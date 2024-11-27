@@ -13,13 +13,14 @@ import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 
 // Tipo para os produtos
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: number;
   description: string;
   image?: string; // Imagem opcional
 }
+
 
 export function MenuPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -28,6 +29,33 @@ export function MenuPage() {
   const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
   const [icons, setIcons] = useState<{ [key: number]: boolean }>({});
   const navigate = useNavigate();
+
+  const [cartItems, setCartItems] = useState<(Product & { scoops: number; total: number })[]>([]); // Extensão da interface Product
+  const updateCartItem = (id: number, scoops: number) => {
+    const product = products.find((p) => p.id === id);
+    if (product) {
+      const existingItemIndex = cartItems.findIndex((item) => item.id === id);
+
+      const updatedItem = {
+        ...product, // Inclui todos os campos da interface Product
+        scoops,
+        total: product.price * scoops,
+      };
+
+      setCartItems((prev) => {
+        if (existingItemIndex !== -1) {
+          // Atualiza o item existente
+          const updatedCart = [...prev];
+          updatedCart[existingItemIndex] = updatedItem;
+          return updatedCart;
+        // biome-ignore lint/style/noUselessElse: <explanation>
+        } else {
+          // Adiciona um novo item
+          return [...prev, updatedItem];
+        }
+      });
+    }
+  };
 
   /**
   
@@ -95,6 +123,7 @@ export function MenuPage() {
     setCounts((prev) => {
       const newCount = (prev[id] || 0) + 1;
       updateTotal(id, newCount); // Atualiza o total com o novo count
+      updateCartItem(id, newCount); // Atualiza o item no carrinho
       return {
         ...prev,
         [id]: newCount,
@@ -127,6 +156,7 @@ export function MenuPage() {
     setCounts((prev) => {
       const newCount = Math.max((prev[id] || 0) - 1, 0);
       updateTotal(id, newCount); // Atualiza o total com o novo count
+      updateCartItem(id, newCount); // Atualiza o item no carrinho
       return {
         ...prev,
         [id]: newCount,
@@ -189,6 +219,7 @@ export function MenuPage() {
   };
 
   const handleRemoveFromCart = (id: number) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
     setCounts((prev) => ({
       ...prev,
       [id]: 0, // Reseta o contador de colheres
@@ -252,7 +283,7 @@ export function MenuPage() {
 				</div>
 
 				<div className="flex items-center" > 
-					<CartButton />
+					<CartButton cartItems={[]} />
 				</div>
 			</div>
 
@@ -260,10 +291,11 @@ export function MenuPage() {
 					{/** <ContactAndLanguage /> */}
 					<Searchbox />
 				</div>
-
+        {/* Renderização dos cards */}
 				<div className="flex flex-wrap gap-5 justify-center pb-10">
         {products.map((product) => (
           <div key={product.id} className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
+            {/* Informações do produto */}
             <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
               <p className="text-buttonColor text-xl">{product.title}</p>
               <span role="img" aria-label="favorite">
@@ -347,7 +379,7 @@ export function MenuPage() {
 					</div>
 
 					<div className="flex gap-4 items-center">
-					<CartButton />
+					<CartButton cartItems={[]} />
 					</div>
 				</footer>		 
 		</div>

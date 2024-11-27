@@ -9,7 +9,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
-import { useResult } from "../../context/ResultContext.tsx";
+//import { useResult } from "../../context/ResultContext.tsx";
+import { useLocation } from "react-router-dom";
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
@@ -32,7 +33,12 @@ export function OrderPage() {
 
   const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado
   const [isPaymentMethodModalOpen, setIsPaymentMethodModalOpen] = useState(false);
-  const { total } = useResult(); // Acessa o valor do total do contexto
+  //const { total } = useResult(); // Acessa o valor do total do contexto
+
+  const location = useLocation();
+  // Recebe os dados passados pela navegação
+  const { flavors = 0, total = 0 } = location.state || {};
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -44,13 +50,14 @@ export function OrderPage() {
     landmark: "",
   });
   
-  useEffect(() => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useEffect(() => {
     setFormData((prev) => ({
       ...prev,
       flavors: total.toString(), // Atualiza como string
       payment: total.toString(), // Atualiza como string
     }));
-  }, [total]);
+  }, [flavors, total]);
   
 
 	// Função para fechar o modal e definir a opção selecionada
