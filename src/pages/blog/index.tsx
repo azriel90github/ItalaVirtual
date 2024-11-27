@@ -5,7 +5,7 @@ import {
 	Instagram,
 	MapPin,
 	//Podcast,
-	Rss,
+	//Rss,
 	Twitter,
 } from "lucide-react"; //Importando icones do lucide-react
 import { useEffect, useState } from "react"; //Importando useEffect e useState do react
@@ -103,10 +103,10 @@ export function BlogPage() {
 				<div className="flex flex-wrap gap-2 mb-44">
 					<div>
 						<div className="w-10/12 flex flex-col gap-4 mx-auto">
-							<h1 className="text-5xl flex items-center justify-between text-buttonColor py-2 mt-10 mb-5 font-normal">
+							<h1 className="text-5xl flex items-center justify-between text-buttonColor py-2 mt-16 mb-6 font-normal">
 								{t('blogpage.h2')}
 								<p>
-									<Rss className="size-8" />
+									
 									{/**<LanguageModal /> */}
 								</p>
 							</h1>
