@@ -76,7 +76,7 @@ export function LibraryPage() {
 											<FolderOpen />
 										</div>
 									</a>
-										<a className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-3 px-8 rounded-b-xl justify-between" href="/pdf/modelo_fatura.pdf" download="modelo_fatura.pdf">
+										<a className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 mt-2 px-8 rounded-b-xl justify-between" href="/pdf/modelo_fatura.pdf" download="modelo_fatura.pdf">
 											Download
 											<Download />
 										</a>
@@ -88,7 +88,7 @@ export function LibraryPage() {
 											<FolderOpen />
 										</div>
 									</a>
-										<a className="flex items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-3 px-8 w-full rounded-b-xl justify-between" href="/pdf/coordenadas_bancarias.pdf" download="coordenadas_bancarias.pdf">
+										<a className="flex items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 mt-2 px-8 w-full rounded-b-xl justify-between" href="/pdf/coordenadas_bancarias.pdf" download="coordenadas_bancarias.pdf">
 											Download
 											<Download />
 										</a>
