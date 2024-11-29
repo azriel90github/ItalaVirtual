@@ -103,7 +103,7 @@ export function BlogPage() {
 				<div className="flex flex-wrap gap-2 mb-44">
 					<div>
 						<div className="w-10/12 flex flex-col gap-4 mx-auto">
-							<h1 className="text-5xl leading-tight flex items-center justify-between text-buttonColor py-2 mt-14 mb-6 font-normal">
+							<h1 className="text-5xl leading-tight flex items-center justify-between text-buttonColor py-2 mt-14 mb-1 font-normal">
 								{t('blogpage.h2')}
 								<p>
 									
@@ -112,23 +112,24 @@ export function BlogPage() {
 							</h1>
 
 							<div className="homeBlogue flex gap-10">
-								<p>
-									<img
-										className="w-dvw rounded-full"
-										src="/perfis-blog/perfilBlogue.jpg"
-										alt=""
-									/>
-								</p>
 								<p className="flex flex-col leading-loose">
-									<p className="text-lg indent-5 mb-5 text-zinc-300">
+									<p className="text-lg mb-5 text-zinc-300">
 										{t('blogpage.par1')}
 									</p>
-									<p className="text-lg indent-5 mb-5 text-zinc-300">
+									<p className="text-lg mb-5 text-zinc-300">
 										{t('blogpage.par2')}
 									</p>
-									<p className="text-lg indent-5 mb-5 text-zinc-300">
+									<p className="text-lg mb-5 text-zinc-300">
 										{t('blogpage.par3')}
 									</p>
+								</p>
+								<p>
+									<img
+										className="w-dvw rounded-full mb-7"
+										src="/perfis-blog/perfil_2.jpg"
+										alt=""
+									/>
+									<aside className="text-buttonColor">"Nosso CEO, Cunha Shombossi, liderando com visão, inovação e determinação..."</aside>
 								</p>
 							</div>
 						</div>
@@ -234,7 +235,7 @@ export function BlogPage() {
 						<h1 className="text-5xl flex justify-between text-buttonColor py-5 mt-3 font-normal">
 							Eventos
 						</h1>
-							<p className="text-lg mb-4 indent-5 text-zinc-300">
+							<p className="text-lg mb-4 text-zinc-300">
 								{t('blogpage.par3')}
 							</p>
 					</div>
