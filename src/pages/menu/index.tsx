@@ -14,260 +14,162 @@ import { Searchbox } from "../../components/searchBox/search-box";
 
 // Tipo para os produtos
 export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  image?: string; // Imagem opcional
+  id: number; // Identificador único do produto
+  title: string; // Nome do produto
+  price: number; // Preço do produto
+  description: string; // Descrição do produto
+  image?: string; // URL da imagem do produto (opcional)
 }
 
-
 export function MenuPage() {
+  // Estado para armazenar os produtos recebidos do servidor
   const [products, setProducts] = useState<Product[]>([]);
+  
+  // Estado para armazenar a quantidade de itens adicionados para cada produto
   const [counts, setCounts] = useState<{ [key: number]: number }>({});
+  
+  // Estado para armazenar o total (quantidade * preço) para cada produto
   const [, setTotals] = useState<{ [key: number]: number }>({});
+  
+  // Estado para armazenar a cor dos botões (ex.: verde ao adicionar, vermelho ao remover)
   const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
+  
+  // Estado para alternar o ícone exibido (ex.: carrinho ou check)
   const [icons, setIcons] = useState<{ [key: number]: boolean }>({});
+  
+  // Hook de navegação para redirecionar o usuário para outras páginas
   const navigate = useNavigate();
-
-  const [cartItems, setCartItems] = useState<(Product & { scoops: number; total: number })[]>([]); // Extensão da interface Product
-  const updateCartItem = (id: number, scoops: number) => {
-    const product = products.find((p) => p.id === id);
-    if (product) {
-      const existingItemIndex = cartItems.findIndex((item) => item.id === id);
-
-      const updatedItem = {
-        ...product, // Inclui todos os campos da interface Product
-        scoops,
-        total: product.price * scoops,
-      };
-
-      setCartItems((prev) => {
-        if (existingItemIndex !== -1) {
-          // Atualiza o item existente
-          const updatedCart = [...prev];
-          updatedCart[existingItemIndex] = updatedItem;
-          return updatedCart;
-        // biome-ignore lint/style/noUselessElse: <explanation>
-        } else {
-          // Adiciona um novo item
-          return [...prev, updatedItem];
-        }
-      });
-    }
-  };
-
-  /**
-  
-  const [orderSummary, setOrderSummary] = useState<{ flavors: number; total: number }>({
-    flavors: 0,
-    total: 0,
-  });
-
-  const updateOrderSummary = () => {
-    const flavors = Object.values(counts).filter((count) => count > 0).length;
-    const total = Object.entries(counts).reduce((sum, [id, count]) => {
-      const product = products.find((p) => p.id === Number(id));
-      return sum + (product ? product.price * count : 0);
-    }, 0);
-  
-    setOrderSummary({ flavors, total });
-  };
-  
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-    useEffect(() => {
-    updateOrderSummary();
-  }, [counts]); // Atualiza sempre que os contadores mudarem.
-   */
-  
 
   // Função para buscar os produtos do servidor
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3334/products");
-      const data: Product[] = await response.json();
+      const response = await fetch("http://localhost:3334/products"); // Requisição à API local
+      const data: Product[] = await response.json(); // Conversão da resposta em JSON
 
-      setProducts(data);
+      setProducts(data); // Define os produtos no estado
 
-      // Inicializando os estados para cada produto
+      // Inicializa os estados relacionados a cada produto
       const initialCounts: { [key: number]: number } = {};
       const initialTotals: { [key: number]: number } = {};
       const initialColors: { [key: number]: string } = {};
       const initialIcons: { [key: number]: boolean } = {};
 
+      // Prepara os estados iniciais com valores padrão para cada produto
       // biome-ignore lint/complexity/noForEach: <explanation>
-      data.forEach((product) => {
-        initialCounts[product.id] = 0;
-        initialTotals[product.id] = 0;
-        initialColors[product.id] = "";
-        initialIcons[product.id] = false;
+        data.forEach((product) => {
+        initialCounts[product.id] = 0; // Inicializa a quantidade como 0
+        initialTotals[product.id] = 0; // Inicializa o total como 0
+        initialColors[product.id] = ""; // Inicializa a cor do botão como vazia
+        initialIcons[product.id] = false; // Inicializa o ícone como "não selecionado"
       });
 
+      // Atualiza os estados com os valores iniciais
       setCounts(initialCounts);
       setTotals(initialTotals);
       setButtonColors(initialColors);
       setIcons(initialIcons);
     } catch (error) {
-      console.error("Erro ao buscar produtos:", error);
+      console.error("Erro ao buscar produtos:", error); // Loga o erro, caso a requisição falhe
     }
   };
 
+  // Chama a função de busca ao montar o componente
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
+    useEffect(() => {
     fetchProducts();
   }, []);
 
-
-  // Funções independentes para cada produto
+  // Incrementa a quantidade de um produto no carrinho
   const incrementCount = (id: number) => {
     setCounts((prev) => {
-      const newCount = (prev[id] || 0) + 1;
-      updateTotal(id, newCount); // Atualiza o total com o novo count
-      updateCartItem(id, newCount); // Atualiza o item no carrinho
+      const newCount = (prev[id] || 0) + 1; // Incrementa o contador do produto
+      updateTotal(id, newCount); // Atualiza o total baseado na nova quantidade
       return {
         ...prev,
         [id]: newCount,
       };
     });
-    updateTotal(id, counts[id] + 1);
-  
-    // Reseta o botão "Adicionar ao Carrinho" ao estado original
-    setIcons((prev) => ({
-      ...prev,
-      [id]: false, // Ícone volta ao carrinho
-    }));
-    setButtonColors((prev) => ({
-      ...prev,
-      [id]: "", // Cor do botão volta ao estado original
-    }));
-    // Reseta os textos dos botões ao adicionar colheres
-    setAddButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Adicionar no Carrinho", // Reseta o texto do botão Adicionar
-    }));
 
-    setRemoveButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Remover do Carrinho", // Reseta o texto do botão Remover
-    }));
+    // Reseta o botão para o estado padrão
+    setIcons((prev) => ({ ...prev, [id]: false }));
+    setButtonColors((prev) => ({ ...prev, [id]: "" }));
+    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
   };
-  
+
+  // Decrementa a quantidade de um produto no carrinho (mínimo de 0)
   const decrementCount = (id: number) => {
     setCounts((prev) => {
-      const newCount = Math.max((prev[id] || 0) - 1, 0);
-      updateTotal(id, newCount); // Atualiza o total com o novo count
-      updateCartItem(id, newCount); // Atualiza o item no carrinho
+      const newCount = Math.max((prev[id] || 0) - 1, 0); // Garante que o contador não fique negativo
+      updateTotal(id, newCount); // Atualiza o total baseado na nova quantidade
       return {
         ...prev,
         [id]: newCount,
       };
     });
-    // Reseta o botão "Adicionar ao Carrinho" ao estado original
-    setIcons((prev) => ({
-      ...prev,
-      [id]: false, // Ícone volta ao carrinho
-    }));
-    setButtonColors((prev) => ({
-      ...prev,
-      [id]: "", // Cor do botão volta ao estado original
-    }));
-    // Reseta os textos dos botões ao adicionar colheres
-    setAddButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Adicionar no Carrinho", // Reseta o texto do botão Adicionar
-    }));
 
-    setRemoveButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Remover do Carrinho", // Reseta o texto do botão Remover
-    }));
+    // Reseta o botão para o estado padrão
+    setIcons((prev) => ({ ...prev, [id]: false }));
+    setButtonColors((prev) => ({ ...prev, [id]: "" }));
+    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
   };
-  
+
+  // Estado para os textos dos botões "Adicionar" e "Remover"
   const [addButtonTexts, setAddButtonTexts] = useState<{ [key: number]: string }>({});
   const [removeButtonTexts, setRemoveButtonTexts] = useState<{ [key: number]: string }>({});
 
-
+  // Atualiza o total (preço total do produto = quantidade * preço unitário)
   const updateTotal = (id: number, count: number) => {
-    // Encontre o produto correspondente pelo id
-    const product = products.find((product) => product.id === id);
-  
+    const product = products.find((product) => product.id === id); // Busca o produto pelo ID
+
     if (product) {
       setTotals((prev) => ({
         ...prev,
-        [id]: count * product.price, // Multiplicador com base no preço do banco
+        [id]: count * product.price, // Calcula o total para o produto
       }));
     }
   };
 
+  // Alterna o estado do ícone e a cor do botão
   const toggleIcon = (id: number) => {
-    setIcons((prev) => ({
-      ...prev,
-      [id]: true, // Define o ícone para "check"
-    }));
-    setButtonColors((prev) => ({
-      ...prev,
-      [id]: "green", // Define o botão como verde
-    }));
-    setAddButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Adicionado com Sucesso", // Atualiza o texto do botão Adicionar
-    }));
-    setRemoveButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Remover do Carrinho", // Reseta o texto do botão Remover
-    }));
+    setIcons((prev) => ({ ...prev, [id]: true })); // Define o ícone como "check"
+    setButtonColors((prev) => ({ ...prev, [id]: "green" })); // Define o botão como verde
+    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionado com Sucesso" })); // Atualiza o texto do botão Adicionar
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" })); // Reseta o texto do botão Remover
   };
 
+  // Remove um produto do carrinho
   const handleRemoveFromCart = (id: number) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-    setCounts((prev) => ({
-      ...prev,
-      [id]: 0, // Reseta o contador de colheres
-    }));
-    setTotals((prev) => ({
-      ...prev,
-      [id]: 0, // Reseta o total
-    }));
-    setIcons((prev) => ({
-      ...prev,
-      [id]: false, // Reseta o ícone para o estado original
-    }));
-    setButtonColors((prev) => ({
-      ...prev,
-      [id]: "red", // Define o botão como vermelho ao remover
-    }));
-    setAddButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Adicionar no Carrinho", // Reseta o texto do botão Adicionar
-    }));
-    setRemoveButtonTexts((prev) => ({
-      ...prev,
-      [id]: "Removido com Sucesso", // Atualiza o texto do botão Remover
-    }));
+    setCounts((prev) => ({ ...prev, [id]: 0 })); // Reseta a quantidade para 0
+    setTotals((prev) => ({ ...prev, [id]: 0 })); // Reseta o total para 0
+    setIcons((prev) => ({ ...prev, [id]: false })); // Reseta o ícone para o estado padrão
+    setButtonColors((prev) => ({ ...prev, [id]: "red" })); // Define o botão como vermelho
+    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" })); // Atualiza o texto do botão Adicionar
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Removido com Sucesso" })); // Atualiza o texto do botão Remover
   };
-  
-  // Estado para o sroller
-	const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-		const handleScroll = () => {
-			// Verifica se o usuário rolou mais de 50px da página
-			if (window.scrollY > 50) {
-				setIsScrolled(true);
-			} else {
-				setIsScrolled(false);
-			}
-		};
-		window.addEventListener('scroll', handleScroll);
-		// Limpar o event listener quando o componente for desmontado
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
 
-  // Clicar na seta da página menu e levar para o início
+  // Estado para verificar se o usuário rolou na página
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      // Marca como rolado se passar de 50px
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    // Remove o listener ao desmontar o componente
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Redireciona para a página inicial ao clicar em um botão
   function HomePage() {
-    navigate("/");
+    navigate("/"); // Redireciona para a página inicial
   }
+
+
 
 
 	return (
