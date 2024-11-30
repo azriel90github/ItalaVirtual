@@ -116,11 +116,9 @@ export function LibraryPage() {
 				
 				<div className="flex gap-4">
 				<MenuButton />
-				
 					{/**
 					 <div className="w-px h-12 bg-buttonColor2"></div>
 					*/}
-					
 				</div>
 			</footer>
 		</div>
