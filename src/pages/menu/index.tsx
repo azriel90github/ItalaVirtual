@@ -1,4 +1,4 @@
-import {
+import { //Importações
   ArrowLeft,
   CircleCheck,
   House,
@@ -27,15 +27,19 @@ export function MenuPage() {
   
   // Estado para armazenar a quantidade de itens adicionados para cada produto
   const [counts, setCounts] = useState<{ [key: number]: number }>({});
-  
+
   // Estado para armazenar o total (quantidade * preço) para cada produto
-  const [, setTotals] = useState<{ [key: number]: number }>({});
+  const [ totals, setTotals] = useState<{ [key: number]: number }>({});
   
   // Estado para armazenar a cor dos botões (ex.: verde ao adicionar, vermelho ao remover)
   const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
   
   // Estado para alternar o ícone exibido (ex.: carrinho ou check)
   const [icons, setIcons] = useState<{ [key: number]: boolean }>({});
+
+  const [cartItems, setCartItems] = useState<
+    { id: number; title: string; price: number; count: number; total: number }[]
+  >([]); // Dados do carrinho
   
   // Hook de navegação para redirecionar o usuário para outras páginas
   const navigate = useNavigate();
@@ -81,29 +85,34 @@ export function MenuPage() {
 
   // Incrementa a quantidade de um produto no carrinho
   const incrementCount = (id: number) => {
-    setCounts((prev) => {
-      const newCount = (prev[id] || 0) + 1; // Incrementa o contador do produto
-      updateTotal(id, newCount); // Atualiza o total baseado na nova quantidade
+    setCounts((prevCounts) => {
+      const newCount = (prevCounts[id] || 0) + 1; // Incrementa o contador do produto
+      updateCart(id, newCount); // Atualiza o total baseado na nova quantidade
       return {
-        ...prev,
+        ...prevCounts,
         [id]: newCount,
       };
     });
+
+
 
     // Reseta o botão para o estado padrão
     setIcons((prev) => ({ ...prev, [id]: false }));
     setButtonColors((prev) => ({ ...prev, [id]: "" }));
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
     setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
+    setCartItems((prev) => prev.filter((item) => item.id !== id)); // Remove o item do carrinho
   };
+
+
 
   // Decrementa a quantidade de um produto no carrinho (mínimo de 0)
   const decrementCount = (id: number) => {
-    setCounts((prev) => {
-      const newCount = Math.max((prev[id] || 0) - 1, 0); // Garante que o contador não fique negativo
-      updateTotal(id, newCount); // Atualiza o total baseado na nova quantidade
+    setCounts((prevCounts) => {
+      const newCount = Math.max((prevCounts[id] || 0) - 1, 0); // Garante que o contador não fique negativo
+      updateCart(id, newCount); // Atualiza o total baseado na nova quantidade
       return {
-        ...prev,
+        ...prevCounts,
         [id]: newCount,
       };
     });
@@ -120,15 +129,34 @@ export function MenuPage() {
   const [removeButtonTexts, setRemoveButtonTexts] = useState<{ [key: number]: string }>({});
 
   // Atualiza o total (preço total do produto = quantidade * preço unitário)
-  const updateTotal = (id: number, count: number) => {
+  const updateCart = (id: number, count: number) => {
     const product = products.find((product) => product.id === id); // Busca o produto pelo ID
+    if (!product) return;
 
-    if (product) {
-      setTotals((prev) => ({
-        ...prev,
-        [id]: count * product.price, // Calcula o total para o produto
-      }));
-    }
+    const total = count * product.price; // Calcula o total baseado na quantidade
+    setTotals((prevTotals) => ({ ...prevTotals, [id]: total }));
+
+    setCartItems((prevCartItems) => {
+      // Atualiza o item existente ou adiciona um novo no carrinho
+      const existingItem = prevCartItems.find((item) => item.id === id);
+      if (existingItem) {
+        if (count === 0) {
+          // Remove o item se a quantidade for 0
+          return prevCartItems.filter((item) => item.id !== id);
+        // biome-ignore lint/style/noUselessElse: <explanation>
+        } else {
+          // Atualiza os dados do item
+          return prevCartItems.map((item) =>
+            item.id === id ? { ...item, count, total } : item
+          );
+        }
+      // biome-ignore lint/style/noUselessElse: <explanation>
+      } else if (count > 0) {
+        // Adiciona um novo item ao carrinho
+        return [...prevCartItems, { id, title: product.title, price: product.price, count, total }];
+      }
+      return prevCartItems; // Retorna o estado atual se nada mudar
+    });
   };
 
   // Alterna o estado do ícone e a cor do botão
@@ -169,8 +197,11 @@ export function MenuPage() {
     navigate("/"); // Redireciona para a página inicial
   }
 
-
-
+  // Busca os produtos ao montar o componente
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useEffect(() => {
+    fetchProducts();
+  }, []);
 
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
