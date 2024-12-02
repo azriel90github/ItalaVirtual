@@ -1,4 +1,9 @@
-import { Facebook, Headset, Instagram, Mail, MessageCircle, Twitter, X, Youtube } from "lucide-react";
+import { 
+	Facebook, 
+	Headset, 
+	Instagram, 
+	//Mail, 
+	MessageCircle, Twitter, X, Youtube } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -122,6 +127,7 @@ export function ContactModal() {
                     <p className="text-zinc-300">YouTube</p>
                     <Youtube />
 									</button>
+									{/*
 									<h3 className="flex mx-2 text-lx">Email</h3>
 									<button
 										type="button"
@@ -131,6 +137,7 @@ export function ContactModal() {
                     <p className="text-zinc-300">azrielgithub@gmail.com</p>
                     <Mail />
 									</button>
+
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
@@ -139,6 +146,8 @@ export function ContactModal() {
                     <p className="text-zinc-300">azrielmoreira@gmail.com</p>
                     <Mail />
 									</button>
+									*/}
+									
 									
 								</div>
 							</div>
