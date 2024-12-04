@@ -27,7 +27,7 @@ export function OrderPage() {
 
   const location = useLocation();
   // Recebe os dados passados pela navegação
-  const { flavors = 0, total = 0 } = location.state || {};
+  const { total = 0 } = location.state || {};
 
 
   const [formData, setFormData] = useState({
@@ -40,14 +40,15 @@ export function OrderPage() {
     landmark: "",
   });
   
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-    useEffect(() => {
+  
+  useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      flavors: total.toString(), // Atualiza como string
-      payment: total.toString(), // Atualiza como string
+      flavors: getUniqueFlavorsCount().toString(),
+      payment: getTotalPayment().toString(),
     }));
-  }, [flavors, total]);
+  }, [getUniqueFlavorsCount, getTotalPayment]);
+  
   
 
 	// Função para fechar o modal e definir a opção selecionada
@@ -177,6 +178,8 @@ export function OrderPage() {
   
     return true; // Se tudo estiver preenchido, retorna true
   };
+
+  const { resetCart } = useCart();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Previne o comportamento padrão do formulário
@@ -204,6 +207,8 @@ export function OrderPage() {
         const data = await response.json();
         console.log('Ordem criada:', data);
         setShowSuccessModal(true);
+        // Após o envio bem-sucedido, resetar o carrinho
+        resetCart();
       } else {
         console.error("Erro ao enviar os dados.");
       }
@@ -256,7 +261,7 @@ export function OrderPage() {
                 type="text"
                 name="payment"
                 onChange={handleChange} // Atualiza o estado
-                value={`${getTotalPayment().toFixed(2)}`} // Total do pagamento formatado
+                value={`${getTotalPayment().toLocaleString('pt-AO')}`}// Total do pagamento formatado
                 readOnly
                 className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
               />

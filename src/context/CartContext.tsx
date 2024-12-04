@@ -37,6 +37,7 @@ interface CartContextData {
   // Novas funções adicionadas aqui
   getUniqueFlavorsCount: () => number;
   getTotalPayment: () => number;
+  resetCart: () => void; // Adicione esta linha
 }
 
 // Criação do Contexto
@@ -183,6 +184,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
+  const resetCart = () => {
+    setCounts({});
+    setTotals({});
+    setCartItems([]);
+    setButtonColors({});
+    setIcons({});
+    setAddButtonTexts({});
+    setRemoveButtonTexts({});
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -199,8 +210,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         decrementCount,
         toggleIcon,
         handleRemoveFromCart,
-        getUniqueFlavorsCount, // Adicionado
-        getTotalPayment,       // Adicionado
+        getUniqueFlavorsCount,// Adicionado
+        getTotalPayment,// Adicionado
+        resetCart// Adicionado
       }}
     >
       {children}
