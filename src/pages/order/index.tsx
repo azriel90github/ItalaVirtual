@@ -9,25 +9,15 @@ import {
 import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
-//import { useResult } from "../../context/ResultContext.tsx";
+import { useCart } from "../../context/CartContext.tsx";
 import { useLocation } from "react-router-dom";
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
-  /**
-  const location = useLocation();
-  const { flavors, total } = location.state || { flavors: 0, total: 0 };
 
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      flavors: flavors.toString(),
-      payment: total.toString(),
-    }));
-  }, [flavors, total]);
-   */
+  const { getUniqueFlavorsCount, getTotalPayment } = useCart();
 
   const { t } = useTranslation();
 
@@ -105,10 +95,8 @@ export function OrderPage() {
     }));
   };
   
-
   const [showValidationModal, setShowValidationModal] = useState(false); // Novo estado para validação
   const [validationMessage, setValidationMessage] = useState("");
-
 
   const validateForm = () => {
     const {
@@ -190,8 +178,6 @@ export function OrderPage() {
     return true; // Se tudo estiver preenchido, retorna true
   };
   
-  
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Previne o comportamento padrão do formulário
   
@@ -260,7 +246,7 @@ export function OrderPage() {
                   type="text"
                   name="flavors"
                   onChange={handleChange}
-                  value={formData.flavors.toString()} // Certifique-se de que está sincronizado com o estado                 
+                  value={getUniqueFlavorsCount()} // Número de sabores únicos
                   readOnly
                   className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
                 />
@@ -272,7 +258,7 @@ export function OrderPage() {
                 type="text"
                 name="payment"
                 onChange={handleChange} // Atualiza o estado
-                value={formData.payment.toString()} // Garante que seja string
+                value={`${getTotalPayment().toFixed(2)}`} // Total do pagamento formatado
                 readOnly
                 className="text-moneyColor1 bg-transparent text-right outline-none focus:ring-0"
               />

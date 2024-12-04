@@ -33,6 +33,10 @@ interface CartContextData {
   decrementCount: (id: number) => void;
   toggleIcon: (id: number) => void;
   handleRemoveFromCart: (id: number) => void;
+
+  // Novas funções adicionadas aqui
+  getUniqueFlavorsCount: () => number;
+  getTotalPayment: () => number;
 }
 
 // Criação do Contexto
@@ -110,10 +114,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const updateCart = (id: number, count: number) => {
     const product = products.find((product) => product.id === id);
     if (!product) return;
-
+  
     const total = count * product.price;
     setTotals((prevTotals) => ({ ...prevTotals, [id]: total }));
-
+  
     setCartItems((prevCartItems) => {
       const existingItem = prevCartItems.find((item) => item.id === id);
       if (existingItem) {
@@ -122,15 +126,32 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         // biome-ignore lint/style/noUselessElse: <explanation>
         } else {
           return prevCartItems.map((item) =>
-            item.id === id ? { ...item, count, total } : item
+            item.id === id
+              ? { ...item, count, total } // Atualiza o item no carrinho
+              : item
           );
         }
       // biome-ignore lint/style/noUselessElse: <explanation>
       } else if (count > 0) {
-        return [...prevCartItems, { id, title: product.title, price: product.price, count, total }];
+        return [
+          ...prevCartItems,
+          {
+            id,
+            title: product.title,
+            price: product.price,
+            count, // Registra o número de colheres
+            total, // Registra o valor total
+          },
+        ];
       }
       return prevCartItems;
     });
+  };
+
+  const getUniqueFlavorsCount = () => cartItems.length;
+
+  const getTotalPayment = () => {
+    return cartItems.reduce((total, item) => total + item.total, 0);
   };
 
   const toggleIcon = (id: number) => {
@@ -175,6 +196,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         decrementCount,
         toggleIcon,
         handleRemoveFromCart,
+        getUniqueFlavorsCount, // Adicionado
+        getTotalPayment,       // Adicionado
       }}
     >
       {children}
