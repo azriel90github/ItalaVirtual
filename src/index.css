@@ -20,6 +20,10 @@
 
 @media (max-width: 768px) {
 
+	.paymentMobile {
+		width: 100%;
+	}
+
 	.mainHome {
 		height: 125vh;
 	}

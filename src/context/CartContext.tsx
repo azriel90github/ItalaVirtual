@@ -168,6 +168,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setButtonColors((prev) => ({ ...prev, [id]: "red" }));
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
     setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Removido com Sucesso" }));
+
+    // Atualiza o carrinho
+    setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== id));
   };
 
   useEffect(() => {

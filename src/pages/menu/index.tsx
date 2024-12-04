@@ -56,7 +56,7 @@ export function MenuPage() {
 				</div>
 
 				<div className="flex items-center" > 
-					<CartButton cartItems={[]} />
+					<CartButton />
 				</div>
 			</div>
 
@@ -152,7 +152,7 @@ export function MenuPage() {
 					</div>
 
 					<div className="flex gap-4 items-center">
-					<CartButton cartItems={[]} />
+					<CartButton />
 					</div>
 				</footer>		 
 		</div>

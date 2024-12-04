@@ -1,16 +1,11 @@
 import { t } from "i18next";
 import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import type { Product } from "../../pages/menu/index";// Importe sua interface Product~
 
-interface CartButtonProps {
-  cartItems: (Product & { scoops: number; total: number })[]; // Dados do carrinho
-}
-
-export function CartButton({ cartItems }: CartButtonProps) {
+export function CartButton() {
 	const navigate = useNavigate(); // Esportar useNavigate do react-router-dom
 	function OrderPage() {
-    navigate("/order/123" , { state: { cartItems } });
+    navigate("/order/123");
   }
 
 	return (

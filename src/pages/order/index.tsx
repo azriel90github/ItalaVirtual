@@ -212,8 +212,6 @@ export function OrderPage() {
     }
   };
   
-  
-  
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
       <div className="border-2 mb-10 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
@@ -232,7 +230,7 @@ export function OrderPage() {
 
       <form onSubmit={handleSubmit}>
         <main className="flex flex-wrap gap-16">
-          <div className="w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
+          <div className="paymentMobile w-80 h-full bg-searchColor py-3.5 px-3.5 rounded-3xl">
             <div className="flex flex-col gap-1.5">
               <div className="bg-buttonColor2 text-lx items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
                 {t('orderpage.h2order')}
