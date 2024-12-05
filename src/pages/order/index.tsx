@@ -39,7 +39,19 @@ export function OrderPage() {
     cityOrNeighborhood: "",
     landmark: "",
   });
-  
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      number: "",
+      flavors: total.toString(), // Converte para string
+      payment: total.toString(), // Converte para string
+      paymentMethod: "",
+      cityOrNeighborhood: "",
+      landmark: "",
+    });
+  };
+
   
   useEffect(() => {
     setFormData((prev) => ({
@@ -207,8 +219,10 @@ export function OrderPage() {
         const data = await response.json();
         console.log('Ordem criada:', data);
         setShowSuccessModal(true);
-        // Após o envio bem-sucedido, resetar o carrinho
-        resetCart();
+
+        resetCart();// Após o envio bem-sucedido, resetar o carrinho
+        resetForm();// Reseta o formulário após o envio bem-sucedido
+
       } else {
         console.error("Erro ao enviar os dados.");
       }
