@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CircleAlert, CreditCard, Download, HandCoins, Landmark, Package, X } from "lucide-react";
+import { ChartNoAxesCombined, CreditCard, Download, HandCoins, Landmark, MailPlus, Package, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -108,13 +108,29 @@ export function OrderPage() {
     }));
   };
   
-  const [showValidationModal, setShowValidationModal] = useState(false); // Novo estado para validação
+  const [showValidationModal, setShowValidationModal] = useState(false);
   const [validationMessage, setValidationMessage] = useState("");
 
   const validateForm = () => {
-    const isEmptyField = Object.values(formData).some((value) => !value.trim());
+    const {
+      name,
+      number,
+      flavors,
+      payment,
+      paymentMethod,
+      cityOrNeighborhood,
+      landmark,
+    } = formData;
 
-    if (isEmptyField) {
+    if (
+      !name.trim() ||
+      !number.trim() ||
+      (!flavors || Number.parseFloat(flavors) === 0) ||
+      (!payment || Number.parseFloat(payment) === 0) ||
+      !paymentMethod.trim() ||
+      !cityOrNeighborhood.trim() ||
+      !landmark.trim()
+    ) {
       setValidationMessage(t('orderpage.validationAllFields'));
       setShowValidationModal(true);
       setTimeout(() => setShowValidationModal(false), 2000);
@@ -398,7 +414,7 @@ export function OrderPage() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
           <div className="w-[540px] rounded-xl py-6 px-6 flex items-center justify-between bg-colorHover">
             <p className="text-red-500 text-lg font-normal">{validationMessage}</p>
-            <CircleAlert className="text-red-500" />
+            <MailPlus className="text-red-500" />
           </div>
         </div>
       )}
