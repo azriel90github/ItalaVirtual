@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 import { useCart } from "../../context/CartContext";
+import { useState } from "react";
 
 // Tipo para os produtos
 export interface Product {
@@ -43,6 +44,13 @@ export function MenuPage() {
     navigate("/");
   };
 
+  const [selectedTitle, setSelectedTitle] = useState<string>("");
+
+  // Função para filtrar os produtos com base no título selecionado
+  const filteredProducts = selectedTitle
+    ? products.filter((product) => product.title === selectedTitle)
+    : products;
+
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
 			<div className={`border-b-2 border-colorInput h-20 shadow-shape bg-searchColor text-buttonColor flex flex-wrap items-center justify-around font-medium text-xl ${
@@ -62,11 +70,11 @@ export function MenuPage() {
 
 				<div className="flex flex-wrap justify-center gap-4">
 					{/** <ContactAndLanguage /> */}
-					<Searchbox />
+					<Searchbox onTitleSelect={setSelectedTitle}  />
 				</div>
         {/* Renderização dos cards */}
 				<div className="flex flex-wrap gap-5 justify-center pb-10">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <div key={product.id} className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
             {/* Informações do produto */}
             <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
@@ -137,7 +145,7 @@ export function MenuPage() {
 
 				<div className="flex pb-32 flex-wrap justify-center gap-4">
 					{/** <ContactAndLanguage /> */}
-					<Searchbox />
+					<Searchbox onTitleSelect={setSelectedTitle} />
 				</div>
 				<footer
 					className={`footerMenu flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${

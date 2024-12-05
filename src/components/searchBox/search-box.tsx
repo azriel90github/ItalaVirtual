@@ -1,11 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { Logs, X } from "lucide-react";
-import { type SetStateAction, useState } from "react";
+import { useState } from "react";
+import { useCart } from "../../context/CartContext.tsx";
 
-export function Searchbox() {
+interface SearchboxProps {
+  onTitleSelect: (title: string) => void;
+}
+
+export function Searchbox({ onTitleSelect }: SearchboxProps) {
+  const { products } = useCart(); // Acesso aos produtos do contexto
   const { t } = useTranslation();
   const [isSearchBoxModalOpen, setIsSearchBoxModalOpen] = useState(false);
-  const [, setSelectedOption] = useState(""); // Estado para o valor selecionado
+  const [, setSelectedTitle] = useState<string>(""); // Estado para armazenar o título selecionado
+
 
   // Função para abrir o modal
   function openSearchBoxModal() {
@@ -22,10 +29,12 @@ export function Searchbox() {
   }
 
   // Função para selecionar uma opção e fechar o modal
-  const handleSelectOption = (option: SetStateAction<string>) => {
-    setSelectedOption(option);
+  const handleSelectTitle = (option: string) => {
+    setSelectedTitle(option); // Atualiza o título selecionado
+    onTitleSelect(option); // Chama a função passada como prop para passar o título para o pai
     closeSearchBoxModal();
   };
+
 
   return (
     <div className="flex justify-center cursor-pointer">
@@ -60,30 +69,18 @@ export function Searchbox() {
                 <X onClick={closeSearchBoxModal} className="cursor-pointer" />
               </div>
               <div className="flex flex-col py-3 mt-2 gap-3">
-                <button
-                  type="button"
-                  className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-                  onClick={() => handleSelectOption("category1")}
-                >
-                  <p className="text-zinc-300">{t('modal.modalSearchBox.category1')}</p>
-                  <Logs />
-                </button>
-                <button
-                  type="button"
-                  className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-                  onClick={() => handleSelectOption("category2")}
-                >
-                  <p className="text-zinc-300">{t('modal.modalSearchBox.category2')}</p>
-                  <Logs />
-                </button>
-                <button
-                  type="button"
-                  className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-                  onClick={() => handleSelectOption("category3")}
-                >
-                  <p className="text-zinc-300">{t('modal.modalSearchBox.category3')}</p>
-                  <Logs />
-                </button>
+                {/* Gerando botões dinamicamente com base nos títulos dos produtos */}
+                {products.map((product) => (
+                  <button
+                    key={product.id} // Usando o id do produto para a chave única
+                    type="button"
+                    className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+                    onClick={() => handleSelectTitle(product.title)} // Seleciona o título do produto
+                  >
+                    <p className="text-zinc-300">{product.title}</p>
+                    <Logs />
+                  </button>
+                ))}
               </div>
             </div>
           </div>
