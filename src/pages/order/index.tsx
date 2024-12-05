@@ -112,83 +112,16 @@ export function OrderPage() {
   const [validationMessage, setValidationMessage] = useState("");
 
   const validateForm = () => {
-    const {
-      name,
-      number,
-      flavors,
-      payment,
-      paymentMethod,
-      cityOrNeighborhood,
-      landmark,
-    } = formData;
+    const isEmptyField = Object.values(formData).some((value) => !value.trim());
 
-    // Verifica se todos os campos estão vazios
-    const allFieldsEmpty = 
-    !name.trim() &&
-    !number.trim() &&
-    (!flavors || Number.parseFloat(flavors) === 0) &&
-    (!payment || Number.parseFloat(payment) === 0) &&
-    !paymentMethod.trim() &&
-    !cityOrNeighborhood.trim() &&
-    !landmark.trim();
+    if (isEmptyField) {
+      setValidationMessage(t('orderpage.validationAllFields'));
+      setShowValidationModal(true);
+      setTimeout(() => setShowValidationModal(false), 2000);
+      return false;
+    }
 
-    if (allFieldsEmpty) {
-      setValidationMessage(t('orderpage.validationAllFields')); // Mensagem genérica
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    if (!name.trim()) {
-      setValidationMessage(t('orderpage.validationName')); // Mensagem para o campo de nome
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    if (!number.trim()) {
-      setValidationMessage(t('orderpage.validationNumber')); // Mensagem para o campo de número
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    if (!flavors || Number.parseFloat(flavors) === 0) {
-      setValidationMessage(t('orderpage.validationFlavors')); // Mensagem para o campo de sabores
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    if (!payment || Number.parseFloat(payment) === 0) {
-      setValidationMessage(t('orderpage.validationPayment')); // Mensagem para o campo de pagamento
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    if (!paymentMethod.trim()) {
-      setValidationMessage(t('orderpage.validationPaymentMethod')); // Mensagem para o método de pagamento
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    if (!cityOrNeighborhood.trim()) {
-      setValidationMessage(t('orderpage.validationCity')); // Mensagem para o campo de bairro/cidade
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    if (!landmark.trim()) {
-      setValidationMessage(t('orderpage.validationLandmark')); // Mensagem para o campo de referência
-      setShowValidationModal(true);
-      setTimeout(() => setShowValidationModal(false), 2000); // Fecha modal após 2 segundos
-      return false;
-    }
-  
-    return true; // Se tudo estiver preenchido, retorna true
+    return true;
   };
 
   const { resetCart } = useCart();
@@ -269,7 +202,7 @@ export function OrderPage() {
                 />
             </p>
 
-            <p className="flex justify-between py-2 px-3 text-xl">
+            <p className="flex justify-between py-1.5 px-3 text-xl">
               <h3 className="text-buttonColor font-medium">{t('orderpage.pagamento')}</h3>
               <input
                 type="text"
@@ -431,9 +364,7 @@ export function OrderPage() {
                   {t('orderpage.reset')}
                   <RotateCcw />
                 </button>
-
                 </div>
-              
             </div>
           </div>
         </main>
