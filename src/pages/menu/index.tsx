@@ -50,6 +50,7 @@ export function MenuPage() {
   const filteredProducts = selectedTitle
     ? products.filter((product) => product.title === selectedTitle)
     : products;
+    
 
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
@@ -95,8 +96,17 @@ export function MenuPage() {
               <p className="text-6xl">{product.price}</p>
               <small className="text-lx">00</small>
             </span>
-            <div className="text-buttonColor flex items-center justify-center gap-2 py-3">
-							⭐ ⭐ ⭐ ⭐ ⭐
+            <div className="text-buttonColor flex text-center items-center justify-center gap-2 py-3">
+            {/* Renderizar estrelas baseadas no valor de heart */}
+            <div className="text-buttonColor flex justify-center py-3">
+              {[...Array(product.heart)].map((_, index) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                <span key={index} role="img" aria-label="star">
+                  ⭐
+                </span>
+              ))}
+            </div>
+
 						</div>
             <p className="text-center py-4 mb-2 text-buttonColor font-light text-xl">
               {product.description || "Sem descrição disponível"}

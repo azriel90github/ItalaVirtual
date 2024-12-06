@@ -12,7 +12,9 @@ export const goods = pgTable("goods", {
 	id: text("id").primaryKey().$defaultFn(() => createId()),
 	title: text("title").notNull(),
 	price: numeric("price").notNull(), // Aqui o campo price será numérico (com casas decimais)
+  heart: numeric("heart"),
 	description: text("description").notNull(),
+  category: text().notNull()
 });
 
 export const customerOrder = pgTable("customer_order", {

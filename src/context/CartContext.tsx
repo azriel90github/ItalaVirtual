@@ -2,6 +2,8 @@ import { createContext, useState, useEffect, useContext, type ReactNode } from "
 
 // Tipo para os produtos
 export interface Product {
+  category(category: any): void;
+  heart: ReactI18NextChildren | Iterable<ReactI18NextChildren>;
   id: number;
   title: string;
   price: number;
