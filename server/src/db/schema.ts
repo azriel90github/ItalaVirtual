@@ -6,13 +6,14 @@ import {
 } from "drizzle-orm/pg-core";
 
 import { createId } from "@paralleldrive/cuid2";
+import { integer } from "drizzle-orm/pg-core";
 //import { number } from "zod";
 
 export const goods = pgTable("goods", {
 	id: text("id").primaryKey().$defaultFn(() => createId()),
 	title: text("title").notNull(),
 	price: numeric("price").notNull(), // Aqui o campo price será numérico (com casas decimais)
-  heart: numeric("heart"),
+  heart: integer("heart").default(0).notNull(),
 	description: text("description").notNull(),
   category: text().notNull()
 });

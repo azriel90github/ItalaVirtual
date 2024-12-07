@@ -4,15 +4,17 @@ import { useState } from "react";
 import { useCart } from "../../context/CartContext.tsx";
 
 interface SearchboxProps {
-  onTitleSelect: (title: string) => void;
+   onCategorySelect: (category: string) => void;
 }
 
-export function Searchbox({ onTitleSelect }: SearchboxProps) {
+export function Searchbox({ onCategorySelect }: SearchboxProps) {
   const { products } = useCart(); // Acesso aos produtos do contexto
   const { t } = useTranslation();
   const [isSearchBoxModalOpen, setIsSearchBoxModalOpen] = useState(false);
-  const [, setSelectedTitle] = useState<string>(""); // Estado para armazenar o título selecionado
+  const [ selectedCategory, setSelectedCategory] = useState<string>(""); // Estado para armazenar o título selecionado
 
+  // Obter categorias únicas
+  const uniqueCategories = Array.from(new Set(products.map((product) => product.category)));
 
   // Função para abrir o modal
   function openSearchBoxModal() {
@@ -28,10 +30,10 @@ export function Searchbox({ onTitleSelect }: SearchboxProps) {
     // document.body.style.overflow = "";
   }
 
-  // Função para selecionar uma opção e fechar o modal
-  const handleSelectTitle = (option: string) => {
-    setSelectedTitle(option); // Atualiza o título selecionado
-    onTitleSelect(option); // Chama a função passada como prop para passar o título para o pai
+  // Função para selecionar uma categoria e fechar o modal
+  const handleSelectCategory = (category: string) => {
+    setSelectedCategory(category); // Atualiza a categoria selecionada
+    onCategorySelect(category); // Chama a função passada como prop para passar a categoria para o pai
     closeSearchBoxModal();
   };
 
@@ -45,7 +47,7 @@ export function Searchbox({ onTitleSelect }: SearchboxProps) {
           onClick={openSearchBoxModal}
         >
           <div className="w-full py-2.5 px-5 flex items-center justify-between">
-            <p>{t('modal.Searchbox')}</p>
+            <p>{selectedCategory || t('modal.Searchbox')}</p>
 						<Logs />
           </div>
           
@@ -69,15 +71,15 @@ export function Searchbox({ onTitleSelect }: SearchboxProps) {
                 <X onClick={closeSearchBoxModal} className="cursor-pointer" />
               </div>
               <div className="flex flex-col py-3 mt-2 gap-3">
-                {/* Gerando botões dinamicamente com base nos títulos dos produtos */}
-                {products.map((product) => (
+                {/* Gerando botões dinamicamente com base nas categorias únicas */}
+                {uniqueCategories.map((category) => (
                   <button
-                    key={product.id} // Usando o id do produto para a chave única
+                    key={category} // Usando o id do produto para a chave única
                     type="button"
                     className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-                    onClick={() => handleSelectTitle(product.title)} // Seleciona o título do produto
+                    onClick={() => handleSelectCategory(category)} // Seleciona a categoria do produto
                   >
-                    <p className="text-zinc-300">{product.title}</p>
+                    <p className="text-zinc-300">{category}</p>
                     <Logs />
                   </button>
                 ))}

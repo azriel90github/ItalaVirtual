@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 import { useCart } from "../../context/CartContext";
+
 import { useState } from "react";
 
 // Tipo para os produtos
@@ -23,7 +24,7 @@ export interface Product {
   image?: string; // URL da imagem do produto (opcional)
 }
 
-export function MenuPage() {
+export function MenuPage() { 
   const {
     products,
     counts,
@@ -44,13 +45,12 @@ export function MenuPage() {
     navigate("/");
   };
 
-  const [selectedTitle, setSelectedTitle] = useState<string>("");
+  const [selecteCategory, setSelectedCategory] = useState<string>("");
 
   // Função para filtrar os produtos com base no título selecionado
-  const filteredProducts = selectedTitle
-    ? products.filter((product) => product.title === selectedTitle)
+  const filteredProducts = selecteCategory
+    ? products.filter((product) => product.category === selecteCategory)
     : products;
-    
 
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
@@ -71,7 +71,7 @@ export function MenuPage() {
 
 				<div className="flex flex-wrap justify-center gap-4">
 					{/** <ContactAndLanguage /> */}
-					<Searchbox onTitleSelect={setSelectedTitle}  />
+					<Searchbox onCategorySelect={setSelectedCategory}  />
 				</div>
         {/* Renderização dos cards */}
 				<div className="flex flex-wrap gap-5 justify-center pb-10">
@@ -87,7 +87,7 @@ export function MenuPage() {
             <div className="py-3">
               <img
                 className="mx-auto w-36 h-36 rounded-full"
-                src="/menu/ice-cream 1.png"
+                src={getImageById(product.id) || '/menu/default-image.png'} // Usando a função getImageById para pegar a imagem
                 alt="Imagem do produto"
               />
             </div>
@@ -96,18 +96,7 @@ export function MenuPage() {
               <p className="text-6xl">{product.price}</p>
               <small className="text-lx">00</small>
             </span>
-            <div className="text-buttonColor flex text-center items-center justify-center gap-2 py-3">
-            {/* Renderizar estrelas baseadas no valor de heart */}
-            <div className="text-buttonColor flex justify-center py-3">
-              {[...Array(product.heart)].map((_, index) => (
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <span key={index} role="img" aria-label="star">
-                  ⭐
-                </span>
-              ))}
-            </div>
 
-						</div>
             <p className="text-center py-4 mb-2 text-buttonColor font-light text-xl">
               {product.description || "Sem descrição disponível"}
             </p>
@@ -155,7 +144,7 @@ export function MenuPage() {
 
 				<div className="flex pb-32 flex-wrap justify-center gap-4">
 					{/** <ContactAndLanguage /> */}
-					<Searchbox onTitleSelect={setSelectedTitle} />
+					<Searchbox onCategorySelect={setSelectedCategory} />
 				</div>
 				<footer
 					className={`footerMenu flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
