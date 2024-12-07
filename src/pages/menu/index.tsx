@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { CartButton } from "../../components/buttons/cart-button";
 import { Searchbox } from "../../components/searchBox/search-box";
 import { useCart } from "../../context/CartContext";
-
+import { useImage } from '../../context/ImageContext';
 import { useState } from "react";
 
 // Tipo para os produtos

@@ -1,22 +1,21 @@
 import type React from 'react';
-import { createContext, useContext, type ReactNode } from 'react'
+import { createContext, useContext, type ReactNode } from 'react';
 
 interface ImageContextProps {
-  images: { [key: number]: string }; // Mapeamento de ID para URL da imagem
-  getImageById: (id: number) => string | undefined;
+  images: { [key: string]: string }; // As chaves do objeto `images` são strings
+  getImageById: (id: string) => string | undefined; // O argumento da função deve ser uma string
 }
 
 const ImageContext = createContext<ImageContextProps | undefined>(undefined);
 
 export const ImageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const images = {
-    gt1g1yrev4exfp78pevnvcua: '/menu/ice-cream 1.png', // Exemplo de mapeamento de imagem com ID
-    gy44hi7w8ie5jkhufpysg4tq: '/menu/ice-cream 2.png', // Outro mapeamento de imagem
-    mqkxrqikkksmwycytk8q1h7a: '/menu/ice-cream 3.png', // E assim por diante
-    // Adicione mais IDs e URLs de imagens conforme necessário
+  const images: { [key: string]: string } = {
+    gt1g1yrev4exfp78pevnvcua: '/menu/image1.png',
+    gy44hi7w8ie5jkhufpysg4tq: '/menu/image2.png',
+    mqkxrqikkksmwycytk8q1h7a: '/menu/image3.png',
   };
 
-  const getImageById = (id: number) => images[id];
+  const getImageById = (id: string) => images[id]; // Agora usamos `id` como string
 
   return (
     <ImageContext.Provider value={{ images, getImageById }}>
@@ -32,3 +31,4 @@ export const useImage = (): ImageContextProps => {
   }
   return context;
 };
+
