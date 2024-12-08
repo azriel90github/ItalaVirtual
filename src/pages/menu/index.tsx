@@ -52,8 +52,7 @@ export function MenuPage() {
     ? products.filter((product) => product.category === selecteCategory)
     : products;
 
-    const { getImageById } = useImage();
-    //const imageUrl = getImageById(id);
+    const { getImageByTitle } = useImage(); // Atualizado para o novo método
 
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
@@ -90,7 +89,7 @@ export function MenuPage() {
             <div className="py-3">
               <img
                 className="mx-auto w-36 h-36 rounded-full"
-                src={getImageById(product.id.toString())} // Convertendo product.id para string
+                src={getImageByTitle(product.title)} // Usando o título do produto
                 alt={`Product ${product.title}`}
               />
             </div>
@@ -101,7 +100,7 @@ export function MenuPage() {
             </span>
 
             <p className="text-center py-4 mb-2 text-buttonColor font-light text-xl">
-              {product.description || "Sem descrição disponível"}
+              {/**/product.description || "Sem descrição disponível"}
             </p>
             <div className="flex flex-col gap-3">
               <button
