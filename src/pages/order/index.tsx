@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { useCart } from "../../context/CartContext.tsx";
+import { useInvoice } from "../../context/InvoiceContext";
 import { useLocation } from "react-router-dom";
 
 import { useTranslation } from 'react-i18next';
@@ -141,6 +142,9 @@ export function OrderPage() {
   };
 
   const { resetCart } = useCart();
+  const { generateInvoice } = useInvoice();
+  const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
+
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Previne o comportamento padrão do formulário
@@ -169,6 +173,13 @@ export function OrderPage() {
         console.log('Ordem criada:', data);
         setShowSuccessModal(true);
 
+        // Gerar PDF e enviar por e-mail
+        generateInvoice(formData);
+        //sendInvoiceByEmail(formData, formData.number);
+         // Gerar o PDF
+         const blob = await generateInvoice(formData);
+         setPdfBlob(blob); // Salvar o PDF gerado no estado
+
         resetCart();// Após o envio bem-sucedido, resetar o carrinho
         resetForm();// Reseta o formulário após o envio bem-sucedido
 
@@ -179,6 +190,19 @@ export function OrderPage() {
       console.error("Erro na requisição:", error);
     }
   };
+
+  const handleDownloadInvoice = () => {
+    if (pdfBlob) {
+      const url = window.URL.createObjectURL(pdfBlob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Fatura_${formData.name}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  };
+
   
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
@@ -400,7 +424,12 @@ export function OrderPage() {
               <p className="text-zinc-300 pb-2 flex-1">{t('orderpage.modalSendP')}</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">
-              <button onClick={() => setShowSuccessModal(false)} className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+              <button 
+                onClick={() => {
+                  handleDownloadInvoice(); // Lógica de download do PDF
+                  setShowSuccessModal(false); // Fechar o modal
+                }}
+                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton')}
                 <Download />
               </button>
