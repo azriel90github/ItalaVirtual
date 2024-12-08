@@ -17,7 +17,7 @@ import { useState } from "react";
 
 // Tipo para os produtos
 export interface Product {
-  id: number; // Identificador único do produto
+  id: string; // Alterado de number para string
   title: string; // Nome do produto
   price: number; // Preço do produto
   description: string; // Descrição do produto
@@ -51,6 +51,9 @@ export function MenuPage() {
   const filteredProducts = selecteCategory
     ? products.filter((product) => product.category === selecteCategory)
     : products;
+
+    const { getImageById } = useImage();
+    //const imageUrl = getImageById(id);
 
 	return (
 		<div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
@@ -87,8 +90,8 @@ export function MenuPage() {
             <div className="py-3">
               <img
                 className="mx-auto w-36 h-36 rounded-full"
-                src={getImageById(product.id) || '/menu/default-image.png'} // Usando a função getImageById para pegar a imagem
-                alt="Imagem do produto"
+                src={getImageById(product.id.toString())} // Convertendo product.id para string
+                alt={`Product ${product.title}`}
               />
             </div>
             <span className="flex justify-center text-zinc-200 font-normal text-2xl gap-2 py-3">

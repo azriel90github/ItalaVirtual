@@ -1,21 +1,26 @@
 import type React from 'react';
 import { createContext, useContext, type ReactNode } from 'react';
 
+// Definição da interface ImageContextProps
 interface ImageContextProps {
-  images: { [key: string]: string }; // As chaves do objeto `images` são strings
-  getImageById: (id: string) => string | undefined; // O argumento da função deve ser uma string
+  images: { [key: string]: string }; // Mapeamento de ID para URL da imagem
+  getImageById: (id: string) => string; // Função para obter URL da imagem por ID
 }
 
+// Criação do contexto com um valor inicial indefinido
 const ImageContext = createContext<ImageContextProps | undefined>(undefined);
 
+// Componente Provider para o contexto de imagens
 export const ImageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const images: { [key: string]: string } = {
-    gt1g1yrev4exfp78pevnvcua: '/menu/image1.png',
-    gy44hi7w8ie5jkhufpysg4tq: '/menu/image2.png',
-    mqkxrqikkksmwycytk8q1h7a: '/menu/image3.png',
+    gt1g1yrev4exfp78pevnvcua: '/menu/ice-cream1.png',
+    gy44hi7w8ie5jkhufpysg4tq: '/menu/default.png',
+    mqkxrqikkksmwycytk8q1h7a: '/menu/default.png',
   };
 
-  const getImageById = (id: string) => images[id]; // Agora usamos `id` como string
+  const getImageById = (id: string): string => {
+    return images[id] || '/menu/default.png';
+  };
 
   return (
     <ImageContext.Provider value={{ images, getImageById }}>
@@ -24,6 +29,7 @@ export const ImageProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   );
 };
 
+// Hook personalizado para consumir o contexto
 export const useImage = (): ImageContextProps => {
   const context = useContext(ImageContext);
   if (!context) {
@@ -31,4 +37,3 @@ export const useImage = (): ImageContextProps => {
   }
   return context;
 };
-
