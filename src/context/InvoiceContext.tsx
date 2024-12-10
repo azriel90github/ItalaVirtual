@@ -63,6 +63,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
       const locationLines = [
         "Endereço da empresa:",
+        "Rua Exemplo, 123, Bairro, Cidade",
         "Rua Exemplo, 123, Bairro, Cidade"
       ];
 
@@ -87,6 +88,8 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       // Exibir os detalhes do cliente
       doc.text(`Nome: ${orderData.name}`, margin, img1Height + margin + 30);
       doc.text(`Número: ${orderData.number}`, margin, img1Height + margin + 40);
+      doc.text(`Cidade: ${orderData.city}`, margin, img1Height + margin + 50); // Novo campo
+      doc.text(`Bairro: ${orderData.neighborhood}`, margin, img1Height + margin + 60); // Novo campo
 
       // Seção resumo da encomenda com fundo, padding e border-radius
       const summaryBoxX = margin;
