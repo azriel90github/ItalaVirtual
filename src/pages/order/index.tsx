@@ -202,7 +202,6 @@ export function OrderPage() {
       document.body.removeChild(a);
     }
   };
-
   
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">

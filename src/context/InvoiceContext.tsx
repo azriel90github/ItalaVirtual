@@ -91,8 +91,8 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       doc.setFontSize(12);
       doc.text(`Nome: ${orderData.name}`, margin, img1Height + margin + 30);
       doc.text(`Número: ${orderData.number}`, margin, img1Height + margin + 40);
-      doc.text(`Cidade: ${orderData.city}`, margin, img1Height + margin + 50);
-      doc.text(`Bairro: ${orderData.neighborhood}`, margin, img1Height + margin + 60);
+      doc.text(`Cidade ou bairro: ${orderData.cityOrNeighborhood}`, margin, img1Height + margin + 50);
+      doc.text(`Ponto de referência: ${orderData.landmark}`, margin, img1Height + margin + 60);
 
       // Configurações para a seção de resumo da encomenda
       const summaryBoxHeight = 60; // Altura da seção
