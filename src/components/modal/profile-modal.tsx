@@ -2,10 +2,11 @@ import { Building2, X } from "lucide-react";
 import { useState } from "react";
 
 export function ProfileModal() {
-
-  function disableScroll() {
+  /**
+   *   function disableScroll() {
     document.body.style.overflow = "hidden";
   }
+   */
   
   function enableScroll() {
     document.body.style.overflow = "";
@@ -13,10 +14,13 @@ export function ProfileModal() {
 
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
-  function openProfileModal() {
+  /**
+   *   function openProfileModal() {
     setIsProfileModalOpen(true);
     disableScroll(); // Bloqueia rolagem ao abrir
   }
+   */
+
 
   function closeProfileModal() {
     setIsProfileModalOpen(false);
@@ -27,7 +31,6 @@ export function ProfileModal() {
     <>
       <button
         type="button"
-        onClick={openProfileModal}
         className="flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5"
       >
         <div>Empresa</div>

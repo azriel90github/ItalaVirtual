@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CreditCard, Download, HandCoins, Landmark, MailPlus, Package, X } from "lucide-react";
+import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, Mail, MailPlus, MessageCircle, Package, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -11,14 +11,15 @@ import { MenuButton } from "../../components/buttons/menu-button";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
+import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
 
 export function OrderPage() {
-
   const { getUniqueFlavorsCount, getTotalPayment } = useCart();
+  const { generateInvoice } = useInvoice()
 
   const { t } = useTranslation();
 
@@ -63,7 +64,6 @@ export function OrderPage() {
   }, [getUniqueFlavorsCount, getTotalPayment]);
   
   
-
 	// Função para fechar o modal e definir a opção selecionada
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
@@ -106,8 +106,9 @@ export function OrderPage() {
     setFormData((prev) => ({
       ...prev,
       [name]: value, // Atualiza o campo correto no estado
-    }));
+    }))
   };
+  
   
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [validationMessage, setValidationMessage] = useState("");
@@ -142,67 +143,57 @@ export function OrderPage() {
   };
 
   const { resetCart } = useCart();
-  const { generateInvoice } = useInvoice();
-  const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Previne o comportamento padrão do formulário
-  
+    e.preventDefault();
+
     if (!validateForm()) return; // Bloqueia envio se a validação falhar
-  
+
     console.log("Formulário válido, enviando...");
-  
+
     try {
-      const response = await fetch("http://localhost:3334/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          number: Number.parseInt(formData.number), 
-          flavors: Number.parseInt(formData.flavors), 
-          payment: Number.parseInt(formData.payment), 
-          paymentMethod: selectedOption, 
-        }),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Ordem criada:', data);
-        setShowSuccessModal(true);
+        const response = await fetch("http://localhost:3334/order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...formData,
+                number: Number.parseInt(formData.number),
+                flavors: Number.parseInt(formData.flavors),
+                payment: Number.parseInt(formData.payment),
+                paymentMethod: selectedOption,
+            }),
+        });
 
-        // Gerar PDF e enviar por e-mail
-        generateInvoice(formData);
-        //sendInvoiceByEmail(formData, formData.number);
-         // Gerar o PDF
-         const blob = await generateInvoice(formData);
-         setPdfBlob(blob); // Salvar o PDF gerado no estado
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Ordem criada:", data);
+            setShowSuccessModal(true);
 
-        resetCart();// Após o envio bem-sucedido, resetar o carrinho
-        resetForm();// Reseta o formulário após o envio bem-sucedido
+            // Gerar PDF
+            const invoiceComponent = generateInvoice(formData); // Passa os dados para a fatura
+            const blob = await pdf(invoiceComponent).toBlob();
 
-      } else {
-        console.error("Erro ao enviar os dados.");
-      }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-    }
-  };
+            // Baixar o PDF
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Fatura_${formData.name}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
 
-  const handleDownloadInvoice = () => {
-    if (pdfBlob) {
-      const url = window.URL.createObjectURL(pdfBlob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `Fatura_${formData.name}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-  };
-  
+            resetCart(); // Após o envio bem-sucedido, resetar o carrinho
+            resetForm(); // Reseta o formulário após o envio bem-sucedido
+        } else {
+            console.error("Erro ao enviar os dados.");
+        }
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+        }
+    };
+
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
       <div className="border-2 mb-10 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
@@ -424,13 +415,22 @@ export function OrderPage() {
             </div>
             <div className="items-center gap-3 flex flex-wrap">
               <button 
+                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                {t('orderpage.modalSendButton1')}
+                <Mail />
+              </button>
+              <button 
+                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                {t('orderpage.modalSendButton2')}
+                <MessageCircle />
+              </button>
+              <button 
                 onClick={() => {
-                  handleDownloadInvoice(); // Lógica de download do PDF
                   setShowSuccessModal(false); // Fechar o modal
                 }}
-                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
-                {t('orderpage.modalSendButton')}
-                <Download />
+                className="w-full flex transition duration-400 bg-searchColor hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                {t('orderpage.modalSendButton3')}
+                <X />
               </button>
             </div>
           </div>

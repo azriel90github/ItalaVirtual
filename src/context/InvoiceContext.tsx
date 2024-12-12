@@ -1,140 +1,165 @@
-import type React from "react";
-import { createContext, useContext } from "react";
-import jsPDF from "jspdf";
+import React, { createContext, useContext } from "react";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Font,
+  Image,
+  pdf,
+} from "@react-pdf/renderer";
 
-// Define a interface para o contexto de geração de faturas
-interface InvoiceContextProps {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  generateInvoice: (orderData: any) => Promise<Blob | null>; // Função para gerar a fatura
+// Registrar fonte personalizada (opcional)
+Font.register({
+  family: "Roboto",
+  fonts: [
+    { src: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" },
+  ],
+});
+
+// Definir uma interface para os dados da encomenda
+interface FormData {
+  name: string;
+  number: string;
+  cityOrNeighborhood: string;
+  landmark: string;
+  flavors: number;
+  payment: string;
+  paymentMethod: string;
 }
 
-// Cria o contexto para o provedor de faturas
+// Definir a interface para o contexto
+interface InvoiceContextProps {
+  generateInvoice: (formData: FormData) => JSX.Element;
+  downloadInvoice: (formData: FormData) => Promise<void>;
+}
+
+// Criar o contexto para o provedor de faturas
 const InvoiceContext = createContext<InvoiceContextProps | undefined>(undefined);
 
-// Provedor do contexto de faturas
+// Estilos para o PDF
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: "column",
+    backgroundColor: "#64395C",
+    padding: 20,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  logo: {
+    width: 60,
+    height: 32,
+  },
+  address: {
+    textAlign: "right",
+    color: "white",
+    fontSize: 10,
+    lineHeight: 1.5,
+  },
+  sectionTitle: {
+    color: "white",
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  text: {
+    color: "white",
+    fontSize: 12,
+    marginBottom: 5,
+  },
+  summaryBox: {
+    backgroundColor: "#7C4A73",
+    borderRadius: 3,
+    padding: 10,
+    marginTop: 20,
+  },
+  summaryText: {
+    color: "white",
+    fontSize: 12,
+  },
+  footer: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    color: "white",
+    fontSize: 10,
+    fontStyle: "italic",
+  },
+});
+
+// Provedor de faturas
 export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Função para gerar a fatura em PDF
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const generateInvoice = async (orderData: any): Promise<Blob | null> => {
-    try {
-      const doc = new jsPDF(); // Cria uma nova instância do jsPDF
+  // Função para gerar a fatura como PDF
+  const generateInvoice = (formData: FormData): JSX.Element => {
+    return (
+      <Document>
+        <Page size="A4" style={styles.page}>
+          {/* Cabeçalho */}
+          <View style={styles.header}>
+            {/* Logo */}
+            <View>
+              <Image style={styles.logo} src="/logo-geladaria.png" />
+            </View>
+            {/* Endereço */}
+            <View>
+              <Text style={styles.address}>Endereço da empresa:</Text>
+              <Text style={styles.address}>Rua Exemplo, 123, Bairro, Cidade</Text>
+            </View>
+          </View>
 
-      // Configurações de página
-      const pageWidth = doc.internal.pageSize.getWidth(); // Largura da página
-      const pageHeight = doc.internal.pageSize.getHeight(); // Altura da página
-      const margin = 10; // Margem uniforme
+          {/* Dados do Cliente */}
+          <View>
+            <Text style={styles.sectionTitle}>Dados do Cliente</Text>
+            <Text style={styles.text}>Nome: {formData.name}</Text>
+            <Text style={styles.text}>Número: {formData.number}</Text>
+            <Text style={styles.text}>
+              Cidade ou bairro: {formData.cityOrNeighborhood}
+            </Text>
+            <Text style={styles.text}>
+              Ponto de referência: {formData.landmark}
+            </Text>
+          </View>
 
-      // Define a cor de fundo da página
-      doc.setFillColor(100, 57, 92); // Cor #64395C
-      doc.rect(0, 0, pageWidth, pageHeight, "F"); // Preenche a página inteira
+          {/* Resumo da Encomenda */}
+          <View style={styles.summaryBox}>
+            <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
+            <Text style={styles.summaryText}>
+              Total de Sabores: {formData.flavors}
+            </Text>
+            <Text style={styles.summaryText}>
+              Total de Pagamento: {formData.payment}
+            </Text>
+            <Text style={styles.summaryText}>
+              Método de Pagamento: {formData.paymentMethod}
+            </Text>
+          </View>
 
-      // Função para carregar imagens
-      const loadImage = (src: string): Promise<string> => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = src;
-          img.onload = () => {
-            const canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext("2d");
-            if (ctx) {
-              ctx.drawImage(img, 0, 0, img.width, img.height);
-              resolve(canvas.toDataURL("image/png")); // Retorna a imagem em formato base64
-            } else {
-              reject(new Error("Não foi possível processar a imagem."));
-            }
-          };
-          img.onerror = (err) => reject(err);
-        });
-      };
+          {/* Rodapé */}
+          <Text style={styles.footer}>Obrigado pela sua compra!</Text>
+        </Page>
+      </Document>
+    );
+  };
 
-      // Caminho da imagem do logo
-      const imageSrc1 = "/logo-geladaria.png";
-
-      // Carrega a imagem do logo
-      const imageDataUrl1 = await loadImage(imageSrc1);
-
-      // Adiciona o logo no canto superior esquerdo
-      const img1Width = 60;
-      const img1Height = 32;
-      doc.addImage(imageDataUrl1, "PNG", margin, margin, img1Width, img1Height);
-
-      // Adiciona texto de localização no canto superior direito
-      doc.setFont("Helvetica", "normal");
-      doc.setFontSize(10);
-      doc.setTextColor(255, 255, 255); // Cor branca para contraste
-
-      const locationLines = [
-        "Endereço da empresa:",
-        "Rua Exemplo, 123, Bairro, Cidade",
-        "Rua Exemplo, 123, Bairro, Cidade"
-      ];
-
-      const lineHeight = 7; // Altura entre linhas
-      const xPosition = pageWidth - margin; // Alinhamento à direita
-
-      // Escreve cada linha do endereço alinhada à direita
-      locationLines.forEach((line, index) => {
-        const textWidth = doc.getTextWidth(line);
-        doc.text(line, xPosition - textWidth, margin + index * lineHeight);
-      });
-
-      // Adiciona título para os dados do cliente
-      doc.setFont("Helvetica", "bold");
-      doc.setFontSize(18);
-      doc.setTextColor(255, 255, 255);
-      doc.text("Dados do Cliente", margin, img1Height + margin + 10);
-
-      // Adiciona os dados do cliente
-      doc.setFont("Helvetica", "normal");
-      doc.setFontSize(12);
-      doc.text(`Nome: ${orderData.name}`, margin, img1Height + margin + 30);
-      doc.text(`Número: ${orderData.number}`, margin, img1Height + margin + 40);
-      doc.text(`Cidade ou bairro: ${orderData.cityOrNeighborhood}`, margin, img1Height + margin + 50);
-      doc.text(`Ponto de referência: ${orderData.landmark}`, margin, img1Height + margin + 60);
-
-      // Configurações para a seção de resumo da encomenda
-      const summaryBoxHeight = 60; // Altura da seção
-      const borderRadius = 3; // Arredondamento dos cantos
-      const summaryBoxY = pageHeight - margin - summaryBoxHeight - 13; // Posição Y antes do rodapé
-      const summaryBoxX = margin;
-      const summaryBoxWidth = pageWidth - 2 * margin;
-
-      // Adiciona a seção com fundo
-      doc.setFillColor(124, 74, 115); // Cor #7C4A73
-      doc.roundedRect(summaryBoxX, summaryBoxY, summaryBoxWidth, summaryBoxHeight, borderRadius, borderRadius, "F");
-
-      // Adiciona o texto dentro da seção
-      doc.setFont("Helvetica", "bold");
-      doc.setFontSize(16);
-      doc.setTextColor(255, 255, 255); // Cor branca
-      doc.text("Resumo da Encomenda", summaryBoxX + 5, summaryBoxY + 10);
-
-      doc.setFont("Helvetica", "normal");
-      doc.setFontSize(12);
-      doc.text(`Total de Sabores: ${orderData.flavors}`, summaryBoxX + 5, summaryBoxY + 25);
-      doc.text(`Total de Pagamento: ${orderData.payment}`, summaryBoxX + 5, summaryBoxY + 35);
-      doc.text(`Método de Pagamento: ${orderData.paymentMethod}`, summaryBoxX + 5, summaryBoxY + 45);
-
-      // Adiciona o rodapé alinhado à direita
-      const footerText = "Obrigado pela sua compra!";
-      doc.setFontSize(10);
-      doc.setFont("Helvetica", "italic");
-      doc.setTextColor(255, 255, 255); // Cor branca
-      const footerTextWidth = doc.getTextWidth(footerText);
-      doc.text(footerText, pageWidth - margin - footerTextWidth, pageHeight - margin);
-
-      // Retorna o PDF gerado como blob
-      return doc.output("blob");
-    } catch (error) {
-      console.error("Erro ao gerar fatura:", error);
-      return null; // Retorna null em caso de erro
-    }
+  // Função para gerar e baixar o PDF
+  const downloadInvoice = async (formData: FormData): Promise<void> => {
+    const invoiceComponent = generateInvoice(formData); // Gera a fatura como componente
+    const blob = await pdf(invoiceComponent).toBlob(); // Converte para Blob
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `Fatura_${formData.name}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   return (
-    <InvoiceContext.Provider value={{ generateInvoice }}>
+    <InvoiceContext.Provider value={{ generateInvoice, downloadInvoice }}>
       {children}
     </InvoiceContext.Provider>
   );
@@ -148,11 +173,5 @@ export const useInvoice = (): InvoiceContextProps => {
   }
   return context;
 };
-
-
-
-
-
-
 
 
