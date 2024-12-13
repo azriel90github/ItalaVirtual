@@ -42,12 +42,20 @@ export function GalleryModal() {
             <div className="w-full h-full py-5 px-6 bg-colorFundo">
               <div className="flex items-center justify-between text-zinc-200 font-normal text-2xl">
                 {t('modal.modalTerms.title')}
-                
-              </div>
-              <div className="flex">  
                 <button type="button">
                   <X onClick={closeGalleryModal} className="size-6 cursor-pointer" />
                 </button>
+              </div>
+              <div className="">  
+                <p className="text-lg text-zinc-300">
+                  {t('blogpage.par1')}
+                </p>
+                <p className="text-lg text-zinc-300">
+                  {t('blogpage.par2')}
+                </p>
+                <p className="text-lg text-zinc-300">
+                  {t('blogpage.par3')}
+                </p>
               </div>
             </div>
           </div>
