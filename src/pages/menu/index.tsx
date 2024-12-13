@@ -4,6 +4,7 @@ import { //Importações
   House,
   Minus,
   Plus,
+  QrCode,
   ShoppingCart,
   Trash2,
 } from "lucide-react"; // Ícones do Lucide
@@ -78,77 +79,77 @@ export function MenuPage() {
         {/* Renderização dos cards */}
 				<div className="flex flex-wrap gap-5 justify-center pb-10">
         {filteredProducts.map((product) => (
-  <div key={product.id} className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
-    {/* Informações do produto */}
-    <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
-      <p className="text-buttonColor text-xl">{product.title}</p>
-      <span role="img" aria-label="favorite">
-        ❤️
-      </span>
-    </div>
-    <div className="py-3">
-      <img
-        className="mx-auto w-36 h-36 rounded-full"
-        src={getImageByTitle(product.title)} // Usando o título do produto
-        alt={`Product ${product.title}`}
-      />
-    </div>
-    <span className="flex justify-center text-zinc-200 font-normal text-2xl gap-2 py-3">
-      <small className="text-lx">kz</small>
-      <p className="text-6xl">{product.price}</p>
-      <small className="text-lx">00</small>
-    </span>
+          <div key={product.id} className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd">
+            {/* Informações do produto */}
+            <div className="flex items-center justify-between py-2 px-3 text-xl font-normal">
+              <p className="text-buttonColor text-xl">{product.title}</p>
+              <span className="text-zinc-200" role="img" aria-label="favorite">
+                <QrCode />
+              </span>
+            </div>
+            <div className="py-3">
+              <img
+                className="mx-auto w-36 h-36 rounded-full"
+                src={getImageByTitle(product.title)} // Usando o título do produto
+                alt={`Product ${product.title}`}
+              />
+            </div>
+            <span className="flex justify-center text-zinc-200 font-normal text-2xl gap-2 py-3">
+              <small className="text-lx text-moneyColor1">kz</small>
+              <p className="text-6xl">{product.price}</p>
+              <small className="text-lx">00</small>
+            </span>
 
-    {/* Texto Saber Mais */}
-    <p className="text-center py-4 mb-2 text-buttonColor font-light text-xl">
-      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-      <button
-        onClick={() => navigate(`/product/${product.id}`)} // Navegação para a página de detalhes
-        className="underline text-blue-500"
-      >
-        Saber mais
-      </button>
-    </p>
+            {/* Texto Saber Mais */}
+            <p className="text-center py-3 mb-2 text-buttonColor font-medium text-xl">
+              {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+              <button
+                onClick={() => navigate(`/product/${product.id}`)} // Navegação para a página de detalhes
+                className="text-buttonColor underline-none text-[19px] text-smal"
+              >
+                Detalhes produto
+              </button>
+            </p>
 
-    <div className="flex flex-col gap-3">
-      <button
-        type="button"
-        className="flex transition duration-400 bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
-      >
-        <div>
-          Colheres <span className="ml-2">{counts[product.id]}</span>
-        </div>
-        <div className="flex gap-5">
-          <Plus onClick={() => incrementCount(product.id)} />
-          <Minus onClick={() => decrementCount(product.id)} />
-        </div>
-      </button>
-      <button
-        type="button"
-        onClick={() => toggleIcon(product.id)}
-        className={`flex transition duration-400 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
-          buttonColors[product.id] === "green" ? "bg-moneyColor" : "bg-buttonColor2"
-        }`}
-        disabled={counts[product.id] === 0}
-      >
-        {addButtonTexts[product.id] || "Adicionar no Carrinho"}
-        {icons[product.id] ? <CircleCheck /> : <ShoppingCart />}
-      </button>
-      {/* Botão de Remover do Carrinho */}
-      <button
-        type="button"
-        onClick={() => handleRemoveFromCart(product.id)}
-        className={`flex transition duration-400 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
-          buttonColors[product.id] === "red" ? "bg-colorRemove" : "bg-buttonColor2"
-        }`}
-        disabled={counts[product.id] === 0} // Botão desativado se não houver colheres
-      >
-        {removeButtonTexts[product.id] || "Remover do Carrinho"}
-        <Trash2 />
-      </button>
-    </div>
-  </div>
-))}
+            <div className="flex flex-col gap-3">
+              <button
+                type="button"
+                className="flex transition duration-400 bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
+              >
+                <div>
+                  Colheres <span className="ml-2">{counts[product.id]}</span>
+                </div>
+                <div className="flex gap-5">
+                  <Plus onClick={() => incrementCount(product.id)} />
+                  <Minus onClick={() => decrementCount(product.id)} />
+                </div>
+              </button>
+              <button
+                type="button"
+                onClick={() => toggleIcon(product.id)}
+                className={`flex transition duration-400 hover:bg-moneyColor text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
+                  buttonColors[product.id] === "green" ? "bg-moneyColor" : "bg-buttonColor2"
+                }`}
+                disabled={counts[product.id] === 0}
+              >
+                {addButtonTexts[product.id] || "Adicionar no Carrinho"}
+                {icons[product.id] ? <CircleCheck /> : <ShoppingCart />}
+              </button>
+              {/* Botão de Remover do Carrinho */}
+              <button
+                type="button"
+                onClick={() => handleRemoveFromCart(product.id)}
+                className={`flex transition duration-400 hover:bg-colorRemove text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between ${
+                  buttonColors[product.id] === "red" ? "bg-colorRemove" : "bg-buttonColor2"
+                }`}
+                disabled={counts[product.id] === 0} // Botão desativado se não houver colheres
+              >
+                {removeButtonTexts[product.id] || "Remover do Carrinho"}
+                <Trash2 />
+              </button>
+            </div>
+          </div>
+        ))}
 
       </div>	
 

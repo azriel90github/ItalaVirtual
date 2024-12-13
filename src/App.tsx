@@ -10,6 +10,7 @@ import { ImageProvider } from "./context/ImageContext"; // Importando o ImagePro
 import { InvoiceProvider } from "./context/InvoiceContext"; // Importando o InvoiceProvider
 import i18n from "./i18n"; // Importação do i18n configurado
 import { I18nextProvider } from "react-i18next";
+import { ProductDetail } from "./pages/ProductDetail";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/library/:libraryId",
     element: <LibraryPage />,
+  },
+  {
+    path: "/product/:productId",
+    element: <ProductDetail />,
   },
 ]);
 
