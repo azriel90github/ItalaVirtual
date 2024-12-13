@@ -93,9 +93,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const incrementCount = (id: number) => {
     setCounts((prevCounts) => {
       const newCount = (prevCounts[id] || 0) + 1;
-      updateCart(id, newCount);
+      //updateCart(id, newCount);
       return { ...prevCounts, [id]: newCount };
     });
+    
     setIcons((prev) => ({ ...prev, [id]: false }));
     setButtonColors((prev) => ({ ...prev, [id]: "" }));
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
@@ -105,9 +106,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const decrementCount = (id: number) => {
     setCounts((prevCounts) => {
       const newCount = Math.max((prevCounts[id] || 0) - 1, 0);
-      updateCart(id, newCount);
+      //updateCart(id, newCount);
       return { ...prevCounts, [id]: newCount };
     });
+
     setIcons((prev) => ({ ...prev, [id]: false }));
     setButtonColors((prev) => ({ ...prev, [id]: "" }));
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
@@ -161,6 +163,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setButtonColors((prev) => ({ ...prev, [id]: "green" }));
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionado com Sucesso" }));
     setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
+
+     // Atualizar o carrinho somente ao clicar no botão
+    setCounts((prevCounts) => {
+      const count = prevCounts[id] || 0;
+      if (count > 0) {
+        updateCart(id, count); // Atualiza o estado do carrinho com o count atual
+      }
+      return prevCounts; // Mantém o estado dos counts
+    });
   };
 
   const handleRemoveFromCart = (id: number) => {

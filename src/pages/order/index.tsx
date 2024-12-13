@@ -404,34 +404,36 @@ export function OrderPage() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
           <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
             <div className="items-center flex justify-between">
-              <p className="text-moneyColor1 text-xl font-normal">{t('orderpage.modalSend')}</p>
+              <p className="text-moneyColor1 px-1 text-xl font-normal">{t('orderpage.modalSend')}</p>
               <div className="flex">
                 <Package className="size-7 text-moneyColor1" />
               </div>
             </div>
             <div className="py-3">
-              <h3 className="text-buttonColor font-semibold text-[19px] pb-1.5">{t('orderpage.modalSendh3')}</h3>
-              <p className="text-zinc-300 pb-2 flex-1">{t('orderpage.modalSendP')}</p>
+              <h3 className="text-buttonColor px-1 font-semibold text-[19px] pb-1.5">{t('orderpage.modalSendh3')}</h3>
+              <p className="text-zinc-300 pb-2 px-1 py-1 flex-1">{t('orderpage.modalSendP1')}</p>
+              <p className="text-zinc-300 pb-2 px-1 py-2 mb-1 flex-1">{t('orderpage.modalSendP2')}</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">
-              <button 
-                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
-                {t('orderpage.modalSendButton1')}
-                <Mail />
-              </button>
-              <button 
+            <button 
                 className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton2')}
                 <MessageCircle />
               </button>
               <button 
+                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                {t('orderpage.modalSendButton1')}
+                <Mail />
+              </button>
+              {/**               
+               * <button 
                 onClick={() => {
                   setShowSuccessModal(false); // Fechar o modal
                 }}
                 className="w-full flex transition duration-400 bg-searchColor hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton3')}
                 <X />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

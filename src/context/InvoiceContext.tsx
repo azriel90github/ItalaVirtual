@@ -1,4 +1,5 @@
-import React, { createContext, useContext } from "react";
+import type React from "react";
+import { createContext, useContext } from "react";
 import {
   Document,
   Page,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 60,
-    height: 32,
+    height: 50,
   },
   address: {
     textAlign: "right",
