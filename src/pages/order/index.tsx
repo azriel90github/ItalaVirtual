@@ -425,15 +425,14 @@ export function OrderPage() {
                 {t('orderpage.modalSendButton1')}
                 <Mail />
               </button>
-              {/**               
-               * <button 
+              <button 
                 onClick={() => {
                   setShowSuccessModal(false); // Fechar o modal
                 }}
-                className="w-full flex transition duration-400 bg-searchColor hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton3')}
-                <X />
-              </button> */}
+                <HandCoins/>
+              </button> 
             </div>
           </div>
         </div>

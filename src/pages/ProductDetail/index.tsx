@@ -60,7 +60,7 @@ export function ProductDetail() {
                   <small className="text-2xl">00</small>
                 </span>
                 {/* Div para estrelas */}
-              <div className="flex my-3">
+              <div className="starDiv flex my-3 pb-1">
                 {[...Array(4)].map((_, index) => (
                   // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <Star key={index} className="text-yellow-400 mx-1" size={24} />

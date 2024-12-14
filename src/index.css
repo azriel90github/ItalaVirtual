@@ -33,6 +33,10 @@
 		padding-bottom: 7rem;
 	}
 
+	.starDiv {
+		justify-content: center;
+	}
+
 	.produtDetailDescMobile {
 		display: flex;
 		text-align: center;
