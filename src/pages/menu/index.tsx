@@ -104,7 +104,7 @@ export function MenuPage() {
             <p className="text-center py-3 mb-2 text-buttonColor font-medium text-xl">
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
               <button
-                onClick={() => navigate(`/product/${product.id}`)} // Navegação para a página de detalhes
+                onClick={() => navigate(`/product/${product.id}`, { state: { product } })} // Passa os dados via state
                 className="text-buttonColor underline-none text-[19px] text-smal"
               >
                 Detalhes produto

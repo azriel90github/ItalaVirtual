@@ -17,11 +17,26 @@
 	margin: 5px 0 0 5px;
 	}
 	
-
 @media (max-width: 768px) {
 
 	.paymentMobile {
 		width: 100%;
+	}
+
+	.produtDetailMobile {
+		display: flex;
+		flex-direction: column;
+		padding-top: 10px;
+	}
+
+	.produtDetailMobileButton {
+		padding-bottom: 7rem;
+	}
+
+	.produtDetailDescMobile {
+		display: flex;
+		text-align: center;
+		align-items: center;
 	}
 
 	.mainHome {

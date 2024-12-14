@@ -2,18 +2,18 @@ import { createContext, useState, useEffect, useContext, type ReactNode } from "
 
 // Tipo para os produtos
 export interface Product {
-  id: number;
+  id: string; // Alterado de number para string
   title: string;
   price: number;
   description: string;
   image?: string;
-  heart: number; // Adicionado o campo 'heart'
+  heart: number;
   category: string;
 }
 
 // Tipo para o carrinho
 interface CartItem {
-  id: number;
+  id: string; // Alterado de number para string
   title: string;
   price: number;
   count: number;
@@ -23,23 +23,21 @@ interface CartItem {
 // Tipo para o contexto
 interface CartContextData {
   products: Product[];
-  counts: { [key: number]: number };
-  totals: { [key: number]: number };
-  buttonColors: { [key: number]: string };
-  icons: { [key: number]: boolean };
-  addButtonTexts: { [key: number]: string };
-  removeButtonTexts: { [key: number]: string };
+  counts: { [key: string]: number };
+  totals: { [key: string]: number };
+  buttonColors: { [key: string]: string };
+  icons: { [key: string]: boolean };
+  addButtonTexts: { [key: string]: string };
+  removeButtonTexts: { [key: string]: string };
   cartItems: CartItem[];
   isScrolled: boolean;
-  incrementCount: (id: number) => void;
-  decrementCount: (id: number) => void;
-  toggleIcon: (id: number) => void;
-  handleRemoveFromCart: (id: number) => void;
-
-  // Novas funções adicionadas aqui
+  incrementCount: (id: string) => void;
+  decrementCount: (id: string) => void;
+  toggleIcon: (id: string) => void;
+  handleRemoveFromCart: (id: string) => void;
   getUniqueFlavorsCount: () => number;
   getTotalPayment: () => number;
-  resetCart: () => void; // Adicione esta linha
+  resetCart: () => void;
 }
 
 // Criação do Contexto
@@ -47,26 +45,25 @@ const CartContext = createContext<CartContextData | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [counts, setCounts] = useState<{ [key: number]: number }>({});
-  const [totals, setTotals] = useState<{ [key: number]: number }>({});
-  const [buttonColors, setButtonColors] = useState<{ [key: number]: string }>({});
-  const [icons, setIcons] = useState<{ [key: number]: boolean }>({});
-  const [addButtonTexts, setAddButtonTexts] = useState<{ [key: number]: string }>({});
-  const [removeButtonTexts, setRemoveButtonTexts] = useState<{ [key: number]: string }>({});
+  const [counts, setCounts] = useState<{ [key: string]: number }>({});
+  const [totals, setTotals] = useState<{ [key: string]: number }>({});
+  const [buttonColors, setButtonColors] = useState<{ [key: string]: string }>({});
+  const [icons, setIcons] = useState<{ [key: string]: boolean }>({});
+  const [addButtonTexts, setAddButtonTexts] = useState<{ [key: string]: string }>({});
+  const [removeButtonTexts, setRemoveButtonTexts] = useState<{ [key: string]: string }>({});
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Função para buscar produtos
   const fetchProducts = async () => {
     try {
       const response = await fetch("http://localhost:3334/products");
       const data: Product[] = await response.json();
       setProducts(data);
 
-      const initialCounts: { [key: number]: number } = {};
-      const initialTotals: { [key: number]: number } = {};
-      const initialColors: { [key: number]: string } = {};
-      const initialIcons: { [key: number]: boolean } = {};
+      const initialCounts: { [key: string]: number } = {};
+      const initialTotals: { [key: string]: number } = {};
+      const initialColors: { [key: string]: string } = {};
+      const initialIcons: { [key: string]: boolean } = {};
 
       // biome-ignore lint/complexity/noForEach: <explanation>
       data.forEach((product) => {
@@ -90,23 +87,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     fetchProducts();
   }, []);
 
-  const incrementCount = (id: number) => {
+  const incrementCount = (id: string) => {
     setCounts((prevCounts) => {
       const newCount = (prevCounts[id] || 0) + 1;
-      //updateCart(id, newCount);
       return { ...prevCounts, [id]: newCount };
     });
-    
+
     setIcons((prev) => ({ ...prev, [id]: false }));
     setButtonColors((prev) => ({ ...prev, [id]: "" }));
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
     setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
   };
 
-  const decrementCount = (id: number) => {
+  const decrementCount = (id: string) => {
     setCounts((prevCounts) => {
       const newCount = Math.max((prevCounts[id] || 0) - 1, 0);
-      //updateCart(id, newCount);
       return { ...prevCounts, [id]: newCount };
     });
 
@@ -116,13 +111,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
   };
 
-  const updateCart = (id: number, count: number) => {
+  const updateCart = (id: string, count: number) => {
     const product = products.find((product) => product.id === id);
     if (!product) return;
-  
+
     const total = count * product.price;
     setTotals((prevTotals) => ({ ...prevTotals, [id]: total }));
-  
+
     setCartItems((prevCartItems) => {
       const existingItem = prevCartItems.find((item) => item.id === id);
       if (existingItem) {
@@ -131,9 +126,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         // biome-ignore lint/style/noUselessElse: <explanation>
         } else {
           return prevCartItems.map((item) =>
-            item.id === id
-              ? { ...item, count, total } // Atualiza o item no carrinho
-              : item
+            item.id === id ? { ...item, count, total } : item
           );
         }
       // biome-ignore lint/style/noUselessElse: <explanation>
@@ -144,37 +137,37 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             id,
             title: product.title,
             price: product.price,
-            count, // Registra o número de colheres
-            total, // Registra o valor total
+            count,
+            total,
           },
         ];
       }
       return prevCartItems;
     });
   };
+
   const getUniqueFlavorsCount = () => cartItems.length;
 
   const getTotalPayment = () => {
     return cartItems.reduce((total, item) => total + item.total, 0);
   };
 
-  const toggleIcon = (id: number) => {
+  const toggleIcon = (id: string) => {
     setIcons((prev) => ({ ...prev, [id]: true }));
     setButtonColors((prev) => ({ ...prev, [id]: "green" }));
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionado com Sucesso" }));
     setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
 
-     // Atualizar o carrinho somente ao clicar no botão
     setCounts((prevCounts) => {
       const count = prevCounts[id] || 0;
       if (count > 0) {
-        updateCart(id, count); // Atualiza o estado do carrinho com o count atual
+        updateCart(id, count);
       }
-      return prevCounts; // Mantém o estado dos counts
+      return prevCounts;
     });
   };
 
-  const handleRemoveFromCart = (id: number) => {
+  const handleRemoveFromCart = (id: string) => {
     setCounts((prev) => ({ ...prev, [id]: 0 }));
     setTotals((prev) => ({ ...prev, [id]: 0 }));
     setIcons((prev) => ({ ...prev, [id]: false }));
@@ -182,7 +175,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
     setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Removido com Sucesso" }));
 
-    // Atualiza o carrinho
     setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== id));
   };
 
@@ -222,9 +214,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         decrementCount,
         toggleIcon,
         handleRemoveFromCart,
-        getUniqueFlavorsCount,// Adicionado
-        getTotalPayment,// Adicionado
-        resetCart// Adicionado
+        getUniqueFlavorsCount,
+        getTotalPayment,
+        resetCart,
       }}
     >
       {children}
@@ -240,3 +232,4 @@ export const useCart = () => {
   }
   return context;
 };
+

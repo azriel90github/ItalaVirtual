@@ -1,82 +1,147 @@
-import {
-  ArrowLeft,
-  House,
-} from "lucide-react"; // Ícones do Lucide
-import { useParams, useNavigate } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useImage } from "../../context/ImageContext";
 import { CartButton } from "../../components/buttons/cart-button";
-// Supondo que esta função existe
+import { ArrowLeft, House, QrCode, Star } from "lucide-react";
+import { useCart } from "../../context/CartContext"; // Import cart context to handle counts and cart actions
+import { CircleCheck, Plus, Minus, Trash2, ShoppingCart } from "lucide-react"; // Import icons for buttons
 
 export function ProductDetail() {
-  const { isScrolled } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { getImageByTitle } = useImage();
+  const { isScrolled, incrementCount, decrementCount, counts, toggleIcon, buttonColors, addButtonTexts, removeButtonTexts, icons, handleRemoveFromCart } = useCart(); // Using the CartContext for cart functionality
 
-	const { id } = useParams<{ id: string }>(); // Força 'id' como string
+  // Dados do produto passado via state
+  const product = location.state?.product;
 
-  const { products } = useCart(); // Obtém os produtos do contexto
-
-	const product = products.find((prod) => prod.id === id); // Para strings
-
-	if (!product) {
-		return <p>Produto não encontrado.</p>;
+  function menuPage() {
+		navigate("/menu/123");
 	}
 
-
-
-  const goToHomePage = () => navigate("/");
-
   return (
-    <div className="mx-auto space-y-9 bg-fundoHome bg-no-repeat bg-top bg-fixed">
+    <div className="">
       {/* Cabeçalho */}
-      <div
-        className={`border-b-2 border-colorInput h-20 shadow-shape bg-searchColor text-buttonColor flex flex-wrap items-center justify-around font-medium text-xl ${
-          isScrolled ? "-translate-y-10" : "translate-y-0"
-        }`}
-      >
-        <div className="flex items-center">
-          <button type="button" onClick={goToHomePage} className="flex gap-2">
-            <ArrowLeft size={24} />
-            <House size={24} />
-          </button>
-        </div>
-        <div className="flex items-center">
-          <CartButton />
-        </div>
+      <div className={`border-b-2 border-colorInput h-20 shadow-shape bg-searchColor text-buttonColor flex flex-wrap items-center justify-around font-medium text-xl ${
+					isScrolled ? '-translate-y-10' : 'translate-y-0'
+				}`}>
+				<div className="flex items-center">
+					<button type="button" onClick={menuPage} className="flex gap-2"> {/* Clicar na seta da página menu e levar para o inicio*/}
+						<ArrowLeft className="size-6" />
+						<House />
+					</button>
+				</div>
+
+				<div className="flex items-center" > 
+					<CartButton />
+				</div>
+			</div>
+
+      <div className="">
+        {/* Detalhes do produto */}
+        {product ? (
+          <div className="produtDetailMobile flex items-center pt-20 justify-center gap-10">
+            <div>
+              <img
+                src={getImageByTitle(product.title)} // Usando a função do contexto para pegar a imagem
+                alt={`Imagem de ${product.title}`}
+                className="w-96 h-96 mx-auto"
+              />
+            </div>
+
+            <div className="produtDetailDescMobile flex flex-col">
+              <div>
+                <div className="flex items-center gap-3 justify-between">
+                  <h1 className="text-buttonColor text-4xl font-light">{product.title}</h1>
+                  <QrCode className="text-zinc-200 size-7" />
+                </div>
+                <span className="flex text-zinc-200 font-normal mt-1 text-2xl gap-2 py-3">
+                  <small className="text-2xl text-moneyColor1">kz</small>
+                  <p className="text-8xl mt-1">{product.price}</p>
+                  <small className="text-2xl">00</small>
+                </span>
+                {/* Div para estrelas */}
+              <div className="flex my-3">
+                {[...Array(4)].map((_, index) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                <Star key={index} className="text-yellow-400 mx-1" size={24} />
+                ))}
+              </div>
+              </div>
+              <div className="flex flex-col">
+                <h2 className="text-buttonColor text-[20px] font-medium">Descrição: </h2>
+                <p className="text-xl w-96 text-zinc-200 mt-2">{product.description || "Descrição não disponível."}</p>
+              </div>
+              <div>
+              <div className="produtDetailMobileButton flex w-80 flex-col gap-3 mt-10">
+                <button
+                  type="button"
+                  className="flex transition duration-400 bg-buttonColor hover:bg-colorHover text-zinc-100 py-3 px-5 rounded-2xl justify-between"
+                >
+                  <div>
+                    Colheres <span className="ml-2">{counts[product.id]}</span>
+                  </div>
+                  <div className="flex gap-5">
+                    <Plus onClick={() => incrementCount(product.id)} />
+                    <Minus onClick={() => decrementCount(product.id)} />
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => toggleIcon(product.id)}
+                  className={`flex transition duration-400 hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-2xl justify-between ${
+                    buttonColors[product.id] === "green" ? "bg-moneyColor" : "bg-searchColor"
+                  }`}
+                  disabled={counts[product.id] === 0}
+                >
+                  {addButtonTexts[product.id] || "Adicionar no Carrinho"}
+                  {icons[product.id] ? <CircleCheck /> : <ShoppingCart />}
+                </button>
+                {/* Botão de Remover do Carrinho */}
+                <button
+                  type="button"
+                  onClick={() => handleRemoveFromCart(product.id)}
+                  className={`flex transition duration-400 hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-2xl justify-between ${
+                    buttonColors[product.id] === "red" ? "bg-colorRemove" : "bg-searchColor"
+                  }`}
+                  disabled={counts[product.id] === 0}
+                >
+                  {removeButtonTexts[product.id] || "Remover do Carrinho"}
+                  <Trash2 />
+                </button>
+            </div>
+              </div>
+            </div>
+            <div>
+              {/* Lógica do botão de adicionar/remover */}
+        
+            </div>
+        
+          </div>
+        ) : (
+          <p>Produto não encontrado!</p>
+        )}
       </div>
-			{/* Cabeçalho */}
-			<div className="bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-2xl font-bold">{product.title}</h1>
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-48 h-48 object-cover mx-auto my-4"
-        />
-        <p className="text-gray-600 mb-4">{product.description}</p>
-        <p className="text-green-500 font-bold text-xl">
-          kz {product.price},00
-        </p>
-      </div>
-     
+
       {/* Rodapé */}
       <footer
-        className={`footerMenu flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
-          isScrolled ? "translate-y-0" : "translate-y-full"
-        }`}
-      >
-        <div className="flex items-center">
-          <button
-            type="button"
-            onClick={goToHomePage}
-            className="flex gap-2 text-buttonColor"
-          >
-            <ArrowLeft size={24} />
-            <House size={24} />
-          </button>
-        </div>
-        <div className="flex gap-4 items-center">
-          <CartButton />
-        </div>
-      </footer>
+					className={`footerMenu flex flex-wrap h-20 items-center justify-around fixed bottom-0 left-0 w-full transition-transform duration-500 ease-in-out border-t-2 border-colorInput bg-searchColor ${
+						isScrolled ? 'translate-y-0' : 'translate-y-full'
+					}`}
+				> 
+					<div className="flex items-center">
+						<button type="button" onClick={menuPage} className="flex gap-2 text-buttonColor"> {/* Clicar na seta da página menu e levar para o inicio*/}
+							<ArrowLeft className="size-6" />
+							<House />
+						</button>
+					</div>
+
+					<div className="flex gap-4 items-center">
+					<CartButton />
+					</div>
+				</footer>
     </div>
   );
 }
+
+
+
