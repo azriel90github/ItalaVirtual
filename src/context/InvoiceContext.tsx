@@ -116,7 +116,8 @@ const styles = StyleSheet.create({
     color: "#22c55e",
   },
   qrcod: {
-    width: 120, // Ajuste o tamanho da imagem
+    borderRadius: 10,
+    width: 115, // Ajuste o tamanho da imagem
     height: "auto", // Mantém a proporção
   },
   footer: {
