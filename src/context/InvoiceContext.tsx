@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   contentBox: {
-    flex: 1, // Permite que esta View ocupe o espaço necessário
+    borderRadius: 10,
   },
   summaryText: {
     color: "#f3f4f6",
@@ -114,6 +114,10 @@ const styles = StyleSheet.create({
   },
   moneyColor: {
     color: "#22c55e",
+  },
+  qrcod: {
+    width: 120, // Ajuste o tamanho da imagem
+    height: "auto", // Mantém a proporção
   },
   footer: {
     position: "absolute",
@@ -179,7 +183,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               </Text>
             </View>
             <View style={styles.contentBox}>
-              <Image style={styles.logo} src="/logo-geladaria.png" />
+              <Image style={styles.qrcod} src="/qrcod.png" />
             </View>
           </View>
 
