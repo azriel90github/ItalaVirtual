@@ -46,6 +46,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#64395C",
     padding: 20,
   },
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    right: 5,
+    width: 200, // Ajuste o tamanho da imagem
+    height: "auto", // Mantém a proporção
+    //opacity: 0.1, // Torna a imagem sutil para um efeito de fundo
+  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -59,11 +67,16 @@ const styles = StyleSheet.create({
   },
   descricaoLogo: {
     fontSize: 13,
-    color: "white",
+    color: "#f3f4f6",
   },
   address: {
-    textAlign: "right",
-    color: "white",
+    display: "flex",
+    justifyContent: "flex-end", // Alinha todo o conteúdo à direita
+    alignItems: "flex-end", // Ajusta alinhamento vertical se necessário
+    marginTop: 0,
+  },
+  addressp: {
+    color: "#f3f4f6",
     fontSize: 10,
     lineHeight: 1.5,
   },
@@ -77,27 +90,37 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   text: {
-    color: "white",
+    color: "#f3f4f6",
     fontSize: 12,
     marginBottom: 5,
   },
   summaryBox: {
+    display: "flex",
+    flexDirection: "row", // Alinha os itens em linha
+    justifyContent: "space-between", // Distribui os itens com espaçamento uniforme
+    alignItems: "center", // (Opcional) Alinha os itens verticalmente ao centro
     backgroundColor: "#7C4A73",
-    borderRadius: 3,
-    padding: 10,
+    borderRadius: 10,
+    padding: 15,
     marginTop: 20,
   },
+  contentBox: {
+    flex: 1, // Permite que esta View ocupe o espaço necessário
+  },
   summaryText: {
-    color: "white",
+    color: "#f3f4f6",
     fontSize: 12,
+    lineHeight: 2,
+  },
+  moneyColor: {
+    color: "#22c55e",
   },
   footer: {
     position: "absolute",
     bottom: 10,
     right: 10,
-    color: "white",
+    color: "#f3f4f6",
     fontSize: 10,
-    fontStyle: "italic",
   },
 });
 
@@ -108,6 +131,11 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return (
       <Document>
         <Page size="A4" style={styles.page}>
+          {/* Imagem de fundo */}
+          <Image
+            style={styles.backgroundImage}
+            src="/ice-cream 2.png"  
+          />
           {/* Cabeçalho */}
           <View style={styles.header}>
             {/* Logo */}
@@ -116,9 +144,10 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <Text style={styles.descricaoLogo}>Faça sua encomenda de qualquer lugar e a qualquer hora!</Text>
             </View>
             {/* Endereço */}
-            <View>
-              <Text style={styles.address}>Endereço da empresa:</Text>
-              <Text style={styles.address}>Rua Exemplo, 123, Bairro, Cidade</Text>
+            <View style={styles.address}>
+              <Text style={styles.addressp}>Avenida Comandante Valodia nº 69</Text>
+              <Text style={styles.addressp}>Largo do Kinaxixi, Luanda</Text>
+              <Text style={styles.addressp}>Angola</Text>
             </View>
           </View>
 
@@ -137,16 +166,21 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
           {/* Resumo da Encomenda */}
           <View style={styles.summaryBox}>
-            <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
-            <Text style={styles.summaryText}>
-              Total de Sabores: {formData.flavors}
-            </Text>
-            <Text style={styles.summaryText}>
-              Total de Pagamento: {formData.payment}
-            </Text>
-            <Text style={styles.summaryText}>
-              Método de Pagamento: {formData.paymentMethod}
-            </Text>
+            <View style={styles.contentBox}>
+              <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
+              <Text style={styles.summaryText}>
+                Total de Sabores: <Text style={styles.moneyColor}>{formData.flavors}</Text>
+              </Text>
+              <Text style={styles.summaryText}>
+                Total de Pagamento: <Text style={styles.moneyColor}>{formData.payment}</Text>
+              </Text>
+              <Text style={styles.summaryText}>
+                Método de Pagamento: <Text style={styles.moneyColor}>{formData.paymentMethod}</Text>
+              </Text>
+            </View>
+            <View style={styles.contentBox}>
+              <Image style={styles.logo} src="/logo-geladaria.png" />
+            </View>
           </View>
 
           {/* Rodapé */}
