@@ -53,8 +53,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 60,
-    height: 50,
+    width: 120,
+    height: 65,
+    paddingBottom: 10,
+  },
+  descricaoLogo: {
+    fontSize: 13,
+    color: "white",
   },
   address: {
     textAlign: "right",
@@ -63,9 +68,13 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
   },
   sectionTitle: {
-    color: "white",
+    color: "#3D1A36",
     fontSize: 18,
-    marginBottom: 10,
+    marginBottom: 12,
+  },
+  dataBox: {
+    lineHeight:1,
+    borderRadius: 8,
   },
   text: {
     color: "white",
@@ -104,6 +113,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             {/* Logo */}
             <View>
               <Image style={styles.logo} src="/logo-geladaria.png" />
+              <Text style={styles.descricaoLogo}>Faça sua encomenda de qualquer lugar e a qualquer hora!</Text>
             </View>
             {/* Endereço */}
             <View>
@@ -113,7 +123,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
           </View>
 
           {/* Dados do Cliente */}
-          <View>
+          <View style={styles.dataBox}>
             <Text style={styles.sectionTitle}>Dados do Cliente</Text>
             <Text style={styles.text}>Nome: {formData.name}</Text>
             <Text style={styles.text}>Número: {formData.number}</Text>
