@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: "#3D1A36",
     fontSize: 18,
-    marginBottom: 12,
+    marginBottom: 16,
   },
   dataBox: {
     lineHeight:1,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   tableHeader: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 'bold',
     color: 'white',
   },
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   summaryText: {
     color: "#f3f4f6",
     fontSize: 13,
-    lineHeight: 1,
+    lineHeight: 2,
   },
   moneyColor: {
     color: "#22c55e",
