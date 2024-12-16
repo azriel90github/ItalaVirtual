@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   addressp: {
     color: "#f3f4f6",
-    fontSize: 10,
+    fontSize: 11,
     lineHeight: 1.5,
   },
   sectionTitle: {
@@ -94,6 +94,52 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 5,
   },
+  dataBox1: {
+    backgroundColor: "#7C4A73",
+    padding: 16,
+    marginTop: 16,
+    borderRadius: 8,
+    elevation: 5,
+  },
+  sectionTitle1: {
+    color: "#3D1A36", 
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  tableRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 4,
+  },
+  tableHeader: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  tableCell: {
+    fontSize: 13,
+    color: '#3D1A36',
+    flex: 1, // Flexível para ocupar o espaço
+  },
+
+  column: {
+    flex: 1, // Garante que todas as colunas ocupem o mesmo espaço
+  },
+  priceColor: {
+    color: '#28a745',
+    fontWeight: 'bold',
+  },
+  tableCellFlex: {
+    flex: 1,
+    textAlign: 'center',
+  },
+  separator: {
+    borderBottomColor: '#64395C',
+    borderBottomWidth: 1,
+    marginVertical: 6,
+  },
   summaryBox: {
     display: "flex",
     flexDirection: "row", // Alinha os itens em linha
@@ -101,16 +147,18 @@ const styles = StyleSheet.create({
     alignItems: "center", // (Opcional) Alinha os itens verticalmente ao centro
     backgroundColor: "#7C4A73",
     borderRadius: 10,
+    lineHeight: 1,
     padding: 15,
     marginTop: 20,
   },
   contentBox: {
+    lineHeight:1,
     borderRadius: 10,
   },
   summaryText: {
     color: "#f3f4f6",
-    fontSize: 12,
-    lineHeight: 2,
+    fontSize: 13,
+    lineHeight: 1,
   },
   moneyColor: {
     color: "#22c55e",
@@ -125,7 +173,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: 10,
     color: "#f3f4f6",
-    fontSize: 10,
+    fontSize: 12,
   },
 });
 
@@ -169,27 +217,60 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             </Text>
           </View>
 
-          {/* Resumo da Encomenda */}
-          <View style={styles.summaryBox}>
-            <View style={styles.contentBox}>
-              <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
-              <Text style={styles.summaryText}>
-                Total de Sabores: <Text style={styles.moneyColor}>{formData.flavors}</Text>
-              </Text>
-              <Text style={styles.summaryText}>
-                Total de Pagamento: <Text style={styles.moneyColor}>{formData.payment}</Text>
-              </Text>
-              <Text style={styles.summaryText}>
-                Método de Pagamento: <Text style={styles.moneyColor}>{formData.paymentMethod}</Text>
-              </Text>
+          <View style={styles.dataBox1}>
+            <Text style={styles.sectionTitle1}>Detalhes Encomenda</Text>
+
+            {/* Cabeçalho */}
+            <View style={styles.tableRow}>
+              <Text style={[styles.tableHeader, styles.column]}>Nome</Text>
+              <Text style={[styles.tableHeader, styles.column]}>Preço</Text>
+              <Text style={[styles.tableHeader, styles.column]}>Colheres</Text>
             </View>
-            <View style={styles.contentBox}>
-              <Image style={styles.qrcod} src="/qrcod.png" />
+
+            {/* Separador */}
+            <View style={styles.separator} />
+
+            {/* Dados Dinâmicos */}
+            <View style={styles.tableRow}>
+              <Text style={[styles.tableCell, styles.column]}>Luxemburgo</Text>
+              <Text style={[styles.tableCell, styles.column, styles.priceColor]}>320</Text>
+              <Text style={[styles.tableCell, styles.column]}>3</Text>
+            </View>
+
+            <View style={styles.tableRow}>
+              <Text style={[styles.tableCell, styles.column]}>Miami</Text>
+              <Text style={[styles.tableCell, styles.column, styles.priceColor]}>370</Text>
+              <Text style={[styles.tableCell, styles.column]}>4</Text>
+            </View>
+
+            <View style={styles.tableRow}>
+              <Text style={[styles.tableCell, styles.column]}>Havai</Text>
+              <Text style={[styles.tableCell, styles.column, styles.priceColor]}>380</Text>
+              <Text style={[styles.tableCell, styles.column]}>1</Text>
             </View>
           </View>
 
-          {/* Rodapé */}
-          <Text style={styles.footer}>Obrigado pela sua compra!</Text>
+          
+          <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+            {/* Resumo da Encomenda */}
+            <View style={styles.summaryBox}>
+              <View style={styles.contentBox}>
+                <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
+                <Text style={styles.summaryText}>
+                  Total de Sabores: <Text style={styles.moneyColor}>{formData.flavors}</Text>
+                </Text>
+                <Text style={styles.summaryText}>
+                  Total de Pagamento: <Text style={styles.moneyColor}>{formData.payment}</Text>
+                </Text>
+                <Text style={styles.summaryText}>
+                  Método de Pagamento: <Text style={styles.moneyColor}>{formData.paymentMethod}</Text>
+                </Text>
+              </View>
+              <View style={styles.contentBox}>
+                <Image style={styles.qrcod} src="/qrcod.png" />
+              </View>
+            </View>
+          </View>
         </Page>
       </Document>
     );
