@@ -238,11 +238,9 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             {/* Itens do Carrinho */}
             {cartItems.map((item) => (
               <View key={item.id} style={styles.tableRow}>
-                <Text style={[styles.tableCell, styles.column]}>{item.title}</Text>
-                <Text style={[styles.tableCell, styles.column, styles.priceColor]}>
-                  {item.price.toFixed(2)}
-                </Text>
-                <Text style={[styles.tableCell, styles.column]}>{item.count}</Text>
+                <Text style={styles.tableCell}>{item.title}</Text>
+                <Text style={styles.tableCell}>{item.price.toFixed(2)}</Text>
+                <Text style={styles.tableCell}>{item.count}</Text>
               </View>
             ))}
           </View>
