@@ -10,6 +10,7 @@ import {
   Image,
   pdf,
 } from "@react-pdf/renderer";
+import { useCart } from "./CartContext.tsx";
 
 // Registrar fonte personalizada (opcional)
 Font.register({
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: "#3D1A36",
     fontSize: 18,
-    marginBottom: 16,
+    marginBottom: 18,
   },
   dataBox: {
     lineHeight:1,
@@ -179,8 +180,10 @@ const styles = StyleSheet.create({
 
 // Provedor de faturas
 export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { cartItems, getUniqueFlavorsCount, getTotalPayment } = useCart();
   // Função para gerar a fatura como PDF
   const generateInvoice = (formData: FormData): JSX.Element => {
+    //const { cartItems } = useCart(); // Acessa os itens do carrinho do contexto
     return (
       <Document>
         <Page size="A4" style={styles.page}>
@@ -231,23 +234,17 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             <View style={styles.separator} />
 
             {/* Dados Dinâmicos */}
-            <View style={styles.tableRow}>
-              <Text style={[styles.tableCell, styles.column]}>Luxemburgo</Text>
-              <Text style={[styles.tableCell, styles.column, styles.priceColor]}>320</Text>
-              <Text style={[styles.tableCell, styles.column]}>3</Text>
-            </View>
-
-            <View style={styles.tableRow}>
-              <Text style={[styles.tableCell, styles.column]}>Miami</Text>
-              <Text style={[styles.tableCell, styles.column, styles.priceColor]}>370</Text>
-              <Text style={[styles.tableCell, styles.column]}>4</Text>
-            </View>
-
-            <View style={styles.tableRow}>
-              <Text style={[styles.tableCell, styles.column]}>Havai</Text>
-              <Text style={[styles.tableCell, styles.column, styles.priceColor]}>380</Text>
-              <Text style={[styles.tableCell, styles.column]}>1</Text>
-            </View>
+            
+            {/* Itens do Carrinho */}
+            {cartItems.map((item) => (
+              <View key={item.id} style={styles.tableRow}>
+                <Text style={[styles.tableCell, styles.column]}>{item.title}</Text>
+                <Text style={[styles.tableCell, styles.column, styles.priceColor]}>
+                  {item.price.toFixed(2)}
+                </Text>
+                <Text style={[styles.tableCell, styles.column]}>{item.count}</Text>
+              </View>
+            ))}
           </View>
 
           
@@ -257,10 +254,12 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <View style={styles.contentBox}>
                 <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
                 <Text style={styles.summaryText}>
-                  Total de Sabores: <Text style={styles.moneyColor}>{formData.flavors}</Text>
+                  Total de Sabores:{" "} 
+                  <Text style={styles.moneyColor}>{getUniqueFlavorsCount()}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
-                  Total de Pagamento: <Text style={styles.moneyColor}>{formData.payment}</Text>
+                  Total de Pagamento:{" "}
+                  <Text style={styles.moneyColor}>{getTotalPayment().toFixed(2)}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
                   Método de Pagamento: <Text style={styles.moneyColor}>{formData.paymentMethod}</Text>
@@ -276,10 +275,9 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     );
   };
 
-  // Função para gerar e baixar o PDF
   const downloadInvoice = async (formData: FormData): Promise<void> => {
-    const invoiceComponent = generateInvoice(formData); // Gera a fatura como componente
-    const blob = await pdf(invoiceComponent).toBlob(); // Converte para Blob
+    const invoiceComponent = generateInvoice(formData);
+    const blob = await pdf(invoiceComponent).toBlob();
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
