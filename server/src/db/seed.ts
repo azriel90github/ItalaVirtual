@@ -78,6 +78,19 @@ async function seed() {
 		},
 	]);
 
+	await db.insert(customerOrder).values([
+		{
+			name: "Azriel Armando",
+			number: "932101903", // Agora pode ser um number
+			flavors: "3",
+			payment: "360",
+			paymentMethod: "Dinheiro em mão",
+			cityOrNeighborhood: "Rocha",
+			landmark: "Gamek"
+		},
+	]);
+
+
   
 }
 
