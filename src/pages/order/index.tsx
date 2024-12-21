@@ -167,30 +167,30 @@ export function OrderPage() {
         });
 
         if (response.ok) {
-            const data = await response.json();
-            console.log("Ordem criada:", data);
-            setShowSuccessModal(true);
+          const data = await response.json();
+          console.log("Ordem criada:", data);
+          setShowSuccessModal(true);
 
-            // Gerar PDF
-            const invoiceComponent = generateInvoice(formData); // Passa os dados para a fatura
-            const blob = await pdf(invoiceComponent).toBlob();
+          // Gerar PDF
+          const invoiceComponent = generateInvoice(formData); // Passa os dados para a fatura
+          const blob = await pdf(invoiceComponent).toBlob();
 
-            // Baixar o PDF
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `Fatura_${formData.name}.pdf`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+          // Baixar o PDF
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `Fatura_${formData.name}.pdf`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
 
-            resetCart(); // Após o envio bem-sucedido, resetar o carrinho
-            resetForm(); // Reseta o formulário após o envio bem-sucedido
+          resetCart(); // Após o envio bem-sucedido, resetar o carrinho
+          resetForm(); // Reseta o formulário após o envio bem-sucedido
         } else {
-            console.error("Erro ao enviar os dados.");
+          console.error("Erro ao enviar os dados.");
         }
         } catch (error) {
-            console.error("Erro na requisição:", error);
+          console.error("Erro na requisição:", error);
         }
     };
 

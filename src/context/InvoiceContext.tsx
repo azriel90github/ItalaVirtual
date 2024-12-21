@@ -9,6 +9,7 @@ import {
   Font,
   Image,
   pdf,
+  Link,
 } from "@react-pdf/renderer";
 import { useCart } from "./CartContext.tsx";
 
@@ -36,6 +37,7 @@ interface InvoiceContextProps {
   generateInvoice: (formData: FormData) => JSX.Element;
   downloadInvoice: (formData: FormData) => Promise<void>;
 }
+
 
 // Criar o contexto para o provedor de faturas
 const InvoiceContext = createContext<InvoiceContextProps | undefined>(undefined);
@@ -161,6 +163,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 2,
   },
+  summaryText1: {
+    color: '#3D1A36',
+  },
   moneyColor: {
     color: "#22c55e",
   },
@@ -176,11 +181,15 @@ const styles = StyleSheet.create({
     color: "#f3f4f6",
     fontSize: 12,
   },
+  link: {
+    color: "#1e90ff",
+    textDecoration: "underline",
+  },
 });
 
 // Provedor de faturas
 export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { cartItems, getUniqueFlavorsCount, getTotalPayment } = useCart();
+  const { cartItems, getUniqueFlavorsCount, getTotalPayment } = useCart();  
   // Função para gerar a fatura como PDF
   const generateInvoice = (formData: FormData): JSX.Element => {
     //const { cartItems } = useCart(); // Acessa os itens do carrinho do contexto
@@ -212,12 +221,25 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             <Text style={styles.sectionTitle}>Dados do Cliente</Text>
             <Text style={styles.text}>Nome: {formData.name}</Text>
             <Text style={styles.text}>Número: {formData.number}</Text>
-            <Text style={styles.text}>
-              Cidade ou bairro: {formData.cityOrNeighborhood}
-            </Text>
-            <Text style={styles.text}>
-              Ponto de referência: {formData.landmark}
-            </Text>
+            {/* Link para "Cidade ou Bairro" */}
+        <Link
+          src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            formData.cityOrNeighborhood
+          )}`}
+          style={styles.text}
+        >
+          Cidade ou bairro: {formData.cityOrNeighborhood}
+        </Link>
+
+        {/* Link para "Ponto de Referência" */}
+        <Link
+          src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            formData.landmark
+          )}`}
+          style={styles.text}
+        >
+          Ponto de referência: {formData.landmark}
+        </Link>
           </View>
 
           <View style={styles.dataBox1}>
@@ -228,6 +250,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <Text style={[styles.tableHeader, styles.column]}>Nome</Text>
               <Text style={[styles.tableHeader, styles.column]}>Preço</Text>
               <Text style={[styles.tableHeader, styles.column]}>Colheres</Text>
+              <Text style={[styles.tableHeader, styles.column]}>Total</Text>
             </View>
 
             {/* Separador */}
@@ -238,11 +261,24 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             {/* Itens do Carrinho */}
             {cartItems.map((item) => (
               <View key={item.id} style={styles.tableRow}>
+                {/* Nome do Produto */}
                 <Text style={styles.tableCell}>{item.title}</Text>
-                <Text style={styles.tableCell}><Text style={styles.moneyColor}>{item.price}</Text></Text>
+                
+                {/* Preço Unitário */}
+                <Text style={styles.tableCell}>
+                  <Text style={styles.moneyColor}>{item.price.toLocaleString('pt-AO')}</Text>
+                </Text>
+                
+                {/* Quantidade (Colheres) */}
                 <Text style={styles.tableCell}>{item.count}</Text>
+                
+                {/* Total (Preço * Quantidade) */}
+                <Text style={styles.tableCell}>
+                  <Text style={styles.moneyColor}>{(item.total.toLocaleString('pt-AO'))}</Text>
+                </Text>
               </View>
             ))}
+
           </View>
 
           
@@ -253,14 +289,14 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
                 <Text style={styles.summaryText}>
                   Total de Sabores - {" "} 
-                  <Text>{getUniqueFlavorsCount()}</Text>
+                  <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
                   Total de Pagamento - {" "}
-                  <Text style={styles.moneyColor}>{getTotalPayment()}</Text>
+                  <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
-                  Método de Pagamento - <Text>{formData.paymentMethod}</Text>
+                  Método de Pagamento - <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
                 </Text>
               </View>
               <View style={styles.contentBox}>
@@ -279,7 +315,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `encomenda-${formData.name}.pdf`;
+    a.download = `Fatura_${formData.name}.pdf`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
