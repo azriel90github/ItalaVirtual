@@ -78,7 +78,8 @@ async function seed() {
 		},
 	]);
 
-	await db.insert(customerOrder).values([
+	/**
+	 * await db.insert(customerOrder).values([
 		{
 			name: "Azriel Armando",
 			number: "932101903", // Agora pode ser um number
@@ -90,8 +91,8 @@ async function seed() {
 		},
 	]);
 
+	 */
 
-  
 }
 
 seed().finally(() => { 

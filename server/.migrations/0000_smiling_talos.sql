@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "customer_order" (
+	CREATE TABLE IF NOT EXISTS "customer_order" (
 	"id" text PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"number" text NOT NULL,

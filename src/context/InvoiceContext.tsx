@@ -239,7 +239,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             {cartItems.map((item) => (
               <View key={item.id} style={styles.tableRow}>
                 <Text style={styles.tableCell}>{item.title}</Text>
-                <Text style={styles.tableCell}>{item.price.toFixed(2)}</Text>
+                <Text style={styles.tableCell}><Text style={styles.moneyColor}>{item.price}</Text></Text>
                 <Text style={styles.tableCell}>{item.count}</Text>
               </View>
             ))}
@@ -252,15 +252,15 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <View style={styles.contentBox}>
                 <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
                 <Text style={styles.summaryText}>
-                  Total de Sabores:{" "} 
-                  <Text style={styles.moneyColor}>{getUniqueFlavorsCount()}</Text>
+                  Total de Sabores - {" "} 
+                  <Text>{getUniqueFlavorsCount()}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
-                  Total de Pagamento:{" "}
-                  <Text style={styles.moneyColor}>{getTotalPayment().toFixed(2)}</Text>
+                  Total de Pagamento - {" "}
+                  <Text style={styles.moneyColor}>{getTotalPayment()}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
-                  Método de Pagamento: <Text style={styles.moneyColor}>{formData.paymentMethod}</Text>
+                  Método de Pagamento - <Text>{formData.paymentMethod}</Text>
                 </Text>
               </View>
               <View style={styles.contentBox}>
@@ -279,7 +279,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `Fatura_${formData.name}.pdf`;
+    a.download = `encomenda-${formData.name}.pdf`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
