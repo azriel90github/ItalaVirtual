@@ -244,7 +244,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <Text style={styles.text}>Número : {formData.number}</Text>
               <Link
                 src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  formData.cityOrNeighborhood
+                  `${formData.cityOrNeighborhood}`
                 )}`}
                 style={styles.link}
               >
@@ -253,7 +253,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
               <Link
                 src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  formData.landmark
+                  `${formData.landmark}, ${formData.cityOrNeighborhood}`
                 )}`}
                 style={styles.link}
               >
