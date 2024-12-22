@@ -86,10 +86,10 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: "#3D1A36",
     fontSize: 18,
-    marginBottom: 18,
+    marginBottom: 12,
   },
   dataBox: {
-    lineHeight:1,
+    lineHeight:1.5,
     borderRadius: 8,
   },
   text: {
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   tableRow: {
-    flexDirection: 'row',
+    flexDirection: 'row', 
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 4,
@@ -174,19 +174,20 @@ const styles = StyleSheet.create({
     height: "auto", // Mantém a proporção
   },
   footer: {
-    position: "absolute",
-    bottom: 10,
-    right: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     color: "#f3f4f6",
-    fontSize: 12,
+    fontSize: 10,
+    marginTop: 12,
   },
   link: {
-    color: "#1e90ff",
+    color: "#f3f4f6",
     textDecoration: "none", 
     fontSize: 12,
   },
   link1: {
-     
+    color: "#1e90ff",
   },
 });
 
@@ -222,27 +223,27 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
           {/* Dados do Cliente */}
           <View style={styles.dataBox}>
             <Text style={styles.sectionTitle}>Dados do Cliente</Text>
-            <Text style={styles.text}>Nome: {formData.name}</Text>
-            <Text style={styles.text}>Número: {formData.number}</Text>
+            <Text style={styles.text}>Nome : {formData.name}</Text>
+            <Text style={styles.text}>Número : {formData.number}</Text>
             {/* Link para "Cidade ou Bairro" */}
-        <Link
-          src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-            formData.cityOrNeighborhood
-          )}`}
-          style={styles.link}
-        >
-          Cidade ou bairro: {formData.cityOrNeighborhood}
-        </Link>
+            <Link
+              src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                formData.cityOrNeighborhood
+              )}`}
+              style={styles.link}
+            >
+              Cidade ou bairro : <Text style={styles.link1}> {formData.cityOrNeighborhood}</Text>
+            </Link>
 
-        {/* Link para "Ponto de Referência" */}
-        <Link
-          src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-            formData.landmark
-          )}`}
-          style={styles.link}
-        >
-          Ponto de referência: {formData.landmark}
-        </Link>
+            {/* Link para "Ponto de Referência" */}
+            <Link
+              src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                formData.landmark
+              )}`}
+              style={styles.link}
+            >
+              Ponto de referência : <Text style={styles.link1}>{formData.landmark}</Text>
+            </Link>
           </View>
 
           <View style={styles.dataBox1}>
@@ -281,7 +282,6 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 </Text>
               </View>
             ))}
-
           </View>
 
           
@@ -291,15 +291,15 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <View style={styles.contentBox}>
                 <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
                 <Text style={styles.summaryText}>
-                  Total de Sabores - {" "} 
+                  Total de Sabores : {" "} 
                   <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
-                  Total de Pagamento - {" "}
+                  Total de Pagamento : {" "}
                   <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
                 </Text>
                 <Text style={styles.summaryText}>
-                  Método de Pagamento - <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
+                  Método de Pagamento : <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
                 </Text>
               </View>
               <View style={styles.contentBox}>
@@ -307,6 +307,14 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               </View>
             </View>
           </View>
+          <Text style={styles.footer}>
+            <Text>
+              Pág 1/1
+            </Text>
+            <Text>
+              Data : {new Date().toLocaleDateString()}
+            </Text>
+          </Text>
         </Page>
       </Document>
     );
