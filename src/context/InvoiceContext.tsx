@@ -11,7 +11,7 @@ import {
   pdf,
   Link,
 } from "@react-pdf/renderer";
-import { useCart } from "./CartContext.tsx";
+import { useCart, type CartItem } from "./CartContext.tsx";
 
 // Registrar fonte personalizada (opcional)
 Font.register({
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     //opacity: 0.1, // Torna a imagem sutil para um efeito de fundo
   },
   header: {
+    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -174,12 +175,15 @@ const styles = StyleSheet.create({
     height: "auto", // Mantém a proporção
   },
   footer: {
+    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     color: "#f3f4f6",
     fontSize: 10,
     marginTop: 12,
+    marginRight: 8,
+    marginLeft: 8,
   },
   link: {
     color: "#f3f4f6",
@@ -194,62 +198,75 @@ const styles = StyleSheet.create({
 // Provedor de faturas
 export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { cartItems, getUniqueFlavorsCount, getTotalPayment } = useCart();  
+  const itemsPerPage = 10; // Limite de itens na primeira página
+  const pages = Math.ceil(cartItems.length / itemsPerPage);
+  const cartChunks: CartItem[][] = [];
+
+  for (let i = 0; i < pages; i++) {
+    cartChunks.push(cartItems.slice(i * itemsPerPage, (i + 1) * itemsPerPage));
+  }
   // Função para gerar a fatura como PDF
   const generateInvoice = (formData: FormData): JSX.Element => {
     //const { cartItems } = useCart(); // Acessa os itens do carrinho do contexto
-    return (
+    return ( 
       <Document>
-        <Page size="A4" style={styles.page}>
+      {cartChunks.map((chunk, pageIndex) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+        <Page size="A4" style={styles.page} key={pageIndex}>
           {/* Imagem de fundo */}
           <Image
             style={styles.backgroundImage}
-            src="/ice-cream 2.png"  
+            src="/ice-cream 2.png"
           />
+
           {/* Cabeçalho */}
-          <View style={styles.header}>
-            {/* Logo */}
-            <View>
-              <Image style={styles.logo} src="/logo-geladaria.png" />
-              <Text style={styles.descricaoLogo}>Faça sua encomenda de qualquer lugar e a qualquer hora!</Text>
+          {pageIndex === 0 && (
+            <View style={styles.header}>
+              {/* Logo */}
+              <View>
+                <Image style={styles.logo} src="/logo-geladaria.png" />
+                <Text style={styles.descricaoLogo}>Faça sua encomenda de qualquer lugar e a qualquer hora!</Text>
+              </View>
+              {/* Endereço */}
+              <View style={styles.address}>
+                <Text style={styles.addressp}>Avenida Comandante Valodia nº 69</Text>
+                <Text style={styles.addressp}>Largo do Kinaxixi, Luanda</Text>
+                <Text style={styles.addressp}>Angola</Text>
+              </View>
             </View>
-            {/* Endereço */}
-            <View style={styles.address}>
-              <Text style={styles.addressp}>Avenida Comandante Valodia nº 69</Text>
-              <Text style={styles.addressp}>Largo do Kinaxixi, Luanda</Text>
-              <Text style={styles.addressp}>Angola</Text>
+          )}
+
+          {/* Dados do Cliente (somente na primeira página) */}
+          {pageIndex === 0 && (
+            <View style={styles.dataBox}>
+              <Text style={styles.sectionTitle}>Dados do Cliente</Text>
+              <Text style={styles.text}>Nome : {formData.name}</Text>
+              <Text style={styles.text}>Número : {formData.number}</Text>
+              <Link
+                src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  formData.cityOrNeighborhood
+                )}`}
+                style={styles.link}
+              >
+                Cidade ou bairro : <Text style={styles.link1}> {formData.cityOrNeighborhood}</Text>
+              </Link>
+
+              <Link
+                src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  formData.landmark
+                )}`}
+                style={styles.link}
+              >
+                Ponto de referência : <Text style={styles.link1}>{formData.landmark}</Text>
+              </Link>
             </View>
-          </View>
+          )}
 
-          {/* Dados do Cliente */}
-          <View style={styles.dataBox}>
-            <Text style={styles.sectionTitle}>Dados do Cliente</Text>
-            <Text style={styles.text}>Nome : {formData.name}</Text>
-            <Text style={styles.text}>Número : {formData.number}</Text>
-            {/* Link para "Cidade ou Bairro" */}
-            <Link
-              src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                formData.cityOrNeighborhood
-              )}`}
-              style={styles.link}
-            >
-              Cidade ou bairro : <Text style={styles.link1}> {formData.cityOrNeighborhood}</Text>
-            </Link>
-
-            {/* Link para "Ponto de Referência" */}
-            <Link
-              src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                formData.landmark
-              )}`}
-              style={styles.link}
-            >
-              Ponto de referência : <Text style={styles.link1}>{formData.landmark}</Text>
-            </Link>
-          </View>
-
+          {/* Detalhes da Encomenda */}
           <View style={styles.dataBox1}>
             <Text style={styles.sectionTitle1}>Detalhes Encomenda</Text>
 
-            {/* Cabeçalho */}
+            {/* Cabeçalho da Tabela */}
             <View style={styles.tableRow}>
               <Text style={[styles.tableHeader, styles.column]}>Nome</Text>
               <Text style={[styles.tableHeader, styles.column]}>Preço</Text>
@@ -260,65 +277,58 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             {/* Separador */}
             <View style={styles.separator} />
 
-            {/* Dados Dinâmicos */}
-            
             {/* Itens do Carrinho */}
-            {cartItems.map((item) => (
+            {chunk.map((item) => (
               <View key={item.id} style={styles.tableRow}>
-                {/* Nome do Produto */}
                 <Text style={styles.tableCell}>{item.title}</Text>
-                
-                {/* Preço Unitário */}
                 <Text style={styles.tableCell}>
                   <Text style={styles.moneyColor}>{item.price.toLocaleString('pt-AO')}</Text>
                 </Text>
-                
-                {/* Quantidade (Colheres) */}
                 <Text style={styles.tableCell}>{item.count}</Text>
-                
-                {/* Total (Preço * Quantidade) */}
                 <Text style={styles.tableCell}>
-                  <Text style={styles.moneyColor}>{(item.total.toLocaleString('pt-AO'))}</Text>
+                  <Text style={styles.moneyColor}>{item.total.toLocaleString('pt-AO')}</Text>
                 </Text>
               </View>
             ))}
           </View>
 
-          
-          <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-            {/* Resumo da Encomenda */}
-            <View style={styles.summaryBox}>
-              <View style={styles.contentBox}>
-                <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
-                <Text style={styles.summaryText}>
-                  Total de Sabores : {" "} 
-                  <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
-                </Text>
-                <Text style={styles.summaryText}>
-                  Total de Pagamento : {" "}
-                  <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
-                </Text>
-                <Text style={styles.summaryText}>
-                  Método de Pagamento : <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
-                </Text>
-              </View>
-              <View style={styles.contentBox}>
-                <Image style={styles.qrcod} src="/qrcod.png" />
+          {/* Resumo da Encomenda (somente na última página) */}
+          {pageIndex === pages - 1 && (
+            <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+              <View style={styles.summaryBox}>
+                <View style={styles.contentBox}>
+                  <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
+                  <Text style={styles.summaryText}>
+                    Total de Sabores : <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
+                  </Text>
+                  <Text style={styles.summaryText}>
+                    Total de Pagamento : <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
+                  </Text>
+                  <Text style={styles.summaryText}>
+                    Método de Pagamento : <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
+                  </Text>
+                </View>
+                <View style={styles.contentBox}>
+                  <Image style={styles.qrcod} src="/qrcod.png" />
+                </View>
               </View>
             </View>
+          )}
+
+          {/* Rodapé */}
+          <View style={styles.footer}>
+            <View>
+              <Text>Pág {pageIndex + 1}/{pages}</Text>
+            </View>
+            <View>
+              <Text>Data : {new Date().toLocaleDateString()}</Text>
+            </View>
           </View>
-          <Text style={styles.footer}>
-            <Text>
-              Pág 1/1
-            </Text>
-            <Text>
-              Data : {new Date().toLocaleDateString()}
-            </Text>
-          </Text>
         </Page>
-      </Document>
+      ))}
+    </Document>
     );
-  };
+  }; 
 
   const downloadInvoice = async (formData: FormData): Promise<void> => {
     const invoiceComponent = generateInvoice(formData);

@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, useContext, type ReactNode } from "
 
 // Tipo para os produtos
 export interface Product {
-  id: string; // Alterado de number para string
+  id: string;
   title: string;
   price: number;
   description: string;
@@ -12,8 +12,8 @@ export interface Product {
 }
 
 // Tipo para o carrinho
-interface CartItem {
-  id: string; // Alterado de number para string
+export interface CartItem {
+  id: string;
   title: string;
   price: number;
   count: number;
