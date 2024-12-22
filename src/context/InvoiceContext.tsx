@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
   text: {
     color: "#f3f4f6",
     fontSize: 12,
-    marginBottom: 5,
   },
   dataBox1: {
     backgroundColor: "#7C4A73",
@@ -183,7 +182,11 @@ const styles = StyleSheet.create({
   },
   link: {
     color: "#1e90ff",
-    textDecoration: "underline",
+    textDecoration: "none", 
+    fontSize: 12,
+  },
+  link1: {
+     
   },
 });
 
@@ -226,7 +229,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
           src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
             formData.cityOrNeighborhood
           )}`}
-          style={styles.text}
+          style={styles.link}
         >
           Cidade ou bairro: {formData.cityOrNeighborhood}
         </Link>
@@ -236,7 +239,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
           src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
             formData.landmark
           )}`}
-          style={styles.text}
+          style={styles.link}
         >
           Ponto de referência: {formData.landmark}
         </Link>
