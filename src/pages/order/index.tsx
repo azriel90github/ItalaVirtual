@@ -146,54 +146,89 @@ export function OrderPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!validateForm()) return; // Bloqueia envio se a validação falhar
-
+  
     console.log("Formulário válido, enviando...");
-
+  
     try {
-        const response = await fetch("http://localhost:3334/order", {
-            method: "POST",
-            headers: {
+      // Criação do pedido
+      const response = await fetch("http://localhost:3334/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          number: Number.parseInt(formData.number),
+          flavors: Number.parseInt(formData.flavors),
+          payment: Number.parseInt(formData.payment),
+          paymentMethod: selectedOption,
+        }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Ordem criada:", data);
+  
+        // Gerar PDF
+        const invoiceComponent = generateInvoice(formData);
+        const blob = await pdf(invoiceComponent).toBlob();
+  
+        // Baixar o PDF
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `Fatura_${formData.name}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+  
+        // Converter o blob para base64 para envio por email
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64Data = reader.result?.toString().split(",")[1];
+  
+          // Enviar email com a fatura
+          try {
+            const emailResponse = await fetch("http://localhost:3334/send-email", {
+              method: "POST",
+              headers: {
                 "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...formData,
-                number: Number.parseInt(formData.number),
-                flavors: Number.parseInt(formData.flavors),
-                payment: Number.parseInt(formData.payment),
-                paymentMethod: selectedOption,
-            }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Ordem criada:", data);
-          setShowSuccessModal(true);
-
-          // Gerar PDF
-          const invoiceComponent = generateInvoice(formData); // Passa os dados para a fatura
-          const blob = await pdf(invoiceComponent).toBlob();
-
-          // Baixar o PDF
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = `Fatura_${formData.name}.pdf`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-
-          resetCart(); // Após o envio bem-sucedido, resetar o carrinho
-          resetForm(); // Reseta o formulário após o envio bem-sucedido
-        } else {
-          console.error("Erro ao enviar os dados.");
-        }
-        } catch (error) {
-          console.error("Erro na requisição:", error);
-        }
-    };
-
+              },
+              body: JSON.stringify({
+                email: "azrielgithub@gmail.com", // Substitua pelo email do destinatário
+                subject: `Fatura - ${formData.name}`,
+                // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
+                text: `Segue em anexo a fatura referente ao seu pedido.`,
+                attachment: base64Data,
+              }),
+            });
+  
+            if (emailResponse.ok) {
+              console.log("Email enviado com sucesso!");
+              setShowSuccessModal(true); // Mostra o modal de sucesso
+            } else {
+              console.error("Erro ao enviar email.");
+            }
+          } catch (emailError) {
+            console.error("Erro na requisição de envio de email:", emailError);
+          }
+        };
+  
+        reader.readAsDataURL(blob);
+  
+        resetCart();
+        resetForm();
+      } else {
+        console.error("Erro ao enviar os dados.");
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+    }
+  };
+  
+  
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
       <div className="border-2 mb-10 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">

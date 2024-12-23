@@ -13,6 +13,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.3",
     "@types/node": "^22.9.0",
     "@types/nodemailer": "^6.4.17",
     "drizzle-kit": "^0.26.2",
@@ -25,6 +26,7 @@
     "@fastify/type-provider-typebox": "^5.0.1",
     "@paralleldrive/cuid2": "^2.2.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "drizzle-orm": "^0.35.3",
     "fastify": "^5.1.0",
     "fastify-type-provider-zod": "^4.0.2",

@@ -1,52 +1,49 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
 import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
+
+dotenv.config();
 
 const app = fastify();
 
 async function startServer() {
-  // Registra o plugin CORS
   await app.register(cors, {
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173'], // Ajuste conforme necessário
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   });
 
-  // Registra as rotas
   app.register(createSendOrder);
   app.register(getProducts);
 
-  // Rota para envio de e-mail
   app.post('/send-email', async (request, reply) => {
     const { email, subject, text, attachment } = request.body as { email: string; subject: string; text: string; attachment: string };
 
-    // Configuração do transporte de e-mail
     const transporter = nodemailer.createTransport({
-      service: 'Gmail', // Pode ser alterado para outro serviço, como Outlook ou SMTP personalizado
+      service: 'Gmail',
       auth: {
-        user: 'seuemail@gmail.com', // Substitua pelo seu email
-        pass: 'suasenha', // Substitua pela sua senha ou token de aplicação
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     try {
-      // Configuração do e-mail
       const mailOptions = {
-        from: 'seuemail@gmail.com',
+        from: process.env.EMAIL_USER,
         to: email,
         subject: subject,
         text: text,
         attachments: [
           {
             filename: 'Fatura.pdf',
-            content: Buffer.from(attachment, 'base64'), // Decodifica o anexo
+            content: Buffer.from(attachment, 'base64'),
             contentType: 'application/pdf',
           },
         ],
       };
 
-      // Envio do e-mail
       await transporter.sendMail(mailOptions);
       reply.status(200).send({ message: 'Email enviado com sucesso!' });
     } catch (error) {
@@ -55,19 +52,17 @@ async function startServer() {
     }
   });
 
-  // Tratamento de erros
   app.setErrorHandler((error, _, reply) => {
     console.error(error);
-    return reply.status(500).send({ message: 'Erro interno do servidor.' });
+    reply.status(500).send({ message: 'Erro interno do servidor.' });
   });
 
-  // Inicia o servidor
   try {
-    await app.listen({
-      host: '0.0.0.0',
-      port: 3334,
-    });
-    console.log('🚀 Servidor HTTP em execução!');
+    const PORT = process.env.PORT || 3334;
+    const HOST = process.env.HOST || '127.0.0.1';
+
+    await app.listen({ host: HOST, port: Number(PORT) });
+    console.log(`🚀 Servidor HTTP em execução em ${HOST}:${PORT}`);
   } catch (err) {
     console.error(err);
     process.exit(1);
