@@ -184,39 +184,8 @@ export function OrderPage() {
         a.click();
         document.body.removeChild(a);
   
-        // Converter o blob para base64 para envio por email
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64Data = reader.result?.toString().split(",")[1];
-  
-          // Enviar email com a fatura
-          try {
-            const emailResponse = await fetch("http://localhost:3334/send-email", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                email: "azrielgithub@gmail.com", // Substitua pelo email do destinatário
-                subject: `Fatura - ${formData.name}`,
-                // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
-                text: `Segue em anexo a fatura referente ao seu pedido.`,
-                attachment: base64Data,
-              }),
-            });
-  
-            if (emailResponse.ok) {
-              console.log("Email enviado com sucesso!");
-              setShowSuccessModal(true); // Mostra o modal de sucesso
-            } else {
-              console.error("Erro ao enviar email.");
-            }
-          } catch (emailError) {
-            console.error("Erro na requisição de envio de email:", emailError);
-          }
-        };
-  
-        reader.readAsDataURL(blob);
+
+        setShowSuccessModal(true); // Mostra o modal de sucesso
   
         resetCart();
         resetForm();
