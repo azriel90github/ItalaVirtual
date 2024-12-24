@@ -184,8 +184,30 @@ export function OrderPage() {
         a.click();
         document.body.removeChild(a);
   
-
-        setShowSuccessModal(true); // Mostra o modal de sucesso
+        // Enviar PDF por email
+        const emailResponse = await fetch("http://localhost:3334/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            subject: `Fatura para ${formData.name}`,
+            body: "Segue em anexo a sua fatura.",
+            attachment: {
+              filename: `Fatura_${formData.name}.pdf`,
+              content: await blob.arrayBuffer(),
+              contentType: "application/pdf",
+            },
+          }),
+        });
+  
+        if (emailResponse.ok) {
+          console.log("PDF enviado por email com sucesso.");
+          setShowSuccessModal(true); // Mostra o modal de sucesso
+        } else {
+          console.error("Erro ao enviar o PDF por email.");
+        }
   
         resetCart();
         resetForm();
@@ -196,6 +218,7 @@ export function OrderPage() {
       console.error("Erro na requisição:", error);
     }
   };
+  
   
   
   return (
