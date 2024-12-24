@@ -30,6 +30,7 @@ interface FormData {
   paymentMethod: string;
   cityOrNeighborhood: string;
   landmark: string;
+  email: string;
 }
 
 // Definir a interface para o contexto

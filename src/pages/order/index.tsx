@@ -40,6 +40,7 @@ export function OrderPage() {
     paymentMethod: "",
     cityOrNeighborhood: "",
     landmark: "",
+    email: 'azrielgithub@gmail.com', // Adicione a propriedade aqui
   });
 
   const resetForm = () => {
@@ -51,6 +52,7 @@ export function OrderPage() {
       paymentMethod: "",
       cityOrNeighborhood: "",
       landmark: "",
+      email: 'azrielgithub@gmail.com', // Adicione a propriedade aqui
     });
   };
 
@@ -147,7 +149,7 @@ export function OrderPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    if (!validateForm()) return; // Bloqueia envio se a validação falhar
+    if (!validateForm()) return;
   
     console.log("Formulário válido, enviando...");
   
@@ -184,8 +186,24 @@ export function OrderPage() {
         a.click();
         document.body.removeChild(a);
   
-
-        setShowSuccessModal(true); // Mostra o modal de sucesso
+        // Enviar PDF por e-mail
+        const formDataEmail = new FormData();
+        formDataEmail.append("file", blob, `Fatura_${formData.name}.pdf`);
+        formDataEmail.append("email", formData.email);
+        formDataEmail.append("name", formData.name);
+  
+        const emailResponse = await fetch("http://localhost:3334/send-email", {
+          method: "POST",
+          body: formDataEmail,
+        });
+  
+        if (emailResponse.ok) {
+          console.log("E-mail enviado com sucesso!");
+        } else {
+          console.error("Erro ao enviar o e-mail.");
+        }
+  
+        setShowSuccessModal(true);
   
         resetCart();
         resetForm();
@@ -196,6 +214,7 @@ export function OrderPage() {
       console.error("Erro na requisição:", error);
     }
   };
+  
   
   
   return (
@@ -391,6 +410,7 @@ export function OrderPage() {
                       paymentMethod: "",
                       cityOrNeighborhood: "",
                       landmark: "",
+                      email: 'azrielgithub@gmail.com', // Adicione a propriedade aqui
                     });
                     setSelectedOption(""); // Reseta método de pagamento
                   }}

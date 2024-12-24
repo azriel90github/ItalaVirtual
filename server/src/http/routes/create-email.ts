@@ -1,4 +1,6 @@
-const fastify = require("fastify")({ logger: true });
+/**
+ * Exemplo de envio de email com anexo usando Fastify e Nodemailer.
+ * const fastify = require("fastify")({ logger: true });
 const nodemailer = require("nodemailer");
 const fastifyPlugin = require("fastify-plugin");
 
@@ -73,3 +75,5 @@ const start = async () => {
 };
 
 start();
+ */
+
