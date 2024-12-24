@@ -25,11 +25,11 @@ Font.register({
 interface FormData {
   name: string;
   number: string;
-  cityOrNeighborhood: string;
-  landmark: string;
   flavors: number;
   payment: string;
   paymentMethod: string;
+  cityOrNeighborhood: string;
+  landmark: string;
 }
 
 // Definir a interface para o contexto

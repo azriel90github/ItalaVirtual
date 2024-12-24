@@ -1,34 +1,30 @@
-const express = require("express");
+const fastify = require("fastify")({ logger: true });
 const nodemailer = require("nodemailer");
-const app = express();
+const fastifyPlugin = require("fastify-plugin");
 
-app.use(express.json());
+// Plugin para envio de email
+import type { FastifyInstance } from "fastify";
 
-app.post("/send-email", async (req, res) => {
-  const { email, subject, body, attachment } = req.body;
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const emailPlugin = async (fastify: FastifyInstance, options: { [key: string]: any }) => {
+  // Configuração do transporte de email
+  const transporter = nodemailer.createTransport({
+    host: "smtp.example.com", // Substitua pelo servidor SMTP
+    port: 587,
+    secure: false,
+    auth: {
+      user: "seu-email@example.com", // Email de envio
+      pass: "sua-senha",            // Senha do email
+    },
+  });
 
-  if (!email || !subject || !body || !attachment) {
-    return res.status(400).json({ message: "Dados inválidos para envio de email." });
-  }
-
-  try {
-    // Configuração do transporte de email
-    const transporter = nodemailer.createTransport({
-      host: "smtp.example.com", // Substituir pelo servidor SMTP
-      port: 587,
-      secure: false,
-      auth: {
-        user: "seu-email@example.com", // Email de envio
-        pass: "sua-senha",            // Senha do email
-      },
-    });
-
-    // Configuração da mensagem
+  // Adicionando o transporte ao Fastify
+  fastify.decorate("sendEmail", async ({ email, subject, body, attachment }: { email: string, subject: string, body: string, attachment: { filename: string, content: string, contentType: string } }) => {
     const mailOptions = {
       from: '"Minha Loja" <seu-email@example.com>', // Nome e email do remetente
       to: email,                                   // Destinatário
-      subject: subject,                            // Assunto do email
-      text: body,                                  // Corpo do email em texto puro
+      subject,                                     // Assunto do email
+      text: body,                                  // Corpo do email
       attachments: [
         {
           filename: attachment.filename,
@@ -38,16 +34,42 @@ app.post("/send-email", async (req, res) => {
       ],
     };
 
-    // Envio do email
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: "Email enviado com sucesso!" });
+    // Envia o email
+    return transporter.sendMail(mailOptions);
+  });
+};
+
+// Registro do plugin
+fastify.register(fastifyPlugin(emailPlugin));
+
+// Rota para criar e enviar email
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+fastify.post("/send-email", async (request: { body: { email: any; subject: any; body: any; attachment: any; }; }, reply: { status: (arg0: number) => { (): any; new(): any; send: { (arg0: { message: string; error?: unknown; }): any; new(): any; }; }; }) => {
+  const { email, subject, body, attachment } = request.body;
+
+  if (!email || !subject || !body || !attachment) {
+    return reply.status(400).send({ message: "Dados inválidos para envio de email." });
+  }
+
+  try {
+    await fastify.sendEmail({ email, subject, body, attachment });
+    return reply.status(200).send({ message: "Email enviado com sucesso!" });
   } catch (error) {
-    console.error("Erro ao enviar email:", error);
-    res.status(500).json({ message: "Erro ao enviar email.", error });
+    fastify.log.error(error);
+    return reply.status(500).send({ message: "Erro ao enviar email.", error });
   }
 });
 
-const PORT = 3334;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+// Inicia o servidor
+const start = async () => {
+  try {
+    await fastify.listen({ port: 3334, host: "0.0.0.0" });
+    // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
+    fastify.log.info(`Servidor rodando em http://localhost:3334`);
+  } catch (error) {
+    fastify.log.error(error);
+    process.exit(1);
+  }
+};
+
+start();
