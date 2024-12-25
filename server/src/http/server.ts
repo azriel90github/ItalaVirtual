@@ -5,6 +5,7 @@ import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
 import { sendEmailRoute } from './routes/create-email';
 
+// Carregar variáveis de ambiente do arquivo .env
 dotenv.config();
 
 const app = fastify();

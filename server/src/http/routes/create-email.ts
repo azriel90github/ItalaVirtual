@@ -1,10 +1,16 @@
 import type { FastifyPluginAsync } from 'fastify';
 import nodemailer from 'nodemailer';
 // biome-ignore lint/style/useNodejsImportProtocol: <explanation>
-import fs from 'fs';
+import fs from 'fs/promises'; // Usando a API de Promises do fs para evitar bloqueios na thread
+// biome-ignore lint/style/useNodejsImportProtocol: <explanation>
+import path from 'path';
+import dotenv from 'dotenv';
+
+// Carregar variáveis de ambiente
+dotenv.config();
 
 export const sendEmailRoute: FastifyPluginAsync = async (app) => {
-  app.get(
+  app.post(
     '/send-email',
     {
       schema: {
@@ -13,8 +19,8 @@ export const sendEmailRoute: FastifyPluginAsync = async (app) => {
           required: ['email', 'name', 'pdfBase64'],
           properties: {
             email: { type: 'string', format: 'email' },
-            name: { type: 'string' },
-            pdfBase64: { type: 'string' },
+            name: { type: 'string', minLength: 1 },
+            pdfBase64: { type: 'string', minLength: 1 },
           },
         },
       },
@@ -27,23 +33,25 @@ export const sendEmailRoute: FastifyPluginAsync = async (app) => {
           pdfBase64: string;
         };
 
-        // Salva o PDF no servidor temporariamente
+        // Salvar o PDF no servidor temporariamente
+        const tempDir = path.resolve(__dirname, 'temp');
+        await fs.mkdir(tempDir, { recursive: true }); // Garantir que o diretório existe
+        const filePath = path.join(tempDir, `Fatura_${name}.pdf`);
         const pdfBuffer = Buffer.from(pdfBase64, 'base64');
-        const filePath = `./temp/Fatura_${name}.pdf`;
-        fs.writeFileSync(filePath, pdfBuffer);
+        await fs.writeFile(filePath, pdfBuffer);
 
         // Configuração do transporte de email
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'azrielgithub@gmail.com', // Substitua pelo seu e-mail
-            pass: 'azriel@90',  // Substitua pela sua senha ou token de app
+            user: process.env.EMAIL_USER, // Variável de ambiente
+            pass: process.env.EMAIL_PASS, // Variável de ambiente
           },
         });
 
         // Configurações do email
         const mailOptions = {
-          from: 'azrielgithub@gmail.com', // Substitua pelo seu e-mail
+          from: process.env.EMAIL_USER,
           to: email,
           subject: `Fatura para ${name}`,
           text: `Olá ${name}, segue em anexo a sua fatura.`,
@@ -55,11 +63,11 @@ export const sendEmailRoute: FastifyPluginAsync = async (app) => {
           ],
         };
 
-        // Envia o email
+        // Enviar o email
         await transporter.sendMail(mailOptions);
 
-        // Remove o arquivo temporário
-        fs.unlinkSync(filePath);
+        // Remover o arquivo temporário
+        await fs.unlink(filePath);
 
         return reply.status(200).send({ message: 'E-mail enviado com sucesso!' });
       } catch (error) {
