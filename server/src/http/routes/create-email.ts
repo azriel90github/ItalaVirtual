@@ -1,9 +1,7 @@
 import type { FastifyPluginAsync } from 'fastify';
 import nodemailer from 'nodemailer';
-// biome-ignore lint/style/useNodejsImportProtocol: <explanation>
-import fs from 'fs/promises'; // Usando a API de Promises do fs para evitar bloqueios na thread
-// biome-ignore lint/style/useNodejsImportProtocol: <explanation>
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import dotenv from 'dotenv';
 
 // Carregar variáveis de ambiente
@@ -23,31 +21,55 @@ export const sendEmailRoute: FastifyPluginAsync = async (app) => {
             pdfBase64: { type: 'string', minLength: 1 },
           },
         },
-      },
+      },      
     },
     async (request, reply) => {
+      const tempDir = path.resolve(__dirname, 'temp');
+      let filePath: string | undefined;
+
       try {
+        // Verificar o corpo da requisição
+        console.log('Requisição recebida:', request.body);
+
         const { email, name, pdfBase64 } = request.body as {
           email: string;
           name: string;
           pdfBase64: string;
         };
 
+        // Verificação do formato Base64 para o PDF com um regex mais rigoroso
+        const base64Regex = /^([A-Za-z0-9+/=]+\s*)+$/;
+        if (!base64Regex.test(pdfBase64)) {
+          return reply.status(400).send({ message: 'Formato inválido de Base64 para o PDF.' });
+        }
+
+        // Sanitização do nome para evitar problemas ao criar o arquivo
+        const sanitizedName = name.replace(/[^a-zA-Z0-9_-]/g, '_');
+        
         // Salvar o PDF no servidor temporariamente
-        const tempDir = path.resolve(__dirname, 'temp');
-        await fs.mkdir(tempDir, { recursive: true }); // Garantir que o diretório existe
-        const filePath = path.join(tempDir, `Fatura_${name}.pdf`);
+        await fs.mkdir(tempDir, { recursive: true });
+        filePath = path.join(tempDir, `Fatura_${sanitizedName}.pdf`);
         const pdfBuffer = Buffer.from(pdfBase64, 'base64');
         await fs.writeFile(filePath, pdfBuffer);
 
         // Configuração do transporte de email
+        if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+          console.error('Configurações de e-mail ausentes.');
+          return reply.status(500).send({ message: 'Configurações de e-mail não estão definidas.' });
+        }
+
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: process.env.EMAIL_USER, // Variável de ambiente
-            pass: process.env.EMAIL_PASS, // Variável de ambiente
+            type: 'OAuth2',
+            user: process.env.EMAIL_USER,
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN,
+            accessToken: process.env.ACCESS_TOKEN,
           },
         });
+        
 
         // Configurações do email
         const mailOptions = {
@@ -57,7 +79,7 @@ export const sendEmailRoute: FastifyPluginAsync = async (app) => {
           text: `Olá ${name}, segue em anexo a sua fatura.`,
           attachments: [
             {
-              filename: `Fatura_${name}.pdf`,
+              filename: `Fatura_${sanitizedName}.pdf`,
               path: filePath,
             },
           ],
@@ -66,13 +88,26 @@ export const sendEmailRoute: FastifyPluginAsync = async (app) => {
         // Enviar o email
         await transporter.sendMail(mailOptions);
 
-        // Remover o arquivo temporário
-        await fs.unlink(filePath);
-
+        // Log de sucesso
+        console.log(`E-mail enviado com sucesso para ${email}`);
         return reply.status(200).send({ message: 'E-mail enviado com sucesso!' });
       } catch (error) {
         console.error('Erro ao enviar e-mail:', error);
-        return reply.status(500).send({ message: 'Erro ao enviar o e-mail.' });
+        // Verificar se o erro é relacionado ao envio de e-mail
+        if (error instanceof Error) {
+          return reply.status(500).send({ message: 'Erro ao enviar o e-mail.' });
+        }
+        return reply.status(500).send({ message: 'Erro inesperado ao processar a requisição.' });
+      } finally {
+        // Garantir que o arquivo temporário seja removido
+        if (filePath) {
+          try {
+            await fs.unlink(filePath);
+            console.log(`Arquivo temporário ${filePath} removido.`);
+          } catch (unlinkError) {
+            console.error(`Erro ao remover arquivo temporário ${filePath}:`, unlinkError);
+          }
+        }
       }
     }
   );

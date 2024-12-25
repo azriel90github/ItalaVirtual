@@ -93,8 +93,8 @@
     "modalSendh3": "Nota Importante:",
     "modalSendP1": "Caso seu método de pagamento seja Multicaixa Express ou Transfêrencia, a encomenda será entregue apenas, depois do envio do comprovativo de pagamento, que deve ser enviado pelo whatsapp ou email da geladaria.",
     "modalSendP2": "Escolha uma das opções abaixo:",
-    "modalSendButton1": "Enviar por email",
-    "modalSendButton2": "Enviar pelo whatsapp",
+    "modalSendButton1": "Enviar comprovativo por email",
+    "modalSendButton2": "Enviar comprovativo pelo whatsapp",
     "modalSendButton3": "Escolhe dinheiro em mão",
     "validationAllFields": "Por favor preencha todos os campos"
   }

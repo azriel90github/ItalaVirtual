@@ -186,25 +186,46 @@ export function OrderPage() {
         a.click();
         document.body.removeChild(a);
   
+        // Limpar o carrinho
         // Enviar PDF por e-mail
-        const formDataEmail = new FormData();
-        formDataEmail.append("file", blob, `Fatura_${formData.name}.pdf`);
-        formDataEmail.append("email", formData.email);
-        formDataEmail.append("name", formData.name);
-  
-        const emailResponse = await fetch("http://localhost:3334/send-email", {
-          method: "POST",
-          body: formDataEmail,
-        });
-  
-        if (emailResponse.ok) {
-          console.log("E-mail enviado com sucesso!");
-        } else {
-          console.error("Erro ao enviar o e-mail.");
-        }
-  
+        const reader = new FileReader();
+
+        reader.onloadend = async () => {
+          const pdfBase64 = typeof reader.result === 'string' ? reader.result.split(",")[1] : ''; // Remove o prefixo data:application/pdf;base64,
+
+          // Criar o corpo da requisição como JSON
+          const emailPayload = {
+            email: formData.email,
+            name: formData.name,
+            pdfBase64, // PDF convertido em Base64
+          };
+
+          try {
+            const emailResponse = await fetch("http://localhost:3334/send-email", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(emailPayload), // Enviar JSON no corpo da requisição
+            });
+
+            if (emailResponse.ok) {
+              console.log("E-mail enviado com sucesso!");
+            } else {
+              const errorData = await emailResponse.json();
+              console.error("Erro ao enviar o e-mail:", errorData.message);
+            }
+          } catch (error) {
+            console.error("Erro ao tentar enviar o e-mail:", error);
+          }
+        };
+
+          // Ler o blob como Base64
+          reader.readAsDataURL(blob);
+
+
+
         setShowSuccessModal(true);
-  
         resetCart();
         resetForm();
       } else {

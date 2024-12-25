@@ -202,6 +202,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const itemsPerPage = 10; // Limite de itens na primeira página
   const pages = Math.ceil(cartItems.length / itemsPerPage);
   const cartChunks: CartItem[][] = [];
+  // Dividir os itens do carrinho em páginas
 
   for (let i = 0; i < pages; i++) {
     cartChunks.push(cartItems.slice(i * itemsPerPage, (i + 1) * itemsPerPage));
@@ -332,16 +333,21 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   }; 
 
   const downloadInvoice = async (formData: FormData): Promise<void> => {
-    const invoiceComponent = generateInvoice(formData);
-    const blob = await pdf(invoiceComponent).toBlob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `Fatura_${formData.name}.pdf`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    try {
+      const invoiceComponent = generateInvoice(formData);
+      const blob = await pdf(invoiceComponent).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Fatura_${formData.name}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Erro ao gerar ou baixar a fatura:", error);
+    }
   };
+  
 
   return (
     <InvoiceContext.Provider value={{ generateInvoice, downloadInvoice }}>
