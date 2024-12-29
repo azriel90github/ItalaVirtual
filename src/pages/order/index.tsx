@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, Mail, MailPlus, MessageCircle, Package, X } from "lucide-react";
+import { ChartNoAxesCombined, CircleX, CreditCard, HandCoins, Landmark, MailPlus, Package, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -187,44 +187,6 @@ export function OrderPage() {
         document.body.removeChild(a);
   
         // Limpar o carrinho
-        // Enviar PDF por e-mail
-        const reader = new FileReader();
-
-        reader.onloadend = async () => {
-          const pdfBase64 = typeof reader.result === 'string' ? reader.result.split(",")[1] : ''; // Remove o prefixo data:application/pdf;base64,
-
-          // Criar o corpo da requisição como JSON
-          const emailPayload = {
-            email: formData.email,
-            name: formData.name,
-            pdfBase64, // PDF convertido em Base64
-          };
-
-          try {
-            const emailResponse = await fetch("http://localhost:3334/send-email", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(emailPayload), // Enviar JSON no corpo da requisição
-            });
-
-            if (emailResponse.ok) {
-              console.log("E-mail enviado com sucesso!");
-            } else {
-              const errorData = await emailResponse.json();
-              console.error("Erro ao enviar o e-mail:", errorData.message);
-            }
-          } catch (error) {
-            console.error("Erro ao tentar enviar o e-mail:", error);
-          }
-        };
-
-          // Ler o blob como Base64
-          reader.readAsDataURL(blob);
-
-
-
         setShowSuccessModal(true);
         resetCart();
         resetForm();
@@ -450,34 +412,30 @@ export function OrderPage() {
           <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
             <div className="items-center flex justify-between">
               <p className="text-moneyColor1 px-1 text-xl font-normal">{t('orderpage.modalSend')}</p>
-              <div className="flex">
-                <Package className="size-7 text-moneyColor1" />
-              </div>
+              {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+              <button
+                onClick={() => {
+                  setShowSuccessModal(false); // Fechar o modal
+                }}
+               className="flex">
+                <X className="text-buttonColor" />
+              </button>
             </div>
             <div className="py-3">
               <h3 className="text-buttonColor px-1 font-semibold text-[19px] pb-1.5">{t('orderpage.modalSendh3')}</h3>
-              <p className="text-zinc-300 pb-2 px-1 py-1 flex-1">{t('orderpage.modalSendP1')}</p>
-              <p className="text-zinc-300 pb-2 px-1 py-2 mb-1 flex-1">{t('orderpage.modalSendP2')}</p>
+              <p className="text-zinc-300 pb-3 px-1 py-1 flex-1">{t('orderpage.modalSendP1')}</p>
             </div>
             <div className="items-center gap-3 flex flex-wrap">
-            <button 
+              <button 
                 className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton2')}
-                <MessageCircle />
+                <Package/>
               </button>
               <button 
                 className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton1')}
-                <Mail />
+                <CircleX />
               </button>
-              <button 
-                onClick={() => {
-                  setShowSuccessModal(false); // Fechar o modal
-                }}
-                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
-                {t('orderpage.modalSendButton3')}
-                <HandCoins/>
-              </button> 
             </div>
           </div>
         </div>
