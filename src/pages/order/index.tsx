@@ -13,6 +13,7 @@ import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
 import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
+import emailjs from 'emailjs-com';
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
@@ -153,6 +154,8 @@ export function OrderPage() {
 
     console.log("Formulário válido, enviando...");
 
+    const corporateEmail = "azrielgithub@gmail.com"; // E-mail corporativo fixo
+
     try {
         // Criação do pedido
         const response = await fetch("http://localhost:3334/order", {
@@ -162,9 +165,9 @@ export function OrderPage() {
             },
             body: JSON.stringify({
                 ...formData,
-                number: Number.parseInt(formData.number),
-                flavors: Number.parseInt(formData.flavors),
-                payment: Number.parseInt(formData.payment),
+                number: Number.parseInt(formData.number, 10),
+                flavors: Number.parseInt(formData.flavors, 10),
+                payment: Number.parseInt(formData.payment, 10),
                 paymentMethod: selectedOption,
             }),
         });
@@ -178,13 +181,14 @@ export function OrderPage() {
             const blob = await pdf(invoiceComponent).toBlob();
 
             // Baixar o PDF
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `Fatura_${formData.name}.pdf`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            const blobURL = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = blobURL;
+            link.download = `Fatura_${formData.name}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobURL);
 
             // Converter o PDF para base64
             const reader = new FileReader();
@@ -192,48 +196,44 @@ export function OrderPage() {
             reader.onloadend = async () => {
                 const base64data = reader.result;
 
-                // Enviar o PDF via WhatsApp
-                try {
-                  const whatsappResponse = await fetch("https://api.whatsapp.com/send", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer YOUR_API_TOKEN", // Substitua pelo token da sua API
-                    },
-                    body: JSON.stringify({
-                      to: "932101903", // Substitua pelo número de telefone
-                      message: "Segue em anexo sua fatura.",
-                      file: {
-                        name: `Fatura_${formData.name}.pdf`,
-                        data: typeof base64data === 'string' ? base64data.split(",")[1] : "", // Remova o prefixo "data:application/pdf;base64,"
-                      },
-                    }),
-                  });
+                if (base64data) {
+                    // Enviar o PDF por e-mail usando EmailJS
+                    const templateParams = {
+                        to_email: corporateEmail, // E-mail corporativo fixo
+                        from_name: "Seu Nome ou Empresa", // Nome exibido no remetente
+                        message: "Segue em anexo sua fatura.", // Mensagem opcional
+                        file: base64data, // PDF convertido para base64
+                        file_name: `Fatura_${formData.name}.pdf`, // Nome do arquivo
+                    };
 
-                  if (whatsappResponse.ok) {
-                      console.log("PDF enviado via WhatsApp com sucesso!");
-                  } else {
-                      console.error("Erro ao enviar o PDF via WhatsApp.");
-                  }
-                } catch (whatsappError) {
-                    console.error("Erro na requisição para o WhatsApp:", whatsappError);
+                    try {
+                        const emailResponse = await emailjs.send('nqf4pzn', 'vn57szk', templateParams, 'cIfVxjtg8rCNgYV7J');
+                        console.log('E-mail enviado com sucesso!', emailResponse);
+                        // Limpar o carrinho e resetar o formulário após o envio
+                        setShowSuccessModal(true);
+                        resetCart();
+                        resetForm();
+                        
+                    } catch (emailError) {
+                        console.error('Erro ao enviar o e-mail:', emailError);
+                    }
+                } else {
+                    console.error("Erro ao converter o PDF para base64.");
                 }
-
-                // Limpar o carrinho
-                setShowSuccessModal(true);
-                resetCart();
-                resetForm();
             };
-          } else {
-              console.error("Erro ao enviar os dados.");
-          }
-        } catch (error) {
-          console.error("Erro na requisição:", error);
+            reader.onerror = (error) => {
+                console.error("Erro na leitura do arquivo PDF:", error);
+            };
+        } else {
+            const errorData = await response.json();
+            console.error("Erro ao criar ordem:", errorData);
         }
-    };
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+    }
+};
 
-  
-  
+
   
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
@@ -462,7 +462,7 @@ export function OrderPage() {
                 onClick={() => {
                   setShowSuccessModal(false); // Fechar o modal
                 }}
-                className="w-full flex transition duration-400 bg-colorRemove1 hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-center" type="button">
+                className="w-full flex transition duration-400 bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-center" type="button">
                 {t('orderpage.modalSendButton1')}
               </button>
             </div>
