@@ -18,6 +18,7 @@ export default {
 				moneyColor: "green",
 				moneyColor1: "#22c55e",
 				colorRemove: "red",
+				colorRemove1: "#dc2626",
 				colorStar: "#d946ef",
 				colorInput: "#8C5B83",
 				colorExtra: "#955573",

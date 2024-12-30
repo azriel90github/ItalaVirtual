@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, MailPlus, X } from "lucide-react";
+import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, MailPlus, Package, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -148,55 +148,90 @@ export function OrderPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!validateForm()) return;
-  
+
     console.log("Formulário válido, enviando...");
-  
+
     try {
-      // Criação do pedido
-      const response = await fetch("http://localhost:3334/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          number: Number.parseInt(formData.number),
-          flavors: Number.parseInt(formData.flavors),
-          payment: Number.parseInt(formData.payment),
-          paymentMethod: selectedOption,
-        }),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Ordem criada:", data);
-  
-        // Gerar PDF
-        const invoiceComponent = generateInvoice(formData);
-        const blob = await pdf(invoiceComponent).toBlob();
-  
-        // Baixar o PDF
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `Fatura_${formData.name}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-  
-        // Limpar o carrinho
-        setShowSuccessModal(true);
-        resetCart();
-        resetForm();
-      } else {
-        console.error("Erro ao enviar os dados.");
-      }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-    }
-  };
+        // Criação do pedido
+        const response = await fetch("http://localhost:3334/order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...formData,
+                number: Number.parseInt(formData.number),
+                flavors: Number.parseInt(formData.flavors),
+                payment: Number.parseInt(formData.payment),
+                paymentMethod: selectedOption,
+            }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Ordem criada:", data);
+
+            // Gerar PDF
+            const invoiceComponent = generateInvoice(formData);
+            const blob = await pdf(invoiceComponent).toBlob();
+
+            // Baixar o PDF
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Fatura_${formData.name}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Converter o PDF para base64
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = async () => {
+                const base64data = reader.result;
+
+                // Enviar o PDF via WhatsApp
+                try {
+                  const whatsappResponse = await fetch("https://api.whatsapp.com/send", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_API_TOKEN", // Substitua pelo token da sua API
+                    },
+                    body: JSON.stringify({
+                      to: "932101903", // Substitua pelo número de telefone
+                      message: "Segue em anexo sua fatura.",
+                      file: {
+                        name: `Fatura_${formData.name}.pdf`,
+                        data: typeof base64data === 'string' ? base64data.split(",")[1] : "", // Remova o prefixo "data:application/pdf;base64,"
+                      },
+                    }),
+                  });
+
+                  if (whatsappResponse.ok) {
+                      console.log("PDF enviado via WhatsApp com sucesso!");
+                  } else {
+                      console.error("Erro ao enviar o PDF via WhatsApp.");
+                  }
+                } catch (whatsappError) {
+                    console.error("Erro na requisição para o WhatsApp:", whatsappError);
+                }
+
+                // Limpar o carrinho
+                setShowSuccessModal(true);
+                resetCart();
+                resetForm();
+            };
+          } else {
+              console.error("Erro ao enviar os dados.");
+          }
+        } catch (error) {
+          console.error("Erro na requisição:", error);
+        }
+    };
+
   
   
   
@@ -414,11 +449,8 @@ export function OrderPage() {
               <p className="text-moneyColor1 px-1 text-xl font-normal">{t('orderpage.modalSend')}</p>
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
               <button
-                onClick={() => {
-                  setShowSuccessModal(false); // Fechar o modal
-                }}
                className="flex">
-                <X className="text-buttonColor" />
+                <Package className="size-7 text-moneyColor1" />
               </button>
             </div>
             <div className="py-3">
@@ -427,7 +459,10 @@ export function OrderPage() {
             </div>
             <div className="items-center gap-3 flex flex-wrap">
               <button 
-                className="w-full flex transition duration-400 bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-center" type="button">
+                onClick={() => {
+                  setShowSuccessModal(false); // Fechar o modal
+                }}
+                className="w-full flex transition duration-400 bg-colorRemove1 hover:bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-center" type="button">
                 {t('orderpage.modalSendButton1')}
               </button>
             </div>
