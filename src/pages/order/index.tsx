@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CircleX, CreditCard, HandCoins, Landmark, MailPlus, Package, X } from "lucide-react";
+import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, MailPlus, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -427,14 +427,8 @@ export function OrderPage() {
             </div>
             <div className="items-center gap-3 flex flex-wrap">
               <button 
-                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
-                {t('orderpage.modalSendButton2')}
-                <Package/>
-              </button>
-              <button 
-                className="w-full flex transition duration-400 bg-searchColor hover:bg-moneyColor text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                className="w-full flex transition duration-400 bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-center" type="button">
                 {t('orderpage.modalSendButton1')}
-                <CircleX />
               </button>
             </div>
           </div>
