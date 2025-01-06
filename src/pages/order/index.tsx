@@ -13,7 +13,7 @@ import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
 import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
-import emailjs from 'emailjs-com';
+//import emailjs from 'emailjs-com';
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
@@ -33,7 +33,7 @@ export function OrderPage() {
   const { total = 0 } = location.state || {};
 
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({  
     name: "",
     number: "",
     flavors: total.toString(), // Converte para string
@@ -147,92 +147,109 @@ export function OrderPage() {
 
   const { resetCart } = useCart();
 
+  // Atualização do handleSubmit no front-end
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!validateForm()) return;
-
+  
     console.log("Formulário válido, enviando...");
-
-    const corporateEmail = "azrielgithub@gmail.com"; // E-mail corporativo fixo
-
+  
     try {
-        // Criação do pedido
-        const response = await fetch("http://localhost:3334/order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...formData,
-                number: Number.parseInt(formData.number, 10),
-                flavors: Number.parseInt(formData.flavors, 10),
-                payment: Number.parseInt(formData.payment, 10),
-                paymentMethod: selectedOption,
-            }),
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Ordem criada:", data);
-
-            // Gerar PDF
-            const invoiceComponent = generateInvoice(formData);
-            const blob = await pdf(invoiceComponent).toBlob();
-
-            // Baixar o PDF
-            const blobURL = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = blobURL;
-            link.download = `Fatura_${formData.name}.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(blobURL);
-
-            // Converter o PDF para base64
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = async () => {
-                const base64data = reader.result;
-
-                if (base64data) {
-                    // Enviar o PDF por e-mail usando EmailJS
-                    const templateParams = {
-                        to_email: corporateEmail, // E-mail corporativo fixo
-                        from_name: "Seu Nome ou Empresa", // Nome exibido no remetente
-                        message: "Segue em anexo sua fatura.", // Mensagem opcional
-                        file: base64data, // PDF convertido para base64
-                        file_name: `Fatura_${formData.name}.pdf`, // Nome do arquivo
-                    };
-
-                    try {
-                        const emailResponse = await emailjs.send('nqf4pzn', 'vn57szk', templateParams, 'cIfVxjtg8rCNgYV7J');
-                        console.log('E-mail enviado com sucesso!', emailResponse);
-                        // Limpar o carrinho e resetar o formulário após o envio
-                        setShowSuccessModal(true);
-                        resetCart();
-                        resetForm();
-                        
-                    } catch (emailError) {
-                        console.error('Erro ao enviar o e-mail:', emailError);
-                    }
-                } else {
-                    console.error("Erro ao converter o PDF para base64.");
-                }
-            };
-            reader.onerror = (error) => {
-                console.error("Erro na leitura do arquivo PDF:", error);
-            };
-        } else {
-            const errorData = await response.json();
-            console.error("Erro ao criar ordem:", errorData);
-        }
+      // **1. Criação do pedido**
+      const orderResponse = await fetch("http://localhost:3334/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          number: Number.parseInt(formData.number, 10),
+          flavors: Number.parseInt(formData.flavors, 10),
+          payment: Number.parseInt(formData.payment, 10),
+          paymentMethod: selectedOption,
+        }),
+      });
+  
+      if (!orderResponse.ok) {
+        const errorData = await orderResponse.json();
+        console.error("Erro ao criar ordem:", errorData);
+        return;
+      }
+  
+      const orderData = await orderResponse.json();
+      console.log("Ordem criada:", orderData);
+  
+      // **2. Gerar o PDF**
+      console.log("Gerando PDF...");
+      const invoiceComponent = generateInvoice(formData);
+  
+      let pdfBlob: Blob;
+      try {
+        pdfBlob = await pdf(invoiceComponent).toBlob();
+      } catch (err) {
+        console.error("Erro ao gerar o PDF:", err);
+        return;
+      }
+  
+      if (!pdfBlob) {
+        console.error("Erro ao gerar o PDF: Blob vazio.");
+        return;
+      }
+  
+      // **3. Fazer upload do PDF**
+      console.log("Enviando arquivo para o servidor...");
+      const pdfUploadResponse = await fetch("http://localhost:3334/upload-pdf", {
+        method: "POST",
+        body: pdfBlob, // Envia o blob diretamente
+      });
+  
+      if (!pdfUploadResponse.ok) {
+        console.error("Erro ao fazer upload do PDF:", await pdfUploadResponse.text());
+        return;
+      }
+  
+      const pdfUploadData = await pdfUploadResponse.json();
+      const { pdfUrl } = pdfUploadData;
+  
+      if (!pdfUrl) {
+        console.error("Erro no upload do PDF: URL não retornada.");
+        return;
+      }
+  
+      console.log("PDF enviado com sucesso:", pdfUrl);
+  
+      // **4. Enviar PDF via WhatsApp**
+      console.log("Enviando PDF pelo WhatsApp...");
+      const whatsappResponse = await fetch("http://localhost:3334/send-whatsapp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          number: formData.number,
+          pdfUrl,
+        }),
+      });
+  
+      if (!whatsappResponse.ok) {
+        console.error("Erro ao enviar mensagem pelo WhatsApp:", await whatsappResponse.text());
+        return;
+      }
+  
+      console.log("Mensagem enviada com sucesso pelo WhatsApp.");
+  
+      // **5. Finalizar o processo**
+      setShowSuccessModal(true);
+      resetCart();
+      resetForm();
     } catch (error) {
-        console.error("Erro na requisição:", error);
+      console.error("Erro na requisição:", error);
     }
-};
-
+  };
+  
+  
 
   
   return (
