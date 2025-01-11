@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, MailPlus, Package, X } from "lucide-react";
+import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, MailPlus, MessageCircle, Package, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -147,7 +147,6 @@ export function OrderPage() {
 
   const { resetCart } = useCart();
 
-  // Atualização do handleSubmit no front-end
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
@@ -197,50 +196,16 @@ export function OrderPage() {
         return;
       }
   
-      // **3. Fazer upload do PDF**
-      console.log("Enviando arquivo para o servidor...");
-      const pdfUploadResponse = await fetch("http://localhost:3334/upload-pdf", {
-        method: "POST",
-        body: pdfBlob, // Envia o blob diretamente
-      });
+      // **3. Fazer o download do PDF**
+      console.log("Fazendo download do PDF...");
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = `Pedido ${formData.name}.pdf`;
+      link.click();
+      URL.revokeObjectURL(pdfUrl);
   
-      if (!pdfUploadResponse.ok) {
-        console.error("Erro ao fazer upload do PDF:", await pdfUploadResponse.text());
-        return;
-      }
-  
-      const pdfUploadData = await pdfUploadResponse.json();
-      const { pdfUrl } = pdfUploadData;
-  
-      if (!pdfUrl) {
-        console.error("Erro no upload do PDF: URL não retornada.");
-        return;
-      }
-  
-      console.log("PDF enviado com sucesso:", pdfUrl);
-  
-      // **4. Enviar PDF via WhatsApp**
-      console.log("Enviando PDF pelo WhatsApp...");
-      const whatsappResponse = await fetch("http://localhost:3334/send-whatsapp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          number: formData.number,
-          pdfUrl,
-        }),
-      });
-  
-      if (!whatsappResponse.ok) {
-        console.error("Erro ao enviar mensagem pelo WhatsApp:", await whatsappResponse.text());
-        return;
-      }
-  
-      console.log("Mensagem enviada com sucesso pelo WhatsApp.");
-  
-      // **5. Finalizar o processo**
+      // **4. Finalizar o processo**
       setShowSuccessModal(true);
       resetCart();
       resetForm();
@@ -248,9 +213,6 @@ export function OrderPage() {
       console.error("Erro na requisição:", error);
     }
   };
-  
-  
-
   
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
@@ -477,10 +439,19 @@ export function OrderPage() {
             <div className="items-center gap-3 flex flex-wrap">
               <button 
                 onClick={() => {
-                  setShowSuccessModal(false); // Fechar o modal
+                  setShowSuccessModal(false);
                 }}
-                className="w-full flex transition duration-400 bg-colorRemove text-zinc-100 py-3 px-5 rounded-xl justify-center" type="button">
-                {t('orderpage.modalSendButton1')}
+                className="w-full flex transition duration-400 bg-searchColor hover:bg-colorInput text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                {t('orderpage.modalSendButton2')}
+                <MessageCircle />
+              </button>
+              <button 
+                onClick={() => {
+                  setShowSuccessModal(false);
+                }}
+                className="w-full flex transition duration-400 bg-searchColor  hover:bg-colorInput text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
+                {t('orderpage.modalSendButton3')}
+                <HandCoins />
               </button>
             </div>
           </div>
