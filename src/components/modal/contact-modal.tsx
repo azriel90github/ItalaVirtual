@@ -3,7 +3,7 @@ import {
 	Headset, 
 	Instagram, 
 	Mail, 
-	MessageCircle, Twitter, X, Youtube } from "lucide-react";
+	MessageCircle, X, } from "lucide-react";
 import { type SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -100,14 +100,6 @@ export function ContactModal() {
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 										onClick={() => handleSelectOption("")}
 									>
-                    <p className="text-zinc-300">Twitter</p>
-                    <Twitter />
-									</button>
-									<button
-										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("")}
-									>
 										<p className="text-zinc-300">Instagram</p>
                     <Instagram />
 									</button>
@@ -118,14 +110,6 @@ export function ContactModal() {
 									>
                     <p className="text-zinc-300">Facebook</p>
                     <Facebook />
-									</button>
-									<button
-										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("")}
-									>
-                    <p className="text-zinc-300">YouTube</p>
-                    <Youtube />
 									</button>
 									<h3 className="flex mx-2 text-lx">Email</h3>
 									<button

@@ -1,10 +1,10 @@
-import { Library, PersonStanding, Rss, ShoppingCart, SquareChartGantt, UserRoundCog } from "lucide-react";
+import { Library, MessageCircleMore, PersonStanding, Rss, ShoppingCart, SquareChartGantt, UserRoundCog } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { LanguageModal } from "../../components/modal/language-modal";
 import { ProfileModal } from "../../components/modal/profile-modal";
 //import { AccountButton } from "../../components/buttons/account-button";
 import { ContactModal } from "../../components/modal/contact-modal";
-import { GalleryModal } from "../../components/modal/gallery-modal";
+//import { GalleryModal } from "../../components/modal/gallery-modal";
 import { useTranslation } from 'react-i18next';
 
 export function HomePage() {
@@ -34,7 +34,18 @@ export function HomePage() {
 	return (
 		<div>
 			<div className="flex items-center py-3 px-3 justify-between">
-				<GalleryModal />
+				{/* <GalleryModal /> */}
+				<button 
+					onClick={() => {
+						const phoneNumber = "932101903"; // Substitua pelo número desejado
+						const message = encodeURIComponent("Olá! Estou entrando em contato..."); // Mensagem inicial opcional
+						const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+						window.open(whatsappUrl, "_blank");
+					}}
+					className="w-72 flex transition duration-400 border-2 border-[#32C728] bg-[#248D1C] hover:bg-[#32C728] text-1xl text-zinc-100 py-3.5 px-6 rounded-full justify-between" type="button">
+					<p>WhatsApp</p>
+					<MessageCircleMore />
+				</button>
 				<LanguageModal />
 			</div>
 			<div className="mainHome h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">

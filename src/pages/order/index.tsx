@@ -438,8 +438,11 @@ export function OrderPage() {
             </div>
             <div className="items-center gap-3 flex flex-wrap">
               <button 
-                onClick={() => {
-                  setShowSuccessModal(false);
+                 onClick={() => {
+                  const phoneNumber = "932101903"; // Substitua pelo número desejado
+                  const message = encodeURIComponent("Olá! Estou entrando em contato..."); // Mensagem inicial opcional
+                  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                  window.open(whatsappUrl, "_blank");
                 }}
                 className="w-full flex transition duration-400 bg-searchColor hover:bg-colorInput text-zinc-100 py-3 px-5 rounded-xl justify-between" type="button">
                 {t('orderpage.modalSendButton2')}
