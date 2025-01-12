@@ -90,7 +90,15 @@ export function ContactModal() {
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-										onClick={() => handleSelectOption("")}
+										onClick={() => {
+											handleSelectOption(""); // Chama a função para selecionar a opção
+											const phoneNumber = "932101903"; // Substitua pelo número desejado
+											const message = encodeURIComponent("Olá! Estou entrando em contato...");
+											const whatsappUri = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
+									
+											// Tenta abrir o aplicativo WhatsApp diretamente
+											window.location.assign(whatsappUri);
+										}}
 									>
                     <p className="text-zinc-300">WhatsApp</p>
                     <MessageCircle />

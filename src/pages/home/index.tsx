@@ -36,14 +36,16 @@ export function HomePage() {
 			<div className="flex items-center py-3 px-3 justify-between">
 				{/* <GalleryModal /> */}
 				<button
-					onClick={() => {
+					 onClick={() => {
 						const phoneNumber = "932101903"; // Substitua pelo número desejado
-						const message = encodeURIComponent("Olá! Estou entrando em contato..."); // Mensagem inicial opcional
-						const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-						window.open(whatsappUrl, "_blank");
+						const message = encodeURIComponent("Olá! Estou entrando em contato...");
+						const whatsappUri = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
+						
+						// Tenta abrir o aplicativo WhatsApp diretamente
+						window.location.assign(whatsappUri);
 					}}
 					className="w-72 flex transition duration-400 border-2 border-[#32C728] bg-[#248D1C] hover:bg-[#32C728] text-1xl text-zinc-100 py-3.5 px-6 rounded-full justify-between" type="button">
-					<p>whatsApp</p>
+					<p>WhatsApp</p>
 					<MessageCircleMore />
 				</button>
 				<LanguageModal />
