@@ -89,7 +89,7 @@ export function ContactModal() {
 									<h3 className="flex mx-2 text-lx">Social</h3>
 									<button
 										type="button"
-										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+										className="py-3 px-5 outline-none rounded-xl transition text-zinc-300 duration-400 hover:text-zinc-300 hover:bg-[#338C38] bg-[#2F7C38] flex items-center justify-between"
 										onClick={() => {
 											handleSelectOption(""); // Chama a função para selecionar a opção
 											const phoneNumber = "932101903"; // Substitua pelo número desejado

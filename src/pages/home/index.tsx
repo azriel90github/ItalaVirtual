@@ -44,7 +44,7 @@ export function HomePage() {
 						// Tenta abrir o aplicativo WhatsApp diretamente
 						window.location.assign(whatsappUri);
 					}}
-					className="w-72 flex transition duration-400 border-2 border-[#32C728] bg-[#248D1C] hover:bg-[#32C728] text-1xl text-zinc-100 py-3.5 px-6 rounded-full justify-between" type="button">
+					className="w-72 flex transition duration-400 hover:bg-[#338C38] bg-[#2F7C38] text-1xl font-black text-zinc-100 py-4 px-7 rounded-full justify-between" type="button">
 					<p>WhatsApp</p>
 					<MessageCircleMore />
 				</button>

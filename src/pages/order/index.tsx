@@ -439,10 +439,10 @@ export function OrderPage() {
             <div className="items-center gap-3 flex flex-wrap">
               <button 
                 onClick={() => {
-                  const phoneNumber = "932101903"; // Substitua pelo número desejado
                   const message = encodeURIComponent("Olá! Estou entrando em contato...");
+                  const phoneNumber = "932101903"; // Substitua pelo número desejado
                   const whatsappUri = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
-                  
+                  //const phoneNumber = "932101903"; // Substitua pelo número desejado
                   // Tenta abrir o aplicativo WhatsApp diretamente
                   window.location.assign(whatsappUri);
                 }}
