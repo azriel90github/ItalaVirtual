@@ -35,7 +35,7 @@ export function HomePage() {
 		<div>
 			<div className="flex items-center py-3 px-3 justify-between">
 				{/* <GalleryModal /> */}
-				<button 
+				<button
 					onClick={() => {
 						const phoneNumber = "932101903"; // Substitua pelo número desejado
 						const message = encodeURIComponent("Olá! Estou entrando em contato..."); // Mensagem inicial opcional
@@ -43,7 +43,7 @@ export function HomePage() {
 						window.open(whatsappUrl, "_blank");
 					}}
 					className="w-72 flex transition duration-400 border-2 border-[#32C728] bg-[#248D1C] hover:bg-[#32C728] text-1xl text-zinc-100 py-3.5 px-6 rounded-full justify-between" type="button">
-					<p>WhatsApp</p>
+					<p>whatsApp</p>
 					<MessageCircleMore />
 				</button>
 				<LanguageModal />
