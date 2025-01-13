@@ -37,7 +37,9 @@
       "title": "Escolher categoria",
       "category1": "Menta",
       "category2": "Chocolate",
-      "category3": "Morango"
+      "category3": "Morango",
+      "searchPlaceholder": "Pesquisar...",
+      "noResults": "Nenhum produto encontrado"
     },
     "Searchbox": "Categoria"
   },

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Logs, X } from "lucide-react";
+import { Logs, Search, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext.tsx";
 
@@ -15,6 +15,10 @@ export function Searchbox({ onCategorySelect }: SearchboxProps) {
 
   // Obter categorias únicas
   const uniqueCategories = Array.from(new Set(products.map((product) => product.category)));
+  const [searchQuery, setSearchQuery] = useState('');
+  const filteredCategories = uniqueCategories.filter((category) =>
+    category.toLowerCase().startsWith(searchQuery.toLowerCase())
+  );
 
   // Função para abrir o modal
   function openSearchBoxModal() {
@@ -55,39 +59,68 @@ export function Searchbox({ onCategorySelect }: SearchboxProps) {
       </div>
 
       {isSearchBoxModalOpen && (
-        // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-				<div
-          onClick={closeSearchBoxModal}
-          className="fixed inset-0 bg-black/60 flex items-center p-4 justify-center"
-        >
-          {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-					<div
-            onClick={(e) => e.stopPropagation()}
-            className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo"
-          >
-            <div className="text-buttonColor font-medium">
-              <div className="flex items-center justify-between text-xl ml-1">
-                {t('modal.modalSearchBox.title')}
-                <X onClick={closeSearchBoxModal} className="cursor-pointer" />
-              </div>
-              <div className="flex flex-col py-3 mt-2 gap-3">
-                {/* Gerando botões dinamicamente com base nas categorias únicas */}
-                {uniqueCategories.map((category) => (
-                  <button
-                    key={category} // Usando o id do produto para a chave única
-                    type="button"
-                    className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
-                    onClick={() => handleSelectCategory(category)} // Seleciona a categoria do produto
-                  >
-                    <p className="text-zinc-300">{category}</p>
-                    <Logs />
-                  </button>
-                ))}
-              </div>
-            </div>
+      // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+      <div
+        onClick={closeSearchBoxModal}
+        className="fixed inset-0 bg-black/60 flex items-center p-4 justify-center"
+      >
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-[640px] rounded-xl py-5 px-6 bg-colorFundo"
+      >
+      <div className="text-buttonColor font-medium">
+        {/* Título do modal */}
+        <div className="flex items-center justify-between text-xl ml-1">
+          {t('modal.modalSearchBox.title')}
+          <X onClick={closeSearchBoxModal} className="cursor-pointer" />
+        </div>
+
+        {/* Caixa de pesquisa */}
+        <div className="flex flex-col py-3 mt-2 gap-3">
+        <div className="relative w-full">
+          {/* Input de pesquisa */}
+          <input
+            type="text"
+            placeholder={t('modal.modalSearchBox.searchPlaceholder')}
+            value={searchQuery} // Valor da pesquisa
+            onChange={(e) => setSearchQuery(e.target.value)} // Atualiza a pesquisa
+            className="placeholder:text-buttonColor placeholder:font-normal w-full py-3 pl-5 pr-12 outline-none rounded-xl transition duration-400 bg-searchColorInput text-zinc-300 focus:ring-2 focus:ring-buttonColor"
+          />
+
+          {/* Ícone de busca */}
+          <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-text-buttonColor">
+            <Search />
           </div>
         </div>
-      )}
+
+
+          {/* Lista de categorias ou mensagem de erro */}
+          {filteredCategories.length > 0 ? (
+            // Renderiza os botões das categorias filtradas
+            filteredCategories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+                onClick={() => handleSelectCategory(category)}
+              >
+                <p className="text-zinc-300">{category}</p>
+                <Logs />
+              </button>
+            ))
+          ) : (
+            // Exibe a mensagem de nenhum produto encontrado
+            <p className="text-zinc-300 text-center mt-4">
+              {t('modal.modalSearchBox.noResults')}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

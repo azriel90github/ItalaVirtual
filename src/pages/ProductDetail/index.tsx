@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useImage } from "../../context/ImageContext";
 import { CartButton } from "../../components/buttons/cart-button";
-import { ArrowLeft, House, QrCode, Star } from "lucide-react";
+import { ArrowLeft, House, Link, QrCode, Star } from "lucide-react";
 import { useCart } from "../../context/CartContext"; // Import cart context to handle counts and cart actions
 import { CircleCheck, Plus, Minus, Trash2, ShoppingCart } from "lucide-react"; // Import icons for buttons
 
@@ -52,7 +52,10 @@ export function ProductDetail() {
               <div>
                 <div className="flex items-center gap-3 justify-between">
                   <h1 className="text-buttonColor text-4xl font-light">{product.title}</h1>
-                  <QrCode className="text-zinc-200 size-7" />
+                  <p className="flex gap-2">
+                    <Link className="text-zinc-200 size-6" />
+                    <QrCode className="text-zinc-200 size-7" />
+                  </p>
                 </div>
                 <span className="flex text-zinc-200 font-normal mt-1 text-2xl gap-2 py-3">
                   <small className="text-2xl text-moneyColor1">kz</small>
