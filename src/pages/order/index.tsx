@@ -320,7 +320,7 @@ export function OrderPage() {
                     //biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
                     <div
                       onClick={closePaymentMethodModal}
-                      className="fixed inset-0 bg-black/60 flex items-center justify-center"
+                      className="fixed inset-0 bg-black/60 flex items-center p-4 justify-center"
                     >
                       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
                       <div

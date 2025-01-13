@@ -50,7 +50,7 @@ export function LanguageModal() {
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 					<div
 					onClick={closeLanguageModal}
-					className="fixed inset-0 bg-black/60 flex items-center justify-center text-xl"
+					className="fixed inset-0 bg-black/60 flex items-center p-4 justify-center text-xl"
 					>
 					{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 					<div
