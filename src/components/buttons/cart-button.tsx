@@ -19,11 +19,11 @@ export function CartButton() {
       onClick={OrderPage}
       className="cartButton flex flex-row w-72 hover:bg-colorHover hover:text-zinc-200 shadow-shape bg-buttonColor2 transition duration-400 text-zinc-200 rounded-2xl px-7 py-3.5"
     >
-      <p className="flex flex-1 mr-36">{t('buttons.cartButton')}</p>
+      <p className="flex flex-1 mr-32">{t('buttons.cartButton')}</p>
 
       <p className="flex gap-2 flex-1">
-        <ShoppingCart />
-        <p className="text-moneyColor1">{totalUniqueFlavors}</p> {/* Exibe o número de sabores únicos */}
+        <ShoppingCart className="size-6" />
+        <p className="text-moneyColor1 flex justify-end">{totalUniqueFlavors}</p> {/* Exibe o número de sabores únicos */}
       </p>
     </button>
   );

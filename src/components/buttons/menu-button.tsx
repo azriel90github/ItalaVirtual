@@ -13,7 +13,7 @@ export function MenuButton() {
 		// biome-ignore lint/a11y/useButtonType: <explanation>
 		<button
 			onClick={menuPage}
-			className="flex items-center justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-200 hover:text-zinc-200 rounded-2xl px-7 py-3.5"
+			className="flex items-center font-medium text-xl justify-between w-72 hover:bg-colorHover shadow-shape bg-buttonColor2 transition duration-400 text-zinc-200 hover:text-zinc-200 rounded-2xl px-7 py-3.5"
 		>
 			{t('buttons.menuButton')}
 			<SquareChartGantt />
