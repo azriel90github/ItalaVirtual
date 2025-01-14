@@ -23,7 +23,7 @@ export function CartButton() {
 
       <p className="flex gap-2 flex-1">
         <ShoppingCart className="size-6" />
-        <p className="text-moneyColor1 flex justify-end">{totalUniqueFlavors}</p> {/* Exibe o número de sabores únicos */}
+        <p className="text-moneyColor1 flex justify-en">{totalUniqueFlavors}</p> {/* Exibe o número de sabores únicos */}
       </p>
     </button>
   );

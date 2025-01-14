@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useImage } from "../../context/ImageContext";
 import { CartButton } from "../../components/buttons/cart-button";
-import { ArrowLeft, House, Link, QrCode, Star } from "lucide-react";
+import { ArrowLeft, House, QrCode, Star } from "lucide-react";
 import { useCart } from "../../context/CartContext"; // Import cart context to handle counts and cart actions
 import { CircleCheck, Plus, Minus, Trash2, ShoppingCart } from "lucide-react"; // Import icons for buttons
 
@@ -53,7 +53,6 @@ export function ProductDetail() {
                 <div className="flex items-center gap-3 justify-between">
                   <h1 className="text-buttonColor text-4xl font-light">{product.title}</h1>
                   <p className="flex gap-2">
-                    <Link className="text-zinc-200 size-6" />
                     <QrCode className="text-zinc-200 size-7" />
                   </p>
                 </div>
@@ -63,12 +62,12 @@ export function ProductDetail() {
                   <small className="text-2xl">00</small>
                 </span>
                 {/* Div para estrelas */}
-              <div className="starDiv flex my-3 pb-1">
-                {[...Array(4)].map((_, index) => (
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <Star key={index} className="text-yellow-400 mx-1" size={24} />
-                ))}
-              </div>
+                <div className="starDiv flex my-3 pb-1">
+                  {[...Array(4)].map((_, index) => (
+                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                  <Star key={index} className="text-yellow-400 mx-1" size={24} />
+                  ))}
+                </div>
               </div>
               <div className="flex flex-col">
                 <h2 className="text-buttonColor text-[20px] font-medium">Descrição: </h2>

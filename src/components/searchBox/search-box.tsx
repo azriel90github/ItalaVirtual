@@ -20,6 +20,8 @@ export function Searchbox({ onCategorySelect }: SearchboxProps) {
     category.toLowerCase().startsWith(searchQuery.toLowerCase())
   );
 
+  const [isFocused, setIsFocused] = useState(false);
+
   // Função para abrir o modal
   function openSearchBoxModal() {
     setIsSearchBoxModalOpen(true);
@@ -85,11 +87,15 @@ export function Searchbox({ onCategorySelect }: SearchboxProps) {
             placeholder={t('modal.modalSearchBox.searchPlaceholder')}
             value={searchQuery} // Valor da pesquisa
             onChange={(e) => setSearchQuery(e.target.value)} // Atualiza a pesquisa
-            className="placeholder:text-buttonColor placeholder:font-normal w-full py-3 pl-5 pr-12 outline-none rounded-xl transition duration-400 bg-searchColorInput text-zinc-300 focus:ring-2 focus:ring-buttonColor"
+            className="placeholder:text-buttonColor ring-2 ring-buttonColor placeholder:font-normal w-full py-3 pl-5 pr-12 outline-none rounded-xl transition duration-400 bg-searchColorInput text-zinc-300 focus:ring-2 focus:ring-moneyColor1"
           />
 
           {/* Ícone de busca */}
-          <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-text-buttonColor">
+          <div
+            className={`absolute right-5 top-1/2 transform -translate-y-1/2 text-text-buttonColor ${
+              isFocused ? 'text-purple-500' : 'text-moneyColor1'
+            }`}
+          >
             <Search />
           </div>
         </div>
