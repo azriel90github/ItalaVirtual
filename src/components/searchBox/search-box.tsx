@@ -87,7 +87,9 @@ export function Searchbox({ onCategorySelect }: SearchboxProps) {
             placeholder={t('modal.modalSearchBox.searchPlaceholder')}
             value={searchQuery} // Valor da pesquisa
             onChange={(e) => setSearchQuery(e.target.value)} // Atualiza a pesquisa
-            className="placeholder:text-buttonColor ring-2 ring-buttonColor placeholder:font-normal w-full py-3 pl-5 pr-12 outline-none rounded-xl transition duration-400 bg-searchColorInput text-zinc-300 focus:ring-2 focus:ring-moneyColor1"
+            className="placeholder:text-buttonColor ring-2 ring-buttonColor placeholder:font-normal w-full py-3 pl-5 pr-12 outline-none rounded-xl transition duration-400 bg-searchColorInput text-zinc-400 focus:ring-2 focus:ring-moneyColor1"
+            onFocus={() => setIsFocused(true)} // Atualiza estado ao focar
+            onBlur={() => setIsFocused(false)} // Atualiza estado ao desfocar
           />
 
           {/* Ícone de busca */}
