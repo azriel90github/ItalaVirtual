@@ -5,7 +5,6 @@ import {
 	House,
 	Minus,
 	Plus,
-	QrCode,
 	ShoppingCart,
 	Trash2,
 } from "lucide-react"; // Ícones do Lucide
@@ -16,7 +15,7 @@ import { Searchbox } from "../../components/searchBox/search-box";
 import { useCart } from "../../context/CartContext";
 import { useImage } from "../../context/ImageContext";
 import { useState } from "react";
-//import { QrCodeButton } from "../../components/buttons/QrCode";
+import { QrCodeButton } from "../../components/buttons/QrCode";
 
 // Tipo para os produtos
 export interface Product {
@@ -90,11 +89,10 @@ export function MenuPage() {
 						className="bg-searchColor rounded-3xl py-4 px-4 w-80 cardProd"
 					>
 						{/* Informações do produto */}
-						<div className="flex justify-between py-2 px-3 text-xl font-normal">
+						<div className="flex justify-between py-2 px-3 font-normal">
 							<p className="text-buttonColor text-xl">{product.title}</p>
-							<span>
-								{/** <QrCodeButton productId={""} productUrl={""} /> */}
-								<QrCode className="text-zinc-100 size-7" />
+							<span className="">
+								<QrCodeButton productId={""} productUrl={""} />
 							</span>
 						</div>
 						<div className="py-3">
