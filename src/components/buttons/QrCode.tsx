@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { QrCode } from "lucide-react";
+import { HardDriveDownload, Link, QrCode } from "lucide-react";
 import QRCode from "react-qr-code"; // Certifique-se de instalar esta biblioteca
 
 type QrCodeButtonProps = {
@@ -63,43 +63,47 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
       {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
         onClick={() => setIsModalOpen(true)}
-        className="hover:bg-colorHover bg-buttonColor3 transition duration-400 text-zinc-200 hover:text-zinc-200 rounded-2xl px-4 py-3.5"
+        className="hover:bg-colorHover bg-buttonColor transition duration-400 text-zinc-200 hover:text-zinc-200 rounded-2xl px-4 py-3.5"
       >
         <QrCode />
       </button>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-colorFundo rounded-lg shadow-lg m-6 w-96 text-center">
+        // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+          <div 
+          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-colorFundo p-4 rounded-3xl">
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="bg-red-600 mb-3 hover:bg-red-700 transition text-white px-5 py-2.5 w-full rounded-xl"
+            >
+              Fechar
+            </button>
             {/* QR Code gerado */}
-            <div id="qr-code-container" className="p-4">
+            <div id="qr-code-container" className="bg-zinc-100 p-4 rounded-lg">
               <QRCode id="product-qr-code" value={productLink} size={200} />
             </div>
 
-            <div className="mt-4 space-x-4">
+            <div className="flex items-center text-1xl gap-3 mt-3 flex-col">
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
               <button
                 onClick={handleDownloadQrCode}
-                className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                className="bg-colorButton flex items-center justify-between rounded-xl text-white px-5 py-2.5 w-full hover:bg-green-600 transition"
               >
-                Baixar QR Code
+                QRcode
+                <HardDriveDownload className="size-5" />
               </button>
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
               <button
                 onClick={handleCopyLink}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+                className="bg-colorButton flex items-center justify-between text-white px-5 py-2.5 w-full rounded-xl hover:bg-blue-600 transition"
               >
                 Copiar Link
+                <Link className="size-5" />
               </button>
             </div>
-
-            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="mt-4 text-red-500 hover:text-red-600 transition"
-            >
-              Fechar
-            </button>
           </div>
         </div>
       )}
