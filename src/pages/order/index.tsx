@@ -103,15 +103,61 @@ export function OrderPage() {
 
   const menuPage = () => navigate("/menu/123");
 
-  // Função para lidar com a mudança dos campos do formulário
+  const [formErrors, setFormErrors] = useState({ 
+    name: '', 
+    email: '' ,
+    number: "",
+  });
+
+  // Função para formatar o número com espaços a cada 3 dígitos
+  const formatNumberWithSpaces = (value: string): string => {
+    // Remove todos os espaços existentes
+    const cleanedValue = value.replace(/\s+/g, "");
+
+    // Adiciona um espaço a cada 3 dígitos
+    return cleanedValue.replace(/(\d{3})(?=\d)/g, "$1 ");
+  };
+
+  // Função para lidar com a mudança nos campos do formulário
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    // Validação e formatação específicas para o campo "number"
+    if (name === "number") {
+      // Permite apenas números e formata com espaços a cada 3 dígitos
+      const formattedValue = formatNumberWithSpaces(value.replace(/\D/g, ""));
+
+      // Validação: número deve ter exatamente 9 dígitos
+      if (formattedValue.replace(/\s+/g, "").length > 9) {
+        setFormErrors((prev) => ({
+          ...prev,
+          number: "O número deve conter exatamente 9 dígitos.",
+        }));
+        return;
+      }
+
+      // Limpa o erro se o valor for válido
+      setFormErrors((prev) => ({
+        ...prev,
+        number: "",
+      }));
+
+      // Atualiza o estado com o valor formatado
+      setFormData((prev) => ({
+        ...prev,
+        [name]: formattedValue,
+      }));
+      return;
+    }
+
+    // Para outros campos, apenas atualiza o estado
     setFormData((prev) => ({
       ...prev,
-      [name]: value, // Atualiza o campo correto no estado
-    }))
+      [name]: value,
+    }));
   };
-  
+
+    
   
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [validationMessage, setValidationMessage] = useState("");
@@ -213,6 +259,8 @@ export function OrderPage() {
       console.error("Erro na requisição:", error);
     }
   };
+
+
   
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
@@ -288,16 +336,23 @@ export function OrderPage() {
             </h1>
 
             <div className="py-4">
-              
-                <div className="flex flex-col gap-3 w-full">
+                <div className="flex flex-col gap-1.5 w-full">
+                  <label htmlFor="text">Nome:</label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder={t('orderpage.placeholderName')}
+                    placeholder="Digite seu nome"
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
+                  {/* Espaço fixo para mensagens de erro */}
+                  <div className="h-6 ml-2">
+                    {formErrors.name && (
+                      <p className="text-red-400 text-sm">{formErrors.name}</p>
+                    )}
+                  </div>
+
                   {/** <span className='error'>Preencha o seu e-mail corretamente.</span> */}
                   <input
                     type="number"
@@ -307,6 +362,12 @@ export function OrderPage() {
                     placeholder={t('orderpage.placeholderNumber')}
                     className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
+                  {/* Espaço fixo para mensagem de erro */}
+                  <div className="h-5">
+                    {formErrors.number && (
+                      <p className="text-red-500 text-sm">{formErrors.number}</p>
+                    )}
+                  </div>
                   <input
                     readOnly
                     value={formData.paymentMethod} // Use o valor do estado

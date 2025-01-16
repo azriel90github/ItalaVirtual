@@ -69,9 +69,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
       </button>
 
       {isModalOpen && (
-        // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
           <div 
-          onClick={() => setIsModalOpen(false)}
           className="fixed inset-0 bg-black bg-opacity-50 flex text-1lx justify-center items-center z-50">
           <div className="bg-colorFundo p-4 rounded-3xl">
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
