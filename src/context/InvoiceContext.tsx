@@ -247,20 +247,22 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <Link
                 src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                   `${formData.cityOrNeighborhood}`
-                )}`}
+                )}&center=-8.8390,13.2894&zoom=12`}  // Adiciona o ponto central de Luanda
                 style={styles.link}
               >
-                Cidade ou bairro : <Text style={styles.link1}> {formData.cityOrNeighborhood}</Text>
+                Cidade ou bairro: <Text style={styles.link1}> {formData.cityOrNeighborhood}</Text>
               </Link>
+
 
               <Link
                 src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  `${formData.landmark}, ${formData.cityOrNeighborhood}`
+                  `${formData.landmark}, ${formData.cityOrNeighborhood}, Luanda`
                 )}`}
                 style={styles.link}
               >
-                Ponto de referência : <Text style={styles.link1}>{formData.landmark}</Text>
+                Ponto de referência: <Text style={styles.link1}>{formData.landmark}</Text>
               </Link>
+
             </View>
           )}
 
