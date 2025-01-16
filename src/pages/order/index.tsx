@@ -107,56 +107,94 @@ export function OrderPage() {
     name: '', 
     email: '' ,
     number: "",
+    cityOrNeighborhood: "",
+    landmark: "",
   });
 
-  // Função para formatar o número com espaços a cada 3 dígitos
-  const formatNumberWithSpaces = (value: string): string => {
-    // Remove todos os espaços existentes
-    const cleanedValue = value.replace(/\s+/g, "");
-
-    // Adiciona um espaço a cada 3 dígitos
-    return cleanedValue.replace(/(\d{3})(?=\d)/g, "$1 ");
-  };
-
   // Função para lidar com a mudança nos campos do formulário
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
 
-    // Validação e formatação específicas para o campo "number"
-    if (name === "number") {
-      // Permite apenas números e formata com espaços a cada 3 dígitos
-      const formattedValue = formatNumberWithSpaces(value.replace(/\D/g, ""));
-
-      // Validação: número deve ter exatamente 9 dígitos
-      if (formattedValue.replace(/\s+/g, "").length > 9) {
+  // Validação dinâmica para cada campo
+  switch (name) {
+    case "name":
+      if (value.length > 20) {
         setFormErrors((prev) => ({
           ...prev,
-          number: "O número deve conter exatamente 9 dígitos.",
+          name: "Deve conter no máximo 20 caracteres.",
         }));
-        return;
+      } else {
+        setFormErrors((prev) => ({ ...prev, name: "" }));
       }
-
-      // Limpa o erro se o valor for válido
-      setFormErrors((prev) => ({
-        ...prev,
-        number: "",
-      }));
-
-      // Atualiza o estado com o valor formatado
+      // Atualiza o estado do formulário apenas até 20 caracteres
       setFormData((prev) => ({
         ...prev,
-        [name]: formattedValue,
+        [name]: value.slice(0, 20),
       }));
-      return;
-    }
+      break;
 
-    // Para outros campos, apenas atualiza o estado
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    case "number":
+      // Garante que o número tenha no máximo 9 dígitos
+      const sanitizedValue = value.replace(/\D/g, "").slice(0, 9);
+      if (sanitizedValue.length < 9) {
+        setFormErrors((prev) => ({
+          ...prev,
+          number: "Deve conter exatamente 9 dígitos.",
+        }));
+      } else {
+        setFormErrors((prev) => ({ ...prev, number: "" }));
+      }
+      // Atualiza o estado do formulário com o valor sanitizado
+      setFormData((prev) => ({
+        ...prev,
+        [name]: sanitizedValue,
+      }));
+      break;
 
+    case "cityOrNeighborhood":
+      if (value.length > 10) {
+        setFormErrors((prev) => ({
+          ...prev,
+          cityOrNeighborhood: "Deve conter no máximo 10 caracteres.",
+        }));
+      } else {
+        setFormErrors((prev) => ({ ...prev, cityOrNeighborhood: "" }));
+      }
+      // Atualiza o estado do formulário apenas até 10 caracteres
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value.slice(0, 10),
+      }));
+      break;
+
+    case "landmark":
+      if (value.length > 30) {
+        setFormErrors((prev) => ({
+          ...prev,
+          landmark: "Deve conter no máximo 30 caracteres.",
+        }));
+      } else {
+        setFormErrors((prev) => ({ ...prev, landmark: "" }));
+      }
+      // Atualiza o estado do formulário apenas até 30 caracteres
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value.slice(0, 30),
+      }));
+      break;
+
+    default:
+      // Atualiza outros campos sem validação específica
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+      break;
+  }
+};
+
+  
+  
     
   
   const [showValidationModal, setShowValidationModal] = useState(false);
@@ -337,19 +375,18 @@ export function OrderPage() {
 
             <div className="py-4">
                 <div className="flex flex-col gap-1.5 w-full">
-                  <label htmlFor="text">Nome:</label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Digite seu nome"
+                    placeholder="Nome"
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagens de erro */}
                   <div className="h-6 ml-2">
                     {formErrors.name && (
-                      <p className="text-red-400 text-sm">{formErrors.name}</p>
+                      <p className="text-red-500 text-sm">{formErrors.name}</p>
                     )}
                   </div>
 
@@ -363,7 +400,7 @@ export function OrderPage() {
                     className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagem de erro */}
-                  <div className="h-5">
+                  <div className="h-5 ml-2">
                     {formErrors.number && (
                       <p className="text-red-500 text-sm">{formErrors.number}</p>
                     )}
@@ -377,6 +414,9 @@ export function OrderPage() {
                     onClick={openPaymentMethodModal}
                     className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
                   />
+                  <div className="h-6 ml-2">
+
+                  </div>
                   {isPaymentMethodModalOpen && (
                     //biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
                     <div
@@ -436,6 +476,11 @@ export function OrderPage() {
                     placeholder={t('orderpage.placeholderCityOrNeighborhood')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
+                  <div className="h-6 ml-2">
+                  {formErrors.cityOrNeighborhood && (
+                    <p className="text-red-500 text-sm">{formErrors.cityOrNeighborhood}</p>
+                  )}
+                  </div>
                   <input
                     type="text"
                     name="landmark"
@@ -444,6 +489,11 @@ export function OrderPage() {
                     placeholder={t('orderpage.placeholderLandmark')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
+                  <div className="h-6 ml-2">
+                  {formErrors.landmark && (
+                    <p className="text-red-500 text-sm">{formErrors.landmark}</p>
+                  )}
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-3 w-72 py-5">
@@ -483,7 +533,7 @@ export function OrderPage() {
       </form>
 
       {showSuccessModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center p-4 bg-black/60 bg-opacity-50">
           <div className="w-[640px] rounded-xl py-6 px-6 bg-colorFundo">
             <div className="items-center flex justify-between">
               <p className="text-moneyColor1 px-1 text-xl font-normal">{t('orderpage.modalSend')}</p>
