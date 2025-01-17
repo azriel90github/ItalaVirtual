@@ -135,6 +135,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     case "number":
       // Garante que o número tenha no máximo 9 dígitos
+      // biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
       const sanitizedValue = value.replace(/\D/g, "").slice(0, 9);
       if (sanitizedValue.length < 9) {
         setFormErrors((prev) => ({
@@ -192,10 +193,6 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       break;
   }
 };
-
-  
-  
-    
   
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [validationMessage, setValidationMessage] = useState("");
@@ -384,7 +381,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagens de erro */}
-                  <div className="h-6 ml-2">
+                  <div className="h-4 ml-2">
                     {formErrors.name && (
                       <p className="text-red-500 text-sm">{formErrors.name}</p>
                     )}
@@ -400,7 +397,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagem de erro */}
-                  <div className="h-5 ml-2">
+                  <div className="h-4 ml-2 mb-2">
                     {formErrors.number && (
                       <p className="text-red-500 text-sm">{formErrors.number}</p>
                     )}
@@ -414,7 +411,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     onClick={openPaymentMethodModal}
                     className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-6 ml-2">
+                  <div className="h-4 ml-2">
 
                   </div>
                   {isPaymentMethodModalOpen && (
@@ -476,7 +473,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     placeholder={t('orderpage.placeholderCityOrNeighborhood')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-6 ml-2">
+                  <div className="h-4 ml-2">
                   {formErrors.cityOrNeighborhood && (
                     <p className="text-red-500 text-sm">{formErrors.cityOrNeighborhood}</p>
                   )}
@@ -489,7 +486,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     placeholder={t('orderpage.placeholderLandmark')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-6 ml-2">
+                  <div className="h-4 ml-2">
                   {formErrors.landmark && (
                     <p className="text-red-500 text-sm">{formErrors.landmark}</p>
                   )}
