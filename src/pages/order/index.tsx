@@ -381,7 +381,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagens de erro */}
-                  <div className="h-4 ml-2">
+                  <div className="h-4 ml-2 mb-1">
                     {formErrors.name && (
                       <p className="text-red-500 text-sm">{formErrors.name}</p>
                     )}
@@ -397,7 +397,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagem de erro */}
-                  <div className="h-4 ml-2 mb-2">
+                  <div className="h-4 ml-2 mb-1">
                     {formErrors.number && (
                       <p className="text-red-500 text-sm">{formErrors.number}</p>
                     )}
@@ -411,7 +411,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     onClick={openPaymentMethodModal}
                     className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-4 ml-2">
+                  <div className="h-4 ml-2 mb-1">
 
                   </div>
                   {isPaymentMethodModalOpen && (
@@ -473,7 +473,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     placeholder={t('orderpage.placeholderCityOrNeighborhood')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-4 ml-2">
+                  <div className="h-4 ml-2 mb-1">
                   {formErrors.cityOrNeighborhood && (
                     <p className="text-red-500 text-sm">{formErrors.cityOrNeighborhood}</p>
                   )}
@@ -486,7 +486,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     placeholder={t('orderpage.placeholderLandmark')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-4 ml-2">
+                  <div className="h-4 ml-2 mb-1">
                   {formErrors.landmark && (
                     <p className="text-red-500 text-sm">{formErrors.landmark}</p>
                   )}
