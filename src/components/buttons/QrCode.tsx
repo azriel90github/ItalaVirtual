@@ -90,7 +90,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
                 onClick={handleDownloadQrCode}
                 className="bg-colorButton flex items-center justify-between rounded-xl text-white px-5 py-2.5 w-full hover:bg-green-600 transition"
               >
-                QRcode
+                Código QR
                 <HardDriveDownload className="size-5" />
               </button>
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
