@@ -156,7 +156,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (value.length > 10) {
         setFormErrors((prev) => ({
           ...prev,
-          cityOrNeighborhood: "Deve conter no máximo 10 caracteres.",
+          cityOrNeighborhood: "Deve conter no máximo 30 caracteres.",
         }));
       } else {
         setFormErrors((prev) => ({ ...prev, cityOrNeighborhood: "" }));
@@ -164,7 +164,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       // Atualiza o estado do formulário apenas até 10 caracteres
       setFormData((prev) => ({
         ...prev,
-        [name]: value.slice(0, 10),
+        [name]: value.slice(0, 30),
       }));
       break;
 
@@ -172,7 +172,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (value.length > 30) {
         setFormErrors((prev) => ({
           ...prev,
-          landmark: "Deve conter no máximo 30 caracteres.",
+          landmark: "Deve conter no máximo 35 caracteres.",
         }));
       } else {
         setFormErrors((prev) => ({ ...prev, landmark: "" }));
@@ -180,7 +180,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       // Atualiza o estado do formulário apenas até 30 caracteres
       setFormData((prev) => ({
         ...prev,
-        [name]: value.slice(0, 30),
+        [name]: value.slice(0, 35),
       }));
       break;
 
