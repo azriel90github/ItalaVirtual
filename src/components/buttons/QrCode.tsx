@@ -75,7 +75,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="bg-red-600 mb-3 hover:bg-red-700 transition text-white px-5 py-2.5 w-full rounded-xl"
+              className="bg-colorInput mb-3 hover:bg-red-700 transition text-white px-5 py-2.5 w-full rounded-xl"
             >
               Fechar
             </button>
@@ -88,7 +88,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
               <button
                 onClick={handleDownloadQrCode}
-                className="bg-colorButton flex items-center justify-between rounded-xl text-white px-5 py-2.5 w-full hover:bg-green-600 transition"
+                className="bg-colorText1 flex items-center justify-between rounded-xl text-white px-5 py-2.5 w-full hover:bg-green-600 transition"
               >
                 Código QR
                 <HardDriveDownload className="size-5" />
@@ -96,7 +96,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
               <button
                 onClick={handleCopyLink}
-                className="bg-colorButton flex items-center justify-between text-white px-5 py-2.5 w-full rounded-xl hover:bg-blue-600 transition"
+                className="bg-colorInput flex items-center justify-between text-white px-5 py-2.5 w-full rounded-xl hover:bg-blue-600 transition"
               >
                 Copiar Link
                 <Link className="size-5" />
