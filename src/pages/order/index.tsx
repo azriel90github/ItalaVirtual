@@ -295,8 +295,6 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     }
   };
 
-
-  
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
       <div className="border-2 mb-10 border-colorInput p-3 h-full rounded-3xl shadow-shape bg-searchColor text-buttonColor flex flex-wrap gap-3 items-center justify-between font-medium text-xl">
@@ -381,7 +379,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagens de erro */}
-                  <div className="h-4 ml-2 mb-1">
+                  <div className="ml-2 mb-0.5">
                     {formErrors.name && (
                       <p className="text-red-500 text-sm">{formErrors.name}</p>
                     )}
@@ -397,7 +395,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     className="removeNumber py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagem de erro */}
-                  <div className="h-4 ml-2 mb-1">
+                  <div className="ml-2 mb-0.5">
                     {formErrors.number && (
                       <p className="text-red-500 text-sm">{formErrors.number}</p>
                     )}
@@ -411,7 +409,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     onClick={openPaymentMethodModal}
                     className="flex items-center justify-between cursor-pointer m-0 py-3 px-4 outline-none rounded-xl bg-searchColorInput text-buttonColor border-2 border-searchColor focus:border-2 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-4 ml-2 mb-1">
+                  <div className="ml-2 mb-0.5">
 
                   </div>
                   {isPaymentMethodModalOpen && (
@@ -473,7 +471,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     placeholder={t('orderpage.placeholderCityOrNeighborhood')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-4 ml-2 mb-1">
+                  <div className="ml-2 mb-0.5">
                   {formErrors.cityOrNeighborhood && (
                     <p className="text-red-500 text-sm">{formErrors.cityOrNeighborhood}</p>
                   )}
@@ -486,7 +484,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     placeholder={t('orderpage.placeholderLandmark')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
-                  <div className="h-4 ml-2 mb-1">
+                  <div className="ml-2 mb-0.5">
                   {formErrors.landmark && (
                     <p className="text-red-500 text-sm">{formErrors.landmark}</p>
                   )}
