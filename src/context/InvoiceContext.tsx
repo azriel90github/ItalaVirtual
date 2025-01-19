@@ -39,7 +39,6 @@ interface InvoiceContextProps {
   downloadInvoice: (formData: FormData) => Promise<void>;
 }
 
-
 // Criar o contexto para o provedor de faturas
 const InvoiceContext = createContext<InvoiceContextProps | undefined>(undefined);
 
@@ -56,7 +55,6 @@ const styles = StyleSheet.create({
     right: 5,
     width: 200, // Ajuste o tamanho da imagem
     height: "auto", // Mantém a proporção
-    //opacity: 0.1, // Torna a imagem sutil para um efeito de fundo
   },
   header: {
     display: "flex",
@@ -207,131 +205,145 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   for (let i = 0; i < pages; i++) {
     cartChunks.push(cartItems.slice(i * itemsPerPage, (i + 1) * itemsPerPage));
   }
+
+  // Função para obter a localização
+  /**
+   * const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+          alert(`Sua localização: Latitude ${latitude}, Longitude ${longitude}`);
+        },
+        (error) => {
+          console.error(error);
+          alert("Erro ao obter localização");
+        }
+      );
+    } else {
+      alert("Geolocalização não disponível neste navegador");
+    }
+  };
+
+   */
+  
   // Função para gerar a fatura como PDF
   const generateInvoice = (formData: FormData): JSX.Element => {
-    //const { cartItems } = useCart(); // Acessa os itens do carrinho do contexto
     return ( 
       <Document>
-      {cartChunks.map((chunk, pageIndex) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-        <Page size="A4" style={styles.page} key={pageIndex}>
-          {/* Imagem de fundo */}
-          <Image
-            style={styles.backgroundImage}
-            src="/ice-cream 2.png"
-          />
+        {cartChunks.map((chunk, pageIndex) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          <Page size="A4" style={styles.page} key={pageIndex}>
+            {/* Imagem de fundo */}
+            <Image style={styles.backgroundImage} src="/ice-cream 2.png" />
 
-          {/* Cabeçalho */}
-          {pageIndex === 0 && (
-            <View style={styles.header}>
-              {/* Logo */}
+            {/* Cabeçalho */}
+            {pageIndex === 0 && (
+              <View style={styles.header}>
+                {/* Logo */}
+                <View>
+                  <Image style={styles.logo} src="/logo-geladaria.png" />
+                  <Text style={styles.descricaoLogo}>Faça sua encomenda de qualquer lugar e a qualquer hora!</Text>
+                </View>
+                {/* Endereço */}
+                <View style={styles.address}>
+                  <Text style={styles.addressp}>Avenida Comandante Valodia nº 69</Text>
+                  <Text style={styles.addressp}>Largo do Kinaxixi, Luanda</Text>
+                  <Text style={styles.addressp}>Angola</Text>
+                </View>
+              </View>
+            )}
+
+            {/* Dados do Cliente (somente na primeira página) */}
+            {pageIndex === 0 && (
+              <View style={styles.dataBox}>
+                <Text style={styles.sectionTitle}>Dados do Cliente</Text>
+                <Text style={styles.text}>Nome : {formData.name}</Text>
+                <Text>
+                  <Text style={styles.text}>Número: {formData.number}</Text>
+                </Text>
+                <Link
+                  src={`https://waze.com/ul?q=${encodeURIComponent(`Luanda, ${formData.cityOrNeighborhood}`)}&navigate=yes`}
+                  style={styles.link}
+                >
+                  Cidade, bairro ou Rua: <Text style={styles.link1}>{formData.cityOrNeighborhood}</Text>
+                </Link>
+
+                <Link
+                  src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${formData.landmark}, Luanda`)}`}
+                  style={styles.link}
+                >
+                  Ponto de referência : <Text style={styles.link1}>{formData.landmark}</Text>
+                </Link>
+              </View>
+            )}
+
+            {/* Detalhes da Encomenda */}
+            <View style={styles.dataBox1}>
+              <Text style={styles.sectionTitle1}>Detalhes Encomenda</Text>
+
+              {/* Cabeçalho da Tabela */}
+              <View style={styles.tableRow}>
+                <Text style={[styles.tableHeader, styles.column]}>Nome</Text>
+                <Text style={[styles.tableHeader, styles.column]}>Preço</Text>
+                <Text style={[styles.tableHeader, styles.column]}>Colheres</Text>
+                <Text style={[styles.tableHeader, styles.column]}>Total</Text>
+              </View>
+
+              {/* Separador */}
+              <View style={styles.separator} />
+
+              {/* Itens do Carrinho */}
+              {chunk.map((item) => (
+                <View key={item.id} style={styles.tableRow}>
+                  <Text style={styles.tableCell}>{item.title}</Text>
+                  <Text style={styles.tableCell}>
+                    <Text style={styles.moneyColor}>{item.price.toLocaleString('pt-AO')}</Text>
+                  </Text>
+                  <Text style={styles.tableCell}>{item.count}</Text>
+                  <Text style={styles.tableCell}>
+                    <Text style={styles.moneyColor}>{item.total.toLocaleString('pt-AO')}</Text>
+                  </Text>
+                </View>
+              ))}
+            </View>
+
+            {/* Resumo da Encomenda (somente na última página) */}
+            {pageIndex === pages - 1 && (
+              <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                <View style={styles.summaryBox}>
+                  <View style={styles.contentBox}>
+                    <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
+                    <Text style={styles.summaryText}>
+                      Total de Sabores : <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
+                    </Text>
+                    <Text style={styles.summaryText}>
+                      Total de Pagamento : <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
+                    </Text>
+                    <Text style={styles.summaryText}>
+                      Método de Pagamento : <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
+                    </Text>
+                  </View>
+                  <View style={styles.contentBox}>
+                    <Image style={styles.qrcod} src="/qrcod.png" />
+                  </View>
+                </View>
+              </View>
+            )}
+
+            {/* Rodapé */}
+            <View style={styles.footer}>
               <View>
-                <Image style={styles.logo} src="/logo-geladaria.png" />
-                <Text style={styles.descricaoLogo}>Faça sua encomenda de qualquer lugar e a qualquer hora!</Text>
+                <Text>Pág {pageIndex + 1}/{pages}</Text>
               </View>
-              {/* Endereço */}
-              <View style={styles.address}>
-                <Text style={styles.addressp}>Avenida Comandante Valodia nº 69</Text>
-                <Text style={styles.addressp}>Largo do Kinaxixi, Luanda</Text>
-                <Text style={styles.addressp}>Angola</Text>
+              <View>
+                <Text>Data : {new Date().toLocaleDateString()}</Text>
               </View>
             </View>
-          )}
-
-          {/* Dados do Cliente (somente na primeira página) */}
-          {pageIndex === 0 && (
-            <View style={styles.dataBox}>
-              <Text style={styles.sectionTitle}>Dados do Cliente</Text>
-              <Text style={styles.text}>Nome : {formData.name}</Text>
-              <Text style={styles.text}>Número : {formData.number}</Text>
-              <Link
-                src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  `${formData.cityOrNeighborhood}`
-                )}&center=-8.8390,13.2894&zoom=12`}  // Adiciona o ponto central de Luanda
-                style={styles.link}
-              >
-                Cidade, bairro ou Rua : <Text style={styles.link1}> {formData.cityOrNeighborhood}</Text>
-              </Link>
-
-
-              <Link
-                src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  `${formData.landmark}, Luanda`
-                )}`}
-                style={styles.link}
-              >
-                Ponto de referência : <Text style={styles.link1}>{formData.landmark}</Text>
-              </Link>
-
-
-            </View>
-          )}
-
-          {/* Detalhes da Encomenda */}
-          <View style={styles.dataBox1}>
-            <Text style={styles.sectionTitle1}>Detalhes Encomenda</Text>
-
-            {/* Cabeçalho da Tabela */}
-            <View style={styles.tableRow}>
-              <Text style={[styles.tableHeader, styles.column]}>Nome</Text>
-              <Text style={[styles.tableHeader, styles.column]}>Preço</Text>
-              <Text style={[styles.tableHeader, styles.column]}>Colheres</Text>
-              <Text style={[styles.tableHeader, styles.column]}>Total</Text>
-            </View>
-
-            {/* Separador */}
-            <View style={styles.separator} />
-
-            {/* Itens do Carrinho */}
-            {chunk.map((item) => (
-              <View key={item.id} style={styles.tableRow}>
-                <Text style={styles.tableCell}>{item.title}</Text>
-                <Text style={styles.tableCell}>
-                  <Text style={styles.moneyColor}>{item.price.toLocaleString('pt-AO')}</Text>
-                </Text>
-                <Text style={styles.tableCell}>{item.count}</Text>
-                <Text style={styles.tableCell}>
-                  <Text style={styles.moneyColor}>{item.total.toLocaleString('pt-AO')}</Text>
-                </Text>
-              </View>
-            ))}
-          </View>
-
-          {/* Resumo da Encomenda (somente na última página) */}
-          {pageIndex === pages - 1 && (
-            <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-              <View style={styles.summaryBox}>
-                <View style={styles.contentBox}>
-                  <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
-                  <Text style={styles.summaryText}>
-                    Total de Sabores : <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
-                  </Text>
-                  <Text style={styles.summaryText}>
-                    Total de Pagamento : <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
-                  </Text>
-                  <Text style={styles.summaryText}>
-                    Método de Pagamento : <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
-                  </Text>
-                </View>
-                <View style={styles.contentBox}>
-                  <Image style={styles.qrcod} src="/qrcod.png" />
-                </View>
-              </View>
-            </View>
-          )}
-
-          {/* Rodapé */}
-          <View style={styles.footer}>
-            <View>
-              <Text>Pág {pageIndex + 1}/{pages}</Text>
-            </View>
-            <View>
-              <Text>Data : {new Date().toLocaleDateString()}</Text>
-            </View>
-          </View>
-        </Page>
-      ))}
-    </Document>
+          </Page>
+        ))}
+      </Document>
     );
   }; 
 
@@ -347,10 +359,9 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       a.click();
       document.body.removeChild(a);
     } catch (error) {
-      console.error("Erro ao gerar ou baixar a fatura:", error);
+      console.error("Erro ao gerar a fatura:", error);
     }
   };
-  
 
   return (
     <InvoiceContext.Provider value={{ generateInvoice, downloadInvoice }}>
@@ -359,7 +370,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   );
 };
 
-// Hook para usar o contexto de faturas
+// Hook customizado para acessar o contexto da fatura
 export const useInvoice = (): InvoiceContextProps => {
   const context = useContext(InvoiceContext);
   if (!context) {
@@ -367,5 +378,3 @@ export const useInvoice = (): InvoiceContextProps => {
   }
   return context;
 };
-
-
