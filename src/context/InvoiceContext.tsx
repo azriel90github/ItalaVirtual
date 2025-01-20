@@ -12,7 +12,7 @@ import {
   Link,
 } from "@react-pdf/renderer";
 import { useCart, type CartItem } from "./CartContext.tsx";
-import Geolocation from '@react-native-community/geolocation';
+//import Geolocation from '@react-native-community/geolocation';
 
 // Registrar fonte personalizada (opcional)
 Font.register({
@@ -207,7 +207,8 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     cartChunks.push(cartItems.slice(i * itemsPerPage, (i + 1) * itemsPerPage));
   }
 
-  const handleLocateByNumber = () => {
+  /**
+   * const handleLocateByNumber = () => {
     Geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -221,6 +222,8 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
     );
   };
+   */
+  
   
   // Função para gerar a fatura como PDF
   const generateInvoice = (formData: FormData): JSX.Element => {
@@ -255,11 +258,13 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
                 <Text style={styles.sectionTitle}>Dados do Cliente</Text>
                 <Text style={styles.text}>Nome : {formData.name}</Text>
-                <Text style={styles.text} onPress={handleLocateByNumber}>
-                  Número: {formData.number}
-                </Text>
+                {/**
+                 * 
+                  <Text style={styles.text} onPress={handleLocateByNumber}>
+                    Número: {formData.number}
+                  </Text>
 
-
+                 */}
                 <Link
                   src={`https://waze.com/ul?q=${encodeURIComponent(`Luanda, ${formData.cityOrNeighborhood}`)}&navigate=yes`}
                   style={styles.link}
