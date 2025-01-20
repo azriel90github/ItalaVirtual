@@ -43,10 +43,6 @@
 		align-items: center;
 	}
 
-	.mainHome {
-		height: 125vh;
-	}
-
 	.homeBlogue {
 		display: flex;
 		flex-direction: column;

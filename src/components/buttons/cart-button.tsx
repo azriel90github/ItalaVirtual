@@ -17,7 +17,7 @@ export function CartButton() {
     // biome-ignore lint/a11y/useButtonType: <explanation>
 		<button
       onClick={OrderPage}
-      className="cartButton flex flex-row w-72 hover:bg-colorHover hover:text-zinc-200 shadow-shape bg-buttonColor2 transition duration-400 text-zinc-200 rounded-2xl px-7 py-3.5"
+      className="cartButton flex flex-1 flex-row w-72 hover:bg-colorHover hover:text-zinc-200 shadow-shape bg-buttonColor2 transition duration-400 text-zinc-200 rounded-2xl px-7 py-3.5"
     >
       <p className="flex flex-1 mr-32">{t('buttons.cartButton')}</p>
 

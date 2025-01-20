@@ -1,7 +1,7 @@
 {
   "buttons": {
     "menuButton": "菜单",
-    "cartButton": "购物车"
+    "cartButton": "车"
   },
   
   "modal": {
@@ -69,8 +69,8 @@
   "orderpage": {
     "h3menu": "购物车",
     "h2order": "订单详情",
-    "sabores": "口味",
-    "pagamento": "付款",
+    "sabores": "味",
+    "pagamento": "付",
     "adicionar": "添加口味",
     "remover": "删除口味",
     "h2encomendar": "立即下单",

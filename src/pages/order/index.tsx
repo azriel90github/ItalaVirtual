@@ -375,7 +375,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Nome"
+                    placeholder={t('orderpage.placeholderName')}
                     className="py-3 px-4 outline-none rounded-xl bg-searchColorInput text-colorText1 border-2 border-searchColor focus:border-2 focus:border-colorText1 placeholder:text-headerColor font-medium text-lx"
                   />
                   {/* Espaço fixo para mensagens de erro */}
