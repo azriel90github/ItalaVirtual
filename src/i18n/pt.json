@@ -85,6 +85,12 @@
     "removerSucesso": "Removido com sucesso"
   },
 
+  "modalQr": {
+    "botaoFechar": "Fechar",
+    "baixarQr": "Baixar QR Code",
+    "copiarLink": "Copiar Link"
+  },
+
   "orderpage": {
     "h3menu": "Carrinho de Compras",
     "h2order": "Detalhes Encomenda",
@@ -106,8 +112,8 @@
     "reset": "Limpar",
     "modalSend": "Mensagem enviada com sucesso",
     "modalSendh3": "Nota Importante:",
-    "modalSendP1": "Caso seu método de pagamento seja Multicaixa Express ou Transfêrencia, a encomenda será entregue apenas, depois do envio do comprovativo de pagamento, que deve ser enviado pelo whatsapp da geladaria.",
-    "modalSendButton2": "Enviar comprovativo pelo whatsapp",
+    "modalSendP1": "Caso seu método de pagamento seja Multicaixa Express ou Transfêrencia, a encomenda será entregue apenas, depois do envio do comprovativo de pagamento, que deve ser enviado pelo whatsapp da geladaria",
+    "modalSendButton2": "Enviar pelo Whatsapp",
     "modalSendButton3": "Escolhe dinheiro em mão",
     "validationAllFields": "Por favor preencha todos os campos"
   }

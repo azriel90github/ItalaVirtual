@@ -81,6 +81,12 @@
     "removerSucesso": "Supprimé avec Succès"
   },
 
+  "modalQr": {
+    "botaoFechar": "Fermer",
+    "baixarQr": "Télécharger le code QR",
+    "copiarLink": "Copier le lien"
+  },
+
   "orderpage": {
     "h3menu": "Panier",
     "h2order": "Détails de la commande",
@@ -102,8 +108,9 @@
     "reset": "Effacer",
     "modalSend": "Message envoyée avec succès",
     "modalSendh3": "Rappel important:",
-    "modalSendP": "N'oubliez pas d'activer la localisation de votre téléphone pour un meilleur suivi de votre commande et une livraison en temps réel.",
-    "modalSendButton": "Facture Numérique",
-    "modalValidation": "Tous les champs sont obligatoires"
+    "modalSendP1": "Si votre mode de paiement est Multicaixa Express ou Virement Bancaire, la commande sera livrée uniquement après l'envoi du reçu de paiement, qui doit être envoyé via le WhatsApp de la glacerie",
+    "modalSendButton2": "Envoyer via WhatsApp",
+    "modalSendButton3": "Choisir paiement à la livraison",
+    "validationAllFields": "Veuillez remplir tous les champs"
 }
 }

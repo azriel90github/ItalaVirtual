@@ -73,12 +73,18 @@
   },
 
   "cardMenu": {
-    "detalhesProduto": "Detalhes Produto",
-    "colheres": "Colheres",
-    "adicionarCarrinho": "Adicionar no Carrinho",
-    "removerCarrinho": "Remover do Carrinho",
-    "adicionarSucesso": "Adicionado com sucesso",
-    "removerSucesso": "Removido com sucesso"
+    "detalhesProduto": "Детали продукта",
+    "colheres": "Ложки",
+    "adicionarCarrinho": "Добавить в корзину",
+    "removerCarrinho": "Удалить из корзины",
+    "adicionarSucesso": "Успешно добавлено",
+    "removerSucesso": "Успешно удалено"
+  },
+
+  "modalQr": {
+    "botaoFechar": "Закрыть",
+    "baixarQr": "Скачать QR-код",
+    "copiarLink": "Скопировать ссылку"
   },
 
   "orderpage": {
@@ -102,8 +108,9 @@
     "reset": "Очистить",
     "modalSend": "Сообщение отправлено успешно",
     "modalSendh3": "Важное напоминание:",
-    "modalSendP": "Не забудьте включить геолокацию на вашем телефоне для более точного отслеживания вашего заказа и его доставки в режиме реального времени.",
-    "modalSendButton": "Электронный счет",
-    "modalValidation": "Все поля обязательны"
+    "modalSendP1": "Если ваш способ оплаты — Multicaixa Express или банковский перевод, заказ будет доставлен только после отправки квитанции об оплате, которую необходимо отправить через WhatsApp мороженого",
+    "modalSendButton2": "Отправить через WhatsApp",
+    "modalSendButton3": "Выберите оплату при доставке",
+    "validationAllFields": "Пожалуйста, заполните все поля"
 }
 }

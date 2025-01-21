@@ -82,6 +82,12 @@
     "removerSucesso": "Removed Successfully"
   },
 
+  "modalQr": {
+    "botaoFechar": "Close",
+    "baixarQr": "Download QR Code",
+    "copiarLink": "Copy Link"
+  },
+
   "orderpage": {
     "h3menu": "Shopping Cart",
     "h2order": "Order Details",
@@ -103,8 +109,9 @@
     "reset": "Clear",
     "modalSend": "Message sent successfully",
     "modalSendh3": "Important Reminder:",
-    "modalSendP": "Don't forget to keep your phone's location services enabled for better location tracking and real-time delivery of your order.",
-    "modalSendButton": "Digital Invoice",
-    "modalValidation": "All fields are required"
+    "modalSendP1": "If your payment method is Multicaixa Express or Bank Transfer, the order will only be delivered after sending the payment receipt, which must be sent via the ice cream shop's WhatsApp",
+    "modalSendButton2": "Send via WhatsApp",
+    "modalSendButton3": "Choose cash on delivery",
+    "validationAllFields": "Please fill in all fields"
 }
 }

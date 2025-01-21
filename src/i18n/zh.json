@@ -76,9 +76,15 @@
     "detalhesProduto": "产品详情",
     "colheres": "勺子",
     "adicionarCarrinho": "加入购物车",
-    "removerCarrinho": "Remover do Carrinho",
-    "adicionarSucesso": "Adicionado com sucesso",
-    "removerSucesso": "Removido com sucesso"
+    "removerCarrinho": "从购物车中移除",
+    "adicionarSucesso": "添加成功",
+    "removerSucesso": "成功移除"
+  },
+
+  "modalQr": {
+    "botaoFechar": "关闭",
+    "baixarQr": "下载二维码",
+    "copiarLink": "复制链接"
   },
 
   "orderpage": {
@@ -102,8 +108,9 @@
     "reset": "清除",
     "modalSend": "邮件发送成功",
     "modalSendh3": "重要提示:",
-    "modalSendP": "请勿忘记开启手机定位功能，以便更好地跟踪您的订单并实时送达.",
-    "modalSendButton": "电子发票",
-    "modalValidation": "所有字段是必填的"
+   "modalSendP1": "如果您的付款方式是 Multicaixa Express 或银行转账，则订单仅会在发送付款凭证后交付，凭证需通过冰激凌店的 WhatsApp 发送",
+    "modalSendButton2": "通过 WhatsApp 发送",
+    "modalSendButton3": "选择货到付款",
+    "validationAllFields": "请填写所有字段"
 }
 }

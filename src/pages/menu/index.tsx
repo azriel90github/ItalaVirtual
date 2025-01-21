@@ -119,7 +119,7 @@ export function MenuPage() {
 								} // Passa os dados via state
 								className="text-buttonColor underline-none text-[19px] text-smal"
 							>
-								{t('modal.modalContact.numero')}
+								{t('cardMenu.detalhesProduto')}
 							</button>
 						</p>
 
@@ -129,7 +129,7 @@ export function MenuPage() {
 								className="flex transition duration-400 bg-buttonColor2 hover:bg-colorHover text-zinc-100 py-3 px-5 w-full rounded-2xl justify-between"
 							>
 								<div>
-									Colheres <span className="ml-2">{counts[product.id]}</span>
+									{t("cardMenu.colheres")} <span className="ml-2">{counts[product.id]}</span>
 								</div>
 								<div className="flex gap-5">
 									<Plus onClick={() => incrementCount(product.id)} />
@@ -146,7 +146,7 @@ export function MenuPage() {
 								}`}
 								disabled={counts[product.id] === 0}
 							>
-								{addButtonTexts[product.id] || "Adicionar no Carrinho"}
+								{addButtonTexts[product.id] || t("cardMenu.adicionarCarrinho")}
 								{icons[product.id] ? <CircleCheck /> : <ShoppingCart />}
 							</button>
 							{/* Botão de Remover do Carrinho */}
@@ -160,7 +160,7 @@ export function MenuPage() {
 								}`}
 								disabled={counts[product.id] === 0} // Botão desativado se não houver colheres
 							>
-								{removeButtonTexts[product.id] || "Remover do Carrinho"}
+								{removeButtonTexts[product.id] || t("cardMenu.removerCarrinho")}
 								<Trash2 />
 							</button>
 						</div>

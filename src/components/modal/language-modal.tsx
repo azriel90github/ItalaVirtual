@@ -19,6 +19,7 @@ export function LanguageModal() {
 
 	// Função para fechar o modal e definir a opção selecionada
 	const handleSelectOption = (option: string, languageCode: string) => {
+		// i18n.changeLanguage(Languages); // Muda o idioma globalmente
 		setSelectedOption(option);
 		i18n.changeLanguage(languageCode); // Muda o idioma de toda a aplicação
 		setIsLanguageModalOpen(false);

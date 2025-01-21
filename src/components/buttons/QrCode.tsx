@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { HardDriveDownload, Link, QrCode } from "lucide-react";
 import QRCode from "react-qr-code"; // Certifique-se de instalar esta biblioteca
+import { useTranslation } from "react-i18next";
+
 
 type QrCodeButtonProps = {
   productId: string; // ID do produto
@@ -11,6 +13,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const productLink = `${productUrl}/${productId}`;
+  const { t } = useTranslation();
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(productLink);
@@ -75,9 +78,9 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
             {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="bg-colorInput mb-3 hover:bg-red-700 transition text-white px-5 py-2.5 w-full rounded-xl"
+              className="bg-red-600 mb-3 hover:bg-red-700 transition text-white px-5 py-2.5 w-full rounded-xl"
             >
-              Fechar
+              {t("modalQr.botaoFechar")}
             </button>
             {/* QR Code gerado */}
             <div id="qr-code-container" className="bg-zinc-100 p-4 rounded-lg">
@@ -90,7 +93,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
                 onClick={handleDownloadQrCode}
                 className="bg-colorText1 flex items-center justify-between rounded-xl text-white px-5 py-2.5 w-full hover:bg-green-600 transition"
               >
-                Código QR
+                {t("modalQr.baixarQr")}
                 <HardDriveDownload className="size-5" />
               </button>
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
@@ -98,7 +101,7 @@ export function QrCodeButton({ productId, productUrl }: QrCodeButtonProps) {
                 onClick={handleCopyLink}
                 className="bg-colorInput flex items-center justify-between text-white px-5 py-2.5 w-full rounded-xl hover:bg-blue-600 transition"
               >
-                Copiar Link
+                {t("modalQr.copiarLink")}
                 <Link className="size-5" />
               </button>
             </div>

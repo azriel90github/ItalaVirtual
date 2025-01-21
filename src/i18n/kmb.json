@@ -81,6 +81,12 @@
     "removerSucesso": "Tumiswa kwa Muene"
   },
 
+  "modalQr": {
+    "botaoFechar": "Kwata",
+    "baixarQr": "Sokota QR Code",
+    "copiarLink": "Kopiya Link"
+  },
+
   "orderpage": {
     "h3menu": "Kalunga ia ku sumba",
     "h2order": "Ungi ua kima ki kuka",
@@ -102,9 +108,10 @@
     "reset": "Katula yonso",
     "modalSend": "Njimbu tua tumina kiambote",
     "modalSendh3": "Mbondo ia dikota:",
-    "modalSendP": "Ku lemba ku bika kiavulu kisakidilu kia ku mona kisika kia telefone kiaku phala ku mona kiambote kisika ki tua kuenda na kima ki ua koka kia konda.",
-    "modalSendButton": "Fatura ya dijital",
-    "modalValidation": "Omu mbote u tua bhanga uê u bhingi"
+    "modalSendP1": "Mu kaba kala Multicaixa Express o Transfêrencia, encomenda kyo kalele nda kakulu umbu, makanda tuma kilamba kya kulipuka mu Whatsapp wa loja ya gelado",
+    "modalSendButton2": "Tuma mu Whatsapp",
+    "modalSendButton3": "Sokola kulipuka ku konso",
+    "validationAllFields": "Mbakisha tula matunga ke vu"
 }
 }
 

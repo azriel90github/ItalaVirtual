@@ -369,7 +369,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             </h1>
 
             <div className="py-4">
-                <div className="flex flex-col gap-1.5 w-full">
+                <div className="flex flex-col gap-1 w-full">
                   <input
                     type="text"
                     name="name"
