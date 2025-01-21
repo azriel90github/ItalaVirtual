@@ -6,7 +6,10 @@
 
   "modal": {
     "modalContact": {
-      "title": "kutubha"
+      "title": "kutubha",
+      "numero": "Nkumbu",
+      "social": "Muambukisho",
+      "email": "Email"
     },
     "modalGallery": {
       "title": "Foto"
@@ -38,7 +41,9 @@
       "title": "Sanga kimbandu",
       "category1": "Menta",
       "category2": "Cokolate",
-      "category3": "Morangu"
+      "category3": "Morangu",
+      "searchPlaceholder": "Kulonga...",
+      "noResults": "Kibinga kina kiami"
     },
     "Searchbox": "Ontu"
   },
@@ -62,6 +67,7 @@
     "buttonContact": "Kuvandula",
     "buttonMenu": "Menu",
     "buttonCart": "Kaxilumbu",
+    "buttonLibrary": "Kilivulu",
     "terms": "Kuwena kima na itala virtual, o lenda kuza na kuntunu ki 'termos de uso' na 'políticas de privacidade'.",
     "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
   },

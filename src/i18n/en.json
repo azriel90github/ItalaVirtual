@@ -6,7 +6,10 @@
 
   "modal": {
     "modalContact": {
-      "title": "Contact Us"
+      "title": "Contact Us",
+      "numero": "Number",
+      "social": "Social",
+      "email": "Email"
     },
     "modalGallery": {
       "title": "Gallery"
@@ -38,7 +41,9 @@
       "title": "Choose category",
       "category1": "Mint",
       "category2": "Chocolate",
-      "category3": "Strawberry"
+      "category3": "Strawberry",
+      "searchPlaceholder": "Search...",
+      "noResults": "No product found"
     },
     "Searchbox": "All"
   },
@@ -63,6 +68,7 @@
     "buttonContact": "Connect",
     "buttonMenu": "Menu",
     "buttonCart": "Cart",
+    "buttonLibrary": "Library",
     "terms": "By placing your orders through itala virtual you automatically agree to our terms of use and privacy policies.",
     "footer": "Programmed by Suélio Armando JS eXtreme Programming"
   },

@@ -6,7 +6,10 @@
 
   "modal": {
     "modalContact": {
-      "title": "Kutamba"
+      "title": "Kutamba",
+      "numero": "Ocikwata",
+      "social": "Ongombisoko",
+      "email": "Email"
     },
     "modalGallery": {
       "title": "Fotu"
@@ -38,7 +41,9 @@
       "title": "Sola o vimbo",
       "category1": "Menta",
       "category2": "Cokolate",
-      "category3": "Morangu"
+      "category3": "Morangu",
+      "searchPlaceholder": "Okulonga...",
+      "noResults": "Kahinga kali okuti"
     },
     "Searchbox": "Omu"
   },
@@ -63,6 +68,7 @@
     "buttonContact": "Kutala",
     "buttonMenu": "Menu",
     "buttonCart": "Makala",
+    "buttonLibrary": "Oviluvulu",
     "terms": "Okwenda kima na itala virtual, olonga okuti ulenda kuza na ‘termos de uso’ na ‘políticas de privacidade’.",
     "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
   },

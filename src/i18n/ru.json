@@ -6,7 +6,10 @@
 
   "modal": {
     "modalContact": {
-      "title": "Связаться с нами"
+      "title": "Связаться с нами",
+      "numero": "Номер",
+      "social": "Социальный",
+      "email": "Электронная почта"
     },
     "modalGallery": {
       "title": "Галерея"
@@ -38,7 +41,9 @@
       "title": "Выберите категорию",
       "category1": "Мята",
       "category2": "Шоколад",
-      "category3": "Клубника"
+      "category3": "Клубника",
+      "searchPlaceholder": "Искать...",
+      "noResults": "Товар не найден"
     },
     "Searchbox": "Все"
   },
@@ -62,6 +67,7 @@
     "buttonContact": "Позвонить",
     "buttonMenu": "Меню",
     "buttonCart": "Корзина",
+    "buttonLibrary": "Библиотека",
     "terms": "При заказе через itala virtual вы автоматически соглашаетесь с нашими условиями использования и политикой конфиденциальности.",
     "footer": "Программировал Суэлио Армандо JS иXtreme Programming"
   },

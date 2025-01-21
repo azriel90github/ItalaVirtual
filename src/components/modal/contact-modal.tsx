@@ -69,7 +69,7 @@ export function ContactModal() {
 									{/** <X className="size-6 cursor-pointer" /> */}
 								</div>
 								<div className="flex flex-col py-3 mt-2 gap-3">
-								<h3 className="flex mx-2 text-lx">Número</h3>
+								<h3 className="flex mx-2 text-lx">{t('modal.modalContact.numero')}</h3>
                 <button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
@@ -86,7 +86,7 @@ export function ContactModal() {
 										<p className="text-zinc-300">Unitel - 929 261 926</p>
                     <Headset />
 									</button>
-									<h3 className="flex mx-2 text-lx">Social</h3>
+									<h3 className="flex mx-2 text-lx">{t('modal.modalContact.social')}</h3>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition text-zinc-300 duration-400 hover:text-zinc-300 hover:bg-[#338C38] bg-[#2F7C38] flex items-center justify-between"
@@ -118,7 +118,7 @@ export function ContactModal() {
                     <p className="text-zinc-300">Facebook</p>
                     <Facebook />
 									</button>
-									<h3 className="flex mx-2 text-lx">Email</h3>
+									<h3 className="flex mx-2 text-lx">{t('modal.modalContact.email')}</h3>
 									<button
 										type="button"
 										className="py-3 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"

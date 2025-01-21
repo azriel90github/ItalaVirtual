@@ -6,7 +6,10 @@
 
   "modal": {
     "modalContact": {
-      "title": "Nous contacter"
+      "title": "Nous contacter",
+      "numero": "Numéro",
+      "social": "Social",
+      "email": "Email"
     },
     "modalGallery": {
       "title": "Galerie"
@@ -38,7 +41,9 @@
       "title": "Choisir une catégorie",
       "category1": "Menthe",
       "category2": "Chocolat",
-      "category3": "Fraise"
+      "category3": "Fraise",
+      "searchPlaceholder": "Rechercher...",
+      "noResults": "Aucun produit trouvé"
     },
     "Searchbox": "Tout"
   },
@@ -62,6 +67,7 @@
     "buttonContact": "Appeler",
     "buttonMenu": "Menu",
     "buttonCart": "Panier",
+    "buttonLibrary": "Bibliothèque",
     "terms": "En passant commande via itala virtual, vous acceptez automatiquement nos conditions d'utilisation et notre politique de confidentialité.",
     "footer": "Programmé par Suélio Armando JS etXtreme Programming"
   },

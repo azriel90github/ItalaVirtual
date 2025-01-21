@@ -6,7 +6,10 @@
   
   "modal": {
     "modalContact": {
-      "title": "联系我们"
+      "title": "联系我们",
+      "numero": "数字",
+      "social": "社会",
+      "email": "电子邮件"
     },
     "modalGallery": {
       "title": "图库"
@@ -38,7 +41,9 @@
       "title": "选择类别",
       "category1": "薄荷",
       "category2": " 巧克力",
-      "category3": " 草莓"
+      "category3": " 草莓",
+      "searchPlaceholder": "搜索...",
+      "noResults": "未找到产品"
     },
     "Searchbox": "全部"
   },
@@ -62,6 +67,7 @@
     "buttonContact": "呼叫",
     "buttonMenu": "菜单",
     "buttonCart": "购物车",
+    "buttonLibrary": "图书馆",
     "terms": "通过 itala virtual 下单，即表示您自动同意我们的使用条款和隐私政策。",
     "footer": "由 Suélio Armando JS 和 Xtreme Programming 编程"
   },

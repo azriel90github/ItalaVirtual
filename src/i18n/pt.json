@@ -6,7 +6,10 @@
 
   "modal": {
     "modalContact": {
-      "title": "Entrar em contacto"
+      "title": "Entrar em contacto",
+      "numero": "Número",
+      "social": "Social",
+      "email": "Email"
     },
     "modalTerms": {
       "title": "Termos de uso e políticas de privacidade"
@@ -71,6 +74,15 @@
 
   "menupage": {
 
+  },
+
+  "cardMenu": {
+    "detalhesProduto": "Detalhes Produto",
+    "colheres": "Colheres",
+    "adicionarCarrinho": "Adicionar no Carrinho",
+    "removerCarrinho": "Remover do Carrinho",
+    "adicionarSucesso": "Adicionado com sucesso",
+    "removerSucesso": "Removido com sucesso"
   },
 
   "orderpage": {
