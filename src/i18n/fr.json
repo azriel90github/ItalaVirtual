@@ -71,6 +71,16 @@
     "terms": "En passant commande via itala virtual, vous acceptez automatiquement nos conditions d'utilisation et notre politique de confidentialité.",
     "footer": "Programmé par Suélio Armando JS etXtreme Programming"
   },
+
+  "cardMenu": {
+    "detalhesProduto": "Détails du Produit",
+    "colheres": "Cuillères",
+    "adicionarCarrinho": "Ajouter au Panier",
+    "removerCarrinho": "Retirer du Panier",
+    "adicionarSucesso": "Ajouté avec Succès",
+    "removerSucesso": "Supprimé avec Succès"
+  },
+
   "orderpage": {
     "h3menu": "Panier",
     "h2order": "Détails de la commande",

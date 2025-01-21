@@ -72,6 +72,15 @@
     "footer": "由 Suélio Armando JS 和 Xtreme Programming 编程"
   },
 
+  "cardMenu": {
+    "detalhesProduto": "产品详情",
+    "colheres": "勺子",
+    "adicionarCarrinho": "加入购物车",
+    "removerCarrinho": "Remover do Carrinho",
+    "adicionarSucesso": "Adicionado com sucesso",
+    "removerSucesso": "Removido com sucesso"
+  },
+
   "orderpage": {
     "h3menu": "购物车",
     "h2order": "订单详情",

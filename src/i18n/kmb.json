@@ -72,6 +72,15 @@
     "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
   },
 
+  "cardMenu": {
+    "detalhesProduto": "Mbanzo wa Kilunda",
+    "colheres": "Masu",
+    "adicionarCarrinho": "Kwanisa ku Kima",
+    "removerCarrinho": "Tumbu ku Kima",
+    "adicionarSucesso": "Kwanisiwa kwa Muene",
+    "removerSucesso": "Tumiswa kwa Muene"
+  },
+
   "orderpage": {
     "h3menu": "Kalunga ia ku sumba",
     "h2order": "Ungi ua kima ki kuka",

@@ -72,6 +72,15 @@
     "footer": "Программировал Суэлио Армандо JS иXtreme Programming"
   },
 
+  "cardMenu": {
+    "detalhesProduto": "Detalhes Produto",
+    "colheres": "Colheres",
+    "adicionarCarrinho": "Adicionar no Carrinho",
+    "removerCarrinho": "Remover do Carrinho",
+    "adicionarSucesso": "Adicionado com sucesso",
+    "removerSucesso": "Removido com sucesso"
+  },
+
   "orderpage": {
     "h3menu": "Корзина покупок",
     "h2order": "Детали заказа",

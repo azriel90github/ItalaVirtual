@@ -16,6 +16,7 @@ import { useCart } from "../../context/CartContext";
 import { useImage } from "../../context/ImageContext";
 import { useState } from "react";
 import { QrCodeButton } from "../../components/buttons/QrCode";
+import { useTranslation } from "react-i18next";
 
 // Tipo para os produtos
 export interface Product {
@@ -42,6 +43,7 @@ export function MenuPage() {
 	} = useCart();
 
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const HomePage = () => {
 		navigate("/");
@@ -117,7 +119,7 @@ export function MenuPage() {
 								} // Passa os dados via state
 								className="text-buttonColor underline-none text-[19px] text-smal"
 							>
-								Detalhes produto
+								{t('modal.modalContact.numero')}
 							</button>
 						</p>
 

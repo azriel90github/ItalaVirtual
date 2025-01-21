@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 
 // Tipo para os produtos
 export interface Product {
@@ -54,6 +55,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const { t } = useTranslation();
+
   const fetchProducts = async () => {
     try {
       const response = await fetch("http://localhost:3334/products");
@@ -95,8 +98,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     setIcons((prev) => ({ ...prev, [id]: false }));
     setButtonColors((prev) => ({ ...prev, [id]: "" }));
-    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
-    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
+    setAddButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.adicionarCarrinho") }));
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.removerCarrinho") }));
   };
 
   const decrementCount = (id: string) => {
@@ -107,8 +110,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     setIcons((prev) => ({ ...prev, [id]: false }));
     setButtonColors((prev) => ({ ...prev, [id]: "" }));
-    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
-    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
+    setAddButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.adicionarCarrinho") }));
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.removerCarrinho") }));
   };
 
   const updateCart = (id: string, count: number) => {
@@ -155,8 +158,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const toggleIcon = (id: string) => {
     setIcons((prev) => ({ ...prev, [id]: true }));
     setButtonColors((prev) => ({ ...prev, [id]: "green" }));
-    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionado com Sucesso" }));
-    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Remover do Carrinho" }));
+    setAddButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.adicionarSucesso") }));
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.removerCarrinho") }));
 
     setCounts((prevCounts) => {
       const count = prevCounts[id] || 0;
@@ -172,8 +175,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setTotals((prev) => ({ ...prev, [id]: 0 }));
     setIcons((prev) => ({ ...prev, [id]: false }));
     setButtonColors((prev) => ({ ...prev, [id]: "red" }));
-    setAddButtonTexts((prev) => ({ ...prev, [id]: "Adicionar no Carrinho" }));
-    setRemoveButtonTexts((prev) => ({ ...prev, [id]: "Removido com Sucesso" }));
+    setAddButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.adicionarCarrinho") }));
+    setRemoveButtonTexts((prev) => ({ ...prev, [id]: t("cardMenu.removerSucesso") }));
 
     setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== id));
   };

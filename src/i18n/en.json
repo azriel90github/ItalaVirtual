@@ -73,6 +73,15 @@
     "footer": "Programmed by Suélio Armando JS eXtreme Programming"
   },
 
+  "cardMenu": {
+    "detalhesProduto": "Product Details",
+    "colheres": "Spoons",
+    "adicionarCarrinho": "Add to Cart",
+    "removerCarrinho": "Remove from Cart",
+    "adicionarSucesso": "Added Successfully",
+    "removerSucesso": "Removed Successfully"
+  },
+
   "orderpage": {
     "h3menu": "Shopping Cart",
     "h2order": "Order Details",

@@ -73,6 +73,15 @@
     "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
   },
 
+  "cardMenu": {
+    "detalhesProduto": "Okulilongolola k’Opya",
+    "colheres": "Omasu",
+    "adicionarCarrinho": "Etelela Okima",
+    "removerCarrinho": "Onjila Okima",
+    "adicionarSucesso": "Okwetelewa Kovavi",
+    "removerSucesso": "Removido com sucesso"
+  },
+
   "orderpage": {
     "h3menu": "Ondi yoku kuka",
     "h2order": "Oukamba wa cimbu ci kuka",
