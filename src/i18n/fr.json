@@ -78,7 +78,8 @@
     "adicionarCarrinho": "Ajouter au Panier",
     "removerCarrinho": "Retirer du Panier",
     "adicionarSucesso": "Ajouté avec Succès",
-    "removerSucesso": "Supprimé avec Succès"
+    "removerSucesso": "Supprimé avec Succès",
+    "descricao": "Description"
   },
 
   "modalQr": {

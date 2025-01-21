@@ -5,6 +5,7 @@ import { ArrowLeft, House, Star } from "lucide-react";
 import { useCart } from "../../context/CartContext"; // Import cart context to handle counts and cart actions
 import { CircleCheck, Plus, Minus, Trash2, ShoppingCart } from "lucide-react"; // Import icons for buttons
 import { QrCodeButton } from "../../components/buttons/QrCode";
+import { useTranslation } from "react-i18next";
 
 export function ProductDetail() {
 	const navigate = useNavigate();
@@ -22,6 +23,8 @@ export function ProductDetail() {
 		icons,
 		handleRemoveFromCart,
 	} = useCart(); // Using the CartContext for cart functionality
+
+	const { t } = useTranslation();
 
 	// Dados do produto passado via state
 	const product = location.state?.product;
@@ -94,7 +97,7 @@ export function ProductDetail() {
 							</div>
 							<div className="flex flex-col">
 								<h2 className="text-buttonColor text-[20px] font-medium">
-									Descrição:{" "}
+									{t("cardMenu.descricao")}{" "}
 								</h2>
 								<p className="text-xl w-96 text-zinc-200 mt-2">
 									{product.description || "Descrição não disponível."}
@@ -107,7 +110,7 @@ export function ProductDetail() {
 										className="flex transition duration-400 bg-buttonColor hover:bg-colorHover text-zinc-100 py-3 px-5 rounded-2xl justify-between"
 									>
 										<div>
-											Colheres{" "}
+										{t("cardMenu.colheres")}{" "}
 											<span className="ml-2">{counts[product.id]}</span>
 										</div>
 										<div className="flex gap-5">
@@ -125,7 +128,7 @@ export function ProductDetail() {
 										}`}
 										disabled={counts[product.id] === 0}
 									>
-										{addButtonTexts[product.id] || "Adicionar no Carrinho"}
+										{addButtonTexts[product.id] || t("cardMenu.adicionarCarrinho")}
 										{icons[product.id] ? <CircleCheck /> : <ShoppingCart />}
 									</button>
 									{/* Botão de Remover do Carrinho */}
@@ -139,7 +142,7 @@ export function ProductDetail() {
 										}`}
 										disabled={counts[product.id] === 0}
 									>
-										{removeButtonTexts[product.id] || "Remover do Carrinho"}
+										{removeButtonTexts[product.id] ||  t("cardMenu.removerCarrinho")}
 										<Trash2 />
 									</button>
 								</div>

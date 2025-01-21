@@ -82,7 +82,8 @@
     "adicionarCarrinho": "Adicionar no Carrinho",
     "removerCarrinho": "Remover do Carrinho",
     "adicionarSucesso": "Adicionado com sucesso",
-    "removerSucesso": "Removido com sucesso"
+    "removerSucesso": "Removido com sucesso",
+    "descricao": "Descrição"
   },
 
   "modalQr": {

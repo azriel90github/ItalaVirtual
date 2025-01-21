@@ -79,7 +79,8 @@
     "adicionarCarrinho": "Add to Cart",
     "removerCarrinho": "Remove from Cart",
     "adicionarSucesso": "Added Successfully",
-    "removerSucesso": "Removed Successfully"
+    "removerSucesso": "Removed Successfully",
+    "descricao": "Description"
   },
 
   "modalQr": {

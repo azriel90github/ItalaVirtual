@@ -78,7 +78,8 @@
     "adicionarCarrinho": "加入购物车",
     "removerCarrinho": "从购物车中移除",
     "adicionarSucesso": "添加成功",
-    "removerSucesso": "成功移除"
+    "removerSucesso": "成功移除",
+    "descricao": "描述"
   },
 
   "modalQr": {

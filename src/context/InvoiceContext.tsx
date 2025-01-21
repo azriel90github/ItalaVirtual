@@ -12,6 +12,7 @@ import {
   Link,
 } from "@react-pdf/renderer";
 import { useCart, type CartItem } from "./CartContext.tsx";
+import { useTranslation } from "react-i18next";
 //import Geolocation from '@react-native-community/geolocation';
 
 // Registrar fonte personalizada (opcional)
@@ -207,6 +208,8 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     cartChunks.push(cartItems.slice(i * itemsPerPage, (i + 1) * itemsPerPage));
   }
 
+  const { t } = useTranslation();
+
   /**
    * const handleLocateByNumber = () => {
     Geolocation.getCurrentPosition(
@@ -241,7 +244,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 {/* Logo */}
                 <View>
                   <Image style={styles.logo} src="/logo-geladaria.png" />
-                  <Text style={styles.descricaoLogo}>Faça sua encomenda de qualquer lugar e a qualquer hora!</Text>
+                  <Text style={styles.descricaoLogo}>{t('homepage.description')}</Text>
                 </View>
                 {/* Endereço */}
                 <View style={styles.address}>

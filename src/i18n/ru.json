@@ -78,7 +78,8 @@
     "adicionarCarrinho": "Добавить в корзину",
     "removerCarrinho": "Удалить из корзины",
     "adicionarSucesso": "Успешно добавлено",
-    "removerSucesso": "Успешно удалено"
+    "removerSucesso": "Успешно удалено",
+    "descricao": "Описание"
   },
 
   "modalQr": {
