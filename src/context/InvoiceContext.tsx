@@ -23,6 +23,31 @@ Font.register({
   ],
 });
 
+
+Font.register({
+  family: "NotoSans",
+  fonts: [
+    {
+      src: "https://fonts.gstatic.com/s/notosans/v27/o-0IIpQlx3QUlC5A4PNr5TRA.woff2", // Regular
+    },
+    {
+      src: "https://fonts.gstatic.com/s/notosans/v27/o-0NIpQlx3QUlC5A4PNr5TRA.woff2", // Bold
+      fontWeight: "bold",
+    },
+  ],
+});
+
+Font.register({
+  family: "NotoSansCJK",
+  fonts: [
+    {
+      src: "https://fonts.gstatic.com/s/notosanssc/v16/k3kKo8UPMOBOzUb0Zb0wEw.ttf", // Simplified Chinese
+    },
+  ],
+});
+
+
+
 // Definir uma interface para os dados da encomenda
 interface FormData {
   name: string;
@@ -46,6 +71,16 @@ const InvoiceContext = createContext<InvoiceContextProps | undefined>(undefined)
 
 // Estilos para o PDF
 const styles = StyleSheet.create({
+  russoText: { 
+    fontSize: 12, 
+    fontFamily: "NotoSans" 
+  }, // Para russo
+  
+  chineseText: { 
+    fontSize: 12, 
+    fontFamily: "NotoSansCJK" 
+  }, // Para chinês
+
   page: {
     flexDirection: "column",
     backgroundColor: "#64395C",
@@ -70,10 +105,7 @@ const styles = StyleSheet.create({
     height: 65,
     paddingBottom: 10,
   },
-  descricaoLogo: {
-    fontSize: 13,
-    color: "#f3f4f6",
-  },
+
   address: {
     display: "flex",
     justifyContent: "flex-end", // Alinha todo o conteúdo à direita
@@ -244,7 +276,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 {/* Logo */}
                 <View>
                   <Image style={styles.logo} src="/logo-geladaria.png" />
-                  <Text style={styles.descricaoLogo}>{t('homepage.description')}</Text>
+                  <Text style={styles.russoText}>{t('homepage.description')}</Text>
                 </View>
                 {/* Endereço */}
                 <View style={styles.address}>
@@ -261,13 +293,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
                 <Text style={styles.sectionTitle}>Dados do Cliente</Text>
                 <Text style={styles.text}>Nome : {formData.name}</Text>
-                {/**
-                 * 
-                  <Text style={styles.text} onPress={handleLocateByNumber}>
-                    Número: {formData.number}
-                  </Text>
-
-                 */}
+                <Text style={styles.text}>Número: {formData.number}</Text>
                 <Link
                   src={`https://waze.com/ul?q=${encodeURIComponent(`Luanda, ${formData.cityOrNeighborhood}`)}&navigate=yes`}
                   style={styles.link}
