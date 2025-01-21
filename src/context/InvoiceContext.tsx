@@ -24,27 +24,22 @@ Font.register({
 });
 
 
-Font.register({
-  family: "NotoSans",
-  fonts: [
-    {
-      src: "https://fonts.gstatic.com/s/notosans/v27/o-0IIpQlx3QUlC5A4PNr5TRA.woff2", // Regular
-    },
-    {
-      src: "https://fonts.gstatic.com/s/notosans/v27/o-0NIpQlx3QUlC5A4PNr5TRA.woff2", // Bold
-      fontWeight: "bold",
-    },
-  ],
-});
+  // Fonte para caracteres russos e outros alfabetos cirílicos
+  Font.register({
+    family: "NotoSans",
+    fonts: [
+      { src: "https://fonts.gstatic.com/s/notosans/v27/o-0IIpQlx3QUlC5A4PNr5TRA.woff2" }, // Regular
+      { src: "https://fonts.gstatic.com/s/notosans/v27/o-0NIpQlx3QUlC5A4PNr5TRA.woff2", fontWeight: "bold" }, // Bold
+    ],
+  });
 
-Font.register({
-  family: "NotoSansCJK",
-  fonts: [
-    {
-      src: "https://fonts.gstatic.com/s/notosanssc/v16/k3kKo8UPMOBOzUb0Zb0wEw.ttf", // Simplified Chinese
-    },
-  ],
-});
+  // Fonte para caracteres chineses simplificados
+  Font.register({
+    family: "NotoSansSC",
+    fonts: [
+      { src: "https://fonts.gstatic.com/s/notosanssc/v16/k3kKo8UPMOBOzUb0Zb0wEw.ttf" }, // Regular
+    ],
+  });
 
 
 
