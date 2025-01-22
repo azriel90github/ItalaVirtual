@@ -1,0 +1,132 @@
+{
+  "buttons": {
+    "menuButton": "Menu",
+    "cartButton": "Sakoli ya Mposa"
+  },
+  "modal": {
+    "modalContact": {
+      "title": "Kosolola na biso",
+      "numero": "Motángo",
+      "social": "Bandinga",
+      "email": "Imeli"
+    },
+    "modalTerms": {
+      "title": "Mibeko ya kosalela mpe mibeko ya ngomba"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Lingelesi",
+      "ingles": "Lingelesa",
+      "frances": "Lingelesa",
+      "chines": "Chinois",
+      "russo": "Russe"
+    },
+    "modalNotification": {
+      "title": ""
+    },
+    "modalOrderDetail": {
+      "title": ""
+    },
+    "modalPaymentMethod": {
+      "title": ""
+    },
+    "modalProfile": {
+      "title": ""
+    },
+    "modalSearchBox": {
+      "h2": "Kategories",
+      "title": "Poná Kategória",
+      "category1": "Menté",
+      "category2": "Chocolá",
+      "category3": "Malakisi",
+      "searchPlaceholder": "Koluka...",
+      "noResults": "Eloko moko te esili kokuta"
+    },
+    "Searchbox": "Kategoría"
+  },
+  "blogpage": {
+    "h2": "Bokonzi ya mosala",
+    "par1": "Mbote! Nkombo na ngai, Cunha Shombossi, mutu na motema ya Geladaria Italala. Bolingo na ngai na biloko malamu mpe bisengo ebandá kala. Moto nyonso ayebi malamu ndenge ice cream ezali mpe ezalí lisano moko ya malamu.",
+    "par2": "Na Geladaria Italala, tosalelaka biloko ya sika mpe ya motuya. Ice cream na biso nyonso esalemi na motema mpe na bozindo ya mosala. Tokobi na biso kobimisa mwa bango oyo bazali kobomisa matama.",
+    "par3": "Na Italala, ozali koyoka bilenge mpe bisengo ya famille. Toli na biso ezali kobimisa biloko ya vege mpe ata oyo ezali na maloba te mpo bato nyonso basepela ice cream. Sambela bino kolanda biso na bandinga mpo na koyeba makambo mapya mpe mabongisi.",
+    "h3": "Bakonzi ya Moto",
+    "dep1": "Ice cream eleki nioso oyo natanga! Suka ya ndenge mosusu, ezali na ndenge ya malamu.",
+    "dep2": "Ice cream eleki nioso oyo natanga! Suka ya ndenge mosusu, ezali na ndenge ya malamu.",
+    "dep3": "Ice cream eleki nioso oyo natanga! Suka ya ndenge mosusu, ezali na ndenge ya malamu.",
+    "dep4": "Ice cream eleki nioso oyo natanga! Suka ya ndenge mosusu, ezali na ndenge ya malamu."
+  },
+  "homepage": {
+    "h3modal": "Poná Lokótá",
+    "gallery": "Mibeko mpe Kosalela",
+    "description": "Pesá mitindo na bisika nyonso mpe tango nyonso!",
+    "buttonBlog": "Blog",
+    "buttonContact": "Kobelela",
+    "buttonMenu": "Menu",
+    "buttonCart": "Sakoli",
+    "buttonLibrary": "Zando ya Buku",
+    "terms": "Soki omipesi na mosala na itala, ozali koyamba mibeko mpe ngomba na biso.",
+    "footer": "Esalemi na Suélio Armando JS mpe Extreme Programming"
+  },
+  "menupage": {},
+  "cardMenu": {
+    "detalhesProduto": "Makambo na Eloko",
+    "colheres": "Matoké",
+    "adicionarCarrinho": "Kobakisá na Sakoli",
+    "removerCarrinho": "Kolongola na Sakoli",
+    "adicionarSucesso": "Ebotami malamu",
+    "removerSucesso": "Elongolami malamu",
+    "descricao": "Ndenge ezali"
+  },
+  "modalQr": {
+    "botaoFechar": "Kokanga",
+    "baixarQr": "Kosiba QR Code",
+    "copiarLink": "Kosala Kópia na Linga"
+  },
+  "orderpage": {
+    "h3menu": "Sakoli ya Mosala",
+    "h2order": "Makambo na Mosala",
+    "sabores": "Malamu",
+    "pagamento": "Botángi Mbongo",
+    "adicionar": "Kobakisa Malamu",
+    "remover": "Kolongola Malamu",
+    "h2encomendar": "Kosenga - Siko",
+    "h2selectMethod": "Bolá ya Kobongisa",
+    "money": "Mbongo na Mosapi",
+    "express": "Multicaixa Express",
+    "tpa": "Botángi ya Banque",
+    "placeholderName": "Nkombo",
+    "placeholderNumber": "Motángo (+244)",
+    "placeholderPaymentMethod": "Bolá ya Mbongo",
+    "placeholderCityOrNeighborhood": "Engumba, Kitá",
+    "placeholderLandmark": "Ponto Moko",
+    "send": "Tindá",
+    "reset": "Bongola",
+    "modalSend": "Maloba malamu botíndá.",
+    "modalSendh3": "Maloba ya Tina:",
+    "modalSendP1": "Soki oponi Multicaixa to Banque, eloko ekokuta kaka nsima ya kosala kópia mpe kosopa. Ebotela sango na geladaria.",
+    "modalSendButton2": "Tindá WhatsApp",
+    "modalSendButton3": "Pona mbongo na mosapi",
+    "validationAllFields": "Kindly kotondisa makomi nyonso"
+  },
+  "fatura": {
+    "gps1": "Geladaria Italala",
+    "gps2": "Engumba ya Komé, Nº 123",
+    "gps3": "Luanda - Angola",
+    "clienteh3": "Maloba ya Client",
+    "nome": "Nkombo : ",
+    "numero": "Motángo : ",
+    "bairro": "Kitá : ",
+    "referencia": "Likambo Moko : ",
+    "encomendah3": "Makambo na Eloko",
+    "nomeEncomenda": "Nkombo",
+    "preco": "Motuya",
+    "colheres": "Matoké",
+    "total": "Yango nyonso",
+    "resumoh3": "Yango nyonso",
+    "totalSabores": "Yango nyonso ya Malamu",
+    "totalPagar": "Mbongo Yango",
+    "metodoPagamento": "Bolá ya Botángi",
+    "data": "Mokolo"
+  }
+}

@@ -4,8 +4,8 @@ import { initReactI18next } from 'react-i18next';
 import en from './i18n/en.json';
 import pt from './i18n/pt.json';
 import fr from './i18n/fr.json';
-import zh from './i18n/zh.json';
-import ru from './i18n/ru.json';
+import ln from './i18n/ln.json';
+import es from './i18n/es.json';
 import kmb from './i18n/kmb.json'; // Import Kimbundu translations
 import umb from './i18n/umb.json'; // Import Umbundu translations
 
@@ -16,8 +16,8 @@ i18n
       en: { translation: en },
       pt: { translation: pt },
       fr: { translation: fr },
-      zh: { translation: zh },
-      ru: { translation: ru },
+      ln: { translation: ln }, // Add Lingala
+      es: { translation: es }, // Add espanhol
       kmb: { translation: kmb }, // Add Kimbundu
       umb: { translation: umb }, // Add Umbundu
     },

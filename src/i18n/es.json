@@ -1,0 +1,132 @@
+{
+  "buttons": {
+    "menuButton": "Menú",
+    "cartButton": "Carrito"
+  },
+  "modal": {
+    "modalContact": {
+      "title": "Contactarnos",
+      "numero": "Número",
+      "social": "Redes Sociales",
+      "email": "Correo Electrónico"
+    },
+    "modalTerms": {
+      "title": "Términos de Uso y Políticas de Privacidad"
+    },
+    "modalLanguage": {
+      "umbundu": "Umbundu",
+      "kimbundo": "Kimbundu",
+      "portugues": "Portugués",
+      "ingles": "Inglés",
+      "frances": "Francés",
+      "chines": "Chino",
+      "russo": "Ruso"
+    },
+    "modalNotification": {
+      "title": ""
+    },
+    "modalOrderDetail": {
+      "title": ""
+    },
+    "modalPaymentMethod": {
+      "title": ""
+    },
+    "modalProfile": {
+      "title": ""
+    },
+    "modalSearchBox": {
+      "h2": "Categorías",
+      "title": "Seleccionar Categoría",
+      "category1": "Menta",
+      "category2": "Chocolate",
+      "category3": "Fresa",
+      "searchPlaceholder": "Buscar...",
+      "noResults": "No se encontraron productos"
+    },
+    "Searchbox": "Categoría"
+  },
+  "blogpage": {
+    "h2": "Dirección Ejecutiva",
+    "par1": "¡Hola! Soy Cunha Shombossi, la mente y el corazón detrás de Geladaria Italala. Mi pasión por crear sabores únicos y ofrecer momentos dulces a las personas comenzó hace muchos años, cuando descubrí la magia que un simple helado puede traer al día de alguien.",
+    "par2": "En Geladaria Italala, utilizamos solo ingredientes frescos y de alta calidad. Todos nuestros helados están preparados con mucho cuidado y amor, para garantizar una explosión de sabores en cada bocado. Valoramos el proceso artesanal, y cada detalle está pensado para ofrecer la mejor experiencia a nuestros clientes.",
+    "par3": "En Italala, encontrarás un ambiente familiar y relajado, perfecto para disfrutar de un delicioso helado en buena compañía. Además de nuestros sabores tradicionales, ofrecemos opciones veganas y sin lactosa, para que todos puedan disfrutar de esta experiencia. Síguenos en nuestras redes sociales y mantente al día con nuestras promociones y novedades. ¡Visítanos o haz tu pedido aquí!",
+    "h3": "Testimonios",
+    "dep1": "¡El mejor helado que he probado! Sabores increíbles y una textura perfecta. Me he convertido en cliente fiel.",
+    "dep2": "¡El mejor helado que he probado! Sabores increíbles y una textura perfecta. Me he convertido en cliente fiel.",
+    "dep3": "¡El mejor helado que he probado! Sabores increíbles y una textura perfecta. Me he convertido en cliente fiel.",
+    "dep4": "¡El mejor helado que he probado! Sabores increíbles y una textura perfecta. Me he convertido en cliente fiel."
+  },
+  "homepage": {
+    "h3modal": "Seleccionar Idioma",
+    "gallery": "Políticas y Términos",
+    "description": "¡Haz tu pedido desde cualquier lugar y en cualquier momento!",
+    "buttonBlog": "Blog",
+    "buttonContact": "Contacto",
+    "buttonMenu": "Menú",
+    "buttonCart": "Carrito",
+    "buttonLibrary": "Biblioteca",
+    "terms": "Al realizar tus pedidos en Itala virtual, aceptas automáticamente nuestros términos de uso y políticas de privacidad.",
+    "footer": "Programado por Suélio Armando JS y Extreme Programming"
+  },
+  "menupage": {},
+  "cardMenu": {
+    "detalhesProduto": "Detalles del Producto",
+    "colheres": "Cucharas",
+    "adicionarCarrinho": "Agregar al Carrito",
+    "removerCarrinho": "Eliminar del Carrito",
+    "adicionarSucesso": "Agregado exitosamente",
+    "removerSucesso": "Eliminado exitosamente",
+    "descricao": "Descripción"
+  },
+  "modalQr": {
+    "botaoFechar": "Cerrar",
+    "baixarQr": "Descargar Código QR",
+    "copiarLink": "Copiar Enlace"
+  },
+  "orderpage": {
+    "h3menu": "Carrito de Compras",
+    "h2order": "Detalles del Pedido",
+    "sabores": "Sabores",
+    "pagamento": "Pago",
+    "adicionar": "Agregar Sabores",
+    "remover": "Eliminar Sabores",
+    "h2encomendar": "Ordenar - Ahora",
+    "h2selectMethod": "Método de Pago",
+    "money": "Efectivo",
+    "express": "Multicaixa Express",
+    "tpa": "Transferencia Bancaria",
+    "placeholderName": "Nombre",
+    "placeholderNumber": "Número (+244)",
+    "placeholderPaymentMethod": "Método de Pago",
+    "placeholderCityOrNeighborhood": "Ciudad, Barrio o Calle",
+    "placeholderLandmark": "Punto de Referencia",
+    "send": "Enviar",
+    "reset": "Limpiar",
+    "modalSend": "Mensaje enviado con éxito",
+    "modalSendh3": "Nota Importante:",
+    "modalSendP1": "Si tu método de pago es Multicaixa Express o Transferencia Bancaria, el pedido se entregará solo después del envío del comprobante de pago, el cual debe enviarse al WhatsApp de la heladería.",
+    "modalSendButton2": "Enviar por WhatsApp",
+    "modalSendButton3": "Elige efectivo",
+    "validationAllFields": "Por favor completa todos los campos"
+  },
+  "fatura": {
+    "gps1": "Geladaria Italala",
+    "gps2": "Calle del Comercio, nº 123",
+    "gps3": "Luanda - Angola",
+    "clienteh3": "Datos del Cliente",
+    "nome": "Nombre : ",
+    "numero": "Número : ",
+    "bairro": "Ciudad o Barrio : ",
+    "referencia": "Punto de Referencia : ",
+    "encomendah3": "Detalles del Pedido",
+    "nomeEncomenda": "Nombre",
+    "preco": "Precio",
+    "colheres": "Cucharas",
+    "total": "Total",
+    "resumoh3": "Resumen del Pedido",
+    "totalSabores": "Total de Sabores",
+    "totalPagar": "Total a Pagar",
+    "metodoPagamento": "Método de Pago",
+    "data": "Fecha"
+  }
+}

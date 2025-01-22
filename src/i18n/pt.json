@@ -17,6 +17,7 @@
     "modalLanguage": {
       "umbundu": "Umbundu",
       "kimbundo": "Kimbundu",
+      "lingala": "Lingala",
       "portugues": "Português",
       "ingles": "Inglês",
       "frances": "Francês",
@@ -120,6 +121,23 @@
   },
 
   "fatura": {
-    ""
+    "gps1": "Geladaria Italala",
+    "gps2": "Rua do Comércio, nº 123",
+    "gps3": "Luanda - Angola",
+    "clienteh3": "Dados do Cliente",
+    "nome": "Nome : ",
+    "numero": "Número : ",
+    "bairro": "Cidade ou Bairro : ",
+    "referencia": "Ponto de Referência : ",
+    "encomendah3": "Detalhes da Encomenda",
+    "nomeEncomenda": "Nome",
+    "preco": "Preço",
+    "colheres": "Colheres",
+    "total": "Total",
+    "resumoh3": "Resumo da Encomenda",
+    "totalSabores": "Total Sabores",
+    "totalPagar": "Total Pagamento",
+    "metodoPagamento": "Método de Pagamento",
+    "data": "Data"
   }
 }

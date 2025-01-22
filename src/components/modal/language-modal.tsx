@@ -88,6 +88,14 @@ export function LanguageModal() {
 								<button
 									type="button"
 									className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+									onClick={() => handleSelectOption("Lingala", "ln")}
+								>
+									<p className="text-zinc-300">{t('modal.modalLanguage.lingala')}</p>
+									<img className="w-10" src="/languages/angola.png" alt="emojiAngola" />
+								</button>
+								<button
+									type="button"
+									className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("Português", "pt")}
 								>
 									<p className="text-zinc-300">{t('modal.modalLanguage.portugues')}</p>
