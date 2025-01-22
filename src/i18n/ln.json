@@ -1,7 +1,7 @@
 {
   "buttons": {
     "menuButton": "Menu",
-    "cartButton": "Sakoli ya Mposa"
+    "cartButton": "Kadi"
   },
   "modal": {
     "modalContact": {
@@ -87,7 +87,7 @@
     "h3menu": "Sakoli ya Mosala",
     "h2order": "Makambo na Mosala",
     "sabores": "Malamu",
-    "pagamento": "Botángi Mbongo",
+    "pagamento": "Mbongo",
     "adicionar": "Kobakisa Malamu",
     "remover": "Kolongola Malamu",
     "h2encomendar": "Kosenga - Siko",

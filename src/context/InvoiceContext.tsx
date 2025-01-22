@@ -9,7 +9,7 @@ import {
   Font,
   Image,
   pdf,
-  Link,
+  //Link,
 } from "@react-pdf/renderer";
 import { useCart, type CartItem } from "./CartContext.tsx";
 import { useTranslation } from "react-i18next";
@@ -22,26 +22,6 @@ Font.register({
     { src: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" },
   ],
 });
-
-
-  // Fonte para caracteres russos e outros alfabetos cirílicos
-  Font.register({
-    family: "NotoSans",
-    fonts: [
-      { src: "https://fonts.gstatic.com/s/notosans/v27/o-0IIpQlx3QUlC5A4PNr5TRA.woff2" }, // Regular
-      { src: "https://fonts.gstatic.com/s/notosans/v27/o-0NIpQlx3QUlC5A4PNr5TRA.woff2", fontWeight: "bold" }, // Bold
-    ],
-  });
-
-  // Fonte para caracteres chineses simplificados
-  Font.register({
-    family: "NotoSansSC",
-    fonts: [
-      { src: "https://fonts.gstatic.com/s/notosanssc/v16/k3kKo8UPMOBOzUb0Zb0wEw.ttf" }, // Regular
-    ],
-  });
-
-
 
 // Definir uma interface para os dados da encomenda
 interface FormData {
@@ -66,16 +46,6 @@ const InvoiceContext = createContext<InvoiceContextProps | undefined>(undefined)
 
 // Estilos para o PDF
 const styles = StyleSheet.create({
-  russoText: { 
-    fontSize: 12, 
-    fontFamily: "NotoSans" 
-  }, // Para russo
-  
-  chineseText: { 
-    fontSize: 12, 
-    fontFamily: "NotoSansCJK" 
-  }, // Para chinês
-
   page: {
     flexDirection: "column",
     backgroundColor: "#64395C",
@@ -271,7 +241,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 {/* Logo */}
                 <View>
                   <Image style={styles.logo} src="/logo-geladaria.png" />
-                  <Text style={styles.russoText}>{t('homepage.description')}</Text>
+                  <Text style={styles.tableHeader}>{t('homepage.description')}</Text>
                 </View>
                 {/* Endereço */}
                 <View style={styles.address}>
@@ -286,35 +256,36 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
             {pageIndex === 0 && (
               <View style={styles.dataBox}>
 
-                <Text style={styles.sectionTitle}>Dados do Cliente</Text>
-                <Text style={styles.text}>Nome : {formData.name}</Text>
-                <Text style={styles.text}>Número: {formData.number}</Text>
-                <Link
-                  src={`https://waze.com/ul?q=${encodeURIComponent(`Luanda, ${formData.cityOrNeighborhood}`)}&navigate=yes`}
-                  style={styles.link}
-                >
-                  Cidade, bairro ou Rua: <Text style={styles.link1}>{formData.cityOrNeighborhood}</Text>
-                </Link>
+                <Text style={styles.sectionTitle}>{t('fatura.clienteh3')}</Text>
+                <Text style={styles.text}>{t('fatura.nome')}{formData.name}</Text>
+                <Text style={styles.text}>{t('fatura.numero')}{formData.number}</Text>
 
-                <Link
-                  src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${formData.landmark}, Luanda`)}`}
-                  style={styles.link}
-                >
-                  Ponto de referência : <Text style={styles.link1}>{formData.landmark}</Text>
-                </Link>
+                <Text style={styles.link}>
+                  {t('fatura.bairro')}
+                  <Text style={styles.link1}>
+                    {formData.cityOrNeighborhood}
+                  </Text>
+                </Text>
+
+                <Text style={styles.link}>
+                  {t('fatura.referencia')}
+                  <Text style={styles.link1}>
+                    {formData.landmark}
+                  </Text>
+                </Text>
               </View>
             )}
 
             {/* Detalhes da Encomenda */}
             <View style={styles.dataBox1}>
-              <Text style={styles.sectionTitle1}>Detalhes Encomenda</Text>
+              <Text style={styles.sectionTitle1}>{t('fatura.encomendah3')}</Text>
 
               {/* Cabeçalho da Tabela */}
               <View style={styles.tableRow}>
-                <Text style={[styles.tableHeader, styles.column]}>Nome</Text>
-                <Text style={[styles.tableHeader, styles.column]}>Preço</Text>
-                <Text style={[styles.tableHeader, styles.column]}>Colheres</Text>
-                <Text style={[styles.tableHeader, styles.column]}>Total</Text>
+                <Text style={[styles.tableHeader, styles.column]}>{t('fatura.nomeEncomenda')}</Text>
+                <Text style={[styles.tableHeader, styles.column]}>{t('fatura.preco')}</Text>
+                <Text style={[styles.tableHeader, styles.column]}>{t('fatura.colheres')}</Text>
+                <Text style={[styles.tableHeader, styles.column]}>{t('fatura.total')}</Text>
               </View>
 
               {/* Separador */}
@@ -340,15 +311,15 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                 <View style={styles.summaryBox}>
                   <View style={styles.contentBox}>
-                    <Text style={styles.sectionTitle}>Resumo da Encomenda</Text>
+                    <Text style={styles.sectionTitle}>{t('fatura.resumoh3')}</Text>
                     <Text style={styles.summaryText}>
-                      Total de Sabores : <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
+                      {t('fatura.totalSabores')} : <Text style={styles.summaryText1}>{getUniqueFlavorsCount()}</Text>
                     </Text>
                     <Text style={styles.summaryText}>
-                      Total de Pagamento : <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
+                      {t('fatura.totalPagar')} : <Text style={styles.moneyColor}>{getTotalPayment().toLocaleString('pt-AO')}</Text>
                     </Text>
                     <Text style={styles.summaryText}>
-                      Método de Pagamento : <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
+                      {t('fatura.metodoPagamento')} : <Text style={styles.summaryText1}>{formData.paymentMethod}</Text>
                     </Text>
                   </View>
                   <View style={styles.contentBox}>
@@ -364,7 +335,12 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 <Text>Pág {pageIndex + 1}/{pages}</Text>
               </View>
               <View>
-                <Text>Data : {new Date().toLocaleDateString()}</Text>
+                <Text>
+                  {t('fatura.data')} : 
+                  { 
+                    new Date().toLocaleDateString() 
+                  }
+                  </Text>
               </View>
             </View>
           </Page>

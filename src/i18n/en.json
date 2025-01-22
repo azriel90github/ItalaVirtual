@@ -114,5 +114,26 @@
     "modalSendButton2": "Send via WhatsApp",
     "modalSendButton3": "Choose cash on delivery",
     "validationAllFields": "Please fill in all fields"
-}
+  },
+
+  "fatura": {
+    "gps1": "Geladaria Italala",
+    "gps2": "Rua do Comércio, nº 123",
+    "gps3": "Luanda - Angola",
+    "clienteh3": "Customer Data",
+    "nome": "Name: ",
+    "numero": "Number: ",
+    "bairro": "City or Neighborhood: ",
+    "referencia": "Reference Point: ",
+    "encomendah3": "Order Details",
+    "nomeEncomenda": "Name",
+    "preco": "Price",
+    "colheres": "Spoons",
+    "total": "Total",
+    "resumoh3": "Order Summary",
+    "totalSabores": "Total Flavors",
+    "totalPagar": "Total Payment",
+    "metodoPagamento": "Payment Method",
+    "data": "Date"
+  }
 }

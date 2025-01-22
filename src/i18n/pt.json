@@ -126,11 +126,11 @@
     "gps2": "Rua do Comércio, nº 123",
     "gps3": "Luanda - Angola",
     "clienteh3": "Dados do Cliente",
-    "nome": "Nome : ",
-    "numero": "Número : ",
-    "bairro": "Cidade ou Bairro : ",
-    "referencia": "Ponto de Referência : ",
-    "encomendah3": "Detalhes da Encomenda",
+    "nome": "Nome",
+    "numero": "Número",
+    "bairro": "Cidade, bairoo ou Rua",
+    "referencia": "Ponto de Referência",
+    "encomendah3": "Detalhes Encomenda",
     "nomeEncomenda": "Nome",
     "preco": "Preço",
     "colheres": "Colheres",
@@ -139,6 +139,6 @@
     "totalSabores": "Total Sabores",
     "totalPagar": "Total Pagamento",
     "metodoPagamento": "Método de Pagamento",
-    "data": "Data"
+    "data": "Data : "
   }
 }

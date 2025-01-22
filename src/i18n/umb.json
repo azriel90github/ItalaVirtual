@@ -114,6 +114,27 @@
     "modalSendButton2": "Tuma ku Whatsapp",
     "modalSendButton3": "Sokoka okulipuka ku konso",
     "validationAllFields": "Mbakiya tula etunga ke vu"
+  },
+
+  "fatura": {
+    "gps1": "Geladaria Italala",
+    "gps2": "Rua do Comércio, nº 123",
+    "gps3": "Luanda - Angola",
+    "clienteh3": "Olhundo lwe Muntu",
+    "nome": "Lwenu : ",
+    "numero": "Namba : ",
+    "bairro": "Okiteta owa Nkombo : ",
+    "referencia": "Mubundu wa Ndondo : ",
+    "encomendah3": "Vikambu vya Nsonge",
+    "nomeEncomenda": "Lwenu",
+    "preco": "Lwatu",
+    "colheres": "Makombo",
+    "total": "Tota",
+    "resumoh3": "Vikambu vya Nsonge",
+    "totalSabores": "Tota ya Matata",
+    "totalPagar": "Tota ya Kufutika",
+    "metodoPagamento": "Lungundulu wa Kufutika",
+    "data": "Ndiya"
   }
 }
 

@@ -113,6 +113,28 @@
     "modalSendButton2": "Tuma mu Whatsapp",
     "modalSendButton3": "Sokola kulipuka ku konso",
     "validationAllFields": "Mbakisha tula matunga ke vu"
-}
+  },
+
+  "fatura": {
+    "gps1": "Geladaria Italala",
+    "gps2": "Rua do Comércio, nº 123",
+    "gps3": "Luanda - Angola",
+    "clienteh3": "Basa ya Muntu",
+    "nome": "Nzo : ",
+    "numero": "Nambote : ",
+    "bairro": "Kidi kifuva kana Nkombo : ",
+    "referencia": "Mbotama ya Ndondo : ",
+    "encomendah3": "Takala ya Nsungi",
+    "nomeEncomenda": "Nzo",
+    "preco": "Mbote",
+    "colheres": "Makombo",
+    "total": "Tota",
+    "resumoh3": "Takala ya Nsungi",
+    "totalSabores": "Tota ya Liyalelo",
+    "totalPagar": "Tota ya Kufutika",
+    "metodoPagamento": "Lungungulundu ya Kufutika",
+    "data": "Ndiya"
+  }
+  
 }
 
