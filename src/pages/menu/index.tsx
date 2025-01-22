@@ -17,6 +17,7 @@ import { useImage } from "../../context/ImageContext";
 import { useState } from "react";
 import { QrCodeButton } from "../../components/buttons/QrCode";
 import { useTranslation } from "react-i18next";
+import { LanguageModal } from "../../components/modal/language-modal";
 
 // Tipo para os produtos
 export interface Product {
@@ -81,7 +82,9 @@ export function MenuPage() {
 
 			<div className="flex flex-wrap justify-center gap-4">
 				{/** <ContactAndLanguage /> */}
+				<LanguageModal />
 				<Searchbox onCategorySelect={setSelectedCategory} />
+				
 			</div>
 			{/* Renderização dos cards */}
 			<div className="flex flex-wrap gap-5 justify-center pb-10">

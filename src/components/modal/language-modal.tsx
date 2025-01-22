@@ -109,7 +109,8 @@ export function LanguageModal() {
 									<p className="text-zinc-300">{t('modal.modalLanguage.frances')}</p>
 									<img className="w-10" src="/languages/franca.png" alt="emojiFrança" />
 								</button>
-								<button
+								{/**
+								 * <button
 									type="button"
 									className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("Chinês (Mandarim)", "zh")}
@@ -117,7 +118,9 @@ export function LanguageModal() {
 									<p className="text-zinc-300">{t('modal.modalLanguage.chines')}</p>
 									<img className="w-10" src="/languages/china.png" alt="emojiChina" />
 								</button>
-								<button
+								 */}
+								{/**
+								 * <button
 									type="button"
 									className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("Russo", "ru")}
@@ -125,6 +128,8 @@ export function LanguageModal() {
 									<p className="text-zinc-300">{t('modal.modalLanguage.russo')}</p>
 									<img className="w-10" src="/languages/russia.png" alt="emojiRussia" />
 								</button>
+								 */}
+								
 							</div>
 						</div>
 					</div>

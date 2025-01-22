@@ -117,5 +117,9 @@
     "modalSendButton2": "Enviar pelo Whatsapp",
     "modalSendButton3": "Escolhe dinheiro em mão",
     "validationAllFields": "Por favor preencha todos os campos"
+  },
+
+  "fatura": {
+    ""
   }
 }
