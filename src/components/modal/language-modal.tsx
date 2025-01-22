@@ -112,6 +112,14 @@ export function LanguageModal() {
 								<button
 									type="button"
 									className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
+									onClick={() => handleSelectOption("Espanhol", "es")}
+								>
+									<p className="text-zinc-300">{t('modal.modalLanguage.espanhol')}</p>
+									<img className="w-10" src="/languages/espanha1.png" alt="emojiFrança" />
+								</button>
+								<button
+									type="button"
+									className="py-2 px-5 outline-none rounded-xl transition duration-400 hover:text-zinc-300 hover:bg-buttonColor bg-searchColorInput flex items-center justify-between"
 									onClick={() => handleSelectOption("Francês", "fr")}
 								>
 									<p className="text-zinc-300">{t('modal.modalLanguage.frances')}</p>
