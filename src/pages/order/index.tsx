@@ -282,7 +282,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const pdfUrl = URL.createObjectURL(pdfBlob);
       const link = document.createElement("a");
       link.href = pdfUrl;
-      link.download = `Pedido ${formData.name}.pdf`;
+      link.download = `${t('fatura.pedido')} - ${formData.name}.pdf`;
       link.click();
       URL.revokeObjectURL(pdfUrl);
   

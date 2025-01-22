@@ -245,9 +245,9 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 </View>
                 {/* Endereço */}
                 <View style={styles.address}>
-                  <Text style={styles.addressp}>Avenida Comandante Valodia nº 69</Text>
-                  <Text style={styles.addressp}>Largo do Kinaxixi, Luanda</Text>
-                  <Text style={styles.addressp}>Angola</Text>
+                  <Text style={styles.addressp}>{t('fatura.gps1')}</Text>
+                  <Text style={styles.addressp}>{t('fatura.gps2')}</Text>
+                  <Text style={styles.addressp}>{t('fatura.gps3')}</Text>
                 </View>
               </View>
             )}
@@ -258,7 +258,12 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
                 <Text style={styles.sectionTitle}>{t('fatura.clienteh3')}</Text>
                 <Text style={styles.text}>{t('fatura.nome')}{formData.name}</Text>
-                <Text style={styles.text}>{t('fatura.numero')}{formData.number}</Text>
+                <Text style={styles.link}>
+                  {t('fatura.numero')}
+                  <Text style={styles.link1}>
+                    {formData.number}
+                  </Text>
+                </Text>
 
                 <Text style={styles.link}>
                   {t('fatura.bairro')}
@@ -336,10 +341,7 @@ export const InvoiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
               </View>
               <View>
                 <Text>
-                  {t('fatura.data')} : 
-                  { 
-                    new Date().toLocaleDateString() 
-                  }
+                  {t('fatura.data')} : { new Date().toLocaleDateString() }
                   </Text>
               </View>
             </View>

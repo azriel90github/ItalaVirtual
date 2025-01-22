@@ -117,14 +117,14 @@
   },
 
   "fatura": {
-    "gps1": "Geladaria Italala",
-    "gps2": "Rua do Comércio, nº 123",
-    "gps3": "Luanda - Angola",
+    "gps1": "Comandante Valódia Avenue, nº 69",
+    "gps2": "Kinaxixi Square - Luanda",
+    "gps3": "Angola",
     "clienteh3": "Customer Data",
-    "nome": "Name: ",
-    "numero": "Number: ",
-    "bairro": "City or Neighborhood: ",
-    "referencia": "Reference Point: ",
+    "nome": "Name : ",
+    "numero": "Number : ",
+    "bairro": "City or Neighborhood : ",
+    "referencia": "Reference Point : ",
     "encomendah3": "Order Details",
     "nomeEncomenda": "Name",
     "preco": "Price",
@@ -134,6 +134,7 @@
     "totalSabores": "Total Flavors",
     "totalPagar": "Total Payment",
     "metodoPagamento": "Payment Method",
-    "data": "Date"
+    "data": "Date",
+    "pedido": "Order"
   }
 }

@@ -110,9 +110,9 @@
     "validationAllFields": "Kindly kotondisa makomi nyonso"
   },
   "fatura": {
-    "gps1": "Geladaria Italala",
-    "gps2": "Engumba ya Komé, Nº 123",
-    "gps3": "Luanda - Angola",
+    "gps1": "Avení Komandante Valódia, nº 69",
+    "gps2": "Esika ya Kinaxixi - Luanda",
+    "gps3": "Angola",
     "clienteh3": "Maloba ya Client",
     "nome": "Nkombo : ",
     "numero": "Motángo : ",
@@ -127,6 +127,7 @@
     "totalSabores": "Yango nyonso ya Malamu",
     "totalPagar": "Mbongo Yango",
     "metodoPagamento": "Bolá ya Botángi",
-    "data": "Mokolo"
+    "data": "Mokolo",
+    "pedido": "Motindo"
   }
 }

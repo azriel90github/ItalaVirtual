@@ -116,9 +116,9 @@
   },
 
   "fatura": {
-    "gps1": "Geladaria Italala",
-    "gps2": "Rua do Comércio, nº 123",
-    "gps3": "Luanda - Angola",
+    "gps1": "Evenida ya Komandante Valódia, nº 69",
+    "gps2": "Largo ya Kinaxixi - Luanda",
+    "gps3": "Angola",
     "clienteh3": "Basa ya Muntu",
     "nome": "Nzo : ",
     "numero": "Nambote : ",
@@ -133,7 +133,8 @@
     "totalSabores": "Tota ya Liyalelo",
     "totalPagar": "Tota ya Kufutika",
     "metodoPagamento": "Lungungulundu ya Kufutika",
-    "data": "Ndiya"
+    "data": "Ndiya",
+    "pedido": "Nsungi"
   }
   
 }
