@@ -40,7 +40,7 @@ export function LanguageModal({ variant = "default" }: { variant?: Variant }) {
 
 	const buttonStyles = {
 		default: "",
-		outlined: "text-buttonColor font-medium text-lg bg-searchColor w-96 flex justify-between font-medium flex items-center gap-2 px-3.5 py-3 rounded-full",
+		outlined: "text-buttonColor font-medium text-lg bg-searchColor w-96 flex justify-between font-medium flex items-center gap-2 px-2.5 py-2.5 rounded-full",
 		filled: "",
 		iconOnly: "",
   };

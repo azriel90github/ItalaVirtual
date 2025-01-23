@@ -8,7 +8,7 @@ import { Library,
 	} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { LanguageModal } from "../../components/modal/language-modal";
-//import { ProfileModal } from "../../components/modal/profile-modal";
+import { ProfileModal } from "../../components/modal/profile-modal";
 //import { AccountButton } from "../../components/buttons/account-button";
 import { ContactModal } from "../../components/modal/contact-modal";
 //import { GalleryModal } from "../../components/modal/gallery-modal";
@@ -47,23 +47,7 @@ export function HomePage() {
 
 	return (
 		<div>
-			 <div className="py-3 px-3 ml-1 mt-1">
-					{/**
-				 * <button
-					 onClick={() => {
-						const phoneNumber = "932101903"; // Substitua pelo número desejado
-						const message = encodeURIComponent("Olá! Estou entrando em contato...");
-						const whatsappUri = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
-						
-						// Tenta abrir o aplicativo WhatsApp diretamente
-						window.location.assign(whatsappUri);
-					}}
-					className="w-72 flex transition duration-400 hover:bg-[#338C38] bg-[#2F7C38] text-1xl font-black text-zinc-100 py-4 px-7 rounded-full justify-between" type="button">
-					<p>WhatsApp</p>
-					<MessageCircleMore />
-				</button>
-
-				 */}
+			<div className="py-3 px-3 ml-1 mt-1">
 				<LanguageModal variant="outlined" />
 			</div>
 			
@@ -134,15 +118,10 @@ export function HomePage() {
 					</p>
 				</div>
 			</div>
-			{/**
-			 * <p className="px-3 py-3 flex items-center justify-between text-1xl text-colorText1">
-				<ProfileModal />
-				<a href="https://portofolio-perfil.vercel.app/" target="_blank"  rel="noreferrer" >
-					<UserRoundCog className="mr-2 size-7" />
-				</a>
-				
-			</p>
-			 */}
+				<p className="px-3 py-3 flex items-center justify-between text-1xl text-colorText1">
+					<ProfileModal />{/** */}
+				</p>
+
 			
 		</div>
 	);

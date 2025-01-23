@@ -1,4 +1,4 @@
-import { Building2, X } from "lucide-react";
+import { UserRoundCog, X } from "lucide-react";
 import { useState } from "react";
 
 export function ProfileModal() {
@@ -29,15 +29,15 @@ export function ProfileModal() {
 
   return (
     <>
-      <button
-        type="button"
+      <a
+        href="https://portofolio-perfil.vercel.app/" target="_blank"  rel="noreferrer"
         className="flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5"
       >
-        <div>Empresa</div>
+        <div>Programador</div>
         <div>
-          <Building2 />
+          <UserRoundCog />
         </div>
-      </button>
+      </a>
       <div>
         {isProfileModalOpen && (
           <div  className="fixed inset-0 bg-black/60 flex items-center justify-center">
