@@ -30,12 +30,12 @@ export function ProfileModal() {
   return (
     <>
       <a
-        href="https://portofolio-perfil.vercel.app/" target="_blank"  rel="noreferrer"
-        className="flex items-center justify-between w-72 hover:bg-colorHover hover:text-zinc-100 shadow-shape bg-buttonColor transition duration-400 text-zinc-100 rounded-2xl px-7 py-3.5"
+        href="https://azriel90github.github.io/Portofolio-perfil/" target="_blank"  rel="noreferrer"
+        className="text-buttonColor font-medium text-lg bg-searchColor w-80 flex justify-between items-center gap-2 px-2.5 py-2.5 rounded-full"
       >
-        <div>Programador</div>
+        <div className="bg-colorFundo w-full py-2.5 flex items-center justify-center rounded-full">Programador</div>
         <div>
-          <UserRoundCog />
+          <UserRoundCog className="size-7 mr-6 ml-2" />
         </div>
       </a>
       <div>

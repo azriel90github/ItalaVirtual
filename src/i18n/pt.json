@@ -71,7 +71,8 @@
     "buttonCart": "Carrinho",
     "buttonLibrary": "Biblioteca",
     "terms": "Ao fazer suas encomendas pela itala virtual você automaticamente concorda com nossos termos de uso e políticas de privacidade.",
-    "footer": "Programado por Suélio Armando JS eXtreme Programming"
+    "footer": "Programado por Suélio Armando JS eXtreme Programming",
+    "progrador": "Programador"
   },
 
   "menupage": {
@@ -128,7 +129,7 @@
     "clienteh3": "Dados do Cliente",
     "nome": "Nome : ",
     "numero": "Número : ",
-    "bairro": "Cidade, bairoo ou Rua : ",
+    "bairro": "Cidade, bairro ou Rua : ",
     "referencia": "Ponto de Referência : ",
     "encomendah3": "Detalhes Encomenda",
     "nomeEncomenda": "Nome",
@@ -141,5 +142,13 @@
     "metodoPagamento": "Método de Pagamento",
     "data": "Data",
     "pedido": "Pedido"
+  },
+
+  "biblioteca": {
+    "bibliotecah3": "Biblioteca Online",
+    "faturaDigital": "Fatura Digital",
+    "baixarFatura": "Baixar",
+    "coordenadasBancarias": "Fatura Digital",
+    "baixarCoordenadas": "Baixar"
   }
 }

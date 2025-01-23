@@ -67,30 +67,36 @@ export function LibraryPage() {
 								Biblioteca Online
 							</h1>
 							
-							<div className="libraryPage flex items-center w-full mb-48 justify-center gap-5">
+							<div className="libraryPage flex items-center w-full mb-48 justify-center gap-8">
 								<p>
 									<a href="/pdf/modelo_fatura.pdf">
 										<img className="rounded-t-xl w-80 h-auto opacity-80" src="/doc-1.jpeg" alt="" />
-										<div className="flex cursor-pointer items-center justify-between transition duration-400 bg-buttonColor text-zinc-100 py-2 px-8 w-80">
+										<div className="flex cursor-pointer items-center justify-between transition duration-400 rounded-b-xl bg-buttonColor text-zinc-100 py-2.5 px-8 w-80">
 											Fatura Digital
 											<FolderOpen />
 										</div>
 									</a>
-										<a className="flex w-80 items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 mt-2 px-8 rounded-b-xl justify-between" href="/pdf/modelo_fatura.pdf" download="modelo_fatura.pdf">
-											Download
-											<Download />
+										<a className="text-zinc-100 font-medium text-lg mt-4 bg-searchColor w-80 flex justify-between items-center gap-2 px-2.5 py-2.5 rounded-full" href="/pdf/modelo_fatura.pdf" download="modelo_fatura.pdf">
+											<p className="bg-colorFundo w-full py-2.5 flex items-center justify-between px-6 rounded-full">
+												Baixar
+												<Download />
+											</p>
+											
 										</a>
 								</p>	
+
 								<p>
 									<a href="/pdf/coordenadas_bancarias.pdf"><img className="rounded-t-xl w-80 h-full opacity-80" src="/doc-1.jpeg" alt="" />
-										<div className="flex cursor-pointer items-center justify-between transition duration-400 bg-buttonColor text-zinc-100 py-2 px-8 w-80">
+										<div className="flex cursor-pointer items-center justify-between transition duration-400 rounded-b-xl bg-buttonColor text-zinc-100 py-2.5 px-8 w-80">
 											Coordenadas Bancárias
 											<FolderOpen />
 										</div>
 									</a>
-										<a className="flex items-center transition duration-400 bg-headerColor2 hover:bg-moneyColor text-zinc-100 py-2 mt-2 px-8 w-full rounded-b-xl justify-between" href="/pdf/coordenadas_bancarias.pdf" download="coordenadas_bancarias.pdf">
-											Download
-											<Download />
+										<a className="text-zinc-100 font-medium text-lg mt-4 bg-searchColor w-80 flex justify-between items-center gap-2 px-2.5 py-2.5 rounded-full" href="/pdf/coordenadas_bancarias.pdf" download="coordenadas_bancarias.pdf">
+											<p className="bg-colorFundo w-full py-2.5 flex items-center justify-between px-6 rounded-full">
+												Baixar
+												<Download />
+											</p>
 										</a>
 								</p>							
 							</div>
