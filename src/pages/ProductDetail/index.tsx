@@ -26,8 +26,8 @@ export function ProductDetail() {
 
 	const { t } = useTranslation();
 
-	// Dados do produto passado via state
-	const product = location.state?.product;
+	 // Dados do produto passado via state
+	 const product = location.state?.product;
 
 	function menuPage() {
 		navigate("/menu/123");
@@ -82,17 +82,20 @@ export function ProductDetail() {
 									<p className="text-8xl mt-1">{product.price}</p>
 									<small className="text-2xl">00</small>
 								</span>
-								{/* Div para estrelas */}
-								<div className="starDiv flex my-3 pb-1">
-									{[...Array(4)].map((_, index) => (
-										
-										<Star
-											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-											key={index}
-											className="text-yellow-400 mx-1"
-											size={24}
-										/>
-									))}
+								<div className="flex gap-2">
+									{/* Div para estrelas */}
+									<div className="starDiv flex my-3 pb-1">
+                  {Array(product.hearts || 0)
+                    .fill(null)
+                    .map((_, index) => (
+                      <Star
+                        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                        key={index}
+                        className="text-yellow-400 mx-1"
+                        size={24}
+                      />
+                    ))}
+                </div>
 								</div>
 							</div>
 							<div className="flex flex-col">

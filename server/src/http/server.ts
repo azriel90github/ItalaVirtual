@@ -3,6 +3,9 @@ import cors from '@fastify/cors';
 import multipart from '@fastify/multipart'; // Importa o plugin para upload de arquivos
 import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
+import { getProductsRoute } from './routes/create-heart'; // Importa a nova rota
+
+
 //import { createSendWhatsapp } from './routes/create-whatsapp';
 
 
@@ -21,6 +24,7 @@ async function startServer() {
   // Registra as rotas existentes
   app.register(createSendOrder);
   app.register(getProducts);
+  app.register(getProductsRoute); // Registra a nova rota
 
   // Inicia o servidor
   try {
