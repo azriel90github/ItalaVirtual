@@ -70,7 +70,8 @@
     "buttonCart": "Makala",
     "buttonLibrary": "Oviluvulu",
     "terms": "Okwenda kima na itala virtual, olonga okuti ulenda kuza na ‘termos de uso’ na ‘políticas de privacidade’.",
-    "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
+    "footer": "Kudi programá Suélio Armando JS na Xtreme Programming",
+    "programador": "Omutekeniko"
   },
 
   "cardMenu": {
@@ -136,6 +137,15 @@
     "metodoPagamento": "Lungundulu wa Kufutika",
     "data": "Ndiya",
     "pedido": "Nsonge"
+  },
+
+  "biblioteca": {
+    "bibliotecah3": "Ekwiko lya Online",
+    "faturaDigital": "Xikola kya Kalunga",
+    "baixarFatura": "Okukwatya",
+    "coordenadasBancarias": "Mabanka a Kalunga",
+    "baixarCoordenadas": "Okukwatya"
   }
+
 }
 

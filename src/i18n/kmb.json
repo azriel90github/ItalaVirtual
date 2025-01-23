@@ -69,7 +69,8 @@
     "buttonCart": "Kaxilumbu",
     "buttonLibrary": "Kilivulu",
     "terms": "Kuwena kima na itala virtual, o lenda kuza na kuntunu ki 'termos de uso' na 'políticas de privacidade'.",
-    "footer": "Kudi programá Suélio Armando JS na Xtreme Programming"
+    "footer": "Kudi programá Suélio Armando JS na Xtreme Programming",
+    "programador": "Muhinga wa Mibanza"
   },
 
   "cardMenu": {
@@ -135,7 +136,16 @@
     "metodoPagamento": "Lungungulundu ya Kufutika",
     "data": "Ndiya",
     "pedido": "Nsungi"
+  },
+
+  "biblioteca": {
+    "bibliotecah3": "Dilonga wa Online",
+    "faturaDigital": "Kolekta ya Xikola",
+    "baixarFatura": "Kulonga",
+    "coordenadasBancarias": "Mabanka ya Kalunga",
+    "baixarCoordenadas": "Kulonga"
   }
+
   
 }
 

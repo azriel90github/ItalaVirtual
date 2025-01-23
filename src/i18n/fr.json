@@ -69,7 +69,8 @@
     "buttonCart": "Panier",
     "buttonLibrary": "Bibliothèque",
     "terms": "En passant commande via itala virtual, vous acceptez automatiquement nos conditions d'utilisation et notre politique de confidentialité.",
-    "footer": "Programmé par Suélio Armando JS etXtreme Programming"
+    "footer": "Programmé par Suélio Armando JS etXtreme Programming",
+    "programador": "Programmeur"
   },
 
   "cardMenu": {
@@ -135,5 +136,14 @@
     "metodoPagamento": "Mode de Paiement",
     "data": "Date",
     "pedido": "Commande"
+  },
+
+  "biblioteca": {
+    "bibliotecah3": "Bibliothèque en ligne",
+    "faturaDigital": "Facture numérique",
+    "baixarFatura": "Télécharger",
+    "coordenadasBancarias": "Coordonnées bancaires",
+    "baixarCoordenadas": "Télécharger"
   }
+
 }

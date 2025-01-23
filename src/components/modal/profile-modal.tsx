@@ -1,7 +1,10 @@
 import { UserRoundCog, X } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function ProfileModal() {
+
+  const { t } = useTranslation();
   /**
    *   function disableScroll() {
     document.body.style.overflow = "hidden";
@@ -33,7 +36,7 @@ export function ProfileModal() {
         href="https://azriel90github.github.io/Portofolio-perfil/" target="_blank"  rel="noreferrer"
         className="text-buttonColor font-medium text-lg bg-searchColor w-80 flex justify-between items-center gap-2 px-2.5 py-2.5 rounded-full"
       >
-        <div className="bg-colorFundo w-full py-2.5 flex items-center justify-center rounded-full">Programador</div>
+        <div className="bg-colorFundo w-full py-2.5 flex items-center justify-center rounded-full">{t('homepage.programador')}</div>
         <div>
           <UserRoundCog className="size-7 mr-6 ml-2" />
         </div>

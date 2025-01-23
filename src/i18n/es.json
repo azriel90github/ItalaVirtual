@@ -66,8 +66,10 @@
     "buttonCart": "Carrito",
     "buttonLibrary": "Biblioteca",
     "terms": "Al realizar tus pedidos en Itala virtual, aceptas automáticamente nuestros términos de uso y políticas de privacidad.",
-    "footer": "Programado por Suélio Armando JS y Extreme Programming"
+    "footer": "Programado por Suélio Armando JS y Extreme Programming",
+    "programador": "Programador"
   },
+  
   "menupage": {},
   "cardMenu": {
     "detalhesProduto": "Detalles del Producto",
@@ -129,5 +131,14 @@
     "metodoPagamento": "Método de Pago",
     "data": "Fecha",
     "pedido": "Pedido"
+  },
+
+  "biblioteca": {
+    "bibliotecah3": "Biblioteca en línea",
+    "faturaDigital": "Factura digital",
+    "baixarFatura": "Descargar",
+    "coordenadasBancarias": "Detalles bancarios",
+    "baixarCoordenadas": "Descargar"
   }
+
 }

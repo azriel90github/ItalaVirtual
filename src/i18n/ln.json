@@ -66,7 +66,8 @@
     "buttonCart": "Sakoli",
     "buttonLibrary": "Zando ya Buku",
     "terms": "Soki omipesi na mosala na itala, ozali koyamba mibeko mpe ngomba na biso.",
-    "footer": "Esalemi na Suélio Armando JS mpe Extreme Programming"
+    "footer": "Esalemi na Suélio Armando JS mpe Extreme Programming",
+    "programador": "Mobongisi ya Porograme"
   },
   "menupage": {},
   "cardMenu": {
@@ -129,5 +130,14 @@
     "metodoPagamento": "Bolá ya Botángi",
     "data": "Mokolo",
     "pedido": "Motindo"
+  },
+
+  "biblioteca": {
+    "bibliotecah3": "Biblioteke ya Online",
+    "faturaDigital": "Fakture ya Elektronike",
+    "baixarFatura": "Komatisa",
+    "coordenadasBancarias": "Makambo ya Banque",
+    "baixarCoordenadas": "Komatisa"
   }
+
 }

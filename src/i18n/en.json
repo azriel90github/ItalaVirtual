@@ -70,7 +70,8 @@
     "buttonCart": "Cart",
     "buttonLibrary": "Library",
     "terms": "By placing your orders through itala virtual you automatically agree to our terms of use and privacy policies.",
-    "footer": "Programmed by Suélio Armando JS eXtreme Programming"
+    "footer": "Programmed by Suélio Armando JS eXtreme Programming",
+    "programador": "Programmer"
   },
 
   "cardMenu": {
@@ -136,5 +137,14 @@
     "metodoPagamento": "Payment Method",
     "data": "Date",
     "pedido": "Order"
+  },
+
+  "biblioteca": {
+    "bibliotecah3": "Online Library",
+    "faturaDigital": "Digital Invoice",
+    "baixarFatura": "Download",
+    "coordenadasBancarias": "Bank Details",
+    "baixarCoordenadas": "Download"
   }
+
 }
