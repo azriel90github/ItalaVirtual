@@ -82,7 +82,7 @@ export function MenuPage() {
 
 			<div className="flex flex-wrap justify-center gap-4">
 				{/** <ContactAndLanguage /> */}
-				<LanguageModal />
+				<LanguageModal variant="outlined" />
 				<Searchbox onCategorySelect={setSelectedCategory} />
 				
 			</div>

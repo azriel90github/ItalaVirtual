@@ -307,7 +307,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           <div className="w-px h-12 bg-buttonColor2">
 						
 					</div>
-          <LanguageModal />
+          <LanguageModal variant="iconOnly" />
         </div>
       </div>
 

@@ -64,7 +64,7 @@ export function HomePage() {
 				</button>
 
 				 */}
-				<LanguageModal />
+				<LanguageModal variant="outlined" />
 			</div>
 			
 			<div className="mainHome h-screen w-full flex items-center justify-center bg-fundoHome fundo bg-no-repeat bg-center">

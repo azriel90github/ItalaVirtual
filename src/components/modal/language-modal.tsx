@@ -4,7 +4,9 @@ import i18n from "../../i18n";
 import { t } from "i18next";
 // Certifique-se de que o caminho para o i18n está correto
 
-export function LanguageModal() {
+type Variant = "default" | "outlined" | "filled" | "iconOnly";
+
+export function LanguageModal({ variant = "default" }: { variant?: Variant }) {
 
 	function disableScroll() {
     document.body.style.overflow = "hidden";
@@ -36,15 +38,23 @@ export function LanguageModal() {
 		enableScroll(); // Desbloqueia rolagem ao fechar
 	}
 
+	const buttonStyles = {
+		default: "",
+		outlined: "text-buttonColor font-medium text-lg bg-searchColor w-96 flex justify-between font-medium flex items-center gap-2 px-3.5 py-3 rounded-full",
+		filled: "",
+		iconOnly: "",
+  };
+
 	return (
 		<>
 			<button
 				value={selectedOption}
 				onClick={openLanguageModal}
 				type="button"
-				className="text-buttonColor mr-2"
+				className={ buttonStyles[variant] }
 			>
-				<Languages className="size-7" />
+				{variant !== "iconOnly" && <span className="bg-colorFundo w-full py-2.5 flex items-center justify-center rounded-full">Idiomas</span>}
+				<Languages className="size-7 mr-3 ml-2" />
 			</button>
 
 			{isLanguageModalOpen && (
