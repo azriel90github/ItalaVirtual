@@ -13,7 +13,6 @@ import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
 import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
-//import emailjs from 'emailjs-com';
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
@@ -36,6 +35,9 @@ export function OrderPage() {
   const [formData, setFormData] = useState({  
     name: "",
     number: "",
+    phoneNumber: "",  // Adicionando a propriedade phoneNumber
+    messengerId: "",  // Adicionando a propriedade messengerId
+    instagramId: "",  // Adicionando a propriedade instagramId
     flavors: total.toString(), // Converte para string
     payment: total.toString(), // Converte para string
     paymentMethod: "",
@@ -48,6 +50,9 @@ export function OrderPage() {
     setFormData({
       name: "",
       number: "",
+      phoneNumber: "",  // Adicionando a propriedade phoneNumber
+      messengerId: "",  // Adicionando a propriedade messengerId
+      instagramId: "",  // Adicionando a propriedade instagramId
       flavors: total.toString(), // Converte para string
       payment: total.toString(), // Converte para string
       paymentMethod: "",
@@ -277,7 +282,38 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         return;
       }
   
-      // **3. Fazer o download do PDF**
+      // **3. Enviar o PDF para plataformas sociais e email**
+      console.log("Enviando PDF para as plataformas sociais e email...");
+      const pdfFile = new File([pdfBlob], `${formData.name}-invoice.pdf`, { type: "application/pdf" });
+      const formDataToSend = new FormData();
+      formDataToSend.append("pdf", pdfFile);
+      formDataToSend.append("recipientPhoneNumber", formData.phoneNumber); // Substituir com o número de telefone real
+      formDataToSend.append("recipientMessengerId", formData.messengerId); // Substituir com o ID do Messenger real
+      formDataToSend.append("recipientInstagramId", formData.instagramId); // Substituir com o ID do Instagram real
+      formDataToSend.append("recipientEmail", formData.email); // Substituir com o email real
+      formDataToSend.append("subject", "Fatura do Pedido");
+      formDataToSend.append("text", "Segue em anexo a sua fatura.");
+      formDataToSend.append("accessToken", "SEU_TOKEN_DE_ACESSO"); // Substituir com o token de acesso real
+  
+      try {
+        const socialResponse = await fetch("http://localhost:3000/create-social", {
+          method: "POST",
+          body: formDataToSend,
+        });
+  
+        if (!socialResponse.ok) {
+          const errorData = await socialResponse.json();
+          console.error("Erro ao enviar o PDF para as plataformas:", errorData);
+          return;
+        }
+
+        console.log("PDF enviado com sucesso para as plataformas sociais e email.");
+      } catch (error) {
+        console.error("Erro ao enviar o PDF para as plataformas sociais e email:", error);
+        return;
+      }
+  
+      // **4. Fazer o download do PDF**
       console.log("Fazendo download do PDF...");
       const pdfUrl = URL.createObjectURL(pdfBlob);
       const link = document.createElement("a");
@@ -286,7 +322,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       link.click();
       URL.revokeObjectURL(pdfUrl);
   
-      // **4. Finalizar o processo**
+      // **5. Finalizar o processo**
       setShowSuccessModal(true);
       resetCart();
       resetForm();
@@ -294,6 +330,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       console.error("Erro na requisição:", error);
     }
   };
+
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
@@ -508,6 +545,9 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     setFormData({
                       name: "",
                       number: "",
+                      phoneNumber: "",  // Adicionando a propriedade phoneNumber
+                      messengerId: "",  // Adicionando a propriedade messengerId
+                      instagramId: "",  // Adicionando a propriedade instagramId
                       flavors: total.toString(), // Reinicia com valor de total
                       payment: total.toString(), // Reinicia com valor de total
                       paymentMethod: "",

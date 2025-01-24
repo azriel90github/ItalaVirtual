@@ -3,6 +3,7 @@ import cors from '@fastify/cors';
 import multipart from '@fastify/multipart'; // Importa o plugin para upload de arquivos
 import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
+import createSocialRoute from './routes/create-social';
 
 const app = fastify();
 
@@ -19,6 +20,7 @@ async function startServer() {
   // Registra as rotas existentes
   app.register(createSendOrder);
   app.register(getProducts);
+  app.register(createSocialRoute);
 
   // Inicia o servidor
   try {
