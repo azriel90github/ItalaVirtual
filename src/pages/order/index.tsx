@@ -35,9 +35,9 @@ export function OrderPage() {
   const [formData, setFormData] = useState({  
     name: "",
     number: "",
-    phoneNumber: "",  // Adicionando a propriedade phoneNumber
-    messengerId: "",  // Adicionando a propriedade messengerId
-    instagramId: "",  // Adicionando a propriedade instagramId
+    //phoneNumber: "",  // Adicionando a propriedade phoneNumber
+    //messengerId: "",  // Adicionando a propriedade messengerId
+    //instagramId: "",  // Adicionando a propriedade instagramId
     flavors: total.toString(), // Converte para string
     payment: total.toString(), // Converte para string
     paymentMethod: "",
@@ -50,9 +50,9 @@ export function OrderPage() {
     setFormData({
       name: "",
       number: "",
-      phoneNumber: "",  // Adicionando a propriedade phoneNumber
-      messengerId: "",  // Adicionando a propriedade messengerId
-      instagramId: "",  // Adicionando a propriedade instagramId
+      //phoneNumber: "",  // Adicionando a propriedade phoneNumber
+      //messengerId: "",  // Adicionando a propriedade messengerId
+      //instagramId: "",  // Adicionando a propriedade instagramId
       flavors: total.toString(), // Converte para string
       payment: total.toString(), // Converte para string
       paymentMethod: "",
@@ -235,101 +235,92 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!validateForm()) return;
-  
+
     console.log("Formulário válido, enviando...");
-  
+
     try {
-      // **1. Criação do pedido**
-      const orderResponse = await fetch("http://localhost:3334/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          number: Number.parseInt(formData.number, 10),
-          flavors: Number.parseInt(formData.flavors, 10),
-          payment: Number.parseInt(formData.payment, 10),
-          paymentMethod: selectedOption,
-        }),
-      });
-  
-      if (!orderResponse.ok) {
-        const errorData = await orderResponse.json();
-        console.error("Erro ao criar ordem:", errorData);
-        return;
-      }
-  
-      const orderData = await orderResponse.json();
-      console.log("Ordem criada:", orderData);
-  
-      // **2. Gerar o PDF**
-      console.log("Gerando PDF...");
-      const invoiceComponent = generateInvoice(formData);
-  
-      let pdfBlob: Blob;
-      try {
-        pdfBlob = await pdf(invoiceComponent).toBlob();
-      } catch (err) {
-        console.error("Erro ao gerar o PDF:", err);
-        return;
-      }
-  
-      if (!pdfBlob) {
-        console.error("Erro ao gerar o PDF: Blob vazio.");
-        return;
-      }
-  
-      // **3. Enviar o PDF para plataformas sociais e email**
-      console.log("Enviando PDF para as plataformas sociais e email...");
-      const pdfFile = new File([pdfBlob], `${formData.name}-invoice.pdf`, { type: "application/pdf" });
-      const formDataToSend = new FormData();
-      formDataToSend.append("pdf", pdfFile);
-      formDataToSend.append("recipientPhoneNumber", formData.phoneNumber); // Substituir com o número de telefone real
-      formDataToSend.append("recipientMessengerId", formData.messengerId); // Substituir com o ID do Messenger real
-      formDataToSend.append("recipientInstagramId", formData.instagramId); // Substituir com o ID do Instagram real
-      formDataToSend.append("recipientEmail", formData.email); // Substituir com o email real
-      formDataToSend.append("subject", "Fatura do Pedido");
-      formDataToSend.append("text", "Segue em anexo a sua fatura.");
-      formDataToSend.append("accessToken", "SEU_TOKEN_DE_ACESSO"); // Substituir com o token de acesso real
-  
-      try {
-        const socialResponse = await fetch("http://localhost:3000/create-social", {
-          method: "POST",
-          body: formDataToSend,
+        // **1. Criação do pedido**
+        const orderResponse = await fetch("http://localhost:3334/order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...formData,
+                number: Number.parseInt(formData.number, 10),
+                flavors: Number.parseInt(formData.flavors, 10),
+                payment: Number.parseInt(formData.payment, 10),
+                paymentMethod: selectedOption,
+            }),
         });
-  
-        if (!socialResponse.ok) {
-          const errorData = await socialResponse.json();
-          console.error("Erro ao enviar o PDF para as plataformas:", errorData);
-          return;
+
+        if (!orderResponse.ok) {
+            const errorData = await orderResponse.json();
+            console.error("Erro ao criar ordem:", errorData);
+            return;
         }
 
-        console.log("PDF enviado com sucesso para as plataformas sociais e email.");
-      } catch (error) {
-        console.error("Erro ao enviar o PDF para as plataformas sociais e email:", error);
-        return;
-      }
-  
-      // **4. Fazer o download do PDF**
-      console.log("Fazendo download do PDF...");
-      const pdfUrl = URL.createObjectURL(pdfBlob);
-      const link = document.createElement("a");
-      link.href = pdfUrl;
-      link.download = `${t('fatura.pedido')} - ${formData.name}.pdf`;
-      link.click();
-      URL.revokeObjectURL(pdfUrl);
-  
-      // **5. Finalizar o processo**
-      setShowSuccessModal(true);
-      resetCart();
-      resetForm();
+        const orderData = await orderResponse.json();
+        console.log("Ordem criada:", orderData);
+
+        // **2. Gerar o PDF**
+        console.log("Gerando PDF...");
+        const invoiceComponent = generateInvoice(formData);
+
+        let pdfBlob: Blob;
+        try {
+            pdfBlob = await pdf(invoiceComponent).toBlob();
+        } catch (err) {
+            console.error("Erro ao gerar o PDF:", err);
+            return;
+        }
+
+        if (!pdfBlob) {
+            console.error("Erro ao gerar o PDF: Blob vazio.");
+            return;
+        }
+
+        // **3. Enviar o PDF para o email da empresa**
+        console.log("Enviando PDF para o email da empresa...");
+        const formDataForEmail = new FormData();
+        formDataForEmail.append("file", pdfBlob, `${formData.name}_invoice.pdf`);
+        formDataForEmail.append("email", "empresa@exemplo.com");
+        formDataForEmail.append("subject", "Novo Pedido");
+        formDataForEmail.append("text", `Novo pedidi foi gerada para o cliente ${formData.name}.`);
+
+        const emailResponse = await fetch("http://localhost:3334/send-email", {
+            method: "POST",
+            body: formDataForEmail,
+        });
+
+        if (!emailResponse.ok) {
+            const emailErrorData = await emailResponse.json();
+            console.error("Erro ao enviar o email:", emailErrorData);
+            return;
+        }
+
+        console.log("PDF enviado para o email da empresa com sucesso.");
+
+        // **4. Fazer o download do PDF**
+        console.log("Fazendo download do PDF...");
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = `${t('fatura.pedido')} - ${formData.name}.pdf`;
+        link.click();
+        URL.revokeObjectURL(pdfUrl);
+
+        // **5. Finalizar o processo**
+        setShowSuccessModal(true);
+        resetCart();
+        resetForm();
     } catch (error) {
-      console.error("Erro na requisição:", error);
+        console.error("Erro na requisição:", error);
     }
-  };
+};
+
 
 
   return (
@@ -545,9 +536,6 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     setFormData({
                       name: "",
                       number: "",
-                      phoneNumber: "",  // Adicionando a propriedade phoneNumber
-                      messengerId: "",  // Adicionando a propriedade messengerId
-                      instagramId: "",  // Adicionando a propriedade instagramId
                       flavors: total.toString(), // Reinicia com valor de total
                       payment: total.toString(), // Reinicia com valor de total
                       paymentMethod: "",

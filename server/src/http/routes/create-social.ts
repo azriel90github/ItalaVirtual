@@ -2,43 +2,30 @@ import type { FastifyPluginAsync, FastifyRequest } from 'fastify';
 import { sendPDF } from '../../functions/send-social';
 
 // Definindo a interface para o corpo da requisição
-interface CreateSocialRequestBody {
+interface CreateEmailRequestBody {
     pdfUrl: string;
-    recipientPhoneNumber?: string;
-    recipientMessengerId?: string;
-    recipientInstagramId?: string;
-    recipientEmail?: string;
+    recipientEmail: string;
     subject: string;
     text: string;
-    accessToken: string;
 }
 
-// Definindo a rota create-social com Fastify
-const createSocialRoute: FastifyPluginAsync = async (fastify, options) => {
-    fastify.post('/create-social', async (request: FastifyRequest<{ Body: CreateSocialRequestBody }>, reply) => {
+// Definindo a rota create-email com Fastify
+const createEmailRoute: FastifyPluginAsync = async (fastify, options) => {
+    fastify.post('/create-email', async (request: FastifyRequest<{ Body: CreateEmailRequestBody }>, reply) => {
         const {
             pdfUrl,
-            recipientPhoneNumber,
-            recipientMessengerId,
-            recipientInstagramId,
             recipientEmail,
             subject,
-            text,
-            accessToken
+            text
         } = request.body;
 
         try {
-            // Passando 'fastify' como parte do objeto
+            // Chamando a função para enviar o PDF por email
             await sendPDF({
-                fastify,  // Passando 'fastify' aqui
                 pdfUrl,
-                recipientPhoneNumber,
-                recipientMessengerId,
-                recipientInstagramId,
                 recipientEmail,
                 subject,
-                text,
-                accessToken
+                text
             });
 
             reply.status(200).send({ message: "PDF enviado com sucesso!" });
@@ -49,5 +36,5 @@ const createSocialRoute: FastifyPluginAsync = async (fastify, options) => {
     });
 };
 
-export default createSocialRoute;
+export default createEmailRoute;
 
