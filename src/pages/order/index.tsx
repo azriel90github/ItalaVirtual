@@ -282,17 +282,19 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             return;
         }
 
-        // **3. Enviar o PDF para o email da empresa**
-        console.log("Enviando PDF para o email da empresa...");
-        const formDataForEmail = new FormData();
-        formDataForEmail.append("file", pdfBlob, `${formData.name}_invoice.pdf`);
-        formDataForEmail.append("email", "empresa@exemplo.com");
-        formDataForEmail.append("subject", "Novo Pedido");
-        formDataForEmail.append("text", `Novo pedidi foi gerada para o cliente ${formData.name}.`);
-
-        const emailResponse = await fetch("http://localhost:3334/send-email", {
+        // **3. Enviar o PDF para o email**
+        console.log("Enviando o email...");
+        const emailResponse = await fetch("http://localhost:3334/create-email", {
             method: "POST",
-            body: formDataForEmail,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                pdfUrl: "http://localhost:3334/uploads/temp.pdf", // Opcional, se necessário
+                recipientEmail: "azrielgithub@gmail.com",
+                subject: `Novo Pedido - Cliente ${formData.name}`,
+                text: `Olá, um novo pedido foi gerado para o cliente ${formData.name}.`,
+            }),
         });
 
         if (!emailResponse.ok) {
@@ -301,7 +303,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             return;
         }
 
-        console.log("PDF enviado para o email da empresa com sucesso.");
+        console.log("PDF enviado para o email com sucesso.");
 
         // **4. Fazer o download do PDF**
         console.log("Fazendo download do PDF...");
@@ -320,6 +322,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.error("Erro na requisição:", error);
     }
 };
+
 
 
 
