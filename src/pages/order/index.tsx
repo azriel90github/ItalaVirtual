@@ -13,6 +13,7 @@ import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
 import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
+import { send } from 'emailjs-com';
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
@@ -231,23 +232,20 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     return true;
   };
 
-  const { resetCart } = useCart();
+  const { resetCart } = useCart(); // Assumindo que você usa essa biblioteca para gerar PDFs.
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
-    // Verificar a validade do formulário
+
     if (!validateForm()) return;
-  
-    console.log("Formulário válido, enviando...");
-  
+
+    console.log('Formulário válido, enviando...');
+
     try {
       // **1. Criação do pedido**
-      const orderResponse = await fetch("http://localhost:3334/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const orderResponse = await fetch('http://localhost:3334/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
           number: Number.parseInt(formData.number, 10),
@@ -256,93 +254,76 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           paymentMethod: selectedOption,
         }),
       });
-  
+
       if (!orderResponse.ok) {
-        const errorData = await orderResponse.json();
-        console.error("Erro ao criar ordem:", errorData);
+        const errorData = await orderResponse.json().catch(() => null);
+        console.error('Erro ao criar ordem:', errorData || 'Resposta inesperada do servidor');
         return;
       }
-  
+
       const orderData = await orderResponse.json();
-      console.log("Ordem criada:", orderData);
-  
+      console.log('Ordem criada:', orderData);
+
       // **2. Gerar o PDF**
-      console.log("Gerando PDF...");
+      console.log('Gerando PDF...');
       const invoiceComponent = generateInvoice(formData);
-  
-      let pdfBlob: Blob;
-      try {
-        pdfBlob = await pdf(invoiceComponent).toBlob();
-      } catch (err) {
-        console.error("Erro ao gerar o PDF:", err);
-        return;
-      }
-  
+      const pdfBlob = await pdf(invoiceComponent).toBlob();
+
       if (!pdfBlob) {
-        console.error("Erro ao gerar o PDF: Blob vazio.");
+        console.error('Erro ao gerar o PDF: Blob vazio.');
         return;
       }
 
-      console.log("PDF gerado com sucesso. Pronto para upload.");
-  
-      // **3. Fazer o upload do PDF**
-      const uploadData = new FormData();
-      uploadData.append("file", pdfBlob, "invoice.pdf"); // "file" deve corresponder ao esperado no servidor
+      console.log('PDF gerado com sucesso.');
 
-      const uploadResponse = await fetch("http://localhost:3334/upload", {
-        method: "POST",
-        body: uploadData, // FormData com o arquivo PDF
+      // **3. Enviar o PDF por e-mail usando EmailJS**
+      console.log('Enviando o e-mail com o PDF...');
+
+      // Transformar o PDF Blob em base64
+      const pdfBase64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(pdfBlob);
       });
 
-      if (!uploadResponse.ok) {
-        console.error("Erro ao fazer upload do PDF");
-        return;
-      }
+      const emailData = {
+        to_email: 'azrielgithub@gmail.com',
+        to_name: 'Geladaria Italala',
+        from_name: 'Sistema de Pedidos',
+        subject: `Novo Pedido - Cliente ${formData.name}`,
+        message: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Confira o PDF anexado.`,
+        pdf: pdfBase64,
+      };
 
-      const { url: pdfUrl } = await uploadResponse.json();
-      console.log("PDF enviado para o servidor:", pdfUrl);
+      await send(
+        'seu_service_id', // Substitua pelo seu ID de serviço
+        'seu_template_id', // Substitua pelo seu ID de template
+        emailData,
+        'seu_user_id' // Substitua pelo seu ID de usuário
+      );
 
-  
-      // **4. Enviar o PDF para o email**
-      console.log("Enviando o email...");
-      const emailResponse = await fetch("http://localhost:3334/create-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          pdfUrl, // URL obtida no upload
-          recipientEmail: "azrielgithub@gmail.com",
-          subject: `Novo Pedido - Cliente ${formData.name}`,
-          text: `Olá, um novo pedido foi gerado para o cliente ${formData.name}.`,
-        }),
-      });
-  
-      if (!emailResponse.ok) {
-        const emailErrorData = await emailResponse.json();
-        console.error("Erro ao enviar o email:", emailErrorData);
-        return;
-      }
-  
-      console.log("PDF enviado para o email com sucesso.");
-  
-      // **5. Fazer o download do PDF**
-      console.log("Fazendo download do PDF...");
+      console.log('E-mail enviado com sucesso.');
+
+      // **4. Fazer o download do PDF**
+      console.log('Fazendo download do PDF...');
       const pdfDownloadUrl = URL.createObjectURL(pdfBlob);
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       link.href = pdfDownloadUrl;
-      link.download = `${t('fatura.pedido')} - ${formData.name}.pdf`;
+      link.download = `Fatura - ${formData.name}.pdf`;
       link.click();
       URL.revokeObjectURL(pdfDownloadUrl);
-  
-      // **6. Finalizar o processo**
+
+      // **5. Finalizar**
       setShowSuccessModal(true);
       resetCart();
       resetForm();
     } catch (error) {
-      console.error("Erro na requisição:", error);
+      console.error('Erro na requisição:', error);
     }
   };
+
+  
   
 
   return (
