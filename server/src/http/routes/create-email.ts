@@ -4,11 +4,12 @@ import { z } from 'zod';
 
 // Esquema de validação com zod
 const createEmailSchema = z.object({
-  pdfUrl: z.string().url().optional(), // PDF pode ser opcional se for gerado localmente
-  recipientEmail: z.string().email(),
-  subject: z.string().min(1, 'O assunto é obrigatório.'),
-  text: z.string().min(1, 'O texto é obrigatório.'),
-});
+    pdfUrl: z.string().url().default(""), // Retorna string vazia se não for fornecido
+    recipientEmail: z.string().email(),
+    subject: z.string().min(1, 'O assunto é obrigatório.'),
+    text: z.string().min(1, 'O texto é obrigatório.'),
+  });
+  
 
 // Tipagem para o corpo da requisição com base no esquema
 type CreateEmailRequestBody = z.infer<typeof createEmailSchema>;
