@@ -19,7 +19,7 @@ async function startServer() {
 
   // Registra o plugin CORS
   await app.register(cors, {
-    origin: true, // Alterar conforme o ambiente do front-end
+    origin: 'http://localhost:5173', // Alterar conforme o ambiente do front-end
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   });
 

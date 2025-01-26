@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChartNoAxesCombined, CreditCard, HandCoins, Landmark, MailPlus, MessageCircle, Package, X } from "lucide-react";
+import { CreditCard, HandCoins, Landmark, MailPlus, MessageCircle, PackageCheck, Truck, X } from "lucide-react";
 import {
   RotateCcw,
   Send,
@@ -235,96 +235,115 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    // Verificar a validade do formulário
     if (!validateForm()) return;
-
+  
     console.log("Formulário válido, enviando...");
-
+  
     try {
-        // **1. Criação do pedido**
-        const orderResponse = await fetch("http://localhost:3334/order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...formData,
-                number: Number.parseInt(formData.number, 10),
-                flavors: Number.parseInt(formData.flavors, 10),
-                payment: Number.parseInt(formData.payment, 10),
-                paymentMethod: selectedOption,
-            }),
-        });
+      // **1. Criação do pedido**
+      const orderResponse = await fetch("http://localhost:3334/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          number: Number.parseInt(formData.number, 10),
+          flavors: Number.parseInt(formData.flavors, 10),
+          payment: Number.parseInt(formData.payment, 10),
+          paymentMethod: selectedOption,
+        }),
+      });
+  
+      if (!orderResponse.ok) {
+        const errorData = await orderResponse.json();
+        console.error("Erro ao criar ordem:", errorData);
+        return;
+      }
+  
+      const orderData = await orderResponse.json();
+      console.log("Ordem criada:", orderData);
+  
+      // **2. Gerar o PDF**
+      console.log("Gerando PDF...");
+      const invoiceComponent = generateInvoice(formData);
+  
+      let pdfBlob: Blob;
+      try {
+        pdfBlob = await pdf(invoiceComponent).toBlob();
+      } catch (err) {
+        console.error("Erro ao gerar o PDF:", err);
+        return;
+      }
+  
+      if (!pdfBlob) {
+        console.error("Erro ao gerar o PDF: Blob vazio.");
+        return;
+      }
 
-        if (!orderResponse.ok) {
-            const errorData = await orderResponse.json();
-            console.error("Erro ao criar ordem:", errorData);
-            return;
-        }
+      console.log("PDF gerado com sucesso. Pronto para upload.");
+  
+      // **3. Fazer o upload do PDF**
+      const uploadData = new FormData();
+      uploadData.append("file", pdfBlob, "invoice.pdf"); // "file" deve corresponder ao esperado no servidor
 
-        const orderData = await orderResponse.json();
-        console.log("Ordem criada:", orderData);
+      const uploadResponse = await fetch("http://localhost:3334/upload", {
+        method: "POST",
+        body: uploadData, // FormData com o arquivo PDF
+      });
 
-        // **2. Gerar o PDF**
-        console.log("Gerando PDF...");
-        const invoiceComponent = generateInvoice(formData);
+      if (!uploadResponse.ok) {
+        console.error("Erro ao fazer upload do PDF");
+        return;
+      }
 
-        let pdfBlob: Blob;
-        try {
-            pdfBlob = await pdf(invoiceComponent).toBlob();
-        } catch (err) {
-            console.error("Erro ao gerar o PDF:", err);
-            return;
-        }
+      const { url: pdfUrl } = await uploadResponse.json();
+      console.log("PDF enviado para o servidor:", pdfUrl);
 
-        if (!pdfBlob) {
-            console.error("Erro ao gerar o PDF: Blob vazio.");
-            return;
-        }
-
-        // **3. Enviar o PDF para o email**
-        console.log("Enviando o email...");
-        const emailResponse = await fetch("http://localhost:3334/create-email", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                pdfUrl: "http://localhost:3334/uploads/temp.pdf", // Opcional, se necessário
-                recipientEmail: "azrielgithub@gmail.com",
-                subject: `Novo Pedido - Cliente ${formData.name}`,
-                text: `Olá, um novo pedido foi gerado para o cliente ${formData.name}.`,
-            }),
-        });
-
-        if (!emailResponse.ok) {
-            const emailErrorData = await emailResponse.json();
-            console.error("Erro ao enviar o email:", emailErrorData);
-            return;
-        }
-
-        console.log("PDF enviado para o email com sucesso.");
-
-        // **4. Fazer o download do PDF**
-        console.log("Fazendo download do PDF...");
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-        const link = document.createElement("a");
-        link.href = pdfUrl;
-        link.download = `${t('fatura.pedido')} - ${formData.name}.pdf`;
-        link.click();
-        URL.revokeObjectURL(pdfUrl);
-
-        // **5. Finalizar o processo**
-        setShowSuccessModal(true);
-        resetCart();
-        resetForm();
+  
+      // **4. Enviar o PDF para o email**
+      console.log("Enviando o email...");
+      const emailResponse = await fetch("http://localhost:3334/create-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          pdfUrl, // URL obtida no upload
+          recipientEmail: "azrielgithub@gmail.com",
+          subject: `Novo Pedido - Cliente ${formData.name}`,
+          text: `Olá, um novo pedido foi gerado para o cliente ${formData.name}.`,
+        }),
+      });
+  
+      if (!emailResponse.ok) {
+        const emailErrorData = await emailResponse.json();
+        console.error("Erro ao enviar o email:", emailErrorData);
+        return;
+      }
+  
+      console.log("PDF enviado para o email com sucesso.");
+  
+      // **5. Fazer o download do PDF**
+      console.log("Fazendo download do PDF...");
+      const pdfDownloadUrl = URL.createObjectURL(pdfBlob);
+      const link = document.createElement("a");
+      link.href = pdfDownloadUrl;
+      link.download = `${t('fatura.pedido')} - ${formData.name}.pdf`;
+      link.click();
+      URL.revokeObjectURL(pdfDownloadUrl);
+  
+      // **6. Finalizar o processo**
+      setShowSuccessModal(true);
+      resetCart();
+      resetForm();
     } catch (error) {
-        console.error("Erro na requisição:", error);
+      console.error("Erro na requisição:", error);
     }
-};
-
-
-
+  };
+  
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
@@ -348,7 +367,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             <div className="flex flex-col gap-1.5">
               <div className="bg-buttonColor2 text-lx items-center text-zinc-100 py-3 px-5 w-full rounded-2xl flex justify-between">
                 {t('orderpage.h2order')}
-                <ChartNoAxesCombined />
+                <Truck/>
               </div>
             </div>
 
@@ -566,7 +585,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
               {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
               <button
                className="flex">
-                <Package className="size-7 text-moneyColor1" />
+                <PackageCheck className="size-7 text-moneyColor1" />
               </button>
             </div>
             <div className="py-3">

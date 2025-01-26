@@ -4,11 +4,11 @@ import { z } from 'zod';
 
 // Esquema de validação com zod
 const createEmailSchema = z.object({
-    pdfUrl: z.string().url().default(""), // Retorna string vazia se não for fornecido
-    recipientEmail: z.string().email(),
-    subject: z.string().min(1, 'O assunto é obrigatório.'),
-    text: z.string().min(1, 'O texto é obrigatório.'),
-  });
+  pdfUrl: z.string().url().default(""), // Retorna string vazia se não for fornecido
+  recipientEmail: z.string().email(),
+  subject: z.string().min(1, 'O assunto é obrigatório.'),
+  text: z.string().min(1, 'O texto é obrigatório.'),
+});
   
 
 // Tipagem para o corpo da requisição com base no esquema
@@ -20,6 +20,11 @@ export const createEmailRoute: FastifyPluginAsync = async (fastify) => {
       // Validação do corpo da requisição
       const parsedBody = createEmailSchema.parse(request.body);
       const { pdfUrl, recipientEmail, subject, text } = parsedBody;
+
+      // Verifica se pdfUrl está vazio
+      const attachments = pdfUrl
+        ? [{ filename: 'document.pdf', path: pdfUrl }]
+        : [];
 
       // Chamada para a função de envio de email
       await sendPDF({ pdfUrl, recipientEmail, subject, text });

@@ -17,23 +17,29 @@ export async function sendPDF({ pdfUrl, recipientEmail, subject, text }: SendPDF
   });
 
   try {
-    await transporter.sendMail({
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    const mailOptions: any = {
       from: process.env.EMAIL_USER,
       to: recipientEmail,
       subject,
       text,
-      attachments: [
+    };
+
+    // Condicional para adicionar anexos apenas se pdfUrl estiver presente
+    if (pdfUrl) {
+      mailOptions.attachments = [
         {
           filename: 'document.pdf',
           path: pdfUrl,
         },
-      ],
-    });
+      ];
+    }
+
+    await transporter.sendMail(mailOptions);
     console.log('Email enviado com sucesso.');
   } catch (error) {
     console.error('Erro ao enviar email:', error);
     throw error;
   }
 }
-
 
