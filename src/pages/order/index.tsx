@@ -297,10 +297,10 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       };
 
       await send(
-        'seu_service_id', // Substitua pelo seu ID de serviço
-        'seu_template_id', // Substitua pelo seu ID de template
+        'service_f8bfj7u', // Substitua pelo seu ID de serviço
+        'template_xh49jbf', // Substitua pelo seu ID de template
         emailData,
-        'seu_user_id' // Substitua pelo seu ID de usuário
+        'kvF2AHxUdhnuyCj-O' // Substitua pelo seu ID de usuário
       );
 
       console.log('E-mail enviado com sucesso.');
@@ -310,7 +310,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const pdfDownloadUrl = URL.createObjectURL(pdfBlob);
       const link = document.createElement('a');
       link.href = pdfDownloadUrl;
-      link.download = `Fatura - ${formData.name}.pdf`;
+      link.download = `Pedido - ${formData.name}.pdf`;
       link.click();
       URL.revokeObjectURL(pdfDownloadUrl);
 
