@@ -6,14 +6,19 @@ import fs from 'node:fs';
 import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
 import { createEmailRoute } from './routes/create-email';
+import dotenv from 'dotenv';
+
+// Carregar variáveis de ambiente do arquivo .env
+dotenv.config();
 
 const app = fastify({
   logger: true,
 });
 
 async function startServer() {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    app.log.error('As variáveis de ambiente EMAIL_USER e EMAIL_PASS não estão configuradas!');
+  // Verifique se as variáveis de ambiente necessárias estão configuradas
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.SENDGRID_API_KEY) {
+    app.log.error('As variáveis de ambiente EMAIL_USER, EMAIL_PASS e SENDGRID_API_KEY não estão configuradas!');
     process.exit(1);
   }
 
@@ -23,7 +28,6 @@ async function startServer() {
   });
 
   await app.register(multipart);
-
   app.register(require('@fastify/formbody'));
 
   // Diretório público para uploads
@@ -79,6 +83,5 @@ async function startServer() {
 }
 
 startServer();
-
 
 

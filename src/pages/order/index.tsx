@@ -13,7 +13,6 @@ import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
 import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
-import { send } from 'emailjs-com';
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
@@ -24,7 +23,7 @@ export function OrderPage() {
 
   const { t } = useTranslation();
 
-  const [selectedOption, setSelectedOption] = useState(""); // Estado para o valor selecionado
+  const [, setSelectedOption] = useState(""); // Estado para o valor selecionado
   const [isPaymentMethodModalOpen, setIsPaymentMethodModalOpen] = useState(false);
   //const { total } = useResult(); // Acessa o valor do total do contexto
 
@@ -242,31 +241,8 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log('Formulário válido, enviando...');
   
     try {
-      // **1. Criação do pedido**
-      const orderResponse = await fetch('http://localhost:3334/order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          number: Number.parseInt(formData.number, 10),
-          flavors: Number.parseInt(formData.flavors, 10),
-          payment: Number.parseInt(formData.payment, 10),
-          paymentMethod: selectedOption,
-        }),
-      });
-  
-      if (!orderResponse.ok) {
-        const errorData = await orderResponse.json().catch(() => null);
-        console.error('Erro ao criar ordem:', errorData || 'Resposta inesperada do servidor');
-        return;
-      }
-  
-      const orderData = await orderResponse.json();
-      console.log('Ordem criada:', orderData);
-  
-      // **2. Gerar o PDF**
       console.log('Gerando PDF...');
-      const invoiceComponent = generateInvoice(formData);
+      const invoiceComponent = generateInvoice(formData); // Função para gerar o layout do PDF
       const pdfBlob = await pdf(invoiceComponent).toBlob();
   
       if (!pdfBlob) {
@@ -274,63 +250,40 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         return;
       }
   
-      console.log('PDF gerado com sucesso.');
-  
-      // **3. Fazer o upload do PDF**
-      console.log('Fazendo upload do PDF...');
-      const formDataForUpload = new FormData();
-      formDataForUpload.append('file', pdfBlob, `Pedido - ${formData.name}.pdf`);
-
-      const uploadResponse = await fetch('http://localhost:3334/upload', {
-        method: 'POST',
-        body: formDataForUpload,
+      console.log('Convertendo PDF para Base64...');
+      const pdfBase64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(pdfBlob); // Retorna como Base64
       });
-
-      if (!uploadResponse.ok) {
-        console.error('Erro ao fazer upload do PDF.');
-        return;
-      }
-
-      const uploadResult = await uploadResponse.json(); // Certifique-se de que o backend retorna a URL do PDF.
-      const pdfUrl = uploadResult.fileUrl; // Substitua "fileUrl" pela chave correta do backend.
-      console.log('Upload realizado com sucesso:', pdfUrl);
-
-      // **4. Enviar o link do PDF por e-mail**
-      console.log('Enviando o e-mail com o link do PDF...');
-      const emailData = {
-        to_email: 'azrielmoreira@gmail.com',
-        to_name: 'Geladaria Italala',
-        from_name: 'Sistema de Pedidos',
-        subject: `Novo Pedido - Cliente ${formData.name}`,
-        message: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Você pode acessar o PDF do pedido clicando no link abaixo:\n\n${pdfUrl}`,
-      };
-
-      await send(
-        'service_f8bfj7u', // Substitua pelo seu ID de serviço
-        'template_xh49jbf', // Substitua pelo seu ID de template
-        emailData,
-        'kvF2AHxUdhnuyCj-O' // Substitua pelo seu ID de usuário
-      );
-
-      console.log('E-mail enviado com sucesso.');
-
-      // **5. Fazer o download do PDF**
-      console.log('Fazendo download do PDF...');
-      const pdfDownloadUrl = URL.createObjectURL(pdfBlob);
-      const link = document.createElement('a');
-      link.href = pdfDownloadUrl;
-      link.download = `Pedido - ${formData.name}.pdf`;
-      link.click();
-      URL.revokeObjectURL(pdfDownloadUrl);
   
-      // **6. Finalizar**
-      setShowSuccessModal(true);
-      resetCart();
-      resetForm();
+      console.log('Chamando o backend para envio de e-mail...');
+      const response = await fetch('http://localhost:3334/create-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pdfBase64,
+          recipientEmail: 'azrielgithub@gmail.com',
+          subject: `Novo Pedido - Cliente ${formData.name}`,
+          text: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Confira o PDF anexado.`,
+        }),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        console.log(result.message);
+        setShowSuccessModal(true);
+        resetCart();
+        resetForm();
+      } else {
+        console.error('Erro no envio:', result.error);
+      }
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
   };
+  
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
