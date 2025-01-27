@@ -236,11 +236,11 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!validateForm()) return;
-
+  
     console.log('Formulário válido, enviando...');
-
+  
     try {
       // **1. Criação do pedido**
       const orderResponse = await fetch('http://localhost:3334/order', {
@@ -254,39 +254,56 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           paymentMethod: selectedOption,
         }),
       });
-
+  
       if (!orderResponse.ok) {
         const errorData = await orderResponse.json().catch(() => null);
         console.error('Erro ao criar ordem:', errorData || 'Resposta inesperada do servidor');
         return;
       }
-
+  
       const orderData = await orderResponse.json();
       console.log('Ordem criada:', orderData);
-
+  
       // **2. Gerar o PDF**
       console.log('Gerando PDF...');
       const invoiceComponent = generateInvoice(formData);
       const pdfBlob = await pdf(invoiceComponent).toBlob();
-
+  
       if (!pdfBlob) {
         console.error('Erro ao gerar o PDF: Blob vazio.');
         return;
       }
-
+  
       console.log('PDF gerado com sucesso.');
-
-      // **3. Enviar o PDF por e-mail usando EmailJS**
+  
+      // **3. Fazer o upload do PDF**
+      console.log('Fazendo upload do PDF...');
+      const formDataForUpload = new FormData();
+      formDataForUpload.append('file', pdfBlob, `Pedido - ${formData.name}.pdf`);
+  
+      const uploadResponse = await fetch('http://localhost:3334/upload', {
+        method: 'POST',
+        body: formDataForUpload,
+      });
+  
+      if (!uploadResponse.ok) {
+        console.error('Erro ao fazer upload do PDF.');
+        return;
+      }
+  
+      const uploadResult = await uploadResponse.json();
+      console.log('Upload realizado com sucesso:', uploadResult);
+  
+      // **4. Enviar o PDF por e-mail usando EmailJS**
       console.log('Enviando o e-mail com o PDF...');
-
-      // Transformar o PDF Blob em base64
+  
       const pdfBase64 = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
         reader.onloadend = () => resolve(reader.result as string);
         reader.onerror = reject;
         reader.readAsDataURL(pdfBlob);
       });
-
+  
       const emailData = {
         to_email: 'azrielgithub@gmail.com',
         to_name: 'Geladaria Italala',
@@ -295,17 +312,17 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         message: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Confira o PDF anexado.`,
         pdf: pdfBase64,
       };
-
+  
       await send(
         'service_f8bfj7u', // Substitua pelo seu ID de serviço
         'template_xh49jbf', // Substitua pelo seu ID de template
         emailData,
         'kvF2AHxUdhnuyCj-O' // Substitua pelo seu ID de usuário
       );
-
+  
       console.log('E-mail enviado com sucesso.');
-
-      // **4. Fazer o download do PDF**
+  
+      // **5. Fazer o download do PDF**
       console.log('Fazendo download do PDF...');
       const pdfDownloadUrl = URL.createObjectURL(pdfBlob);
       const link = document.createElement('a');
@@ -313,8 +330,8 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       link.download = `Pedido - ${formData.name}.pdf`;
       link.click();
       URL.revokeObjectURL(pdfDownloadUrl);
-
-      // **5. Finalizar**
+  
+      // **6. Finalizar**
       setShowSuccessModal(true);
       resetCart();
       resetForm();
@@ -322,9 +339,6 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       console.error('Erro na requisição:', error);
     }
   };
-
-  
-  
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
