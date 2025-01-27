@@ -2,7 +2,7 @@ import type { FastifyPluginAsync, FastifyRequest } from 'fastify';
 import sgMail from '@sendgrid/mail';
 import { z } from 'zod';
 import { pdf } from 'react-pdf'; // Bibliotecas para gerar o PDF
-import { generateInvoice } from '../../../functions/generateInvoice'; // Função para gerar o layout do PDF
+import { generateInvoice } from '../../../../src/context/InvoiceContext'; // Função para gerar o layout do PDF
 
 // Configure a chave de API do SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
