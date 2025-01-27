@@ -280,48 +280,40 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       console.log('Fazendo upload do PDF...');
       const formDataForUpload = new FormData();
       formDataForUpload.append('file', pdfBlob, `Pedido - ${formData.name}.pdf`);
-  
+
       const uploadResponse = await fetch('http://localhost:3334/upload', {
         method: 'POST',
         body: formDataForUpload,
       });
-  
+
       if (!uploadResponse.ok) {
         console.error('Erro ao fazer upload do PDF.');
         return;
       }
-  
-      const uploadResult = await uploadResponse.json();
-      console.log('Upload realizado com sucesso:', uploadResult);
-  
-      // **4. Enviar o PDF por e-mail usando EmailJS**
-      console.log('Enviando o e-mail com o PDF...');
-  
-      const pdfBase64 = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.onerror = reject;
-        reader.readAsDataURL(pdfBlob);
-      });
-  
+
+      const uploadResult = await uploadResponse.json(); // Certifique-se de que o backend retorna a URL do PDF.
+      const pdfUrl = uploadResult.fileUrl; // Substitua "fileUrl" pela chave correta do backend.
+      console.log('Upload realizado com sucesso:', pdfUrl);
+
+      // **4. Enviar o link do PDF por e-mail**
+      console.log('Enviando o e-mail com o link do PDF...');
       const emailData = {
-        to_email: 'azrielgithub@gmail.com',
+        to_email: 'azrielmoreira@gmail.com',
         to_name: 'Geladaria Italala',
         from_name: 'Sistema de Pedidos',
         subject: `Novo Pedido - Cliente ${formData.name}`,
-        message: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Confira o PDF anexado.`,
-        pdf: pdfBase64,
+        message: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Você pode acessar o PDF do pedido clicando no link abaixo:\n\n${pdfUrl}`,
       };
-  
+
       await send(
         'service_f8bfj7u', // Substitua pelo seu ID de serviço
         'template_xh49jbf', // Substitua pelo seu ID de template
         emailData,
         'kvF2AHxUdhnuyCj-O' // Substitua pelo seu ID de usuário
       );
-  
+
       console.log('E-mail enviado com sucesso.');
-  
+
       // **5. Fazer o download do PDF**
       console.log('Fazendo download do PDF...');
       const pdfDownloadUrl = URL.createObjectURL(pdfBlob);
