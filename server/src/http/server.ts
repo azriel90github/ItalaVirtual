@@ -5,7 +5,6 @@ import path from 'node:path';
 import fs from 'node:fs';
 import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
-import { createEmailRoute } from './routes/create-email';
 import dotenv from 'dotenv';
 
 // Carregar variáveis de ambiente do arquivo .env
@@ -59,7 +58,7 @@ async function startServer() {
   // Registra as rotas
   app.register(createSendOrder);
   app.register(getProducts);
-  app.register(createEmailRoute);
+  //app.register(createEmailRoute);
 
   app.addHook('onRequest', async (request, reply) => {
     app.log.info(`Requisição recebida: ${request.method} ${request.url}`);

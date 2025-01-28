@@ -13,6 +13,8 @@ import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
 import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
+import emailjs from 'emailjs-com';
+
 
 import { useTranslation } from 'react-i18next';
 //import { PaymentMethodModal } from "../../components/modal/payment-method-modal.tsx";
@@ -235,55 +237,111 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!validateForm()) return;
-  
+
     console.log('Formulário válido, enviando...');
-  
+
     try {
-      console.log('Gerando PDF...');
-      const invoiceComponent = generateInvoice(formData); // Função para gerar o layout do PDF
-      const pdfBlob = await pdf(invoiceComponent).toBlob();
-  
-      if (!pdfBlob) {
-        console.error('Erro ao gerar o PDF: Blob vazio.');
-        return;
-      }
-  
-      console.log('Convertendo PDF para Base64...');
-      const pdfBase64 = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.onerror = reject;
-        reader.readAsDataURL(pdfBlob); // Retorna como Base64
-      });
-  
-      console.log('Chamando o backend para envio de e-mail...');
-      const response = await fetch('http://localhost:3334/create-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          pdfBase64,
-          recipientEmail: 'azrielgithub@gmail.com',
-          subject: `Novo Pedido - Cliente ${formData.name}`,
-          text: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Confira o PDF anexado.`,
-        }),
-      });
-  
-      const result = await response.json();
-      if (response.ok) {
-        console.log(result.message);
-        setShowSuccessModal(true);
-        resetCart();
-        resetForm();
-      } else {
-        console.error('Erro no envio:', result.error);
-      }
+        console.log('Gerando PDF...');
+        const invoiceComponent = generateInvoice(formData); // Função para gerar o layout do PDF
+        const pdfBlob = await pdf(invoiceComponent).toBlob();
+
+        if (!pdfBlob) {
+            console.error('Erro ao gerar o PDF: Blob vazio.');
+            return;
+        }
+
+        console.log('Autenticando e fazendo upload para o Google Drive...');
+        const uploadResult = await uploadToGoogleDrive(pdfBlob);
+
+        if (!uploadResult) {
+            console.error('Erro no upload para o Google Drive.');
+            return;
+        }
+
+        const fileLink = uploadResult.link; // Link do arquivo no Google Drive
+
+        console.log('Chamando emailJS para enviar e-mail...');
+        const emailResponse = await sendEmailWithPDFLink(fileLink);
+
+        if (emailResponse.ok) {
+            console.log('E-mail enviado com sucesso!');
+            setShowSuccessModal(true);
+            resetCart();
+            resetForm();
+        } else {
+            console.error('Erro no envio do e-mail:', emailResponse.error);
+        }
+
     } catch (error) {
-      console.error('Erro na requisição:', error);
+        console.error('Erro na requisição:', error);
     }
-  };
-  
+};
+
+// Função para autenticar e fazer o upload do PDF para o Google Drive
+const uploadToGoogleDrive = async (pdfBlob: Blob) => {
+    // Aqui você precisa configurar a autenticação com o Google API
+    const accessToken = await getGoogleDriveAccessToken(); // Função para obter o token de acesso
+
+    if (!accessToken) {
+        console.error('Erro ao obter token de acesso do Google');
+        return null;
+    }
+
+    const formData = new FormData();
+    formData.append('file', pdfBlob, 'invoice.pdf');
+
+    const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+        body: formData,
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        return {
+            link: `https://drive.google.com/file/d/${data.id}/view`, // Link para visualizar o arquivo
+        };
+    // biome-ignore lint/style/noUselessElse: <explanation>
+    } else {
+        console.error('Erro no upload para o Google Drive');
+        return null;
+    }
+};
+
+// Função para obter o token de acesso do Google Drive (necessita configuração de autenticação)
+const getGoogleDriveAccessToken = async () => {
+    // A autenticação pode ser feita usando OAuth2
+    // Se não tiver configurado, você pode utilizar bibliotecas como `gapi` para obter o token.
+    // Exemplo básico de autenticação com gapi (deve configurar antes):
+    // gapi.auth2.getAuthInstance().signIn();
+
+    return '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'; // Substitua com um token válido.
+};
+
+const sendEmailWithPDFLink = async (fileLink: string) => {
+  try {
+      // Envia o e-mail com o link do PDF
+      await emailjs.send('service_f8bfj7u', 'template_xh49jbf', {
+          to_email: 'azrielmoreira@gmail.com', // E-mail do destinatário
+          subject: `Novo Pedido - Cliente ${formData.name}`,
+          message: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Confira o PDF no Google Drive: ${fileLink}`,
+      });
+
+      // Se o código chegar aqui, significa que o e-mail foi enviado com sucesso
+      console.log('E-mail enviado com sucesso!');
+      return { ok: true };
+  } catch (error) {
+      // Se houver um erro, será capturado aqui
+      console.error('Erro ao enviar o e-mail:', error);
+      return { ok: false, error };
+  }
+};
+
+
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">
