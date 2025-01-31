@@ -13,7 +13,7 @@ import { useCart } from "../../context/CartContext.tsx";
 import { useInvoice } from "../../context/InvoiceContext";
 import { pdf } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
-import emailjs from 'emailjs-com';
+//import emailjs from 'emailjs-com';
 
 
 import { useTranslation } from 'react-i18next';
@@ -235,92 +235,62 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   const { resetCart } = useCart(); // Assumindo que você usa essa biblioteca para gerar PDFs.
 
-  const uploadToGoogleDrive = async (_pdfBlob: Blob) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    console.log('Formulário válido, enviando...');
+
     try {
-        console.log('Fazendo upload do PDF para o Google Drive...');
-        // Aqui você precisa implementar a lógica real de upload para o Google Drive
-        // Pode usar a API do Google Drive com OAuth2 e fetch para enviar o arquivo
-        
-        // Simulação de um retorno de sucesso
-        return { link: 'https://drive.google.com/file/d/EXAMPLE_LINK/view' };
-    } catch (error) {
-        console.error('Erro ao fazer upload para o Google Drive:', error);
-        return null;
-    }
-};
-
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-  if (!validateForm()) return;
-
-  console.log('Formulário válido, enviando...');
-
-  try {
       console.log('Gerando PDF...');
       const invoiceComponent = generateInvoice(formData); // Função para gerar o layout do PDF
       const pdfBlob = await pdf(invoiceComponent).toBlob();
 
       if (!pdfBlob) {
-          console.error('Erro ao gerar o PDF: Blob vazio.');
-          return;
+        console.error('Erro ao gerar o PDF: Blob vazio.');
+        return;
       }
 
-      console.log('Autenticando e fazendo upload para o Google Drive...');
-      const uploadResult = await uploadToGoogleDrive(pdfBlob);
+      console.log('Fazendo upload do PDF...');
+      const formDataUpload = new FormData();
+      formDataUpload.append('file', pdfBlob, 'invoice.pdf');
 
-      if (!uploadResult) {
-          console.error('Erro no upload para o Google Drive.');
-          return;
+      const uploadResponse = await fetch('http://localhost:3334/upload', {
+        method: 'POST',
+        body: formDataUpload,
+      });
+
+      if (!uploadResponse.ok) {
+        console.error('Erro no upload do PDF');
+        return;
       }
 
-      const fileLink = uploadResult.link; // Link do arquivo no Google Drive
+      const { url: pdfUrl } = await uploadResponse.json();
 
-      console.log('Enviando e-mail com link de visualização...');
-      const emailResponse = await sendEmailWithPDF(fileLink);
+      console.log('Enviando e-mail com o link do PDF...');
+      const emailResponse = await fetch('http://localhost:3334/send-invoice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: 'azrielmoreira@gmail.com',
+          name: formData.name,
+          pdfUrl,
+        }),
+      });
 
       if (emailResponse.ok) {
-          console.log('E-mail enviado com sucesso!');
-          setShowSuccessModal(true);
-          resetCart();
-          resetForm();
+        console.log('E-mail enviado com sucesso!');
+        setShowSuccessModal(true);
+        resetCart();
+        resetForm();
       } else {
-          console.error('Erro no envio do e-mail:', emailResponse.error);
+        console.error('Erro no envio do e-mail');
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Erro na requisição:', error);
-  }
-};
-
-const sendEmailWithPDF = async (fileLink: string) => {
-  try {
-      const viewLink = `https://drive.google.com/viewerng/viewer?embedded=true&url=${fileLink}`;
-
-      const emailResponse = await emailjs.send(
-          'service_f8bfj7u',
-          'template_xh49jbf',
-          {
-              to_email: 'azrielmoreira@gmail.com',
-              subject: `Novo Pedido - Cliente ${formData.name}`,
-              message: `Olá, um novo pedido foi gerado para o cliente ${formData.name}. Você pode visualizar o PDF clicando no link abaixo:\n\n${viewLink}`,
-          },
-          'kvF2AHxUdhnuyCj-O' // Substitua pelo seu User ID do EmailJS
-      );
-
-      if (emailResponse.status === 200) {
-          console.log('E-mail enviado com sucesso!');
-          return { ok: true };
-      // biome-ignore lint/style/noUselessElse: <explanation>
-      } else {
-          console.error('Erro ao enviar e-mail:', emailResponse.text);
-          return { ok: false, error: emailResponse.text };
-      }
-  } catch (error) {
-      console.error('Erro ao enviar o e-mail:', error);
-      return { ok: false, error };
-  }
-};
-
+    }
+  };
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto bg-fundoHome bg-no-repeat bg-right">

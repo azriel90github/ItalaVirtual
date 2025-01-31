@@ -1,11 +1,10 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
 import multipart from '@fastify/multipart';
-import path from 'node:path';
-import fs from 'node:fs';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
 import { createSendOrder } from './routes/create-order';
 import { getProducts } from './routes/create-menu';
-import dotenv from 'dotenv';
 
 // Carregar variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -14,10 +13,16 @@ const app = fastify({
   logger: true,
 });
 
+interface SendInvoiceBody {
+  email: string;
+  name: string;
+  pdfUrl: string;
+}
+
 async function startServer() {
   // Verifique se as variáveis de ambiente necessárias estão configuradas
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.SENDGRID_API_KEY) {
-    app.log.error('As variáveis de ambiente EMAIL_USER, EMAIL_PASS e SENDGRID_API_KEY não estão configuradas!');
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    app.log.error('As variáveis de ambiente EMAIL_USER e EMAIL_PASS não estão configuradas!');
     process.exit(1);
   }
 
@@ -29,36 +34,40 @@ async function startServer() {
   await app.register(multipart);
   app.register(require('@fastify/formbody'));
 
-  // Diretório público para uploads
-  const uploadsDir = path.join(__dirname, 'uploads');
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir);
-  }
-
-  // Endpoint para upload de arquivos
-  app.post('/upload', async (request, reply) => {
-    const data = await request.file();
-    if (!data) {
-      return reply.status(400).send({ error: 'Nenhum arquivo enviado' });
-    }
-
+  // Endpoint para envio de PDF por e-mail
+  app.post<{ Body: SendInvoiceBody }>('/send-invoice', async (request, reply) => {
     try {
-      const fileName = `${Date.now()}-${data.filename}`;
-      const filePath = path.join(uploadsDir, fileName);
-      await data.toBuffer().then((buffer) => fs.writeFileSync(filePath, buffer));
+      const { email, name, pdfUrl } = request.body;
+      if (!email || !name || !pdfUrl) {
+        return reply.status(400).send({ error: 'Dados insuficientes' });
+      }
 
-      const fileUrl = `http://localhost:3334/uploads/${fileName}`;
-      reply.status(200).send({ url: fileUrl });
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: `Novo Pedido - Cliente ${name}`,
+        text: `Olá, um novo pedido foi gerado para o cliente ${name}. Você pode visualizar o PDF clicando no link abaixo:\n\n${pdfUrl}`,
+      };
+
+      await transporter.sendMail(mailOptions);
+      reply.send({ message: 'E-mail enviado com sucesso!' });
     } catch (error) {
-      app.log.error('Erro ao processar o upload:', error);
-      reply.status(500).send({ error: 'Erro ao fazer upload do arquivo' });
+      app.log.error('Erro no envio do e-mail:', error);
+      reply.status(500).send({ error: 'Erro ao enviar e-mail' });
     }
   });
 
   // Registra as rotas
   app.register(createSendOrder);
   app.register(getProducts);
-  //app.register(createEmailRoute);
 
   app.addHook('onRequest', async (request, reply) => {
     app.log.info(`Requisição recebida: ${request.method} ${request.url}`);
@@ -82,5 +91,3 @@ async function startServer() {
 }
 
 startServer();
-
-
