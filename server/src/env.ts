@@ -5,8 +5,6 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   EMAIL_USER: z.string(),
   EMAIL_PASS: z.string(),
-  SENDGRID_API_KEY: z.string(),
-  EMAIL_FROM: z.string().email()
 });
 
 // Valida as variáveis de ambiente

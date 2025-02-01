@@ -237,37 +237,48 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!validateForm()) return;
-
+  
     console.log('Formulário válido, enviando...');
-
+  
     try {
       console.log('Gerando PDF...');
-      const invoiceComponent = generateInvoice(formData); // Função para gerar o layout do PDF
+      const invoiceComponent = generateInvoice(formData);
+      if (!invoiceComponent) {
+        console.error('Erro ao gerar o componente do PDF.');
+        return;
+      }
+  
       const pdfBlob = await pdf(invoiceComponent).toBlob();
-
       if (!pdfBlob) {
         console.error('Erro ao gerar o PDF: Blob vazio.');
         return;
       }
-
+  
       console.log('Fazendo upload do PDF...');
       const formDataUpload = new FormData();
       formDataUpload.append('file', pdfBlob, 'invoice.pdf');
-
+  
       const uploadResponse = await fetch('http://localhost:3334/upload', {
         method: 'POST',
         body: formDataUpload,
       });
-
+  
       if (!uploadResponse.ok) {
-        console.error('Erro no upload do PDF');
+        const errorData = await uploadResponse.json();
+        console.error('Erro no upload do PDF:', errorData.error);
         return;
       }
-
+  
       const { url: pdfUrl } = await uploadResponse.json();
-
+      console.log('PDF enviado com sucesso:', pdfUrl);
+  
+      if (!pdfUrl) {
+        console.error('URL do PDF não definida.');
+        return;
+      }
+  
       console.log('Enviando e-mail com o link do PDF...');
       const emailResponse = await fetch('http://localhost:3334/send-invoice', {
         method: 'POST',
@@ -278,15 +289,17 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           pdfUrl,
         }),
       });
-
-      if (emailResponse.ok) {
-        console.log('E-mail enviado com sucesso!');
-        setShowSuccessModal(true);
-        resetCart();
-        resetForm();
-      } else {
-        console.error('Erro no envio do e-mail');
+  
+      if (!emailResponse.ok) {
+        const errorData = await emailResponse.json();
+        console.error('Erro no envio do e-mail:', errorData.error);
+        return;
       }
+  
+      console.log('E-mail enviado com sucesso!');
+      setShowSuccessModal(true);
+      resetCart();
+      resetForm();
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
