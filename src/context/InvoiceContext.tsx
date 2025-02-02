@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     width: 200, // Ajuste o tamanho da imagem
     height: "auto", // Mantém a proporção
   },
+
   header: {
     display: "flex",
     flexDirection: "row",
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
+
   logo: {
     width: 120,
     height: 65,
@@ -82,19 +84,23 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 1.5,
   },
+
   sectionTitle: {
     color: "#3D1A36",
     fontSize: 18,
     marginBottom: 12,
   },
+
   dataBox: {
     lineHeight:1.5,
     borderRadius: 8,
   },
+
   text: {
     color: "#f3f4f6",
     fontSize: 12,
   },
+
   dataBox1: {
     backgroundColor: "#7C4A73",
     padding: 16,
@@ -102,23 +108,27 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 5,
   },
+
   sectionTitle1: {
     color: "#3D1A36", 
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
   },
+
   tableRow: {
     flexDirection: 'row', 
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 4,
   },
+
   tableHeader: {
     fontSize: 13,
     fontWeight: 'bold',
     color: 'white',
   },
+
   tableCell: {
     fontSize: 13,
     color: '#3D1A36',
@@ -132,15 +142,18 @@ const styles = StyleSheet.create({
     color: '#28a745',
     fontWeight: 'bold',
   },
+
   tableCellFlex: {
     flex: 1,
     textAlign: 'center',
   },
+
   separator: {
     borderBottomColor: '#64395C',
     borderBottomWidth: 1,
     marginVertical: 6,
   },
+
   summaryBox: {
     display: "flex",
     flexDirection: "row", // Alinha os itens em linha
@@ -152,26 +165,32 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: 20,
   },
+
   contentBox: {
     lineHeight:1,
     borderRadius: 10,
   },
+
   summaryText: {
     color: "#f3f4f6",
     fontSize: 13,
     lineHeight: 2,
   },
+
   summaryText1: {
     color: '#3D1A36',
   },
+
   moneyColor: {
     color: "#22c55e",
   },
+
   qrcod: {
     borderRadius: 10,
     width: 115, // Ajuste o tamanho da imagem
     height: "auto", // Mantém a proporção
   },
+
   footer: {
     display: "flex",
     flexDirection: "row",
@@ -183,11 +202,13 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginLeft: 8,
   },
+
   link: {
     color: "#f3f4f6",
     textDecoration: "none", 
     fontSize: 12,
   },
+  
   link1: {
     color: "#1e90ff",
   },
