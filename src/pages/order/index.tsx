@@ -256,47 +256,34 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         return;
       }
   
-      console.log('Fazendo upload do PDF...');
-      const formDataUpload = new FormData();
-      formDataUpload.append('file', pdfBlob, 'invoice.pdf');
+      // Criar um link para baixar o PDF
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      const a = document.createElement('a');
+      a.href = pdfUrl;
+      a.download = `Pedido - ${formData.name}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(pdfUrl);
   
-      const uploadResponse = await fetch('http://localhost:3334/upload', {
-        method: 'POST',
-        body: formDataUpload,
+      console.log('PDF baixado com sucesso!');
+  
+      // Enviar dados para o backend
+      console.log('Enviando dados para o banco de dados...');
+      const response = await fetch("http://localhost:3334/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
   
-      if (!uploadResponse.ok) {
-        const errorData = await uploadResponse.json();
-        console.error('Erro no upload do PDF:', errorData.error);
-        return;
+      if (!response.ok) {
+        throw new Error("Erro ao salvar no banco de dados.");
       }
   
-      const { url: pdfUrl } = await uploadResponse.json();
-      console.log('PDF enviado com sucesso:', pdfUrl);
+      console.log("Dados salvos no banco de dados com sucesso!");
   
-      if (!pdfUrl) {
-        console.error('URL do PDF não definida.');
-        return;
-      }
-  
-      console.log('Enviando e-mail com o link do PDF...');
-      const emailResponse = await fetch('http://localhost:3334/send-invoice', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: 'azrielmoreira@gmail.com',
-          name: formData.name,
-          pdfUrl,
-        }),
-      });
-  
-      if (!emailResponse.ok) {
-        const errorData = await emailResponse.json();
-        console.error('Erro no envio do e-mail:', errorData.error);
-        return;
-      }
-  
-      console.log('E-mail enviado com sucesso!');
       setShowSuccessModal(true);
       resetCart();
       resetForm();
@@ -304,6 +291,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       console.error('Erro na requisição:', error);
     }
   };
+  
 
 
   return (
