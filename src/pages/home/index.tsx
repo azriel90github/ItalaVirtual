@@ -26,21 +26,6 @@ export function HomePage() {
 		navigate("/order/123");
 	}
 
-	/**
-	 * 	
-		function blogPage() {
-			navigate("/blog/123");
-		}
-	 */
-
-	/**
-	 * 	
-		function AccessibilityPage() {
-			navigate("/accessibility/123");
-		}
-	 */
-
-
 	function LibraryPage() {
 		navigate("/library/123");
 	}
