@@ -1,1 +1,1 @@
-<img src="public/hamburgaria.jpeg" alt="apresentacaorepositorio" />
+<img src="public/fotos-projecto/gelado.jpeg" alt="apresentacaorepositorio" />
